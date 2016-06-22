@@ -7,6 +7,7 @@ int main(void) {
 	SetConsoleTitle("FiveMP - Launcher Console");
 
 	const char *dllname = "FiveMP.dll";
+	const char *dllname2 = "ScriptHookV.dll";
 
 	bool GameThread = false;
 	char GamePath[MAX_PATH] = { 0 };
@@ -21,6 +22,14 @@ int main(void) {
 	}
 
 	printf("SEARCH: Successfully found %s!\n\n", dllname);
+	printf("SEARCH: Attempting to search for %s.\n", dllname2);
+
+	if (!DoesFileExist(dllname2)) {
+		MessageBox(NULL, "Could not find the scripthook DLL", "Fatal Error", MB_ICONERROR);
+		return 0;
+	}
+
+	printf("SEARCH: Successfully found %s!\n\n", dllname2);
 
 	printf("SEARCH: Attempting to search for GTA V's install directory.\n");
 
@@ -77,16 +86,15 @@ int main(void) {
 				printf("SCAN: GTA5.exe has successfully started!\n\n");
 				GameStarted = true;
 			}
-
-			if (InjectDLL("GTA5.exe", dllname) == true) {
-				printf("INJECT: Successfully injected into Grand Theft Auto V!\n\n");
-
-				GameThread = true;
-			}
 			else {
-				printf("SCAN: Couldn't find GTA5.exe, please try restarting the launcher!\n\n");
-
-				GameThread = false;
+				Sleep(2500);
+				if (InjectDLL("GTA5.exe", dllname2) == true && GameStarted == true) {
+					printf("INJECT: Successfully injected %s into Grand Theft Auto V!\n\n", dllname2);
+					if (InjectDLL("GTA5.exe", dllname) == true && GameStarted == true) {
+						printf("INJECT: Successfully injected %s into Grand Theft Auto V!\n\n", dllname);
+						GameThread = true;
+					}
+				}
 			}
 		}
 		Sleep(500);
