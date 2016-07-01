@@ -3,6 +3,8 @@
 int userAmount, vehicleAmount;
 char userGuid;
 
+playerPool playerData[100];
+
 int main(void)
 {
 	unsigned char GetPacketIdentifier(RakNet::Packet * p);
@@ -34,7 +36,7 @@ int main(void)
 	clientID = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
 
 	server->SetIncomingPassword("fivemp_dev", (int)strlen("fivemp_dev"));
-	server->SetTimeoutTime(30000, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
+	server->SetTimeoutTime(15000, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
 
 
 	puts("Starting server.");
@@ -62,6 +64,7 @@ int main(void)
 	puts("'quit' to quit. 'stat' to show stats. 'ping' to ping.\n'pingip' to ping an ip address\n'ban' to ban an IP from connecting.\n'kick to kick the first connected player.\nType to talk.");
 
 	char message[2048];
+	int tempid;
 
 	while (1)
 	{
@@ -79,10 +82,7 @@ int main(void)
 			case ID_DISCONNECTION_NOTIFICATION:
 				printf("ID_DISCONNECTION_NOTIFICATION from %s\n", p->systemAddress.ToString(true));;
 
-				if (netPool.RemoveFromUserPool(p->guid.ToString()) == false) {
-					printf("exception 2");
-					break;
-				}
+				netPool.RemoveFromUserPool(p->guid);
 
 				netPool.UserAmount--;
 				break;
@@ -91,36 +91,29 @@ int main(void)
 				printf("Incoming connection (IP|PORT: %s - GUID: %s)\n", p->systemAddress.ToString(true), p->guid.ToString());
 				clientID = p->systemAddress;
 
+				netPool.UserAmount++;
+
 				printf("%s - %d\n", p->guid.ToString(), netPool.UserAmount);
-				//PlayerInfo[userAmount][name] = userAmount;
 
 				//callback.OnPlayerConnect(netPool.UserAmount);
-
-				netPool.UserAmount++;
 				break;
 
 			case ID_REQUEST_SERVER_SYNC:
-				char notused[64];
+				char tempname[64];
 
-				pid_request.Read("fivemp");
+				pid_request.Read(tempname);
 
-				printf("%s is username from syncrequest\n", notused);
+				tempid = netPool.AddToUserPool(tempname, p->guid);
 
-				if (netPool.AddToUserPool(notused, p->guid.ToString()) == true) {
+				pid_bitStream.Write((unsigned char)ID_REQUEST_SERVER_SYNC);
 
-					pid_bitStream.Write((unsigned char)ID_REQUEST_SERVER_SYNC);
+				pid_bitStream.Write(tempid);
 
-					pid_bitStream.Write(netPool.GetPlayerID(p->guid.ToString()));
+				pid_bitStream.Write(netConfig.ServerTimeHour);
+				pid_bitStream.Write(netConfig.ServerTimeMinute);
+				pid_bitStream.Write(netConfig.ServerTimeFreeze);
 
-					pid_bitStream.Write(netConfig.ServerTimeHour);
-					pid_bitStream.Write(netConfig.ServerTimeMinute);
-					pid_bitStream.Write(netConfig.ServerTimeFreeze);
-
-					server->Send(&pid_bitStream, IMMEDIATE_PRIORITY, RELIABLE, 0, p->systemAddress, false);
-				} else {
-					printf("exception");
-				}
-
+				server->Send(&pid_bitStream, HIGH_PRIORITY, RELIABLE_ORDERED, 0, p->systemAddress, false);
 				break;
 
 			case ID_INCOMPATIBLE_PROTOCOL_VERSION:
@@ -154,6 +147,12 @@ int main(void)
 			if (strcmp(message, "quit") == 0)
 			{
 				puts("Quitting.");
+				break;
+			}
+
+			if (strcmp(message, "playertest") == 0)
+			{
+				printf("%d - %s - %s", playerData[0].playerid, playerData[0].playerusername, playerData[0].playerguid);
 				break;
 			}
 
@@ -240,7 +239,7 @@ int main(void)
 
 	server->Shutdown(300);
 	RakNet::RakPeerInterface::DestroyInstance(server);
-	Sleep(5000);
+	Sleep(1000);
 	return 0;
 }
 
