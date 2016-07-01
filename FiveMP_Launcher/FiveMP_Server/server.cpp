@@ -125,6 +125,7 @@ int main(void)
 
 				PlayerBitStream.Read(playerData[tempplyrid].pedType);
 				PlayerBitStream.Read(playerData[tempplyrid].pedModel);
+				PlayerBitStream.Read(playerData[tempplyrid].pedHealth);
 
 				PlayerBitStream.Read(playerData[tempplyrid].x);
 				PlayerBitStream.Read(playerData[tempplyrid].y);
@@ -150,6 +151,8 @@ int main(void)
 			case ID_CONNECTION_LOST:
 				printf("ID_CONNECTION_LOST from %s\n", p->systemAddress.ToString(true));;
 				netPool.UserAmount--;
+
+				netPool.RemoveFromUserPool(p->guid);
 				break;
 
 			default:
