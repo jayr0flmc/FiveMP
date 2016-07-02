@@ -42,10 +42,25 @@ extern MODULEINFO g_MainModuleInfo;
 #include "IniWriter.h"
 #include "IniReader.h"
 
+// Scripting (LUA)
+extern "C" {
+#include "lua-5.3.3/lua.h"
+#include "lua-5.3.3/lualib.h"
+#include "lua-5.3.3/lauxlib.h"
+}
+
+// Scripting (LUA-Functions)
+#include "functions_main.h"
+
+// Scripting (LUA-Callbacks)
+#include "callbacks.h"
+
 namespace {
 	// Classes (net)
 	class sConfig	netConfig;
 
 	// Pools (net)
 	class UserPool netPool;
+
+	lua_State* sLUA;
 }
