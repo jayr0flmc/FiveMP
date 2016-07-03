@@ -1,19 +1,28 @@
 #include "stdafx.h"
 
+RakNet::RakPeerInterface *server;
+RakNet::RakNetStatistics *rss;
+RakNet::Packet* p;
+RakNet::SystemAddress clientID;
+RakNet::SocketDescriptor socketDescriptors[2];
+
 int userAmount, vehicleAmount;
 char userGuid;
 
+RPC4 rpc;
+
 playerPool playerData[100];
+
+void PlayerConnect(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
+	int tempplayer;
+	bitStream->Read(tempplayer);
+
+	OnPlayerConnect(sLUA, tempplayer);
+};
 
 int main(void)
 {
 	unsigned char GetPacketIdentifier(RakNet::Packet * p);
-
-	RakNet::RakPeerInterface *server;
-	RakNet::RakNetStatistics *rss;
-	RakNet::Packet* p;
-	RakNet::SystemAddress clientID;
-	RakNet::SocketDescriptor socketDescriptors[2];
 
 	unsigned char packetIdentifier;
 
@@ -49,7 +58,9 @@ int main(void)
 	sLUA = luaL_newstate();
 	luaL_openlibs(sLUA);
 	luaL_dofile(sLUA, tempgamemode);
+
 	lua_register(sLUA, "SetPlayerUsername", SetPlayerUsername);
+	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
 
 	OnGameModeInit(sLUA);
 
@@ -68,19 +79,20 @@ int main(void)
 			exit(1);
 		}
 	}
+	
+	server->AttachPlugin(&rpc);
+
+	rpc.RegisterSlot("PlayerConnect", PlayerConnect, 0);
 
 	server->SetOccasionalPing(true);
 	server->SetUnreliableTimeout(1000);
-
-	printf("\nMy GUID is %s\n", server->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString());
-	puts("'quit' to quit. 'stat' to show stats. 'ping' to ping.\n'pingip' to ping an ip address\n'ban' to ban an IP from connecting.\n'kick to kick the first connected player.\nType to talk.");
 
 	char message[2048];
 	int tempid;
 
 	while (1)
 	{
-		RakSleep(30);
+		RakSleep(100);
 
 		for (p = server->Receive(); p; server->DeallocatePacket(p), p = server->Receive())
 		{
@@ -107,8 +119,6 @@ int main(void)
 				clientID = p->systemAddress;
 
 				netPool.UserAmount++;
-
-				printf("%s - %d\n", p->guid.ToString(), netPool.UserAmount);
 
 				//callback.OnPlayerConnect(netPool.UserAmount);
 				break;
@@ -298,9 +308,11 @@ int main(void)
 		}
 	}
 
+	OnGameModeExit(sLUA);
+	lua_close(sLUA);
 	server->Shutdown(300);
 	RakNet::RakPeerInterface::DestroyInstance(server);
-	Sleep(1000);
+	Sleep(2500);
 	return 0;
 }
 

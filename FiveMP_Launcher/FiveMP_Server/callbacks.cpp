@@ -16,7 +16,23 @@ int OnGameModeInit(lua_State* state)
 	return result;
 }
 
-/*int OnGameModeInit(lua_State* state, int playerid)
+int OnGameModeExit(lua_State * state)
+{
+	int result;
+
+	printf("OnGameModeExit() was called\n");
+
+	lua_getglobal(state, "OnGameModeExit");
+
+	lua_call(state, 0, 1);
+
+	result = (int)lua_tointeger(state, -1);
+	lua_pop(state, 1);
+
+	return result;
+}
+
+int OnPlayerConnect(lua_State * state, int playerid)
 {
 	int result;
 
@@ -32,4 +48,4 @@ int OnGameModeInit(lua_State* state)
 	lua_pop(state, 1);
 
 	return result;
-}*/
+}

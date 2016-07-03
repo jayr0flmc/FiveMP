@@ -17,6 +17,16 @@ bool Server_Time_Pause;
 
 playerPool playerData[100];
 
+void ShowMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
+	int playerid;
+	char string[128];
+
+	bitStream->Read(playerid);
+	bitStream->Read(string);
+
+	player.ShowMessageAboveMap(string);
+}
+
 void InitGameScript() {
 	CIniReader iniReader(".\\FiveMP.ini");
 
@@ -39,6 +49,9 @@ void RunGameScript() {
 
 	client		= RakNet::RakPeerInterface::GetInstance();
 	clientID	= RakNet::UNASSIGNED_SYSTEM_ADDRESS;
+
+	client->AttachPlugin(&rpc);
+	rpc.RegisterSlot("ShowMessageToPlayer", ShowMessageToPlayer, 0);
 
 	while (true)
 	{
@@ -96,7 +109,7 @@ void RunGameScript() {
 		sprintf(alphadata, "FiveMP Alpha | %s - %s", __DATE__, __TIME__);
 
 		draw_text(0.002f, 0.002f, alphadata, { 255, 255, 255, 255 });
-		draw_text(0.755f, 0.975f, coorddata, { 255, 255, 255, 255 });
+		draw_text(0.750f, 0.975f, coorddata, { 255, 255, 255, 255 });
 
 		if (Player_NetListen) {
 			if (Player_IsConnected && Player_Synchronized) {
@@ -128,6 +141,8 @@ void RunGameScript() {
 				RakNet::BitStream playerClientID(packet->data + 1, 64, false);
 
 				RakNet::BitStream PlayerBitStream_receive(packet->data + 1, 128, false);
+
+				RakNet::BitStream bsPlayerSpawn;
 
 				char testmessage[128];
 
@@ -200,6 +215,9 @@ void RunGameScript() {
 
 					TIME::ADVANCE_CLOCK_TIME_TO(Server_Time_Hour, Server_Time_Minute, 00);
 					TIME::PAUSE_CLOCK(Server_Time_Pause);
+
+					bsPlayerSpawn.Write(Player_ClientID);
+					rpc.Signal("PlayerConnect", &bsPlayerSpawn, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, false);
 					break;
 
 				case ID_SEND_PLAYER_DATA:
@@ -274,16 +292,10 @@ void RunGameScript() {
 			player.ShowMessageAboveMap("Synchronizing with the server...");
 
 			Player_Synchronized = true;
-
-			//RakNet::BitStream bsPlayerSpawn;
-			//bsPlayerSpawn.Write(bPause);
-			//rpc.Call("PlayerSpawn", &bsPlayerSpawn, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, UNASSIGNED_SYSTEM_ADDRESS, TRUE);
 		}
 
-		if (IsKeyDown(VK_F8)) {
+		if (IsKeyDown(VK_F8) && !Player_NetListen) {
 			RakNet::SocketDescriptor socketDescriptor(atoi(client_port), 0);
-
-			client->AttachPlugin(&rpc);
 
 			socketDescriptor.socketFamily = AF_INET;
 			client->Startup(8, &socketDescriptor, 1);
@@ -295,7 +307,7 @@ void RunGameScript() {
 			Player_NetListen = true;
 		}
 		if (IsKeyDown(VK_F9)) {
-			if (Player_NetListen == true) {
+			if (Player_NetListen) {
 				client->Shutdown(300);
 
 				Player_IsConnected = false;
