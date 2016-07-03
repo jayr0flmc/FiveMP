@@ -108,9 +108,9 @@ int main(void)
 			{
 			case ID_DISCONNECTION_NOTIFICATION:
 				printf("ID_DISCONNECTION_NOTIFICATION from %s\n", p->systemAddress.ToString(true));;
+				OnPlayerDisconnect(sLUA, netPool.GetPlayerID(p->guid));
 
 				netPool.RemoveFromUserPool(p->guid);
-
 				netPool.UserAmount--;
 				break;
 
@@ -196,6 +196,7 @@ int main(void)
 
 			case ID_CONNECTION_LOST:
 				printf("ID_CONNECTION_LOST from %s\n", p->systemAddress.ToString(true));;
+				OnPlayerDisconnect(sLUA, netPool.GetPlayerID(p->guid));
 				netPool.UserAmount--;
 
 				netPool.RemoveFromUserPool(p->guid);
