@@ -9,6 +9,8 @@ function OnGameModeExit()
 end
 
 function OnPlayerConnect(playerid)
+	
+	GivePlayerWeapon(playerid, "Firework", 10);
 	ShowMessageToPlayer(playerid, "welcome to fivemp");
 	return 1;
 end
