@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <intrin.h>
 #include <string>
+#include <map>
 #include <string.h>
 #include <vector>
 #include <sstream>
@@ -46,6 +47,7 @@ extern MODULEINFO g_MainModuleInfo;
 
 // Game Functions
 #include "player.h"
+#include "weapon.h"
 
 // Math
 #include "CMath.h"
@@ -63,6 +65,7 @@ namespace {
 
 	// Classes (scripts)
 	class GamePlayer player;
+	class GameWeapon weapon;
 
 	// INI (server)
 	char *server_ipaddress;

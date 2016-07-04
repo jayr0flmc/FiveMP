@@ -61,6 +61,10 @@ int main(void)
 
 	lua_register(sLUA, "SetPlayerUsername", SetPlayerUsername);
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
+	lua_register(sLUA, "GivePlayerWeapon", GivePlayerWeapon);
+	lua_register(sLUA, "RemovePlayerWeapon", RemovePlayerWeapon);
+	lua_register(sLUA, "GivePlayerAmmo", GivePlayerAmmo);
+	lua_register(sLUA, "RemovePlayerAmmo", RemovePlayerAmmo);
 
 	OnGameModeInit(sLUA);
 
