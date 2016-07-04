@@ -14,3 +14,9 @@ function OnPlayerConnect(playerid)
 	ShowMessageToPlayer(playerid, "welcome to fivemp");
 	return 1;
 end
+
+function OnPlayerDisonnect(playerid)
+    print(playerid .. " disconnected");
+    return 1;
+end
+
