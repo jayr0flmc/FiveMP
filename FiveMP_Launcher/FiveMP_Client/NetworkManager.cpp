@@ -48,6 +48,8 @@ bool CNetworkManager::Disconnect()
 		Synchronized = false;
 		Listening = false;
 
+		world.CleanUp();
+
 		player.ShowMessageAboveMap("Successfully disconnected!");
 		return true;
 	}
@@ -187,13 +189,6 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 	PlayerBitStream_receive.Read(temptimestamp);
 
 	if (tempplyrid != playerid) {
-<<<<<<< HEAD
-		//printf("%s | %d - %x | %f, %f, %f | %f, %f, %f, %f\n", playerData[tempplyrid].playerusername, playerData[tempplyrid].pedType, playerData[tempplyrid].pedModel, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, playerData[tempplyrid].rx, playerData[tempplyrid].ry, playerData[tempplyrid].rz, playerData[tempplyrid].rw);
-
-		printf("- %d | %d -", tempplyrid, playerid);
-
-=======
->>>>>>> refs/remotes/FiveMP/master
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
 			float tempz;
 
@@ -240,10 +235,11 @@ void CNetworkManager::DropPlayer(Packet * p)
 
 	int tempplyrid;
 
-	time_t temptimestamp;
-
 	PlayerBitStream_receive.Read(tempplyrid);
 
-	ENTITY::DELETE_ENTITY(&playerData[tempplyrid].pedPed);
-	UI::REMOVE_BLIP(&playerData[tempplyrid].pedBlip);
+	if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed))
+	{
+		ENTITY::DELETE_ENTITY(&playerData[tempplyrid].pedPed);
+		UI::REMOVE_BLIP(&playerData[tempplyrid].pedBlip);
+	}
 }
