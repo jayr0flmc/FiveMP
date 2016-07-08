@@ -61,8 +61,8 @@ using namespace RakNet;
 #include "ScriptHook.h"
 
 // Game Functions
-#include "player.h"
-#include "weapon.h"
+#include "Player.h"
+#include "Weapon.h"
 
 // Math
 #include "CMath.h"
@@ -75,7 +75,13 @@ using namespace RakNet;
 #include "NetworkManager.h"
 #include "PlayerPed.h"
 #include "LocalPlayer.h"
+#include "RPCManager.h"
+#include "Script.h"
 #include "cPool.h"
+
+// Interface
+#include "RenderDebug.h"
+#include "Render.h"
 
 namespace {
 	// Classes (scripthook)
@@ -91,6 +97,9 @@ namespace {
 
 extern MODULEINFO g_MainModuleInfo;
 
-extern CNetworkManager *NetworkManager;
-extern CLocalPlayer *LocalPlayer;
-extern CConfig *Config;
+extern CNetworkManager	*NetworkManager;
+extern CRPCManager		*RPCManager;
+extern CLocalPlayer		*LocalPlayer;
+extern CConfig			*Config;
+extern CRenderDebug		*RenderDebug;
+extern CRender			*Render;
