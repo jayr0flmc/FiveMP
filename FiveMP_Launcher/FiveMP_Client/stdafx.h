@@ -95,7 +95,7 @@ namespace {
 	class GameWorld world;
 }
 
-extern MODULEINFO g_MainModuleInfo;
+extern MODULEINFO	g_MainModuleInfo;
 
 extern CNetworkManager	*NetworkManager;
 extern CRPCManager		*RPCManager;
