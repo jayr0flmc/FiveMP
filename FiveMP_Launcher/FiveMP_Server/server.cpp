@@ -114,6 +114,11 @@ int main(void)
 				printf("ID_DISCONNECTION_NOTIFICATION from %s\n", p->systemAddress.ToString(true));;
 				OnPlayerDisconnect(sLUA, netPool.GetPlayerID(p->guid));
 
+				pid_bitStream.Write((unsigned char)ID_PLAYER_LEFT);
+				pid_bitStream.Write(netPool.GetPlayerID(p->guid));
+
+				server->Send(&pid_bitStream, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, false);
+
 				netPool.RemoveFromUserPool(p->guid);
 				netPool.UserAmount--;
 				break;

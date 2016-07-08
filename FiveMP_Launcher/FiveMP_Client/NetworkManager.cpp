@@ -138,6 +138,10 @@ void CNetworkManager::Handle()
 			HandlePlayerSync(packet);
 			break;
 
+		case ID_PLAYER_LEFT:
+			DropPlayer(packet);
+			break;
+
 		default:
 			sprintf(testmessage, "%s", packet->data);
 			player.ShowMessageAboveMap(testmessage);
@@ -189,6 +193,8 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 	if (tempplyrid != playerid) {
 		//printf("%s | %d - %x | %f, %f, %f | %f, %f, %f, %f\n", playerData[tempplyrid].playerusername, playerData[tempplyrid].pedType, playerData[tempplyrid].pedModel, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, playerData[tempplyrid].rx, playerData[tempplyrid].ry, playerData[tempplyrid].rz, playerData[tempplyrid].rw);
 
+		printf("- %d | %d -", tempplyrid, playerid);
+
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
 			float tempz;
 
@@ -230,4 +236,18 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 			UI::SET_BLIP_NAME_FROM_TEXT_FILE(playerData[tempplyrid].pedBlip, "FiveMP placeholder");
 		}
 	}
+}
+
+void CNetworkManager::DropPlayer(Packet * p)
+{
+	RakNet::BitStream PlayerBitStream_receive(p->data + 1, p->length + 1, false);
+
+	int tempplyrid;
+
+	time_t temptimestamp;
+
+	PlayerBitStream_receive.Read(tempplyrid);
+
+	ENTITY::DELETE_ENTITY(&playerData[tempplyrid].pedPed);
+	UI::REMOVE_BLIP(&playerData[tempplyrid].pedBlip);
 }
