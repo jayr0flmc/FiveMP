@@ -10,11 +10,8 @@ public:
 	void Handle();
 	void HandlePlayerSync(Packet *p);
 	void DropPlayer(Packet *p);
-<<<<<<< HEAD
-=======
 
 	void SyncOnFoot();
->>>>>>> refs/remotes/FiveMP/master
 
 	RPC4 rpc;
 	RakNet::RakPeerInterface *client;
