@@ -98,7 +98,7 @@ void CLocalPlayer::SendOnFootData()
 void CLocalPlayer::SendSyncRequest()
 {
 	RakNet::BitStream requestid;
-	RakNet::RakString playerUsername("%s", Config->client_username);
+	char *playerUsername = Config->client_username;
 
 	requestid.Write((MessageID)ID_REQUEST_SERVER_SYNC);
 	requestid.Write(playerUsername);
