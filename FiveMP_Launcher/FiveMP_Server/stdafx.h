@@ -22,19 +22,18 @@
 extern MODULEINFO g_MainModuleInfo;
 
 // RakNet
-#include "MessageIdentifiers.h"
-#include "RakPeerInterface.h"
-#include "RakNetStatistics.h"
-#include "RakNetTypes.h"
-#include "BitStream.h"
-#include "RakSleep.h"
-#include "PacketLogger.h"
-#include "Kbhit.h"
-#include "Gets.h"
-#include "WindowsIncludes.h"
-#include "GetTime.h"
-#include "RPC4Plugin.h"
-
+#include <MessageIdentifiers.h>
+#include <RakPeerInterface.h>
+#include <RakNetStatistics.h>
+#include <RakNetTypes.h>
+#include <BitStream.h>
+#include <RakSleep.h>
+#include <PacketLogger.h>
+#include <Kbhit.h>
+#include <Gets.h>
+#include <WindowsIncludes.h>
+#include <GetTime.h>
+#include <RPC4Plugin.h>
 using namespace RakNet;
 
 // Netcode
@@ -46,7 +45,7 @@ using namespace RakNet;
 #include "IniReader.h"
 
 // Scripting (LUA)
-#include "lua-5.3.3/lua.hpp"
+#include <lua.hpp>
 
 // Scripting (LUA-Functions)
 #include "functions_main.h"

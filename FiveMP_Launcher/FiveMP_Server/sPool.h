@@ -10,7 +10,7 @@ public:
 	int GetPlayerID(RakNet::RakNetGUID guid);
 	char *GetPlayerUsername(RakNet::RakNetGUID guid);
 	RakNet::RakNetGUID GetPlayerGUID(char *username);
-	RakNet::RakNetGUID GetPlayerGUIDd(int playerid);
+	RakNet::RakNetGUID GetPlayerGUIDfromId(int playerid);
 };
 
 typedef DWORD Hash;

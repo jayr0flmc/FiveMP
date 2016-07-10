@@ -57,9 +57,10 @@ RakNet::RakNetGUID UserPool::GetPlayerGUID(char *username)
 			return playerData[i].playerguid;
 		}
 	}
+	return RakNet::UNASSIGNED_RAKNET_GUID;
 }
 
-RakNet::RakNetGUID UserPool::GetPlayerGUIDd(int playerid)
+RakNet::RakNetGUID UserPool::GetPlayerGUIDfromId(int playerid)
 {
 	for (int i = 0; i < sizeof(playerData); i++)
 	{
@@ -67,4 +68,5 @@ RakNet::RakNetGUID UserPool::GetPlayerGUIDd(int playerid)
 			return playerData[i].playerguid;
 		}
 	}
+	return RakNet::UNASSIGNED_RAKNET_GUID;
 }
