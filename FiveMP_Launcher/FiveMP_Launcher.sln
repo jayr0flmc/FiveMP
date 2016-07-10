@@ -11,6 +11,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FiveMP_Server", "FiveMP_Ser
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LUA", "LUA\LUA.vcxproj", "{E27DEB82-20F2-4A07-AEAC-48D8FB118DC6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{CC1B3151-277C-48E9-8560-FBC583D4E26B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{0054C461-99F8-420B-8CAE-23E71D5587D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{A71FC343-6712-4154-BB6A-668D7B083F92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -54,5 +60,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F7298C9D-03AC-4557-96A2-556D44250621} = {CC1B3151-277C-48E9-8560-FBC583D4E26B}
+		{05C92719-05C7-4DED-9024-5489640AD286} = {CC1B3151-277C-48E9-8560-FBC583D4E26B}
+		{11DAC5C3-DF35-4E52-BCA3-65FE3FC08884} = {0054C461-99F8-420B-8CAE-23E71D5587D2}
+		{E27DEB82-20F2-4A07-AEAC-48D8FB118DC6} = {A71FC343-6712-4154-BB6A-668D7B083F92}
 	EndGlobalSection
 EndGlobal

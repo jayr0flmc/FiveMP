@@ -20,6 +20,7 @@
 #include <tlhelp32.h>
 #include <math.h>
 #include <iostream>
+#include <future>
 using namespace std;
 
 #pragma comment(lib, "winmm.lib")

@@ -13,6 +13,10 @@ struct playerPool {
 	float x;								// Position X coord
 	float y;								// Position Y coord
 	float z;								// Position Z coord
+
+	float oldx;
+	float oldy;
+	float oldz;
 	
 	float r;								// Rotation (0-360)
 	float rx;								// Rotation X coord
@@ -29,7 +33,7 @@ struct playerPool {
 	float screen_y;							// 2D Y coord
 
 	float lastone;
-	ULONGLONG tickssince;
+	clock_t tickssince;
 
 	bool used = false;						// Whether the player slot is in use or not.
 };

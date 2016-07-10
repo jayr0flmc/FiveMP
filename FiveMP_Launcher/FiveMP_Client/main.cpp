@@ -52,6 +52,7 @@ void RunGameScript() {
 					Render->RenderNametags();
 					LocalPlayer->SendOnFootData();
 					NetworkManager->SyncOnFoot();
+
 				}
 			}
 		}
@@ -86,6 +87,14 @@ void RunGameScript() {
 			PED::SET_PED_CAN_RAGDOLL(player33, false);
 
 			AI::TASK_SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(player33, true);
+		}
+		if (IsKeyJustUp(VK_F11)) {
+			if (NetworkManager->sync_test == true) {
+				NetworkManager->sync_test = false;
+			}
+			else {
+				NetworkManager->sync_test = true;
+			}
 		}
 		WAIT(0);
 	}
