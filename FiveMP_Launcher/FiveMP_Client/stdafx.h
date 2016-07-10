@@ -20,45 +20,45 @@
 #include <tlhelp32.h>
 #include <math.h>
 #include <iostream>
+#include <future>
 using namespace std;
 
 #pragma comment(lib, "winmm.lib")
 
 // RakNet
-#include "MessageIdentifiers.h"
-#include "RakPeerInterface.h"
-#include "RakNetStatistics.h"
-#include "RakNetTypes.h"
-#include "BitStream.h"
-#include "RakSleep.h"
-#include "PacketLogger.h"
-#include "Kbhit.h"
-#include "Gets.h"
-#include "WindowsIncludes.h"
-#include "GetTime.h"
-#include "RPC4Plugin.h"
+#include <MessageIdentifiers.h>
+#include <RakPeerInterface.h>
+#include <RakNetStatistics.h>
+#include <RakNetTypes.h>
+#include <BitStream.h>
+#include <RakSleep.h>
+#include <PacketLogger.h>
+#include <Kbhit.h>
+#include <Gets.h>
+#include <WindowsIncludes.h>
+#include <GetTime.h>
+#include <RPC4Plugin.h>
 using namespace RakNet;
 
 // ScriptHook
-#include "natives.h"
-#include "types.h"
-#include "enums.h"
-#include "sh_main.h"
-#include "keyboard.h"
+#include <natives.h>
+#include <types.h>
+#include <enums.h>
+#include <sh_main.h>
+#include <keyboard.h>
+
+// INI Reader
+#include <IniWriter.h>
+#include <IniReader.h>
+
+// Client
+#include "main.h"
 
 // Rockstar
 #include "Log.h"
 #include "RAGEHelper.h"
 #include "DrawHelper.h"
 #include "Pattern.h"
-
-// INI Reader
-#include "IniWriter.h"
-#include "IniReader.h"
-
-// Client
-#include "main.h"
-#include "ScriptHook.h"
 
 // Game Functions
 #include "Player.h"
@@ -72,6 +72,7 @@ using namespace RakNet;
 
 // Modification (FiveMP)
 #include "Config.h"
+#include "ScriptHook.h"
 
 // Net
 #include "NetworkManager.h"

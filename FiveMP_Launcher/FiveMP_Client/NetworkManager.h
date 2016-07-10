@@ -27,5 +27,7 @@ public:
 	int time_hour;
 	int time_minute;
 	bool time_pause;
+
+	bool sync_test;
 };
 

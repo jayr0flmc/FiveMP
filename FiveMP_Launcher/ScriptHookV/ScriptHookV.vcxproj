@@ -19,77 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lapi.c" />
-    <ClCompile Include="lauxlib.c" />
-    <ClCompile Include="lbaselib.c" />
-    <ClCompile Include="lbitlib.c" />
-    <ClCompile Include="lcode.c" />
-    <ClCompile Include="lcorolib.c" />
-    <ClCompile Include="lctype.c" />
-    <ClCompile Include="ldblib.c" />
-    <ClCompile Include="ldebug.c" />
-    <ClCompile Include="ldo.c" />
-    <ClCompile Include="ldump.c" />
-    <ClCompile Include="lfunc.c" />
-    <ClCompile Include="lgc.c" />
-    <ClCompile Include="linit.c" />
-    <ClCompile Include="liolib.c" />
-    <ClCompile Include="llex.c" />
-    <ClCompile Include="lmathlib.c" />
-    <ClCompile Include="lmem.c" />
-    <ClCompile Include="loadlib.c" />
-    <ClCompile Include="lobject.c" />
-    <ClCompile Include="lopcodes.c" />
-    <ClCompile Include="loslib.c" />
-    <ClCompile Include="lparser.c" />
-    <ClCompile Include="lstate.c" />
-    <ClCompile Include="lstring.c" />
-    <ClCompile Include="lstrlib.c" />
-    <ClCompile Include="ltable.c" />
-    <ClCompile Include="ltablib.c" />
-    <ClCompile Include="ltm.c" />
-    <ClCompile Include="lua.c" />
-    <ClCompile Include="luac.c" />
-    <ClCompile Include="lundump.c" />
-    <ClCompile Include="lutf8lib.c" />
-    <ClCompile Include="lvm.c" />
-    <ClCompile Include="lzio.c" />
+    <ClInclude Include="enums.h" />
+    <ClInclude Include="keyboard.h" />
+    <ClInclude Include="nativeCaller.h" />
+    <ClInclude Include="natives.h" />
+    <ClInclude Include="sh_main.h" />
+    <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lapi.h" />
-    <ClInclude Include="lauxlib.h" />
-    <ClInclude Include="lcode.h" />
-    <ClInclude Include="lctype.h" />
-    <ClInclude Include="ldebug.h" />
-    <ClInclude Include="ldo.h" />
-    <ClInclude Include="lfunc.h" />
-    <ClInclude Include="lgc.h" />
-    <ClInclude Include="llex.h" />
-    <ClInclude Include="llimits.h" />
-    <ClInclude Include="lmem.h" />
-    <ClInclude Include="lobject.h" />
-    <ClInclude Include="lopcodes.h" />
-    <ClInclude Include="lparser.h" />
-    <ClInclude Include="lprefix.h" />
-    <ClInclude Include="lstate.h" />
-    <ClInclude Include="lstring.h" />
-    <ClInclude Include="ltable.h" />
-    <ClInclude Include="ltm.h" />
-    <ClInclude Include="lua.h" />
-    <ClInclude Include="lua.hpp" />
-    <ClInclude Include="luaconf.h" />
-    <ClInclude Include="lualib.h" />
-    <ClInclude Include="lundump.h" />
-    <ClInclude Include="lvm.h" />
-    <ClInclude Include="lzio.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Makefile" />
+    <ClCompile Include="keyboard.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E27DEB82-20F2-4A07-AEAC-48D8FB118DC6}</ProjectGuid>
+    <ProjectGuid>{5752EE06-BA85-45C6-8141-2D0FC2E19B95}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>LUA</RootNamespace>
+    <RootNamespace>ScriptHookV</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,9 +82,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\lib\</OutDir>
+    <TargetName>ScriptHook</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\lib\</OutDir>
+    <TargetName>ScriptHook</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

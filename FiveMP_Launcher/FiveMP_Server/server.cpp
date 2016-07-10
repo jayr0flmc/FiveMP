@@ -96,7 +96,7 @@ int main(void)
 
 	while (1)
 	{
-		RakSleep(100);
+		RakSleep(15);
 
 		for (p = server->Receive(); p; server->DeallocatePacket(p), p = server->Receive())
 		{
@@ -107,6 +107,8 @@ int main(void)
 
 			RakNet::BitStream PlayerBitStream_send;
 			RakNet::BitStream PlayerBitStream_receive(p->data + 1, 128, false);
+			
+			RakNet::RakString tempusername;
 
 			switch (packetIdentifier)
 			{
@@ -114,8 +116,11 @@ int main(void)
 				printf("ID_DISCONNECTION_NOTIFICATION from %s\n", p->systemAddress.ToString(true));;
 				OnPlayerDisconnect(sLUA, netPool.GetPlayerID(p->guid));
 
+				tempusername = netPool.GetPlayerUsername(p->guid);
+
 				pid_bitStream.Write((unsigned char)ID_PLAYER_LEFT);
 				pid_bitStream.Write(netPool.GetPlayerID(p->guid));
+				pid_bitStream.Write(tempusername);
 
 				server->Send(&pid_bitStream, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 
@@ -210,7 +215,7 @@ int main(void)
 
 				PlayerBitStream_send.Write(temptimestamp);
 
-				server->Send(&PlayerBitStream_send, HIGH_PRIORITY, RELIABLE_ORDERED, 0, p->systemAddress, true);
+				server->Send(&PlayerBitStream_send, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 
 				//printf("%s | %d - %x | %f, %f, %f | %f, %f, %f, %f\n", playerData[tempplyrid].playerusername, playerData[tempplyrid].pedType, playerData[tempplyrid].pedModel, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, playerData[tempplyrid].rx, playerData[tempplyrid].ry, playerData[tempplyrid].rz, playerData[tempplyrid].rw);
 				break;

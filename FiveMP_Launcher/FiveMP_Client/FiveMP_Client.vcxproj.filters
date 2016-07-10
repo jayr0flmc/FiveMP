@@ -13,26 +13,8 @@
     <Filter Include="Vendor">
       <UniqueIdentifier>{616352cb-1b83-40fe-a74d-2dfc9090857c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Vendor\ScriptHook">
-      <UniqueIdentifier>{9389a02e-e1bb-4654-a521-d638034778b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Vendor\ScriptHook\Headers">
-      <UniqueIdentifier>{ac810e8f-4ae8-4714-9f1c-7fa0fc90cafd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Vendor\ScriptHook\Keyboard">
-      <UniqueIdentifier>{94f796c9-c5bd-4e5f-96dd-dc4d073ba432}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Vendor\RakNet">
-      <UniqueIdentifier>{7bedeb46-6550-4bc9-90dc-265b2d28021b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Vendor\INI">
-      <UniqueIdentifier>{ef948f8b-d04e-4410-9a7c-12e749529e6d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Vendor\Math">
       <UniqueIdentifier>{82212307-0094-4117-96c9-fa0263624f33}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Headers">
-      <UniqueIdentifier>{0eacaa73-0da7-4df3-9c73-d026c51690ec}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Common">
       <UniqueIdentifier>{1565938b-813b-4225-9282-06c50f7d5fd5}</UniqueIdentifier>
@@ -52,347 +34,26 @@
     <Filter Include="Vendor\RAGE\Licenses">
       <UniqueIdentifier>{51ae91b2-5a1d-426e-9437-dcbe4d82e5d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{fbd3b0dc-0b44-4b23-8e61-5cf84c6443ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{13b3ce77-fdfe-45c8-a489-0d514fa29c97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Function">
+      <UniqueIdentifier>{4a1544b0-e1a5-40e7-b9a5-bb20ce72da8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interface">
+      <UniqueIdentifier>{c46b6efb-ef68-42cc-bbb0-840a6ca59e46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Modification">
+      <UniqueIdentifier>{2839d207-82f5-492d-8585-f7e443391a11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Net">
+      <UniqueIdentifier>{a17e17ad-4621-4332-b7da-0bd4eb0bfee8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Vendor\RakNet\_FindFirst.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\Base64Encoder.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\BitStream.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\CCRakNetSlidingWindow.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\CCRakNetUDT.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\CheckSum.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\CloudClient.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\CloudCommon.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\CloudServer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\CommandParserInterface.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\ConnectionGraph2.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\ConsoleServer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\DataCompressor.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\DirectoryDeltaTransfer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\DR_SHA1.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\DS_BytePool.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\DS_ByteQueue.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\DS_HuffmanEncodingTree.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\DS_Table.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\DynDNS.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\EmailSender.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\EpochTimeToString.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\FileList.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\FileListTransfer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\FileOperations.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\FormatString.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\FullyConnectedMesh2.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\Getche.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\Gets.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\GetTime.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\gettimeofday.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\GridSectorizer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\HTTPConnection.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\HTTPConnection2.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\IncrementalReadInterface.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\Itoa.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\LinuxStrings.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\LocklessTypes.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\LogCommandParser.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\MessageFilter.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\NatPunchthroughClient.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\NatPunchthroughServer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\NatTypeDetectionClient.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\NatTypeDetectionCommon.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\NatTypeDetectionServer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\NetworkIDManager.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\NetworkIDObject.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\PacketConsoleLogger.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\PacketFileLogger.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\PacketizedTCP.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\PacketLogger.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\PacketOutputWindowLogger.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\PluginInterface2.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\PS4Includes.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\Rackspace.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakMemoryOverride.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetCommandParser.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2_360_720.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2_Berkley.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2_Berkley_NativeClient.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2_NativeClient.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2_PS3_PS4.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2_PS4.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2_Vita.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2_Windows_Linux.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2_Windows_Linux_360.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetSocket2_WindowsStore8.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetStatistics.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetTransport2.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakNetTypes.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakPeer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakSleep.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakString.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakThread.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RakWString.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\Rand.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RandSync.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\ReadyEvent.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RelayPlugin.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\ReliabilityLayer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\ReplicaManager3.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\Router2.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\RPC4Plugin.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\SecureHandshake.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\SendToThread.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\SignaledEvent.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\SimpleMutex.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\SocketLayer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\StatisticsHistory.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\StringCompressor.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\StringTable.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\SuperFastHash.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\TableSerializer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\TCPInterface.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\TeamBalancer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\TeamManager.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\TelnetTransport.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\ThreadsafePacketLogger.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\TwoWayAuthentication.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\UDPForwarder.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\UDPProxyClient.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\UDPProxyCoordinator.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\UDPProxyServer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\VariableDeltaSerializer.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\VariableListDeltaTracker.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\VariadicSQLParser.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\VitaIncludes.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\RakNet\WSAStartupSingleton.cpp">
-      <Filter>Vendor\RakNet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\inih\IniReader.cpp">
-      <Filter>Vendor\INI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Vendor\inih\IniWriter.cpp">
-      <Filter>Vendor\INI</Filter>
-    </ClCompile>
-    <ClCompile Include="keyboard.cpp">
-      <Filter>Vendor\ScriptHook\Keyboard</Filter>
-    </ClCompile>
     <ClCompile Include="DrawHelper.cpp">
       <Filter>Vendor\RAGE</Filter>
     </ClCompile>
@@ -402,9 +63,6 @@
     <ClCompile Include="RAGEHelper.cpp">
       <Filter>Vendor\RAGE</Filter>
     </ClCompile>
-    <ClCompile Include="ScriptHook.cpp">
-      <Filter>Vendor\ScriptHook</Filter>
-    </ClCompile>
     <ClCompile Include="cPool.cpp">
       <Filter>Source Files\Net</Filter>
     </ClCompile>
@@ -413,9 +71,6 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files\Headers</Filter>
     </ClCompile>
     <ClCompile Include="LocalPlayer.cpp">
       <Filter>Source Files\Net</Filter>
@@ -453,497 +108,14 @@
     <ClCompile Include="World.cpp">
       <Filter>Source Files\Function</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptHook.cpp">
+      <Filter>Source Files\Modification</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Vendor\RakNet\_FindFirst.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\AutopatcherPatchContext.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\AutopatcherRepositoryInterface.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\Base64Encoder.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\BitStream.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\CCRakNetSlidingWindow.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\CCRakNetUDT.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\CheckSum.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\CloudClient.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\CloudCommon.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\CloudServer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\CommandParserInterface.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\ConnectionGraph2.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\ConsoleServer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DataCompressor.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DirectoryDeltaTransfer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DR_SHA1.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_BinarySearchTree.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_BPlusTree.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_BytePool.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_ByteQueue.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_Hash.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_Heap.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_HuffmanEncodingTree.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_HuffmanEncodingTreeFactory.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_HuffmanEncodingTreeNode.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_LinkedList.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_List.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_Map.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_MemoryPool.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_Multilist.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_OrderedChannelHeap.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_OrderedList.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_Queue.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_QueueLinkedList.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_RangeList.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_Table.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_ThreadsafeAllocatingQueue.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_Tree.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DS_WeightedGraph.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\DynDNS.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\EmailSender.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\EmptyHeader.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\EpochTimeToString.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\Export.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\FileList.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\FileListNodeContext.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\FileListTransfer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\FileListTransferCBInterface.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\FileOperations.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\FormatString.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\FullyConnectedMesh2.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\Getche.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\Gets.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\GetTime.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\gettimeofday.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\GridSectorizer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\HTTPConnection.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\HTTPConnection2.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\IncrementalReadInterface.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\InternalPacket.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\Itoa.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\Kbhit.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\LinuxStrings.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\LocklessTypes.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\LogCommandParser.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\MessageFilter.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\MessageIdentifiers.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\MTUSize.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\NativeFeatureIncludes.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\NativeFeatureIncludesOverrides.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\NativeTypes.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\NatPunchthroughClient.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\NatPunchthroughServer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\NatTypeDetectionClient.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\NatTypeDetectionCommon.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\NatTypeDetectionServer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\NetworkIDManager.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\NetworkIDObject.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\PacketConsoleLogger.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\PacketFileLogger.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\PacketizedTCP.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\PacketLogger.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\PacketOutputWindowLogger.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\PacketPool.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\PacketPriority.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\PluginInterface2.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\PS3Includes.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\PS4Includes.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\Rackspace.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakAlloca.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakAssert.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakMemoryOverride.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetCommandParser.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetDefines.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetDefinesOverrides.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetSmartPtr.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetSocket.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetSocket2.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetStatistics.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetTime.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetTransport2.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetTypes.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakNetVersion.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakPeer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakPeerInterface.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakSleep.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakString.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakThread.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RakWString.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\Rand.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RandSync.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\ReadyEvent.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RefCountedObj.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RelayPlugin.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\ReliabilityLayer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\ReplicaEnums.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\ReplicaManager3.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\Router2.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\RPC4Plugin.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\SecureHandshake.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\SendToThread.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\SignaledEvent.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\SimpleMutex.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\SimpleTCPServer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\SingleProducerConsumer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\SocketDefines.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\SocketIncludes.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\SocketLayer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\StatisticsHistory.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\StringCompressor.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\StringTable.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\SuperFastHash.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\TableSerializer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\TCPInterface.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\TeamBalancer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\TeamManager.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\TelnetTransport.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\ThreadPool.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\ThreadsafePacketLogger.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\TransportInterface.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\TwoWayAuthentication.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\UDPForwarder.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\UDPProxyClient.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\UDPProxyCommon.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\UDPProxyCoordinator.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\UDPProxyServer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\VariableDeltaSerializer.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\VariableListDeltaTracker.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\VariadicSQLParser.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\VitaIncludes.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\WindowsIncludes.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\WSAStartupSingleton.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\RakNet\XBox360Includes.h">
-      <Filter>Vendor\RakNet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\inih\IniReader.h">
-      <Filter>Vendor\INI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Vendor\inih\IniWriter.h">
-      <Filter>Vendor\INI</Filter>
-    </ClInclude>
-    <ClInclude Include="natives.h">
-      <Filter>Vendor\ScriptHook\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="nativeCaller.h">
-      <Filter>Vendor\ScriptHook\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Types.h">
-      <Filter>Vendor\ScriptHook\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="keyboard.h">
-      <Filter>Vendor\ScriptHook\Keyboard</Filter>
-    </ClInclude>
-    <ClInclude Include="enums.h">
-      <Filter>Vendor\ScriptHook\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="ScriptHook.h">
-      <Filter>Vendor\ScriptHook\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="sh_main.h">
-      <Filter>Vendor\ScriptHook\Headers</Filter>
-    </ClInclude>
     <ClInclude Include="RAGEHelper.h">
       <Filter>Vendor\RAGE\Headers</Filter>
     </ClInclude>
@@ -956,78 +128,67 @@
     <ClInclude Include="Pattern.h">
       <Filter>Vendor\RAGE\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="cPool.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
     <ClInclude Include="CMath.h">
       <Filter>Vendor\Math</Filter>
     </ClInclude>
     <ClInclude Include="CVector3.h">
       <Filter>Vendor\Math</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Source Files\Common</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>Source Files\Headers</Filter>
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="LocalPlayer.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerPed.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkManager.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="RPCManager.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="Config.h">
-      <Filter>Source Files\Modification</Filter>
-    </ClInclude>
-    <ClInclude Include="Script.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderDebug.h">
-      <Filter>Source Files\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Render.h">
-      <Filter>Source Files\Interface</Filter>
+    <ClInclude Include="main.h">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Source Files\Function</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Source Files\Function</Filter>
+      <Filter>Header Files\Function</Filter>
     </ClInclude>
     <ClInclude Include="Vehicles.h">
-      <Filter>Source Files\Function</Filter>
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Function</Filter>
     </ClInclude>
     <ClInclude Include="World.h">
-      <Filter>Source Files\Function</Filter>
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderDebug.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files\Modification</Filter>
+    </ClInclude>
+    <ClInclude Include="cPool.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalPlayer.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkManager.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerPed.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="RPCManager.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Script.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptHook.h">
+      <Filter>Header Files\Modification</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Vendor\RakNet\RakNet.vcproj">
-      <Filter>Vendor\RakNet</Filter>
-    </None>
-    <None Include="..\..\Vendor\RakNet\RakNet_vc8.vcproj">
-      <Filter>Vendor\RakNet</Filter>
-    </None>
-    <None Include="..\..\Vendor\RakNet\RakNet_vc9.vcproj">
-      <Filter>Vendor\RakNet</Filter>
-    </None>
     <None Include="citizenmp-LICENSE">
       <Filter>Vendor\RAGE\Licenses</Filter>
     </None>
     <None Include="LICENSE">
       <Filter>Vendor\RAGE\Licenses</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\Vendor\RakNet\CMakeLists.txt">
-      <Filter>Vendor\RakNet</Filter>
-    </Text>
   </ItemGroup>
 </Project>

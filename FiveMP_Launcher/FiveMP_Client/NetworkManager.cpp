@@ -101,6 +101,8 @@ void CNetworkManager::Handle()
 
 			player.ShowMessageAboveMap("~r~Connection closed!");
 			Listening = false;
+
+			world.CleanUp();
 			break;
 
 		case ID_CONNECTION_LOST:
@@ -109,6 +111,8 @@ void CNetworkManager::Handle()
 
 			player.ShowMessageAboveMap("~r~Connection Lost!");
 			Listening = false;
+
+			world.CleanUp();
 			break;
 
 		case ID_CONNECTION_BANNED:
@@ -117,6 +121,8 @@ void CNetworkManager::Handle()
 
 			player.ShowMessageAboveMap("~r~You're banned from this server!");
 			Listening = false;
+
+			world.CleanUp();
 			break;
 
 		case ID_REQUEST_SERVER_SYNC:
@@ -167,6 +173,10 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 
 	playerData[tempplyrid].playerid = tempplyrid;
 
+	playerData[tempplyrid].oldx = playerData[tempplyrid].x;
+	playerData[tempplyrid].oldy = playerData[tempplyrid].y;
+	playerData[tempplyrid].oldz = playerData[tempplyrid].z;
+
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedType);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedModel);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedHealth);
@@ -189,7 +199,9 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 
 	PlayerBitStream_receive.Read(temptimestamp);
 
-	playerData[tempplyrid].tickssince = GetTickCount64();
+	playerData[tempplyrid].tickssince = clock();
+
+	printf("received packet\n");
 
 	//if (tempplyrid != playerid) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
@@ -242,34 +254,43 @@ void CNetworkManager::SyncOnFoot()
 {
 	for (int i = 0; i < 10; i++) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[i].pedPed)) {
-			Vector3 curpos = ENTITY::GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(playerData[i].pedPed, 0.0, 0.0, 0.0);
-			CVector3 curpos1;
-			curpos1.fX = curpos.x;
-			curpos1.fY = curpos.y;
-			curpos1.fZ = curpos.z;
+			if (sync_test == true) {
+				Vector3 curpos = ENTITY::GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(playerData[i].pedPed, 0.0, 0.0, 0.0);
+				CVector3 curpos1;
+				curpos1.fX = playerData[i].oldx;
+				curpos1.fY = playerData[i].oldy;
+				curpos1.fZ = playerData[i].oldz;
 
-			CVector3 newpos;
-			newpos.fX = playerData[i].x;
-			newpos.fY = playerData[i].y;
-			newpos.fZ = playerData[i].z;
+				CVector3 newpos;
+				newpos.fX = playerData[i].x;
+				newpos.fY = playerData[i].y;
+				newpos.fZ = playerData[i].z;
 
-			ULONGLONG now = GetTickCount64();
-			float elapsedTime = now - playerData[i].tickssince;
-			float progress = elapsedTime / 100;
+				clock_t now = clock();
+				float elapsedTime = now - playerData[i].tickssince;
+				float progress = elapsedTime / 100.0;
 
-			CVector3 updpos;
-			updpos.fX = ttlerp(newpos.fX, curpos1.fX, progress);
-			updpos.fY = ttlerp(newpos.fY, curpos1.fY, progress);
-			updpos.fZ = ttlerp(newpos.fZ, curpos1.fZ, progress);
+				if (progress <= 1.0) {
+					CVector3 updpos;
+					updpos.fX = ttlerp(curpos1.fX, newpos.fX, progress);
+					updpos.fY = ttlerp(curpos1.fY, newpos.fY, progress);
+					updpos.fZ = ttlerp(curpos1.fZ, newpos.fZ, progress);
 
-			printf("%f - %f/%f/%f\n", progress, updpos.fX, updpos.fY, updpos.fZ);
+					printf("%f | %f | %f/%f/%f\n", elapsedTime, progress, updpos.fX, updpos.fY, updpos.fZ);
 
-			float tempz;
+					float tempz;
 
-			GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(playerData[i].x, playerData[i].y, playerData[i].z, &tempz, 1);
+					GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(playerData[i].x, playerData[i].y, playerData[i].z, &tempz, 1);
 
-			ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, updpos.fX, updpos.fY, tempz, 0, 0, 0, 0);
-			ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
+					ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, updpos.fX, updpos.fY, tempz, 0, 0, 0, 0);
+					ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
+				} else {
+					printf("packet updated too quickly!\n");
+				}
+			} else {
+				ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, playerData[i].x, playerData[i].y, playerData[i].z, 0, 0, 0, 0);
+				ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
+			}
 		}
 	}
 }
@@ -279,12 +300,19 @@ void CNetworkManager::DropPlayer(Packet * p)
 	RakNet::BitStream PlayerBitStream_receive(p->data + 1, p->length + 1, false);
 
 	int tempplyrid;
+	char tempplyrname[30];
 
 	PlayerBitStream_receive.Read(tempplyrid);
+	PlayerBitStream_receive.Read(tempplyrname);
 
 	if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed))
 	{
+		char sendmessage[128];
+
 		ENTITY::DELETE_ENTITY(&playerData[tempplyrid].pedPed);
 		UI::REMOVE_BLIP(&playerData[tempplyrid].pedBlip);
+
+		sprintf(sendmessage, "~b~%s(%d)~w~ has left the server.", tempplyrname, tempplyrid);
+		player.ShowMessageAboveMap(sendmessage);
 	}
 }
