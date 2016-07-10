@@ -96,7 +96,7 @@ int main(void)
 
 	while (1)
 	{
-		RakSleep(2500);
+		RakSleep(15);
 
 		for (p = server->Receive(); p; server->DeallocatePacket(p), p = server->Receive())
 		{
@@ -107,6 +107,8 @@ int main(void)
 
 			RakNet::BitStream PlayerBitStream_send;
 			RakNet::BitStream PlayerBitStream_receive(p->data + 1, 128, false);
+			
+			RakNet::RakString tempusername;
 
 			switch (packetIdentifier)
 			{
@@ -114,7 +116,7 @@ int main(void)
 				printf("ID_DISCONNECTION_NOTIFICATION from %s\n", p->systemAddress.ToString(true));;
 				OnPlayerDisconnect(sLUA, netPool.GetPlayerID(p->guid));
 
-				RakNet::RakString tempusername = netPool.GetPlayerUsername(p->guid);
+				tempusername = netPool.GetPlayerUsername(p->guid);
 
 				pid_bitStream.Write((unsigned char)ID_PLAYER_LEFT);
 				pid_bitStream.Write(netPool.GetPlayerID(p->guid));

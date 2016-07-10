@@ -31,9 +31,6 @@
     <Filter Include="Vendor\Math">
       <UniqueIdentifier>{82212307-0094-4117-96c9-fa0263624f33}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Headers">
-      <UniqueIdentifier>{0eacaa73-0da7-4df3-9c73-d026c51690ec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Common">
       <UniqueIdentifier>{1565938b-813b-4225-9282-06c50f7d5fd5}</UniqueIdentifier>
     </Filter>
@@ -51,6 +48,24 @@
     </Filter>
     <Filter Include="Vendor\RAGE\Licenses">
       <UniqueIdentifier>{51ae91b2-5a1d-426e-9437-dcbe4d82e5d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{fbd3b0dc-0b44-4b23-8e61-5cf84c6443ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{13b3ce77-fdfe-45c8-a489-0d514fa29c97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Function">
+      <UniqueIdentifier>{4a1544b0-e1a5-40e7-b9a5-bb20ce72da8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interface">
+      <UniqueIdentifier>{c46b6efb-ef68-42cc-bbb0-840a6ca59e46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Modification">
+      <UniqueIdentifier>{2839d207-82f5-492d-8585-f7e443391a11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Net">
+      <UniqueIdentifier>{a17e17ad-4621-4332-b7da-0bd4eb0bfee8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -414,9 +429,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Common</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files\Headers</Filter>
-    </ClCompile>
     <ClCompile Include="LocalPlayer.cpp">
       <Filter>Source Files\Net</Filter>
     </ClCompile>
@@ -452,6 +464,9 @@
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Source Files\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -956,56 +971,56 @@
     <ClInclude Include="Pattern.h">
       <Filter>Vendor\RAGE\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="cPool.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
     <ClInclude Include="CMath.h">
       <Filter>Vendor\Math</Filter>
     </ClInclude>
     <ClInclude Include="CVector3.h">
       <Filter>Vendor\Math</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Source Files\Common</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>Source Files\Headers</Filter>
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="LocalPlayer.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerPed.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkManager.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="RPCManager.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="Config.h">
-      <Filter>Source Files\Modification</Filter>
-    </ClInclude>
-    <ClInclude Include="Script.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderDebug.h">
-      <Filter>Source Files\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Render.h">
-      <Filter>Source Files\Interface</Filter>
+    <ClInclude Include="main.h">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Source Files\Function</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Source Files\Function</Filter>
+      <Filter>Header Files\Function</Filter>
     </ClInclude>
     <ClInclude Include="Vehicles.h">
-      <Filter>Source Files\Function</Filter>
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Function</Filter>
     </ClInclude>
     <ClInclude Include="World.h">
-      <Filter>Source Files\Function</Filter>
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderDebug.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files\Modification</Filter>
+    </ClInclude>
+    <ClInclude Include="cPool.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalPlayer.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkManager.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerPed.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="RPCManager.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Script.h">
+      <Filter>Header Files\Net</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
