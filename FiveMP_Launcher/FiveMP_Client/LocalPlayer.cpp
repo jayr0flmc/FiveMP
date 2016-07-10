@@ -92,7 +92,7 @@ void CLocalPlayer::SendOnFootData()
 
 	PlayerBitStream_send.Write(time(0));
 
-	NetworkManager->client->Send(&PlayerBitStream_send, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+	NetworkManager->client->Send(&PlayerBitStream_send, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
 void CLocalPlayer::SendSyncRequest()
