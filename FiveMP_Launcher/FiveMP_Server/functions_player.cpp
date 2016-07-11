@@ -108,6 +108,7 @@ int GivePlayerMoney(lua_State * state)
 	printf("GivePlayerMoney() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
+
 	playerData[playerid].money += lua_tointeger(state, 2);
 
 	RakNet::BitStream sSetPlayerMoney;
