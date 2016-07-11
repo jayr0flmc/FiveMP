@@ -9,7 +9,6 @@ function OnGameModeExit()
 end
 
 function OnPlayerConnect(playerid)
-	
 	GivePlayerWeapon(playerid, "Firework", 10);
 	ShowMessageToPlayer(playerid, "Welcome to this ~b~FiveMP ~w~server!");
 	ShowMessageToPlayer(playerid, "Your player ID is ~b~" .. playerid);
@@ -17,7 +16,7 @@ function OnPlayerConnect(playerid)
 end
 
 function OnPlayerDisonnect(playerid)
-    print(playerid .. " has disconnected");
+	print(playerid .. " has disconnected");
     return 1;
 end
 

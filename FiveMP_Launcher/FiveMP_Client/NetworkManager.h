@@ -7,7 +7,7 @@ public:
 
 	bool Connect(char *serveraddress, char *port, char *clientport);
 	bool Disconnect();
-	void Handle();
+	void Pulse();
 	void HandlePlayerSync(Packet *p);
 	void DropPlayer(Packet *p);
 

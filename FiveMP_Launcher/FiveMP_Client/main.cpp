@@ -43,16 +43,15 @@ void RunGameScript() {
 		RenderDebug->RenderCoords();
 
 		if (NetworkManager->Listening) {
-			NetworkManager->Handle();
+			NetworkManager->Pulse();
 
 			if (NetworkManager->Connected) {
 				if (!NetworkManager->Synchronized) {
 					LocalPlayer->SendSyncRequest();
 				} else {
-					Render->RenderNametags();
 					LocalPlayer->SendOnFootData();
 					NetworkManager->SyncOnFoot();
-
+					Render->RenderNametags();
 				}
 			}
 		}
