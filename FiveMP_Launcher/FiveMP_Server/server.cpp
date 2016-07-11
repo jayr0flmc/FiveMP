@@ -62,7 +62,9 @@ int main(void)
 	// Player
 	lua_register(sLUA, "SetPlayerUsername", SetPlayerUsername);
 	lua_register(sLUA, "SetPlayerMoney", SetPlayerMoney);
+	lua_register(sLUA, "GivePlayerMoney", GivePlayerMoney);
 	lua_register(sLUA, "GetPlayerMoney", GetPlayerMoney);
+	lua_register(sLUA, "KickPlayer", KickPlayer);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
