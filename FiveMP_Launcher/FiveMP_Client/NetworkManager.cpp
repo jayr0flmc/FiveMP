@@ -180,6 +180,7 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedType);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedModel);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedHealth);
+
 	PlayerBitStream_receive.Read(playerData[tempplyrid].playerusername);
 
 	PlayerBitStream_receive.Read(playerData[tempplyrid].x);
@@ -240,7 +241,7 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 			UI::SET_BLIP_COLOUR(playerData[tempplyrid].pedBlip, 0);
 			UI::SET_BLIP_SCALE(playerData[tempplyrid].pedBlip, 1.0f);
 			UI::BEGIN_TEXT_COMMAND_SET_BLIP_NAME("STRING");
-			UI::_ADD_TEXT_COMPONENT_STRING3("NAME test");
+			UI::_ADD_TEXT_COMPONENT_STRING3(playerData[tempplyrid].playerusername);
 			UI::END_TEXT_COMMAND_SET_BLIP_NAME(playerData[tempplyrid].pedBlip);
 		}
 	//}
@@ -267,7 +268,7 @@ void CNetworkManager::SyncOnFoot()
 
 				clock_t now = clock();
 				float elapsedTime = now - playerData[i].tickssince;
-				float progress = elapsedTime / 100.0f;
+				float progress = elapsedTime / 15.6f;
 
 				if (progress <= 1.0) {
 					CVector3 updpos;

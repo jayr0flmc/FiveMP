@@ -194,8 +194,8 @@ int main(void)
 				if (playerData[tempplyrid].playerusername != NULL)
 					PlayerBitStream_send.Write(playerData[tempplyrid].playerusername);
 				else {
-					char fillername[64] = "Player";
-					PlayerBitStream_send.Write(fillername);
+					RakNet::RakString playername = "Player";
+					PlayerBitStream_send.Write(playername);
 				}
 
 				PlayerBitStream_send.Write(playerData[tempplyrid].x);
