@@ -96,7 +96,7 @@ int main(void)
 
 	while (1)
 	{
-		RakSleep(15);
+		RakSleep(15.6);
 
 		for (p = server->Receive(); p; server->DeallocatePacket(p), p = server->Receive())
 		{
