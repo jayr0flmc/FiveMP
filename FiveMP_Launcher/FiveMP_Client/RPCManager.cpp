@@ -20,6 +20,7 @@ void CRPCManager::RegisterRPCs()
 	NetworkManager->rpc.RegisterSlot("GivePlayerAmmo", GivePlayerAmmo, 0);
 	NetworkManager->rpc.RegisterSlot("RemovePlayerAmmo", RemovePlayerAmmo, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerMoney", SetPlayerMoney, 0);
+	NetworkManager->rpc.RegisterSlot("SetPlayerPos", SetPlayerPos, 0);
 }
 
 void CRPCManager::UnRegisterRPCs()
@@ -30,4 +31,5 @@ void CRPCManager::UnRegisterRPCs()
 	NetworkManager->rpc.UnregisterSlot("GivePlayerAmmo");
 	NetworkManager->rpc.UnregisterSlot("RemovePlayerAmmo");
 	NetworkManager->rpc.UnregisterSlot("SetPlayerMoney");
+	NetworkManager->rpc.UnregisterSlot("SetPlayerPos");
 }
