@@ -65,6 +65,8 @@ int main(void)
 	lua_register(sLUA, "GivePlayerMoney", GivePlayerMoney);
 	lua_register(sLUA, "GetPlayerMoney", GetPlayerMoney);
 	lua_register(sLUA, "KickPlayer", KickPlayer);
+	lua_register(sLUA, "SetPlayerPos", SetPlayerPos);
+	lua_register(sLUA, "GetPlayerPos", GetPlayerPos);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);

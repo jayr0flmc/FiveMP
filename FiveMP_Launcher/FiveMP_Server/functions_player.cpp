@@ -146,3 +146,46 @@ int KickPlayer(lua_State * state) {
 
 	return 1;
 }
+
+int SetPlayerPos(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetPlayerPos() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	float posx = lua_tonumber(state, 2);
+	float posy = lua_tonumber(state, 3);
+	float posz = lua_tonumber(state, 4);
+
+	//There's no need for that since transitioning works perfectly!
+	//std::cout << posx << " | " << posy << " | " << posz << std::endl;
+
+	playerData[playerid].x = posx;
+	playerData[playerid].y = posy;
+	playerData[playerid].z = posz;
+
+	RakNet::BitStream sSetPlayerPos;
+	sSetPlayerPos.Write(playerid);
+	sSetPlayerPos.Write(posx);
+	sSetPlayerPos.Write(posy);
+	sSetPlayerPos.Write(posz);
+	rpc.Signal("SetPlayerPos", &sSetPlayerPos, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+
+	return 1;
+}
+
+int GetPlayerPos(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("GetPlayerPos() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	
+	lua_pushnumber(state, playerData[playerid].x);
+	lua_pushnumber(state, playerData[playerid].y);
+	lua_pushnumber(state, playerData[playerid].z);
+
+	return 3;
+}

@@ -8,3 +8,5 @@ int SetPlayerMoney(lua_State* state);
 int GivePlayerMoney(lua_State* state);
 int GetPlayerMoney(lua_State* state);
 int KickPlayer(lua_State* state);
+int SetPlayerPos(lua_State* state);
+int GetPlayerPos(lua_State* state);
