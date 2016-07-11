@@ -95,10 +95,20 @@ void CLocalPlayer::SendOnFootData()
 	NetworkManager->client->Send(&PlayerBitStream_send, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
+char* replaceCharacter(char* name, char char1, char char2) {
+	for (int i = 0; i < sizeof(name); ++i) {
+		if (name[i] == char1)
+			name[i] = char2;
+	}
+
+	return name;
+}
+
 void CLocalPlayer::SendSyncRequest()
 {
 	RakNet::BitStream requestid;
-	char *playerUsername = Config->client_username;
+
+	char* playerUsername = replaceCharacter(Config->client_username, '~', ' ');
 
 	requestid.Write((MessageID)ID_REQUEST_SERVER_SYNC);
 	requestid.Write(playerUsername);
