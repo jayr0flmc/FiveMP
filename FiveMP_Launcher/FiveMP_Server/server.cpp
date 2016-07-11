@@ -66,7 +66,9 @@ int main(void)
 	lua_register(sLUA, "GivePlayerAmmo", GivePlayerAmmo);
 	lua_register(sLUA, "RemovePlayerAmmo", RemovePlayerAmmo);
 	lua_register(sLUA, "SetPlayerMoney", SetPlayerMoney);
+	lua_register(sLUA, "GivePlayerMoney", GivePlayerMoney);
 	lua_register(sLUA, "GetPlayerMoney", GetPlayerMoney);
+	lua_register(sLUA, "KickPlayer", KickPlayer);
 
 	OnGameModeInit(sLUA);
 

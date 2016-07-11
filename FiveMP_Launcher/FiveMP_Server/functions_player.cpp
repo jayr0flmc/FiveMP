@@ -91,14 +91,28 @@ int SetPlayerMoney(lua_State * state)
 	printf("SetPlayerMoney() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	int ammount = lua_tointeger(state, 2);
-
-	//Updating value serverside.
-	playerData[playerid].money = ammount;
+	playerData[playerid].money = lua_tointeger(state, 2);
 
 	RakNet::BitStream sSetPlayerMoney;
 	sSetPlayerMoney.Write(playerid);
-	sSetPlayerMoney.Write(ammount);
+	sSetPlayerMoney.Write(playerData[playerid].money);
+	rpc.Signal("SetPlayerMoney", &sSetPlayerMoney, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+
+	return 1;
+}
+
+int GivePlayerMoney(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("GivePlayerMoney() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	playerData[playerid].money += lua_tointeger(state, 2);
+
+	RakNet::BitStream sSetPlayerMoney;
+	sSetPlayerMoney.Write(playerid);
+	sSetPlayerMoney.Write(playerData[playerid].money);
 	rpc.Signal("SetPlayerMoney", &sSetPlayerMoney, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	return 1;
@@ -115,6 +129,20 @@ int GetPlayerMoney(lua_State * state)
 	std::cout << "GetPlayerMoney value: " << playerData[playerid].money << std::endl; // This prints good number, but inside lua i get nil value.
 	
 	lua_pushnumber(state, playerData[playerid].money);
+
+	return 1;
+}
+
+int KickPlayer(lua_State * state) {
+
+	int args = lua_gettop(state);
+
+	printf("KickPlayer() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	RakNet::RakString reason = lua_tostring(state, 2);
+
+	//I leave rest to Dev
 
 	return 1;
 }
