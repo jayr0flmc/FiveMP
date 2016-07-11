@@ -190,3 +190,35 @@ int GetPlayerPos(lua_State* state) {
 
 	return 3;
 }
+
+int SetPlayerFacingAngle(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetPlayerFacingAngle() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	float rotation = lua_tonumber(state, 2);
+
+	playerData[playerid].r = rotation;
+
+	RakNet::BitStream sSetPlayerFacingAngle;
+	sSetPlayerFacingAngle.Write(playerid);
+	sSetPlayerFacingAngle.Write(rotation);
+	rpc.Signal("SetPlayerFacingAngle", &sSetPlayerFacingAngle, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+
+	return 1;
+}
+
+int GetPlayerFacingAngle(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("GetPlayerFacingAnge() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+
+	lua_pushnumber(state, playerData[playerid].r);
+
+	return 1;
+}

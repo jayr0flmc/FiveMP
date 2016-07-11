@@ -10,3 +10,5 @@ int GetPlayerMoney(lua_State* state);
 int KickPlayer(lua_State* state);
 int SetPlayerPos(lua_State* state);
 int GetPlayerPos(lua_State* state);
+int SetPlayerFacingAngle(lua_State* state);
+int GetPlayerFacingAngle(lua_State* state);

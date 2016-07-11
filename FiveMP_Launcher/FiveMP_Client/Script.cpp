@@ -78,3 +78,14 @@ void SetPlayerPos(RakNet::BitStream* bitStream, RakNet::Packet *packet) {
 
 	LocalPlayer->SetPos(posx, posy, posz);
 }
+
+void SetPlayerFacingAngle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int playerid;
+	float rotation;
+
+	bitStream->Read(playerid);
+	bitStream->Read(rotation);
+
+	LocalPlayer->SetHeading(rotation);
+}

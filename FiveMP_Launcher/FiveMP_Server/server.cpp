@@ -67,6 +67,8 @@ int main(void)
 	lua_register(sLUA, "KickPlayer", KickPlayer);
 	lua_register(sLUA, "SetPlayerPos", SetPlayerPos);
 	lua_register(sLUA, "GetPlayerPos", GetPlayerPos);
+	lua_register(sLUA, "SetPlayerFacingAngle", SetPlayerFacingAngle);
+	lua_register(sLUA, "GetPlayerFacingAngle", GetPlayerFacingAngle);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);

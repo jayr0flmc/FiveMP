@@ -21,6 +21,7 @@ void CRPCManager::RegisterRPCs()
 	NetworkManager->rpc.RegisterSlot("RemovePlayerAmmo", RemovePlayerAmmo, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerMoney", SetPlayerMoney, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerPos", SetPlayerPos, 0);
+	NetworkManager->rpc.RegisterSlot("SetPlayerFacingAngle", SetPlayerFacingAngle, 0);
 }
 
 void CRPCManager::UnRegisterRPCs()
@@ -32,4 +33,5 @@ void CRPCManager::UnRegisterRPCs()
 	NetworkManager->rpc.UnregisterSlot("RemovePlayerAmmo");
 	NetworkManager->rpc.UnregisterSlot("SetPlayerMoney");
 	NetworkManager->rpc.UnregisterSlot("SetPlayerPos");
+	NetworkManager->rpc.UnregisterSlot("SetPlayerFacingAngle");
 }
