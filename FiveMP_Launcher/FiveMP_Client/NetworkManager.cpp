@@ -202,7 +202,8 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 
 	playerData[tempplyrid].tickssince = clock();
 
-	printf("received packet\n");
+	//NO MORE OF SPAMMING THE CONSOLE :D
+	//printf("received packet\n");
 
 	//if (tempplyrid != playerid) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {

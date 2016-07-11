@@ -113,6 +113,8 @@ int GetPlayerMoney(lua_State * state)
 	int playerid = lua_tointeger(state, 1);
 
 	std::cout << "GetPlayerMoney value: " << playerData[playerid].money << std::endl; // This prints good number, but inside lua i get nil value.
+	
+	lua_pushnumber(state, playerData[playerid].money);
 
-	return playerData[playerid].money;
+	return 1;
 }
