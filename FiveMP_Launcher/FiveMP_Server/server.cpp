@@ -97,7 +97,7 @@ int main(void)
 
 	while (1)
 	{
-		RakSleep(15);
+		RakSleep(15.6);
 
 		for (p = server->Receive(); p; server->DeallocatePacket(p), p = server->Receive())
 		{
@@ -188,13 +188,16 @@ int main(void)
 
 				PlayerBitStream_send.Write(tempplyrid);
 
-				//RakNet::RakString tempusername = netPool.GetPlayerUsername(p->guid);
-
-				//PlayerBitStream_send.Write(tempusername);
-
 				PlayerBitStream_send.Write(playerData[tempplyrid].pedType);
 				PlayerBitStream_send.Write(playerData[tempplyrid].pedModel);
 				PlayerBitStream_send.Write(playerData[tempplyrid].pedHealth);
+
+				if (playerData[tempplyrid].playerusername != NULL)
+					PlayerBitStream_send.Write(playerData[tempplyrid].playerusername);
+				else {
+					RakNet::RakString playername = "Player";
+					PlayerBitStream_send.Write(playername);
+				}
 
 				PlayerBitStream_send.Write(playerData[tempplyrid].x);
 				PlayerBitStream_send.Write(playerData[tempplyrid].y);

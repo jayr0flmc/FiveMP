@@ -2,7 +2,7 @@
 
 struct playerPool {
 	int playerid;							// Player/Client ID
-	char *playerusername;					// Player Username (socialclub)
+	char playerusername[24];					// Player Username (socialclub)
 
 	Ped pedPed;								// Used to spawn the ped and such.
 	Blip pedBlip;

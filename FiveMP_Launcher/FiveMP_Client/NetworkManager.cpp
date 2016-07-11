@@ -181,6 +181,8 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedModel);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedHealth);
 
+	PlayerBitStream_receive.Read(playerData[tempplyrid].playerusername);
+
 	PlayerBitStream_receive.Read(playerData[tempplyrid].x);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].y);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].z);
@@ -239,7 +241,7 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 			UI::SET_BLIP_COLOUR(playerData[tempplyrid].pedBlip, 0);
 			UI::SET_BLIP_SCALE(playerData[tempplyrid].pedBlip, 1.0f);
 			UI::BEGIN_TEXT_COMMAND_SET_BLIP_NAME("STRING");
-			UI::_ADD_TEXT_COMPONENT_STRING3("NAME test");
+			UI::_ADD_TEXT_COMPONENT_STRING3(playerData[tempplyrid].playerusername);
 			UI::END_TEXT_COMMAND_SET_BLIP_NAME(playerData[tempplyrid].pedBlip);
 		}
 	//}
@@ -266,7 +268,7 @@ void CNetworkManager::SyncOnFoot()
 
 				clock_t now = clock();
 				float elapsedTime = now - playerData[i].tickssince;
-				float progress = elapsedTime / 100.0f;
+				float progress = elapsedTime / 15.6f;
 
 				if (progress <= 1.0) {
 					CVector3 updpos;
@@ -276,11 +278,7 @@ void CNetworkManager::SyncOnFoot()
 
 					printf("%f | %f | %f/%f/%f\n", elapsedTime, progress, updpos.fX, updpos.fY, updpos.fZ);
 
-					float tempz;
-
-					GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(playerData[i].x, playerData[i].y, playerData[i].z, &tempz, 1);
-
-					ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, updpos.fX, updpos.fY, tempz, 0, 0, 0, 0);
+					ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, updpos.fX, updpos.fY, updpos.fZ, 0, 0, 0, 0);
 					ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
 				}
 				else {
@@ -288,7 +286,11 @@ void CNetworkManager::SyncOnFoot()
 				}
 			}
 			else {
-				ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, playerData[i].x, playerData[i].y, playerData[i].z, 0, 0, 0, 0);
+				float tempz;
+
+				GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(playerData[i].x, playerData[i].y, playerData[i].z, &tempz, 1);
+
+				ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, playerData[i].x, playerData[i].y, tempz, 0, 0, 0, 0);
 				ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
 			}
 		}
