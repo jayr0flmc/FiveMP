@@ -59,14 +59,19 @@ int main(void)
 	luaL_openlibs(sLUA);
 	luaL_dofile(sLUA, tempgamemode);
 
+	// Player
 	lua_register(sLUA, "SetPlayerUsername", SetPlayerUsername);
+	lua_register(sLUA, "SetPlayerMoney", SetPlayerMoney);
+	lua_register(sLUA, "GetPlayerMoney", GetPlayerMoney);
+
+	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
+
+	// Weapon
 	lua_register(sLUA, "GivePlayerWeapon", GivePlayerWeapon);
 	lua_register(sLUA, "RemovePlayerWeapon", RemovePlayerWeapon);
 	lua_register(sLUA, "GivePlayerAmmo", GivePlayerAmmo);
 	lua_register(sLUA, "RemovePlayerAmmo", RemovePlayerAmmo);
-	lua_register(sLUA, "SetPlayerMoney", SetPlayerMoney);
-	lua_register(sLUA, "GetPlayerMoney", GetPlayerMoney);
 
 	OnGameModeInit(sLUA);
 
