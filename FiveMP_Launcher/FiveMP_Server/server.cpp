@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "server.h"
 
 RakNet::RakPeerInterface *server;
 RakNet::RakNetStatistics *rss;
@@ -382,4 +383,9 @@ unsigned char GetPacketIdentifier(RakNet::Packet *p)
 	}
 	else
 		return (unsigned char)p->data[0];
+}
+
+void kickPlayer(int playerid)
+{
+	server->CloseConnection(clientID, true, 0);
 }

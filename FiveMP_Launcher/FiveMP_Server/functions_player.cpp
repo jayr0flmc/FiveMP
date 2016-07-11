@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "server.h"
 
 int GivePlayerWeapon(lua_State* state)
 {
@@ -143,7 +144,19 @@ int KickPlayer(lua_State * state) {
 	int playerid = lua_tointeger(state, 1);
 	RakNet::RakString reason = lua_tostring(state, 2);
 
-	//I leave rest to Dev
+	//I tried to finish it but if it's bad feel free to delete it.
+
+	RakNet::RakString message = "You were kicked out of the server. Reason: ~b~" + reason;
+
+	//Show kick message
+	RakNet::BitStream sKickPlayer;
+	sKickPlayer.Write(playerid);
+	sKickPlayer.Write(message);
+	rpc.Signal("ShowMessageToPlayer", &sKickPlayer, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+
+	//Disconect player from the server
+	RakSleep(15); //Sleep a bit that message would get sent
+	kickPlayer(playerid); //If you dont like it its in server.h
 
 	return 1;
 }
