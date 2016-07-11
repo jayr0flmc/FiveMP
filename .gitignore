@@ -72,6 +72,7 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
+*.lib
 
 # Chutzpah Test files
 _Chutzpah*
@@ -257,3 +258,5 @@ paket-files/
 /lib/INIReader.lib
 /lib/RakNet.lib
 /lib/ScriptHook.lib
+/lib/ScriptHookV.lib
+/lib/LUA.lib
