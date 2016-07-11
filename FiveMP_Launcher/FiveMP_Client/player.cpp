@@ -137,7 +137,7 @@ ScriptInfo scriptnames[] = {
 	{ "benchmark", SCRIPT_DISABLED },
 	{ "bigwheel", SCRIPT_DISABLED },
 	{ "bj", SCRIPT_DISABLED },
-	{ "blimptest", SCRIPT_ENABLED },
+	{ "blimptest", SCRIPT_DISABLED },
 	{ "blip_controller", SCRIPT_ENABLED },
 	{ "bootycallhandler", SCRIPT_DISABLED },
 	{ "bootycall_debug_controller", SCRIPT_DISABLED },
@@ -214,7 +214,7 @@ ScriptInfo scriptnames[] = {
 	{ "email_controller", SCRIPT_DISABLED },
 	{ "emergencycall", SCRIPT_DISABLED },
 	{ "emergencycalllauncher", SCRIPT_DISABLED },
-	{ "epscars", SCRIPT_ENABLED }, //no clue what this is but ok
+	{ "epscars", SCRIPT_DISABLED }, //no clue what this is but ok
 	{ "epsdesert", SCRIPT_DISABLED },
 	{ "epsilon1", SCRIPT_DISABLED },
 	{ "epsilon2", SCRIPT_DISABLED },
@@ -750,9 +750,9 @@ ScriptInfo scriptnames[] = {
 	{ "underwaterpickups", SCRIPT_DISABLED },
 	{ "utvc", SCRIPT_DISABLED },
 	{ "vehicle_ai_test", SCRIPT_DISABLED },
-	{ "vehicle_force_widget", SCRIPT_ENABLED },
-	{ "vehicle_gen_controller", SCRIPT_ENABLED }, //wtf is this (it seems to have something to do with parked cars, when disabled they don't spawn)
-	{ "vehicle_plate", SCRIPT_ENABLED },
+	{ "vehicle_force_widget", SCRIPT_DISABLED },
+	{ "vehicle_gen_controller", SCRIPT_DISABLED }, //wtf is this (it seems to have something to do with parked cars, when disabled they don't spawn)
+	{ "vehicle_plate", SCRIPT_DISABLED },
 	{ "veh_play_widget", SCRIPT_DISABLED },
 	{ "walking_ped", SCRIPT_DISABLED },
 	{ "wardrobe_mp", SCRIPT_DISABLED },

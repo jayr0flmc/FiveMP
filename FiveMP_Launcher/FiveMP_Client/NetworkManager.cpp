@@ -57,14 +57,14 @@ bool CNetworkManager::Disconnect()
 	return false;
 }
 
-void CNetworkManager::Handle()
+void CNetworkManager::Pulse()
 {
 	for (packet = client->Receive(); packet; client->DeallocatePacket(packet), packet = client->Receive()) {
 		unsigned char packetIdentifier = GetPacketIdentifier(packet);
 
 		RakNet::BitStream playerClientID(packet->data+1, packet->length+1, false);
 
-		RakNet::BitStream bsPlayerSpawn;
+		RakNet::BitStream bsPlayerConnect;
 
 		char testmessage[128];
 
@@ -135,11 +135,11 @@ void CNetworkManager::Handle()
 			playerClientID.Read(time_minute);
 			playerClientID.Read(time_pause);
 
-			TIME::ADVANCE_CLOCK_TIME_TO(time_hour, time_minute, 00);
+			TIME::SET_CLOCK_TIME(time_hour, time_minute, 00);
 			TIME::PAUSE_CLOCK(time_pause);
 
-			bsPlayerSpawn.Write(playerid);
-			rpc.Signal("PlayerConnect", &bsPlayerSpawn, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, false);
+			bsPlayerConnect.Write(playerid);
+			rpc.Signal("PlayerConnect", &bsPlayerConnect, HIGH_PRIORITY, RELIABLE_ORDERED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, false);
 			break;
 
 		case ID_SEND_PLAYER_DATA:
@@ -254,7 +254,6 @@ void CNetworkManager::SyncOnFoot()
 	for (int i = 0; i < 10; i++) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[i].pedPed)) {
 			if (sync_test == true) {
-				Vector3 curpos = ENTITY::GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(playerData[i].pedPed, 0.0, 0.0, 0.0);
 				CVector3 curpos1;
 				curpos1.fX = playerData[i].oldx;
 				curpos1.fY = playerData[i].oldy;
@@ -267,7 +266,7 @@ void CNetworkManager::SyncOnFoot()
 
 				clock_t now = clock();
 				float elapsedTime = now - playerData[i].tickssince;
-				float progress = elapsedTime / 100.0;
+				float progress = elapsedTime / 100.0f;
 
 				if (progress <= 1.0) {
 					CVector3 updpos;
@@ -283,10 +282,12 @@ void CNetworkManager::SyncOnFoot()
 
 					ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, updpos.fX, updpos.fY, tempz, 0, 0, 0, 0);
 					ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
-				} else {
+				}
+				else {
 					printf("packet updated too quickly!\n");
 				}
-			} else {
+			}
+			else {
 				ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, playerData[i].x, playerData[i].y, playerData[i].z, 0, 0, 0, 0);
 				ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
 			}

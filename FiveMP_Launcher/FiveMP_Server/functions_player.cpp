@@ -6,9 +6,9 @@ int GivePlayerWeapon(lua_State* state)
 
 	printf("GivePlayerWeapon() was called with %d arguments:\n", args);
 
-	lua_Integer playerid = lua_tointeger(state, 1);
+	int playerid = lua_tointeger(state, 1);
 	const char *string = lua_tostring(state, 2);
-	lua_Integer ammo = lua_tointeger(state, 3);
+	int ammo = lua_tointeger(state, 3);
 
 	RakNet::RakString weaponid = string;
 
@@ -28,7 +28,7 @@ int RemovePlayerWeapon(lua_State* state)
 
 	printf("RemovePlayerWeapon() was called with %d arguments:\n", args);
 
-	lua_Integer playerid = lua_tointeger(state, 1);
+	int playerid = lua_tointeger(state, 1);
 	const char *string = lua_tostring(state, 2);
 
 	RakNet::RakString weaponid = string;
@@ -48,9 +48,9 @@ int GivePlayerAmmo(lua_State* state)
 
 	printf("GivePlayerAmmo() was called with %d arguments:\n", args);
 
-	lua_Integer playerid = lua_tointeger(state, 1);
+	int playerid = lua_tointeger(state, 1);
 	const char *string = lua_tostring(state, 2);
-	lua_Integer ammo = lua_tointeger(state, 3);
+	int ammo = lua_tointeger(state, 3);
 
 	RakNet::RakString weaponid = string;
 
@@ -69,9 +69,9 @@ int RemovePlayerAmmo(lua_State* state)
 
 	printf("RemovePlayerAmmo() was called with %d arguments:\n", args);
 
-	lua_Integer playerid = lua_tointeger(state, 1);
+	int playerid = lua_tointeger(state, 1);
 	const char *string = lua_tostring(state, 2);
-	lua_Integer ammo = lua_tointeger(state, 3);
+	int ammo = lua_tointeger(state, 3);
 
 	RakNet::RakString weaponid = string;
 

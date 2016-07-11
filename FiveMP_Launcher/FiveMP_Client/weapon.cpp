@@ -2,8 +2,6 @@
 
 #include "stdafx.h"
 
-using namespace std;
-
 template <typename T> class EnumParser
 {
 	map<string, T> enumMap;
@@ -81,29 +79,29 @@ void GameWeapon::GiveWeapon(char * weaponid, int ammo) {
 	EnumParser<eWeapon> parser;
 	eWeapon weapon = parser.ParseEnum(weaponid);
 
-	WEAPON::GIVE_WEAPON_TO_PED(PLAYER::PLAYER_PED_ID(), weapon, ammo, false, false);
+	WEAPON::GIVE_WEAPON_TO_PED(LocalPlayer->playerPed, weapon, ammo, false, false);
 }
 
 void GameWeapon::RemoveWeapon(char * weaponid) {
 	EnumParser<eWeapon> parser;
 	eWeapon weapon = parser.ParseEnum(weaponid);
 
-	WEAPON::REMOVE_WEAPON_FROM_PED(PLAYER::PLAYER_PED_ID(), weapon);
+	WEAPON::REMOVE_WEAPON_FROM_PED(LocalPlayer->playerPed, weapon);
 }
 
 void GameWeapon::GiveAmmo(char * weaponid, int ammo) {
 	EnumParser<eWeapon> parser;
 	eWeapon weapon = parser.ParseEnum(weaponid);
 
-	WEAPON::ADD_AMMO_TO_PED(PLAYER::PLAYER_PED_ID(), weapon, ammo);
+	WEAPON::ADD_AMMO_TO_PED(LocalPlayer->playerPed, weapon, ammo);
 }
 
 void GameWeapon::RemoveAmmo(char * weaponid, int ammo) {
 	EnumParser<eWeapon> parser;
 	eWeapon weapon = parser.ParseEnum(weaponid);
 
-	int curAmmo = WEAPON::GET_AMMO_IN_PED_WEAPON(PLAYER::PLAYER_PED_ID(), weapon);
+	int curAmmo = WEAPON::GET_AMMO_IN_PED_WEAPON(LocalPlayer->playerPed, weapon);
 	curAmmo = curAmmo - ammo;
 
-	WEAPON::SET_PED_AMMO(PLAYER::PLAYER_PED_ID(), weapon, curAmmo);
+	WEAPON::SET_PED_AMMO(LocalPlayer->playerPed, weapon, curAmmo);
 }

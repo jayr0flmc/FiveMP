@@ -56,7 +56,7 @@ void ScriptHook::StartConsole()
 		freopen("CONOUT$", "wb", stdout);
 		freopen("CONOUT$", "wb", stderr);
 
-		SetConsoleTitle(L"FiveMP - Client Console");
+		SetConsoleTitleA("FiveMP - Client Console");
 	}
 }
 
