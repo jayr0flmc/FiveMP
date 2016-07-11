@@ -83,3 +83,20 @@ int RemovePlayerAmmo(lua_State* state)
 
 	return 1;
 }
+
+int SetPlayerMoney(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("SetPlayerMoney() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	int ammount = lua_tointeger(state, 2);
+
+	RakNet::BitStream sSetPlayerMoney;
+	sSetPlayerMoney.Write(playerid);
+	sSetPlayerMoney.Write(ammount);
+	rpc.Signal("SetPlayerMoney", &sSetPlayerMoney, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+
+	return 1;
+}
