@@ -12,7 +12,7 @@ public:
 	void	OnTick();
 
 	Hash	GetModel() { return ENTITY::GET_ENTITY_MODEL(playerPed); };
-	Vector3 GetCoords() { return ENTITY::GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(playerPed, 0.0, 0.0, 0.0); };
+	Vector3 GetCoords() { return ENTITY::GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(playerPed, 0.0, 0.0, -1.0f); };
 	Vector3 GetVelocity() { return ENTITY::GET_ENTITY_VELOCITY(playerPed); };
 	Vector4 GetQuaternion();
 	int		GetType() { return PED::GET_PED_TYPE(playerPed); };
