@@ -52,3 +52,14 @@ void RemovePlayerAmmo(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 
 	weapon.RemoveAmmo(weaponid, ammo);
 }
+
+// -- MONEY --
+void SetPlayerMoney(RakNet::BitStream* bitStream, RakNet::Packet *packet) {
+	int playerid;
+	int ammount;
+
+	bitStream->Read(playerid);
+	bitStream->Read(ammount);
+
+	player.SetMoney(ammount);
+}
