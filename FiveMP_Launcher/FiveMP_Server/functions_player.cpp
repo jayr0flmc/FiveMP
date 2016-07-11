@@ -93,10 +93,26 @@ int SetPlayerMoney(lua_State * state)
 	int playerid = lua_tointeger(state, 1);
 	int ammount = lua_tointeger(state, 2);
 
+	//Updating value serverside.
+	playerData[playerid].money = ammount;
+
 	RakNet::BitStream sSetPlayerMoney;
 	sSetPlayerMoney.Write(playerid);
 	sSetPlayerMoney.Write(ammount);
 	rpc.Signal("SetPlayerMoney", &sSetPlayerMoney, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	return 1;
+}
+
+int GetPlayerMoney(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("GetPlayerMoney() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+
+	std::cout << "GetPlayerMoney value: " << playerData[playerid].money << std::endl; // This prints good number, but inside lua i get nil value.
+
+	return playerData[playerid].money;
 }
