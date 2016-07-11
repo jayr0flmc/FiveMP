@@ -39,6 +39,8 @@ struct playerPool {
 	float vy;								// Velocity Y coord
 	float vz;								// Velocity Z coord
 
+	int money = 0;							// Money
+
 	bool used = false;						// Whether the player slot is in use or not.
 };
 extern playerPool playerData[100];
