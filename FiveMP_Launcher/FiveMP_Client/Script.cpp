@@ -89,3 +89,21 @@ void SetPlayerFacingAngle(RakNet::BitStream * bitStream, RakNet::Packet * packet
 
 	LocalPlayer->SetHeading(rotation);
 }
+
+void SetPlayerHealth(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int playerid;
+	int health;
+
+	bitStream->Read(playerid);
+	bitStream->Read(health);
+}
+
+void SetPlayerArmour(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int playerid;
+	int armour;
+
+	bitStream->Read(playerid);
+	bitStream->Read(armour);
+}

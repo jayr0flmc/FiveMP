@@ -22,6 +22,8 @@ void CRPCManager::RegisterRPCs()
 	NetworkManager->rpc.RegisterSlot("SetPlayerMoney", SetPlayerMoney, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerPos", SetPlayerPos, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerFacingAngle", SetPlayerFacingAngle, 0);
+	NetworkManager->rpc.RegisterSlot("SetPlayerHealth", SetPlayerHealth, 0);
+	NetworkManager->rpc.RegisterSlot("SetPlayerArmour", SetPlayerArmour, 0);
 }
 
 void CRPCManager::UnRegisterRPCs()

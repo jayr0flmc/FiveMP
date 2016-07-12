@@ -46,6 +46,10 @@ int main(void)
 	lua_register(sLUA, "SetPlayerScore", SetPlayerScore);
 	lua_register(sLUA, "GivePlayerScore", GivePlayerScore);
 	lua_register(sLUA, "GetPlayerScore", GetPlayerScore);
+	lua_register(sLUA, "SetPlayerHealth", SetPlayerHealth);
+	lua_register(sLUA, "GetPlayerHealth", GetPlayerHealth);
+	lua_register(sLUA, "SetPlayerArmour", SetPlayerArmour);
+	lua_register(sLUA, "GetPlayerArmour", GetPlayerArmour);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);

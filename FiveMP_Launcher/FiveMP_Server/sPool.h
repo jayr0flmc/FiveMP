@@ -43,6 +43,9 @@ struct playerPool {
 	int money = 0;							// Money
 	int score = 0;							// Score
 
+	int health = 100.0f;					// Health
+	int armour = 100.0f;					// Armour
+
 	bool used = false;						// Whether the player slot is in use or not.
 };
 extern playerPool playerData[100];
