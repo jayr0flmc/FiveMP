@@ -243,7 +243,7 @@ int SetPlayerScore(lua_State* state) {
 	printf("SetPlayerScore() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	playerData[playerid].score = lua_tointeger(state, 1);
+	playerData[playerid].score = lua_tointeger(state, 2);
 
 	return 1;
 }
@@ -255,7 +255,7 @@ int GivePlayerScore(lua_State* state) {
 	printf("GivePlayerScore() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	playerData[playerid].score += lua_tointeger(state, 1);
+	playerData[playerid].score += lua_tointeger(state, 2);
 
 	return 1;
 }
