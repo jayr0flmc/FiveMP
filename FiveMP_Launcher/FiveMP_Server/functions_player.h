@@ -12,3 +12,6 @@ int SetPlayerPos(lua_State* state);
 int GetPlayerPos(lua_State* state);
 int SetPlayerFacingAngle(lua_State* state);
 int GetPlayerFacingAngle(lua_State* state);
+int SetPlayerScore(lua_State* state);
+int GivePlayerScore(lua_State* state);
+int GetPlayerScore(lua_State* state);

@@ -41,6 +41,7 @@ struct playerPool {
 	float vz;								// Velocity Z coord
 
 	int money = 0;							// Money
+	int score = 0;							// Score
 
 	bool used = false;						// Whether the player slot is in use or not.
 };

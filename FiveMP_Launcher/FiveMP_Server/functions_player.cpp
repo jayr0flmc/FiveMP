@@ -227,11 +227,50 @@ int GetPlayerFacingAngle(lua_State * state)
 {
 	int args = lua_gettop(state);
 
-	printf("GetPlayerFacingAnge() was called with %d arguments.\n", args);
+	printf("GetPlayerFacingAngle() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
 
 	lua_pushnumber(state, playerData[playerid].r);
 
 	return 1;
+}
+
+int SetPlayerScore(lua_State* state) {
+	
+	int args = lua_gettop(state);
+
+	printf("SetPlayerScore() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	playerData[playerid].score = lua_tointeger(state, 1);
+
+	return 1;
+}
+
+int GivePlayerScore(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("GivePlayerScore() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	playerData[playerid].score += lua_tointeger(state, 1);
+
+	return 1;
+
+}
+
+int GetPlayerScore(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("GetPlayerScore() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+
+	lua_pushinteger(state, playerData[playerid].score);
+
+	return 1;
+
 }
