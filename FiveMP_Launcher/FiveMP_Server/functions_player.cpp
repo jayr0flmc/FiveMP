@@ -258,7 +258,6 @@ int GivePlayerScore(lua_State* state) {
 	playerData[playerid].score += lua_tointeger(state, 1);
 
 	return 1;
-
 }
 
 int GetPlayerScore(lua_State* state) {

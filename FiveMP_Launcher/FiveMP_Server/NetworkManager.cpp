@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+lua_State* sLUA;
+
 SNetworkManager::SNetworkManager()
 {
 	server = RakNet::RakPeerInterface::GetInstance();
