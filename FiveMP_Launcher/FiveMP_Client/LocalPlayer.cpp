@@ -106,7 +106,6 @@ char* replaceCharacter(char* name, char char1, char char2) {
 
 void CLocalPlayer::SendSyncRequest()
 {
-	std::cout << "Its if failing" << std::endl;
 	if (time(0) - timesincerequest > 10) {
 		RakNet::BitStream requestid;
 
