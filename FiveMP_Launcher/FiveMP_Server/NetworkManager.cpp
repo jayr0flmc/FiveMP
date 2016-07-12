@@ -94,6 +94,8 @@ void SNetworkManager::Pulse()
 			break;
 
 		case ID_REQUEST_SERVER_SYNC:
+			printf("wake up fag\n");
+
 			char tempname[64];
 			int tempid;
 

@@ -8,19 +8,19 @@ CConfig			*Config;
 
 HMODULE		FiveMP_Module;
 
+time_t timesince;
+
 void main() {
 	Config			= new CConfig;
 	NetworkManager	= new CNetworkManager;
+	RPCManager		= new CRPCManager;
 
 	Config->Read();
 
 	printf("\n%s joining with port: %s\n", Config->server_ipaddress, Config->server_port);
 
 	if (!NetworkManager->Connect(Config->server_ipaddress, Config->server_port, Config->client_port)) {
-		printf("rip, no connectioneeeee\n");
-	}
-	else {
-		printf("ok");
+		printf("not able to connect :(\n");
 	}
 
 	while (true)
@@ -31,15 +31,19 @@ void main() {
 
 			if (NetworkManager->Connected) {
 				if (!NetworkManager->Synchronized) {
-					RakNet::BitStream requestid;
+					if (time(0) - timesince > 10) {
 
-					char* playerUsername = Config->client_username;
+						RakNet::BitStream requestid;
 
-					requestid.Write((MessageID)ID_REQUEST_SERVER_SYNC);
-					requestid.Write(playerUsername);
+						char* playerUsername = Config->client_username;
 
-					NetworkManager->client->Send(&requestid, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
-					NetworkManager->Synchronized = true;
+						requestid.Write((MessageID)ID_REQUEST_SERVER_SYNC);
+						requestid.Write(playerUsername);
+
+						NetworkManager->client->Send(&requestid, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+
+						timesince = time(0);
+					}
 				}
 			}
 		}

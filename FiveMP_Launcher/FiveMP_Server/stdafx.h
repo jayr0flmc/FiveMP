@@ -66,9 +66,9 @@ using namespace RakNet;
 namespace {
 	// Pools (net)
 	class UserPool netPool;
-
-	lua_State* sLUA;
 }
+
+extern lua_State* sLUA;
 
 extern SNetworkManager	*NetworkManager;
 extern SRPCManager		*RPCManager;

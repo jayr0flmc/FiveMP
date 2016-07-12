@@ -4,6 +4,7 @@ class CLocalPlayer
 public:
 	Ped		playerPed;
 	bool	playerInitialized = false;
+	time_t	timesincerequest;
 
 	CLocalPlayer();
 	~CLocalPlayer();

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+lua_State* sLUA;
+
 void sv_KickPlayer(int playerid)
 {
 	NetworkManager->server->CloseConnection(playerData[playerid].playerguid, true, 0);

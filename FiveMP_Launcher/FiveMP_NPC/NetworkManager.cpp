@@ -60,8 +60,6 @@ void CNetworkManager::Pulse()
 
 		RakNet::BitStream playerClientID(packet->data+1, packet->length+1, false);
 
-		printf("hihi");
-
 		RakNet::BitStream bsPlayerConnect;
 
 		char testmessage[128];
@@ -70,13 +68,11 @@ void CNetworkManager::Pulse()
 		case ID_CONNECTION_REQUEST_ACCEPTED:
 			Connected = true;
 
-			sprintf(testmessage, "Hi ~b~%s~w~, you have successfully connected to the server!", Config->client_username);
+			sprintf(testmessage, "Hi ~b~%s~w~, you have successfully connected to the server!\n", Config->client_username);
 			printf(testmessage);
 
-			sprintf(testmessage, "GUID is: ~b~#%s", client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString());
+			sprintf(testmessage, "GUID is: ~b~#%s\n", client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString());
 			printf(testmessage);
-
-			printf("yes\n");
 			break;
 
 		case ID_CONNECTION_ATTEMPT_FAILED:
@@ -90,7 +86,7 @@ void CNetworkManager::Pulse()
 			Connected = false;
 			Synchronized = false;
 
-			printf("~r~Server is full!");
+			printf("~r~Server is full!\n");
 			Listening = false;
 			break;
 
@@ -98,7 +94,7 @@ void CNetworkManager::Pulse()
 			Connected = false;
 			Synchronized = false;
 
-			printf("~r~Connection closed!");
+			printf("~r~Connection closed!\n");
 			Listening = false;
 			break;
 
@@ -106,7 +102,7 @@ void CNetworkManager::Pulse()
 			Connected = false;
 			Synchronized = false;
 
-			printf("~r~Connection Lost!");
+			printf("~r~Connection Lost!\n");
 			Listening = false;
 			break;
 
@@ -114,7 +110,7 @@ void CNetworkManager::Pulse()
 			Connected = false;
 			Synchronized = false;
 
-			printf("~r~You're banned from this server!");
+			printf("~r~You're banned from this server!\n");
 			Listening = false;
 			break;
 
@@ -126,7 +122,9 @@ void CNetworkManager::Pulse()
 			playerClientID.Read(time_pause);
 
 			bsPlayerConnect.Write(playerid);
-			rpc.Signal("PlayerConnect", &bsPlayerConnect, HIGH_PRIORITY, RELIABLE_ORDERED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, false);
+			rpc.Signal("PlayerConnect", &bsPlayerConnect, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+
+			NetworkManager->Synchronized = true;
 			break;
 
 		case ID_SEND_PLAYER_DATA:
@@ -137,7 +135,7 @@ void CNetworkManager::Pulse()
 			break;
 
 		default:
-			sprintf(testmessage, "%s", packet->data);
+			sprintf(testmessage, "%s\n", packet->data);
 			printf(testmessage);
 
 			sprintf(testmessage, "Exception from %s\n", packet->data);

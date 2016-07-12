@@ -15,13 +15,6 @@ int main(void)
 
 	Config->Read();
 
-	NetworkManager	= new SNetworkManager;
-	RPCManager		= new SRPCManager;
-
-	RPCManager->RegisterRPCs();
-
-	NetworkManager->Start();
-
 	printf("\n%s starting on Port: %s - time: %d - %d - %d\n", Config->ServerName, Config->ServerPort, Config->ServerTimeHour, Config->ServerTimeMinute, Config->ServerTimeFreeze);
 
 	SetConsoleTitle("FiveMP - Server Console");
@@ -29,8 +22,12 @@ int main(void)
 	puts("Starting server.");
 
 	char tempgamemode[64];
-
 	sprintf(tempgamemode, "gamemodes//%s.lua", Config->ScriptGameMode);
+
+	NetworkManager = new SNetworkManager;
+	NetworkManager->Start();
+	RPCManager = new SRPCManager;
+	RPCManager->RegisterRPCs();
 
 	sLUA = luaL_newstate();
 	luaL_openlibs(sLUA);

@@ -106,16 +106,20 @@ char* replaceCharacter(char* name, char char1, char char2) {
 
 void CLocalPlayer::SendSyncRequest()
 {
-	RakNet::BitStream requestid;
+	if (time(0) - timesincerequest > 10) {
+		RakNet::BitStream requestid;
 
-	char* playerUsername = replaceCharacter(Config->client_username, '~', ' ');
+		char* playerUsername = replaceCharacter(Config->client_username, '~', ' ');
 
-	requestid.Write((MessageID)ID_REQUEST_SERVER_SYNC);
-	requestid.Write(playerUsername);
+		requestid.Write((MessageID)ID_REQUEST_SERVER_SYNC);
+		requestid.Write(playerUsername);
 
-	NetworkManager->client->Send(&requestid, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+		NetworkManager->client->Send(&requestid, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 
-	player.ShowMessageAboveMap("Synchronizing with the server...");
+		player.ShowMessageAboveMap("Synchronizing with the server...");
 
-	NetworkManager->Synchronized = true;
+		NetworkManager->Synchronized = true;
+
+		timesincerequest = time(0);
+	}
 }
