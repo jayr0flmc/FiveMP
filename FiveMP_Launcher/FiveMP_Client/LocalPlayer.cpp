@@ -118,8 +118,6 @@ void CLocalPlayer::SendSyncRequest()
 
 		player.ShowMessageAboveMap("Synchronizing with the server...");
 
-		NetworkManager->Synchronized = true;
-
 		timesincerequest = time(0);
 	}
 }
