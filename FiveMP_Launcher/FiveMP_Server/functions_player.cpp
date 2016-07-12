@@ -17,7 +17,7 @@ int GivePlayerWeapon(lua_State* state)
 	sGivePlayerWeapon.Write(playerid); //Probably do not need to send this
 	sGivePlayerWeapon.Write(weaponid);
 	sGivePlayerWeapon.Write(ammo);
-	rpc.Signal("GivePlayerWeapon", &sGivePlayerWeapon, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	NetworkManager->rpc.Signal("GivePlayerWeapon", &sGivePlayerWeapon, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	lua_pushnumber(state, 124);
 	return 1;
@@ -37,7 +37,7 @@ int RemovePlayerWeapon(lua_State* state)
 	RakNet::BitStream sRemovePlayerWeapon;
 	sRemovePlayerWeapon.Write(playerid);
 	sRemovePlayerWeapon.Write(weaponid);
-	rpc.Signal("RemovePlayerWeapon", &sRemovePlayerWeapon, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	NetworkManager->rpc.Signal("RemovePlayerWeapon", &sRemovePlayerWeapon, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	//lua_pushnumber(state, 124); //IS THIS EVEN NEEDED?
 	return 1;
@@ -59,7 +59,7 @@ int GivePlayerAmmo(lua_State* state)
 	sGivePlayerAmmo.Write(playerid);
 	sGivePlayerAmmo.Write(weaponid);
 	sGivePlayerAmmo.Write(ammo);
-	rpc.Signal("GivePlayerAmmo", &sGivePlayerAmmo, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	NetworkManager->rpc.Signal("GivePlayerAmmo", &sGivePlayerAmmo, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	return 1;
 }
@@ -80,7 +80,7 @@ int RemovePlayerAmmo(lua_State* state)
 	sRemovePlayerAmmo.Write(playerid);
 	sRemovePlayerAmmo.Write(weaponid);
 	sRemovePlayerAmmo.Write(ammo);
-	rpc.Signal("RemovePlayerAmmo", &sRemovePlayerAmmo, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	NetworkManager->rpc.Signal("RemovePlayerAmmo", &sRemovePlayerAmmo, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	return 1;
 }
@@ -97,7 +97,7 @@ int SetPlayerMoney(lua_State * state)
 	RakNet::BitStream sSetPlayerMoney;
 	sSetPlayerMoney.Write(playerid);
 	sSetPlayerMoney.Write(playerData[playerid].money);
-	rpc.Signal("SetPlayerMoney", &sSetPlayerMoney, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	NetworkManager->rpc.Signal("SetPlayerMoney", &sSetPlayerMoney, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	return 1;
 }
@@ -115,7 +115,7 @@ int GivePlayerMoney(lua_State * state)
 	RakNet::BitStream sSetPlayerMoney;
 	sSetPlayerMoney.Write(playerid);
 	sSetPlayerMoney.Write(playerData[playerid].money);
-	rpc.Signal("SetPlayerMoney", &sSetPlayerMoney, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	NetworkManager->rpc.Signal("SetPlayerMoney", &sSetPlayerMoney, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	return 1;
 }
@@ -152,11 +152,11 @@ int KickPlayer(lua_State * state) {
 	RakNet::BitStream sKickPlayer;
 	sKickPlayer.Write(playerid);
 	sKickPlayer.Write(message);
-	rpc.Signal("ShowMessageToPlayer", &sKickPlayer, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	NetworkManager->rpc.Signal("ShowMessageToPlayer", &sKickPlayer, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	//Disconect player from the server
-	RakSleep(15); //Sleep a bit that message would get sent
-	kickPlayer(playerid); //If you dont like it its in server.h
+	RakSleep(100); //Sleep a bit that message would get sent
+	sv_KickPlayer(playerid); //If you dont like it its in server.h
 
 	return 1;
 }
@@ -184,7 +184,7 @@ int SetPlayerPos(lua_State* state) {
 	sSetPlayerPos.Write(posx);
 	sSetPlayerPos.Write(posy);
 	sSetPlayerPos.Write(posz);
-	rpc.Signal("SetPlayerPos", &sSetPlayerPos, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	NetworkManager->rpc.Signal("SetPlayerPos", &sSetPlayerPos, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	return 1;
 }
@@ -218,7 +218,7 @@ int SetPlayerFacingAngle(lua_State* state) {
 	RakNet::BitStream sSetPlayerFacingAngle;
 	sSetPlayerFacingAngle.Write(playerid);
 	sSetPlayerFacingAngle.Write(rotation);
-	rpc.Signal("SetPlayerFacingAngle", &sSetPlayerFacingAngle, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	NetworkManager->rpc.Signal("SetPlayerFacingAngle", &sSetPlayerFacingAngle, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	return 1;
 }

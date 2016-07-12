@@ -1,84 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="server.h" />
     <ClInclude Include="resource.h">
-      <Filter>Include\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx_raknet.h">
-      <Filter>Include</Filter>
+      <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="sPool.h">
-      <Filter>Net</Filter>
+      <Filter>Header Files\Net</Filter>
     </ClInclude>
-    <ClInclude Include="sConfig.h">
-      <Filter>Net</Filter>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
-    <ClInclude Include="functions_main.h">
-      <Filter>Scripting %28LUA%29</Filter>
+    <ClInclude Include="main.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
+      <Filter>Header Files\Function</Filter>
     </ClInclude>
     <ClInclude Include="callbacks.h">
-      <Filter>Scripting %28LUA%29</Filter>
+      <Filter>Header Files\Function\LUA\Callbacks</Filter>
     </ClInclude>
     <ClInclude Include="functions_hud.h">
-      <Filter>Scripting %28LUA%29</Filter>
+      <Filter>Header Files\Function\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="functions_main.h">
+      <Filter>Header Files\Function\LUA</Filter>
     </ClInclude>
     <ClInclude Include="functions_player.h">
-      <Filter>Scripting %28LUA%29</Filter>
+      <Filter>Header Files\Function\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files\Modification</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkManager.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="RPCManager.h">
+      <Filter>Header Files\Net</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="server.cpp" />
     <ClCompile Include="stdafx.cpp">
-      <Filter>Include</Filter>
+      <Filter>Source Files\Common</Filter>
     </ClCompile>
-    <ClCompile Include="sPool.cpp">
-      <Filter>Net</Filter>
-    </ClCompile>
-    <ClCompile Include="sConfig.cpp">
-      <Filter>Net</Filter>
-    </ClCompile>
-    <ClCompile Include="functions_main.cpp">
-      <Filter>Scripting %28LUA%29</Filter>
-    </ClCompile>
-    <ClCompile Include="callbacks.cpp">
-      <Filter>Scripting %28LUA%29</Filter>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Common</Filter>
     </ClCompile>
     <ClCompile Include="functions_hud.cpp">
-      <Filter>Scripting %28LUA%29</Filter>
+      <Filter>Source Files\Function\LUA</Filter>
     </ClCompile>
     <ClCompile Include="functions_player.cpp">
-      <Filter>Scripting %28LUA%29</Filter>
+      <Filter>Source Files\Function\LUA</Filter>
+    </ClCompile>
+    <ClCompile Include="functions_main.cpp">
+      <Filter>Source Files\Function\LUA</Filter>
+    </ClCompile>
+    <ClCompile Include="callbacks.cpp">
+      <Filter>Source Files\Function\LUA\Callbacks</Filter>
+    </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>Source Files\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="sPool.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Source Files\Modification</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkManager.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="RPCManager.cpp">
+      <Filter>Source Files\Net</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Include">
-      <UniqueIdentifier>{0a935322-4412-4b14-996d-c31575c8a4dd}</UniqueIdentifier>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{432b4531-66ce-4844-aac5-6868c4eb8280}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Include\Resource">
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{16bcbfce-0ccd-4c47-a8a6-1ebd50100cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Function">
+      <UniqueIdentifier>{161fe4a0-0c7a-4fc5-8384-9b2265bcaf30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Net">
+      <UniqueIdentifier>{2c21c506-a405-4d3e-84b6-eabd26d8f7f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{edb2c51e-a59f-4551-bfaf-add5e88c4a6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Modification">
+      <UniqueIdentifier>{38e64258-8692-419c-99ba-60844e60f030}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
       <UniqueIdentifier>{8b27ce47-a297-458c-8f36-84893980a4f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Net">
-      <UniqueIdentifier>{9b0a8672-adc5-4563-aaef-8668e236b3e5}</UniqueIdentifier>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{d69d3758-19bd-44ca-b024-9db0daffa050}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripting %28LUA%29">
-      <UniqueIdentifier>{faec295e-8b95-48fb-b9e1-842e04d4e79a}</UniqueIdentifier>
+    <Filter Include="Source Files\Function">
+      <UniqueIdentifier>{ed556d35-59f8-4152-98e5-31bb65704ece}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Net">
+      <UniqueIdentifier>{78ea3465-a93f-41d5-a7f0-466c472bb47d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modification">
+      <UniqueIdentifier>{5d36ffa5-724b-4ad0-9071-3a15726e3f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Function\LUA">
+      <UniqueIdentifier>{090e5d23-9100-49d5-aebb-f669b7f7f71d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Function\LUA\Callbacks">
+      <UniqueIdentifier>{1bbd1a5d-fa00-4b22-9474-35dab08eb2a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Function\LUA">
+      <UniqueIdentifier>{65d25b7b-f434-4b64-8324-a38419aff07f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Function\LUA\Callbacks">
+      <UniqueIdentifier>{fa0f4c99-3bbf-43db-831e-7b8a0b25b350}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="ico2n1.ico">
-      <Filter>Include\Resource</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
     <Image Include="icon1.ico">
-      <Filter>Include\Resource</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FiveMP.rc">
-      <Filter>Include\Resource</Filter>
+      <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>

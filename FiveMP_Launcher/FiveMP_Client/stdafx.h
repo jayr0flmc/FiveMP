@@ -80,7 +80,7 @@ using namespace RakNet;
 #include "LocalPlayer.h"
 #include "RPCManager.h"
 #include "Script.h"
-#include "cPool.h"
+#include "PlayerPool.h"
 
 // Interface
 #include "RenderDebug.h"

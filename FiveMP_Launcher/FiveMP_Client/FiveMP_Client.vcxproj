@@ -36,7 +36,7 @@
     <ClInclude Include="RPCManager.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="ScriptHook.h" />
-    <ClInclude Include="cPool.h" />
+    <ClInclude Include="PlayerPool.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Vehicles.h" />
     <ClInclude Include="Weapon.h" />
@@ -103,7 +103,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="cPool.cpp">
+    <ClCompile Include="PlayerPool.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
