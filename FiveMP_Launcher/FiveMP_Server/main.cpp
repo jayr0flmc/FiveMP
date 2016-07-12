@@ -18,6 +18,8 @@ int main(void)
 	NetworkManager	= new SNetworkManager;
 	RPCManager		= new SRPCManager;
 
+	RPCManager->RegisterRPCs();
+
 	NetworkManager->Start();
 
 	printf("\n%s starting on Port: %s - time: %d - %d - %d\n", Config->ServerName, Config->ServerPort, Config->ServerTimeHour, Config->ServerTimeMinute, Config->ServerTimeFreeze);

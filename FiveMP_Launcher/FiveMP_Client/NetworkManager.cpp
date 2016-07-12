@@ -126,9 +126,6 @@ void CNetworkManager::Pulse()
 			break;
 
 		case ID_REQUEST_SERVER_SYNC:
-			TIME::SET_CLOCK_TIME(20, 00, 00);
-			TIME::PAUSE_CLOCK(false);
-
 			playerClientID.Read(playerid);
 
 			playerClientID.Read(time_hour);
