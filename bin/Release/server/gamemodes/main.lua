@@ -15,7 +15,7 @@ function OnPlayerConnect(playerid)
 	return 1;
 end
 
-function OnPlayerDisonnect(playerid)
+function OnPlayerDisconnect(playerid)
 	print(playerid .. " has disconnected");
     return 1;
 end
