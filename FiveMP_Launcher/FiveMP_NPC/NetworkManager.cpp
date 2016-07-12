@@ -60,6 +60,8 @@ void CNetworkManager::Pulse()
 
 		RakNet::BitStream playerClientID(packet->data+1, packet->length+1, false);
 
+		printf("hihi");
+
 		RakNet::BitStream bsPlayerConnect;
 
 		char testmessage[128];
@@ -73,6 +75,8 @@ void CNetworkManager::Pulse()
 
 			sprintf(testmessage, "GUID is: ~b~#%s", client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString());
 			printf(testmessage);
+
+			printf("yes\n");
 			break;
 
 		case ID_CONNECTION_ATTEMPT_FAILED:

@@ -9,17 +9,24 @@ CConfig			*Config;
 HMODULE		FiveMP_Module;
 
 void main() {
-	Config		= new CConfig;
+	Config			= new CConfig;
+	NetworkManager	= new CNetworkManager;
 
 	Config->Read();
 
+	printf("\n%s joining with port: %s\n", Config->server_ipaddress, Config->server_port);
+
 	if (!NetworkManager->Connect(Config->server_ipaddress, Config->server_port, Config->client_port)) {
 		printf("rip, no connectioneeeee\n");
+	}
+	else {
+		printf("ok");
 	}
 
 	while (true)
 	{
 		if (NetworkManager->Listening) {
+
 			NetworkManager->Pulse();
 
 			if (NetworkManager->Connected) {
