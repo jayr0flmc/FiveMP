@@ -60,6 +60,10 @@ int main(void)
 	lua_register(sLUA, "GivePlayerAmmo", GivePlayerAmmo);
 	lua_register(sLUA, "RemovePlayerAmmo", RemovePlayerAmmo);
 
+	// Server
+	lua_register(sLUA, "GetTime", GetTime);
+	lua_register(sLUA, "SetTime", SetTime);
+
 	OnGameModeInit(sLUA);
 
 	char message[256];

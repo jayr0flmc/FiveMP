@@ -19,3 +19,5 @@ int SetPlayerHealth(lua_State* state);
 int GetPlayerHealth(lua_State* state);
 int SetPlayerArmour(lua_State* state);
 int GetPlayerArmour(lua_State* state);
+int SetTime(lua_State* state);
+int GetTime(lua_State* state);

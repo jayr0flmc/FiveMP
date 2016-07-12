@@ -333,3 +333,27 @@ int GetPlayerArmour(lua_State* state) {
 
 	return 1;
 }
+
+int SetTime(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetTime() was called with %d arguments.\n", args);
+
+	Config->ServerTimeHour = lua_tointeger(state, 1);
+	Config->ServerTimeMinute = lua_tointeger(state, 2);
+
+	return 1;
+}
+
+int GetTime(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("GetTime() was called with %d arguments.\n", args);
+
+	lua_pushinteger(state, Config->ServerTimeHour);
+	lua_pushinteger(state, Config->ServerTimeMinute);
+
+	return 2;
+}
