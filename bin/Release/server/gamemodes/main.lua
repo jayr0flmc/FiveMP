@@ -13,8 +13,10 @@ function OnPlayerConnect(playerid)
 	ShowMessageToPlayer(playerid, "Welcome to this ~b~FiveMP ~w~server!");
 	ShowMessageToPlayer(playerid, "Your player ID is ~b~" .. playerid);
 	
-	SetPlayerPos(playerid, 0.0, 0.0, 75.0);
+	SetPlayerPos(playerid, 0.0, 0.0, 70.5);
 	SetPlayerFacingAngle(playerid, 0.0);
+	
+	SetPlayerMoney(playerid, 500);
 	return 1;
 end
 

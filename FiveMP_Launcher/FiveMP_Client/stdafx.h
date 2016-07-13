@@ -94,6 +94,7 @@ namespace {
 	class GamePlayer player;
 	class GameWeapon weapon;
 	class GameWorld world;
+	class GameVehicle vehicle;
 }
 
 extern MODULEINFO	g_MainModuleInfo;
