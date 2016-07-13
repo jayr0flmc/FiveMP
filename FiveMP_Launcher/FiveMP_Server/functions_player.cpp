@@ -211,7 +211,7 @@ int SetPlayerFacingAngle(lua_State* state) {
 	printf("SetPlayerFacingAngle() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	float rotation = lua_tonumber(state, 2);
+	float rotation = 360 - lua_tonumber(state, 2);
 
 	playerData[playerid].r = rotation;
 
