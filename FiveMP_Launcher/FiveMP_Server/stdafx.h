@@ -67,6 +67,7 @@ using namespace RakNet;
 namespace {
 	// Pools (net)
 	class UserPool netPool;
+	class SpawnPointPool spawnsPool;
 }
 
 extern lua_State* sLUA;

@@ -3,6 +3,7 @@
 SNetworkManager *NetworkManager;
 SRPCManager		*RPCManager;
 SConfig			*Config;
+SPlayer *PlayerManager;
 
 int userAmount, vehicleAmount;
 char userGuid;
@@ -29,6 +30,7 @@ int main(void)
 	NetworkManager->Start();
 	RPCManager = new SRPCManager;
 	RPCManager->RegisterRPCs();
+	PlayerManager = new SPlayer;
 
 	sLUA = luaL_newstate();
 	luaL_openlibs(sLUA);
@@ -76,6 +78,7 @@ int main(void)
 	while (1)
 	{
 		NetworkManager->Pulse();
+		PlayerManager->Player();
 
 		if (_kbhit())
 		{

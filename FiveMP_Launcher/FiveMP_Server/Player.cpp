@@ -8,37 +8,59 @@ SPlayer::~SPlayer()
 {
 }
 
-void SPlayer::PlayerSpawn()
+void SPlayer::Player()
 {
-	for (int i = 0; i < sizeof(playerData) / sizeof(*playerData); i++) {
-		if (playerData[i].pedHealth <= 0)
-		{
-			OnPlayerDeath(sLUA, i);
+	PlayerPulse();
+}
 
-			float closest = 0;
-			int id = 0;
+void SPlayer::PlayerPulse()
+{
+		for (int i = 0; i < sizeof(playerData) / sizeof(*playerData); i++) {
 
-			for (int s = 0; s < sizeof(spawnData) / sizeof(*spawnData); s++) {
-
-				float tempd = Distance(playerData[i].x, spawnData[s].x, playerData[i].y, spawnData[s].y, playerData[i].z, spawnData[s].z);
-
-				if (s = 0 || closest > tempd) {
-					closest = tempd;
-					id = s;
-				}
+			if (playerData[i].pedHealth <= 0 && playerData[i].dead == false && playerData[i].used == true)
+			{
+				OnPlayerDeath(sLUA, playerData[i].playerid);
+				playerData[i].dead = true;
 			}
 
-			RakNet::BitStream sSetPlayerPos;
-			sSetPlayerPos.Write(i);
-			sSetPlayerPos.Write(spawnData[id].x);
-			sSetPlayerPos.Write(spawnData[id].y);
-			sSetPlayerPos.Write(spawnData[id].z);
-			NetworkManager->rpc.Signal("SetPlayerPos", &sSetPlayerPos, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(i), false, false);
 
-			playerData[i].pedHealth = 100;
-			OnPlayerSpawn(sLUA, i);
+			if (playerData[i].pedHealth > 0 && playerData[i].dead == true && playerData[i].used == true) {
+				float closest = 0;
+				int spawnid = 0;
+
+				for (int s = 0; s < sizeof(spawnData) / sizeof(*spawnData); s++) {
+					if (spawnData[i].used == true)
+					{
+						float tempd = Distance(playerData[i].x, spawnData[s].x, playerData[i].y, spawnData[s].y, playerData[i].z, spawnData[s].z);
+
+						if (s == 0 || closest > tempd) {
+							closest = tempd;
+							spawnid = s;
+						}
+
+						printf("Spawn: %i, %f, %f, %f\n", s, spawnData[s].x, spawnData[s].y, spawnData[s].z);
+					}
+				}
+
+				playerData[i].dead = false;
+				SpawnPlayer(i, spawnid);
+			}
 		}
-	}
+}
+
+void SPlayer::SpawnPlayer(int playerid, int spawnid) {
+
+		RakNet::BitStream sSetPlayerPos;
+		sSetPlayerPos.Write(playerid);
+		sSetPlayerPos.Write(spawnData[spawnid].x);
+		sSetPlayerPos.Write(spawnData[spawnid].y);
+		sSetPlayerPos.Write(spawnData[spawnid].z);
+		NetworkManager->rpc.Signal("SetPlayerPos", &sSetPlayerPos, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+		printf("Player %i Spawned\n", playerid);
+
+		printf("Spawn: %i, %f, %f, %f\n", spawnid, spawnData[spawnid].x, spawnData[spawnid].y, spawnData[spawnid].z);
+
+		//OnPlayerSpawn(sLUA, playerid);
 }
 
 float SPlayer::Distance(float x1, float x2, float y1, float y2, float z1, float z2)
