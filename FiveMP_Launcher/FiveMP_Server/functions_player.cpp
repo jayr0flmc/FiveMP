@@ -211,7 +211,7 @@ int SetPlayerFacingAngle(lua_State* state) {
 	printf("SetPlayerFacingAngle() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	float rotation = lua_tonumber(state, 2);
+	float rotation = 360 - lua_tonumber(state, 2);
 
 	playerData[playerid].r = rotation;
 
@@ -243,7 +243,7 @@ int SetPlayerScore(lua_State* state) {
 	printf("SetPlayerScore() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	playerData[playerid].score = lua_tointeger(state, 1);
+	playerData[playerid].score = lua_tointeger(state, 2);
 
 	return 1;
 }
@@ -255,10 +255,9 @@ int GivePlayerScore(lua_State* state) {
 	printf("GivePlayerScore() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	playerData[playerid].score += lua_tointeger(state, 1);
+	playerData[playerid].score += lua_tointeger(state, 2);
 
 	return 1;
-
 }
 
 int GetPlayerScore(lua_State* state) {
@@ -273,4 +272,88 @@ int GetPlayerScore(lua_State* state) {
 
 	return 1;
 
+}
+
+int SetPlayerHealth(lua_State* state) {
+	
+	int args = lua_gettop(state);
+
+	printf("SetPlayerHealth() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	playerData[playerid].pedHealth = lua_tointeger(state, 2);
+
+	RakNet::BitStream sSetPlayerHealth;
+	sSetPlayerHealth.Write(playerid);
+	sSetPlayerHealth.Write(playerData[playerid].pedHealth);
+	NetworkManager->rpc.Signal("SetPlayerHealth", &sSetPlayerHealth, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+
+	return 1;
+}
+
+int GetPlayerHealth(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("GetPlayerHealth() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+
+	lua_pushnumber(state, playerData[playerid].pedHealth);
+
+	return 1;
+}
+
+int SetPlayerArmour(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetPlayerArmour() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	playerData[playerid].pedArmour = lua_tointeger(state, 2);
+
+	RakNet::BitStream sSetPlayerArmour;
+	sSetPlayerArmour.Write(playerid);
+	sSetPlayerArmour.Write(playerData[playerid].pedArmour);
+	NetworkManager->rpc.Signal("SetPlayerArmour", &sSetPlayerArmour, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+
+	return 1;
+}
+
+int GetPlayerArmour(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("GetPlayerArmour() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+
+	lua_pushnumber(state, playerData[playerid].pedArmour);
+
+	return 1;
+}
+
+int SetTime(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetTime() was called with %d arguments.\n", args);
+
+	Config->ServerTimeHour = lua_tointeger(state, 1);
+	Config->ServerTimeMinute = lua_tointeger(state, 2);
+
+	return 1;
+}
+
+int GetTime(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("GetTime() was called with %d arguments.\n", args);
+
+	lua_pushinteger(state, Config->ServerTimeHour);
+	lua_pushinteger(state, Config->ServerTimeMinute);
+
+	return 2;
 }

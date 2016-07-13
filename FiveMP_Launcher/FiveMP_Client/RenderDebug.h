@@ -6,5 +6,6 @@ public:
 	void RenderBlend();
 	void RenderVelocity();
 	void RenderCoords();
+	void RenderMoney();
 };
 

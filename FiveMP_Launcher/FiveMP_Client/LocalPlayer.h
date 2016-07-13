@@ -4,6 +4,8 @@ class CLocalPlayer
 public:
 	Ped		playerPed;
 	bool	playerInitialized = false;
+	time_t	timesincerequest = 0L;
+	int		playerMoney = 0;
 
 	CLocalPlayer();
 	~CLocalPlayer();
@@ -21,6 +23,9 @@ public:
 
 	void SetPos(float x, float y, float z) { PED::SET_PED_COORDS_KEEP_VEHICLE(playerPed, x, y, z); };
 	void SetHeading(float heading) { ENTITY::SET_ENTITY_HEADING(playerPed, heading); };
+
+	void SetHealth(int health) { ENTITY::SET_ENTITY_HEALTH(playerPed, health); };
+	void SetArmour(int armour) { PED::SET_PED_ARMOUR(playerPed, armour); };
 
 	void	SendOnFootData();
 	void	SendSyncRequest();

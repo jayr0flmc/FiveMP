@@ -61,7 +61,7 @@ void SetPlayerMoney(RakNet::BitStream* bitStream, RakNet::Packet *packet) {
 	bitStream->Read(playerid);
 	bitStream->Read(ammount);
 
-	player.SetMoney(ammount);
+	LocalPlayer->playerMoney = ammount;
 }
 
 // -- POSITION --
@@ -88,4 +88,22 @@ void SetPlayerFacingAngle(RakNet::BitStream * bitStream, RakNet::Packet * packet
 	bitStream->Read(rotation);
 
 	LocalPlayer->SetHeading(rotation);
+}
+
+void SetPlayerHealth(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int playerid;
+	int health;
+
+	bitStream->Read(playerid);
+	bitStream->Read(health);
+}
+
+void SetPlayerArmour(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int playerid;
+	int armour;
+
+	bitStream->Read(playerid);
+	bitStream->Read(armour);
 }

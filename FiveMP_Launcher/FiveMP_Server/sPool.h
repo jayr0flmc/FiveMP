@@ -24,6 +24,7 @@ struct playerPool {
 	int pedType;							// Ped Type
 	Hash pedModel;							// PedModel in hash
 	int pedHealth;							// Ped Health
+	int pedArmour;
 
 	float x;								// Position X coord
 	float y;								// Position Y coord

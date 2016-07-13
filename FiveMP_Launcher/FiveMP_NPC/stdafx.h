@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <intrin.h>
 #include <string>
+#include <map>
+#include <string.h>
 #include <vector>
 #include <sstream>
 #include <Psapi.h>
@@ -15,11 +17,13 @@
 #include <fstream>
 #include <timeapi.h>
 #include <time.h>
-#include <direct.h>
+#include <tlhelp32.h>
+#include <math.h>
+#include <iostream>
+#include <future>
+using namespace std;
 
 #pragma comment(lib, "winmm.lib")
-
-extern MODULEINFO g_MainModuleInfo;
 
 // RakNet
 #include <MessageIdentifiers.h>
@@ -36,41 +40,23 @@ extern MODULEINFO g_MainModuleInfo;
 #include <RPC4Plugin.h>
 using namespace RakNet;
 
-// Modification
+// INI Reader
+#include <IniWriter.h>
+#include <IniReader.h>
+
+// Client
+#include "main.h"
+
+// Modification (FiveMP)
 #include "Config.h"
 
-// Netcode
+// Net
 #include "NetworkManager.h"
 #include "RPCManager.h"
+#include "PlayerPool.h"
 
-#include "sPool.h"
+extern MODULEINFO	g_MainModuleInfo;
 
-// INI Reader
-#include "IniWriter.h"
-#include "IniReader.h"
-
-// Functions
-#include "server.h"
-#include "player.h"
-
-// Scripting (LUA)
-#include <lua.hpp>
-
-// Scripting (LUA-Functions)
-#include "functions_main.h"
-#include "functions_hud.h"
-#include "functions_player.h"
-
-// Scripting (LUA-Callbacks)
-#include "callbacks.h"
-
-namespace {
-	// Pools (net)
-	class UserPool netPool;
-}
-
-extern lua_State* sLUA;
-
-extern SNetworkManager	*NetworkManager;
-extern SRPCManager		*RPCManager;
-extern SConfig			*Config;
+extern CNetworkManager	*NetworkManager;
+extern CRPCManager		*RPCManager;
+extern CConfig			*Config;

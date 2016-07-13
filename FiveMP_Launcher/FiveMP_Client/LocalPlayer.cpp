@@ -18,11 +18,11 @@ void CLocalPlayer::Initialize()
 		SCRIPT::SHUTDOWN_LOADING_SCREEN();
 		CAM::DO_SCREEN_FADE_IN(500);
 
-		GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(391.4746f, -1637.9750f, 22.4998f, &groundz, 1);
-		ENTITY::SET_ENTITY_COORDS(playerPed, 391.4746f, -1637.9750f, groundz + 1.0f, true, true, true, true);
+		//GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(391.4746f, -1637.9750f, 22.4998f, &groundz, 1);
+		//ENTITY::SET_ENTITY_COORDS(playerPed, 391.4746f, -1637.9750f, groundz + 1.0f, true, true, true, true);
 
-		ENTITY::FREEZE_ENTITY_POSITION(playerPed, 0);
-		ENTITY::SET_ENTITY_VISIBLE(playerPed, true, 0);
+		//ENTITY::FREEZE_ENTITY_POSITION(playerPed, 0);
+		//ENTITY::SET_ENTITY_VISIBLE(playerPed, true, 0);
 
 		UI::DISPLAY_RADAR(true);
 		UI::DISPLAY_HUD(true);
@@ -110,16 +110,18 @@ char* replaceCharacter(char* name, char char1, char char2) {
 
 void CLocalPlayer::SendSyncRequest()
 {
-	RakNet::BitStream requestid;
+	if (time(0) - timesincerequest > 10) {
+		RakNet::BitStream requestid;
 
-	char* playerUsername = replaceCharacter(Config->client_username, '~', ' ');
+		char* playerUsername = replaceCharacter(Config->client_username, '~', ' ');
 
-	requestid.Write((MessageID)ID_REQUEST_SERVER_SYNC);
-	requestid.Write(playerUsername);
+		requestid.Write((MessageID)ID_REQUEST_SERVER_SYNC);
+		requestid.Write(playerUsername);
 
-	NetworkManager->client->Send(&requestid, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+		NetworkManager->client->Send(&requestid, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 
-	player.ShowMessageAboveMap("Synchronizing with the server...");
+		player.ShowMessageAboveMap("Synchronizing with the server...");
 
-	NetworkManager->Synchronized = true;
+		timesincerequest = time(0);
+	}
 }

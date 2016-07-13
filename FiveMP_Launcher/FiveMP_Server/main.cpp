@@ -16,13 +16,6 @@ int main(void)
 
 	Config->Read();
 
-	NetworkManager	= new SNetworkManager;
-	RPCManager		= new SRPCManager;
-
-	RPCManager->RegisterRPCs();
-
-	NetworkManager->Start();
-
 	printf("\n%s starting on Port: %s - time: %d - %d - %d\n", Config->ServerName, Config->ServerPort, Config->ServerTimeHour, Config->ServerTimeMinute, Config->ServerTimeFreeze);
 
 	SetConsoleTitle("FiveMP - Server Console");
@@ -30,8 +23,12 @@ int main(void)
 	puts("Starting server.");
 
 	char tempgamemode[64];
-
 	sprintf(tempgamemode, "gamemodes//%s.lua", Config->ScriptGameMode);
+
+	NetworkManager = new SNetworkManager;
+	NetworkManager->Start();
+	RPCManager = new SRPCManager;
+	RPCManager->RegisterRPCs();
 
 	sLUA = luaL_newstate();
 	luaL_openlibs(sLUA);
@@ -51,6 +48,10 @@ int main(void)
 	lua_register(sLUA, "SetPlayerScore", SetPlayerScore);
 	lua_register(sLUA, "GivePlayerScore", GivePlayerScore);
 	lua_register(sLUA, "GetPlayerScore", GetPlayerScore);
+	lua_register(sLUA, "SetPlayerHealth", SetPlayerHealth);
+	lua_register(sLUA, "GetPlayerHealth", GetPlayerHealth);
+	lua_register(sLUA, "SetPlayerArmour", SetPlayerArmour);
+	lua_register(sLUA, "GetPlayerArmour", GetPlayerArmour);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
@@ -60,6 +61,10 @@ int main(void)
 	lua_register(sLUA, "RemovePlayerWeapon", RemovePlayerWeapon);
 	lua_register(sLUA, "GivePlayerAmmo", GivePlayerAmmo);
 	lua_register(sLUA, "RemovePlayerAmmo", RemovePlayerAmmo);
+
+	// Server
+	lua_register(sLUA, "GetTime", GetTime);
+	lua_register(sLUA, "SetTime", SetTime);
 
 	//World
 	lua_register(sLUA, "SetSpawnPoint", SetSpawnPoint);
