@@ -9,9 +9,12 @@ function OnGameModeExit()
 end
 
 function OnPlayerConnect(playerid)
-	GivePlayerWeapon(playerid, "Firework", 10);
+	GivePlayerWeapon(playerid, "Pistol", 45);
 	ShowMessageToPlayer(playerid, "Welcome to this ~b~FiveMP ~w~server!");
 	ShowMessageToPlayer(playerid, "Your player ID is ~b~" .. playerid);
+	
+	SetPlayerPos(playerid, 0.0, 0.0, 75.0);
+	SetPlayerFacingAngle(playerid, 0.0);
 	return 1;
 end
 

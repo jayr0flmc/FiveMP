@@ -18,11 +18,11 @@ void CLocalPlayer::Initialize()
 		SCRIPT::SHUTDOWN_LOADING_SCREEN();
 		CAM::DO_SCREEN_FADE_IN(500);
 
-		GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(391.4746f, -1637.9750f, 22.4998f, &groundz, 1);
-		ENTITY::SET_ENTITY_COORDS(playerPed, 391.4746f, -1637.9750f, groundz + 1.0f, true, true, true, true);
+		//GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(391.4746f, -1637.9750f, 22.4998f, &groundz, 1);
+		//ENTITY::SET_ENTITY_COORDS(playerPed, 391.4746f, -1637.9750f, groundz + 1.0f, true, true, true, true);
 
-		ENTITY::FREEZE_ENTITY_POSITION(playerPed, 0);
-		ENTITY::SET_ENTITY_VISIBLE(playerPed, true, 0);
+		//ENTITY::FREEZE_ENTITY_POSITION(playerPed, 0);
+		//ENTITY::SET_ENTITY_VISIBLE(playerPed, true, 0);
 
 		UI::DISPLAY_RADAR(true);
 		UI::DISPLAY_HUD(true);
