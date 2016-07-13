@@ -1,4 +1,5 @@
 #pragma once
+
 class UserPool
 {
 public:
@@ -13,6 +14,13 @@ public:
 	RakNet::RakNetGUID GetPlayerGUIDfromId(int playerid);
 };
 
+class SpawnPointPool
+{
+public:
+	int AddToSpawnPool(float x, float y, float z);
+	//void RemoveFromSpawnPool(int spawnid);
+};
+
 typedef DWORD Hash;
 
 struct playerPool {
@@ -22,7 +30,8 @@ struct playerPool {
 
 	int pedType;							// Ped Type
 	Hash pedModel;							// PedModel in hash
-	int pedHealth;							// Ped Health
+	int pedHealth = 100;					// Ped Health
+	int pedArmour;
 
 	float x;								// Position X coord
 	float y;								// Position Y coord
@@ -39,6 +48,21 @@ struct playerPool {
 	float vy;								// Velocity Y coord
 	float vz;								// Velocity Z coord
 
+	int money = 0;							// Money
+	int score = 0;							// Score
+
+	bool dead = false;						// Whether the player dead or not.
 	bool used = false;						// Whether the player slot is in use or not.
 };
 extern playerPool playerData[100];
+
+struct spawnPool {
+	int spawnid;							// Point ID
+
+	float x;								// Position X coord
+	float y;								// Position Y coord
+	float z;								// Position Z coord
+
+	bool used = false;						// Whether the SpawnPoint slot is in use or not.
+};
+extern spawnPool spawnData[50];

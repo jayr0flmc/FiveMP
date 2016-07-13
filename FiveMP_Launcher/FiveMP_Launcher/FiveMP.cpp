@@ -34,7 +34,7 @@ int main(void) {
 	bool GameThread = false;
 	char GamePath[MAX_PATH] = { 0 };
 	char GameFullPath[MAX_PATH] = { 0 };
-	char Params[] = "";
+	char Params[] = "-scOfflineOnly";
 
 	printf("SEARCH: Attempting to search for %s.\n", dllname);
 
@@ -85,7 +85,7 @@ int main(void) {
 	// Create game process
 	if (!CreateProcess(GameFullPath, Params, NULL, NULL, true, CREATE_SUSPENDED, NULL, GamePath, &siStartupInfo, &piProcessInfo))
 	{
-		if (!ShellExecute(0, 0, "steam://run/271590", 0, 0, SW_SHOW)) {
+		if (!ShellExecute(0, 0, "steam://run/271590 -scOfflineOnly", 0, 0, SW_SHOW)) {
 			MessageBox(NULL, "Grand Theft Auto V was not able to start.", "Fatal Error", MB_ICONERROR);
 			return 0;
 		}

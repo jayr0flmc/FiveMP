@@ -18,14 +18,18 @@ void CLocalPlayer::Initialize()
 		SCRIPT::SHUTDOWN_LOADING_SCREEN();
 		CAM::DO_SCREEN_FADE_IN(500);
 
-		GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(391.4746f, -1637.9750f, 22.4998f, &groundz, 1);
-		ENTITY::SET_ENTITY_COORDS(playerPed, 391.4746f, -1637.9750f, groundz + 1.0f, true, true, true, true);
+		//GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(391.4746f, -1637.9750f, 22.4998f, &groundz, 1);
+		//ENTITY::SET_ENTITY_COORDS(playerPed, 391.4746f, -1637.9750f, groundz + 1.0f, true, true, true, true);
 
-		ENTITY::FREEZE_ENTITY_POSITION(playerPed, 0);
-		ENTITY::SET_ENTITY_VISIBLE(playerPed, true, 0);
+		//ENTITY::FREEZE_ENTITY_POSITION(playerPed, 0);
+		//ENTITY::SET_ENTITY_VISIBLE(playerPed, true, 0);
 
 		UI::DISPLAY_RADAR(true);
 		UI::DISPLAY_HUD(true);
+
+		for (int i = 0; i < 5; i++) {
+			GAMEPLAY::DISABLE_HOSPITAL_RESTART(i, true);
+		}
 
 		playerInitialized = true;
 	}
@@ -95,17 +99,29 @@ void CLocalPlayer::SendOnFootData()
 	NetworkManager->client->Send(&PlayerBitStream_send, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
+char* replaceCharacter(char* name, char char1, char char2) {
+	for (int i = 0; i < sizeof(name); ++i) {
+		if (name[i] == char1)
+			name[i] = char2;
+	}
+
+	return name;
+}
+
 void CLocalPlayer::SendSyncRequest()
 {
-	RakNet::BitStream requestid;
-	char *playerUsername = Config->client_username;
+	if (time(0) - timesincerequest > 10) {
+		RakNet::BitStream requestid;
 
-	requestid.Write((MessageID)ID_REQUEST_SERVER_SYNC);
-	requestid.Write(playerUsername);
+		char* playerUsername = replaceCharacter(Config->client_username, '~', ' ');
 
-	NetworkManager->client->Send(&requestid, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+		requestid.Write((MessageID)ID_REQUEST_SERVER_SYNC);
+		requestid.Write(playerUsername);
 
-	player.ShowMessageAboveMap("Synchronizing with the server...");
+		NetworkManager->client->Send(&requestid, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 
-	NetworkManager->Synchronized = true;
+		player.ShowMessageAboveMap("Synchronizing with the server...");
+
+		timesincerequest = time(0);
+	}
 }

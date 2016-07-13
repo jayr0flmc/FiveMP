@@ -1,15 +1,45 @@
 #include "stdafx.h"
 
-int SetPlayerUsername(lua_State* state) // function has no effect, placeholder for now.
+int SetPlayerUsername(lua_State* state)
 {
 	int args = lua_gettop(state);
 
 	printf("SetPlayerUsername() was called with %d arguments:\n", args);
 
-	for (int n = 1; n <= args; ++n) {
-		printf("  argument %d: '%s'\n", n, lua_tostring(state, n));
-	}
+	int playerid = lua_tointeger(state, 1);
+	const char *string = lua_tostring(state, 2);
 
-	lua_pushnumber(state, 123);
+	playerData[playerid].playerusername = (char*)string;
+
+	return 0;
+}
+
+int GetPlayerUsername(lua_State* state)
+{
+	int args = lua_gettop(state);
+
+	printf("GetPlayerUsername() was called with %d arguments:\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+
+	lua_pushstring(state, playerData[playerid].playerusername);
+
+	return 1;
+}
+
+int SetSpawnPoint(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetSpawn() was called with %d arguments.\n", args);
+
+	float x = lua_tonumber(state, 1);
+	float y = lua_tonumber(state, 2);
+	float z = lua_tonumber(state, 3);
+
+	int spawnid = spawnsPool.AddToSpawnPool(x, y, z);
+
+	lua_pushinteger(state, spawnid);
+
 	return 1;
 }

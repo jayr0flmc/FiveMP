@@ -80,7 +80,7 @@ using namespace RakNet;
 #include "LocalPlayer.h"
 #include "RPCManager.h"
 #include "Script.h"
-#include "cPool.h"
+#include "PlayerPool.h"
 
 // Interface
 #include "RenderDebug.h"
@@ -94,6 +94,7 @@ namespace {
 	class GamePlayer player;
 	class GameWeapon weapon;
 	class GameWorld world;
+	class GameVehicle vehicle;
 }
 
 extern MODULEINFO	g_MainModuleInfo;

@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "Config.h"
 
 void CConfig::Read() {
 	CIniReader iniReader(".\\FiveMP.ini");

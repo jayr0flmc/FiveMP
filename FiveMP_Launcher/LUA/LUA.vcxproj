@@ -49,7 +49,6 @@
     <ClCompile Include="ltablib.c" />
     <ClCompile Include="ltm.c" />
     <ClCompile Include="lua.c" />
-    <ClCompile Include="luac.c" />
     <ClCompile Include="lundump.c" />
     <ClCompile Include="lutf8lib.c" />
     <ClCompile Include="lvm.c" />
@@ -141,6 +140,14 @@
     <OutDir>..\..\lib\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\lib\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>$(ProjectName)_32</TargetName>
+    <OutDir>..\..\lib\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>$(ProjectName)_32</TargetName>
     <OutDir>..\..\lib\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

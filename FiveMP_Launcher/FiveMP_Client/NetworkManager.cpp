@@ -11,6 +11,7 @@ CNetworkManager::~CNetworkManager()
 	Connected = false;
 	Listening = false;
 	Synchronized = false;
+	LocalPlayer->playerMoney = 0;
 
 	playerid = -1;
 	time_hour = NULL;
@@ -47,6 +48,7 @@ bool CNetworkManager::Disconnect()
 		Connected = false;
 		Synchronized = false;
 		Listening = false;
+		LocalPlayer->playerMoney = 0;
 
 		world.CleanUp();
 
@@ -77,11 +79,15 @@ void CNetworkManager::Pulse()
 
 			sprintf(testmessage, "GUID is: ~b~#%s", client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString());
 			player.ShowMessageAboveMap(testmessage);
+
+			ENTITY::FREEZE_ENTITY_POSITION(LocalPlayer->playerPed, 0);
+			ENTITY::SET_ENTITY_VISIBLE(LocalPlayer->playerPed, true, 0);
 			break;
 
 		case ID_CONNECTION_ATTEMPT_FAILED:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Could not connect to the server");
 			Listening = false;
@@ -90,6 +96,7 @@ void CNetworkManager::Pulse()
 		case ID_NO_FREE_INCOMING_CONNECTIONS:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Server is full!");
 			Listening = false;
@@ -98,6 +105,7 @@ void CNetworkManager::Pulse()
 		case ID_DISCONNECTION_NOTIFICATION:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Connection closed!");
 			Listening = false;
@@ -108,6 +116,7 @@ void CNetworkManager::Pulse()
 		case ID_CONNECTION_LOST:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Connection Lost!");
 			Listening = false;
@@ -118,6 +127,7 @@ void CNetworkManager::Pulse()
 		case ID_CONNECTION_BANNED:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~You're banned from this server!");
 			Listening = false;
@@ -126,9 +136,6 @@ void CNetworkManager::Pulse()
 			break;
 
 		case ID_REQUEST_SERVER_SYNC:
-			TIME::SET_CLOCK_TIME(20, 00, 00);
-			TIME::PAUSE_CLOCK(false);
-
 			playerClientID.Read(playerid);
 
 			playerClientID.Read(time_hour);
@@ -140,6 +147,8 @@ void CNetworkManager::Pulse()
 
 			bsPlayerConnect.Write(playerid);
 			rpc.Signal("PlayerConnect", &bsPlayerConnect, HIGH_PRIORITY, RELIABLE_ORDERED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, false);
+
+			NetworkManager->Synchronized = true;
 			break;
 
 		case ID_SEND_PLAYER_DATA:
@@ -202,7 +211,8 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 
 	playerData[tempplyrid].tickssince = clock();
 
-	printf("received packet\n");
+	//NO MORE OF SPAMMING THE CONSOLE :D
+	//printf("received packet\n");
 
 	//if (tempplyrid != playerid) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
@@ -286,10 +296,6 @@ void CNetworkManager::SyncOnFoot()
 				}
 			}
 			else {
-				//float tempz;
-
-				//GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(playerData[i].x, playerData[i].y, playerData[i].z, &tempz, 1);
-
 				ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, playerData[i].x, playerData[i].y, playerData[i].z, 0, 0, 0, 0);
 				ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
 			}

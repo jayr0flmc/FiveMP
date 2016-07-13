@@ -70,3 +70,21 @@ RakNet::RakNetGUID UserPool::GetPlayerGUIDfromId(int playerid)
 	}
 	return RakNet::UNASSIGNED_RAKNET_GUID;
 }
+
+int SpawnPointPool::AddToSpawnPool(float x, float y, float z)
+{
+	for (int i = 0; i < sizeof(spawnData); i++)
+	{
+		if (spawnData[i].used == false) {
+			spawnData[i].spawnid = i;
+			spawnData[i].x = x;
+			spawnData[i].y = y;
+			spawnData[i].z = z;
+			spawnData[i].used = true;
+
+			printf("Added Spawn Point %i at (%f, %f, %f) \n", i, x, y, z);
+			return i;
+		}
+	}
+	return -1;
+}

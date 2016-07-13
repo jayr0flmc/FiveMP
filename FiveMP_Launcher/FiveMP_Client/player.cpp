@@ -775,12 +775,6 @@ char *GamePlayer::GetPlayerSocialClubName() {
 	return SOCIALCLUB::_SC_GET_NICKNAME();
 }
 
-void GamePlayer::SetMoney(int money)
-{
-	std::cout << "Money was set to: " << money << std::endl;
-	PED::SET_PED_MONEY(LocalPlayer->playerPed, money);
-}
-
 void GamePlayer::DisableScripts() {
 	for (int i = 0; i<sizeof(scriptnames) / sizeof(ScriptInfo); i++) {
 		if (scriptnames[i].proc == SCRIPT_DISABLED) {

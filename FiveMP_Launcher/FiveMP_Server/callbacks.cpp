@@ -44,7 +44,7 @@ int OnPlayerConnect(lua_State * state, int playerid)
 
 	lua_call(state, 1, 1);
 
-	result = (int)lua_tointeger(state, -1);
+	result = lua_tointeger(state, -1);
 	lua_pop(state, 1);
 
 	return result;
@@ -56,7 +56,43 @@ int OnPlayerDisconnect(lua_State * state, int playerid)
 
 	printf("OnPlayerDisconnect() was called with %d\n", playerid);
 
-	lua_getglobal(state, "OnPlayerDisonnect");
+	lua_getglobal(state, "OnPlayerDisconnect"); // <---Change it on main.lua
+
+	lua_pushnumber(state, playerid);
+
+	lua_call(state, 1, 1);
+
+	result = lua_tointeger(state, -1);
+	lua_pop(state, 1);
+
+	return result;
+}
+
+int OnPlayerSpawn(lua_State * state, int playerid)
+{
+	int result;
+
+	printf("OnPlayerSpawn() was called with %d\n", playerid);
+
+	lua_getglobal(state, "OnPlayerSpawn");
+
+	lua_pushnumber(state, playerid);
+
+	lua_call(state, 1, 1);
+
+	result = (int)lua_tointeger(state, -1);
+	lua_pop(state, 1);
+
+	return result;
+}
+
+int OnPlayerDeath(lua_State * state, int playerid)
+{
+	int result;
+
+	printf("OnPlayerDeath() was called with %d\n", playerid);
+
+	lua_getglobal(state, "OnPlayerDeath");
 
 	lua_pushnumber(state, playerid);
 

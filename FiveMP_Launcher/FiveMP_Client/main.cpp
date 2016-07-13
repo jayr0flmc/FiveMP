@@ -41,6 +41,7 @@ void RunGameScript() {
 		RenderDebug->RenderBlend();
 		RenderDebug->RenderVelocity();
 		RenderDebug->RenderCoords();
+		RenderDebug->RenderMoney();
 
 		if (NetworkManager->Listening) {
 			NetworkManager->Pulse();
@@ -94,6 +95,9 @@ void RunGameScript() {
 			else {
 				NetworkManager->sync_test = true;
 			}
+		}
+		if (IsKeyJustUp(VK_F12)) {
+			vehicle.CreateVehicle(0, "adder", LocalPlayer->GetCoords(), 90.0f, 5, 10, true, 25);
 		}
 		WAIT(0);
 	}

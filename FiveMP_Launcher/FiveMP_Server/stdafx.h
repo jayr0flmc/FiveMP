@@ -36,13 +36,22 @@ extern MODULEINFO g_MainModuleInfo;
 #include <RPC4Plugin.h>
 using namespace RakNet;
 
+// Modification
+#include "Config.h"
+
 // Netcode
+#include "NetworkManager.h"
+#include "RPCManager.h"
+
 #include "sPool.h"
-#include "sConfig.h"
 
 // INI Reader
 #include "IniWriter.h"
 #include "IniReader.h"
+
+// Functions
+#include "server.h"
+#include "player.h"
 
 // Scripting (LUA)
 #include <lua.hpp>
@@ -55,14 +64,14 @@ using namespace RakNet;
 // Scripting (LUA-Callbacks)
 #include "callbacks.h"
 
-extern RPC4 rpc;
-
 namespace {
-	// Classes (net)
-	class sConfig	netConfig;
-
 	// Pools (net)
 	class UserPool netPool;
-
-	lua_State* sLUA;
+	class SpawnPointPool spawnsPool;
 }
+
+extern lua_State* sLUA;
+
+extern SNetworkManager	*NetworkManager;
+extern SRPCManager		*RPCManager;
+extern SConfig			*Config;
