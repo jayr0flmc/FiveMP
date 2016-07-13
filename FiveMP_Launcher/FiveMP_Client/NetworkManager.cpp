@@ -77,6 +77,9 @@ void CNetworkManager::Pulse()
 
 			sprintf(testmessage, "GUID is: ~b~#%s", client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString());
 			player.ShowMessageAboveMap(testmessage);
+
+			ENTITY::FREEZE_ENTITY_POSITION(LocalPlayer->playerPed, 0);
+			ENTITY::SET_ENTITY_VISIBLE(LocalPlayer->playerPed, true, 0);
 			break;
 
 		case ID_CONNECTION_ATTEMPT_FAILED:
