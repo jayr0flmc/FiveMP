@@ -48,6 +48,7 @@ bool CNetworkManager::Disconnect()
 		Connected = false;
 		Synchronized = false;
 		Listening = false;
+		LocalPlayer->timesincerequest = 0;
 		LocalPlayer->playerMoney = 0;
 
 		world.CleanUp();
