@@ -152,8 +152,8 @@ void SNetworkManager::Pulse()
 			PlayerBitStream_send.Write(playerData[tempplyrid].pedModel);
 			PlayerBitStream_send.Write(playerData[tempplyrid].pedHealth);
 
-			if (playerData[tempplyrid].playerusername != NULL)
-				PlayerBitStream_send.Write(playerData[tempplyrid].playerusername);
+			if (playerData[tempplyrid].playerusername.c_str() != NULL)
+				PlayerBitStream_send.Write(playerData[tempplyrid].playerusername.c_str());
 			else {
 				RakNet::RakString playername = "Player";
 				PlayerBitStream_send.Write(playername);

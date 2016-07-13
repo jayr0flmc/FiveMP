@@ -9,7 +9,7 @@ public:
 	void RemoveFromUserPool(RakNet::RakNetGUID guid);
 	
 	int GetPlayerID(RakNet::RakNetGUID guid);
-	char *GetPlayerUsername(RakNet::RakNetGUID guid);
+	const char *GetPlayerUsername(RakNet::RakNetGUID guid);
 	RakNet::RakNetGUID GetPlayerGUID(char *username);
 	RakNet::RakNetGUID GetPlayerGUIDfromId(int playerid);
 };
@@ -25,7 +25,7 @@ typedef DWORD Hash;
 
 struct playerPool {
 	int playerid;							// Player/Client ID
-	char *playerusername;					// Player Username (set from client config)
+	std::string playerusername;				// Player Username (set from client config)
 	RakNet::RakNetGUID playerguid;			// Player GUID (client side)
 
 	int pedType;							// Ped Type

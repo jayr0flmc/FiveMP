@@ -9,7 +9,7 @@ int SetPlayerUsername(lua_State* state)
 	int playerid = lua_tointeger(state, 1);
 	const char *string = lua_tostring(state, 2);
 
-	playerData[playerid].playerusername = (char*)string;
+	playerData[playerid].playerusername = std::string(string);
 
 	return 0;
 }
@@ -22,7 +22,7 @@ int GetPlayerUsername(lua_State* state)
 
 	int playerid = lua_tointeger(state, 1);
 
-	lua_pushstring(state, playerData[playerid].playerusername);
+	lua_pushstring(state, playerData[playerid].playerusername.c_str());
 
 	return 1;
 }
