@@ -37,8 +37,8 @@ int main(void)
 	luaL_dofile(sLUA, tempgamemode);
 
 	// Player
-	lua_register(sLUA, "SetPlayerUsername", SetPlayerUsername);
-	lua_register(sLUA, "GetPlayerUsername", GetPlayerUsername);
+	lua_register(sLUA, "SetPlayerName", SetPlayerName);
+	lua_register(sLUA, "GetPlayerName", GetPlayerName);
 	lua_register(sLUA, "SetPlayerMoney", SetPlayerMoney);
 	lua_register(sLUA, "GivePlayerMoney", GivePlayerMoney);
 	lua_register(sLUA, "GetPlayerMoney", GetPlayerMoney);

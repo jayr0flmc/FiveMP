@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-int SetPlayerUsername(lua_State* state)
+int SetPlayerName(lua_State* state)
 {
 	int args = lua_gettop(state);
 
@@ -14,7 +14,7 @@ int SetPlayerUsername(lua_State* state)
 	return 0;
 }
 
-int GetPlayerUsername(lua_State* state)
+int GetPlayerName(lua_State* state)
 {
 	int args = lua_gettop(state);
 

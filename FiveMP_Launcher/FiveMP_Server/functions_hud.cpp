@@ -16,6 +16,5 @@ int ShowMessageToPlayer(lua_State* state)
 	sShowMessageToPlayer.Write(textstring);
 	NetworkManager->rpc.Signal("ShowMessageToPlayer", &sShowMessageToPlayer, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	lua_pushnumber(state, 123);
-	return 1;
+	return 0;
 }
