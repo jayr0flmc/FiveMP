@@ -281,11 +281,11 @@ int SetPlayerHealth(lua_State* state) {
 	printf("SetPlayerHealth() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	playerData[playerid].health = lua_tointeger(state, 2);
+	playerData[playerid].pedHealth = lua_tointeger(state, 2);
 
 	RakNet::BitStream sSetPlayerHealth;
 	sSetPlayerHealth.Write(playerid);
-	sSetPlayerHealth.Write(playerData[playerid].health);
+	sSetPlayerHealth.Write(playerData[playerid].pedHealth);
 	NetworkManager->rpc.Signal("SetPlayerHealth", &sSetPlayerHealth, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	return 1;
@@ -299,7 +299,7 @@ int GetPlayerHealth(lua_State* state) {
 
 	int playerid = lua_tointeger(state, 1);
 
-	lua_pushnumber(state, playerData[playerid].health);
+	lua_pushnumber(state, playerData[playerid].pedHealth);
 
 	return 1;
 }
@@ -311,11 +311,11 @@ int SetPlayerArmour(lua_State* state) {
 	printf("SetPlayerArmour() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	playerData[playerid].armour = lua_tointeger(state, 2);
+	playerData[playerid].pedArmour = lua_tointeger(state, 2);
 
 	RakNet::BitStream sSetPlayerArmour;
 	sSetPlayerArmour.Write(playerid);
-	sSetPlayerArmour.Write(playerData[playerid].armour);
+	sSetPlayerArmour.Write(playerData[playerid].pedArmour);
 	NetworkManager->rpc.Signal("SetPlayerArmour", &sSetPlayerArmour, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	return 1;
@@ -329,7 +329,7 @@ int GetPlayerArmour(lua_State* state) {
 
 	int playerid = lua_tointeger(state, 1);
 
-	lua_pushnumber(state, playerData[playerid].armour);
+	lua_pushnumber(state, playerData[playerid].pedArmour);
 
 	return 1;
 }

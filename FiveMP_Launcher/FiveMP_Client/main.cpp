@@ -41,6 +41,7 @@ void RunGameScript() {
 		RenderDebug->RenderBlend();
 		RenderDebug->RenderVelocity();
 		RenderDebug->RenderCoords();
+		RenderDebug->RenderMoney();
 
 		if (NetworkManager->Listening) {
 			NetworkManager->Pulse();

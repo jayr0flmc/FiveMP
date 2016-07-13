@@ -61,7 +61,7 @@ void SetPlayerMoney(RakNet::BitStream* bitStream, RakNet::Packet *packet) {
 	bitStream->Read(playerid);
 	bitStream->Read(ammount);
 
-	player.SetMoney(ammount);
+	LocalPlayer->playerMoney = ammount;
 }
 
 // -- POSITION --

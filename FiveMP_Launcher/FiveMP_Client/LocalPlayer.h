@@ -5,6 +5,7 @@ public:
 	Ped		playerPed;
 	bool	playerInitialized = false;
 	time_t	timesincerequest = 0L;
+	int		playerMoney = 0;
 
 	CLocalPlayer();
 	~CLocalPlayer();

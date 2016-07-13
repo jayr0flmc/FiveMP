@@ -11,6 +11,7 @@ CNetworkManager::~CNetworkManager()
 	Connected = false;
 	Listening = false;
 	Synchronized = false;
+	LocalPlayer->playerMoney = 0;
 
 	playerid = -1;
 	time_hour = NULL;
@@ -47,6 +48,7 @@ bool CNetworkManager::Disconnect()
 		Connected = false;
 		Synchronized = false;
 		Listening = false;
+		LocalPlayer->playerMoney = 0;
 
 		world.CleanUp();
 
@@ -82,6 +84,7 @@ void CNetworkManager::Pulse()
 		case ID_CONNECTION_ATTEMPT_FAILED:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Could not connect to the server");
 			Listening = false;
@@ -90,6 +93,7 @@ void CNetworkManager::Pulse()
 		case ID_NO_FREE_INCOMING_CONNECTIONS:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Server is full!");
 			Listening = false;
@@ -98,6 +102,7 @@ void CNetworkManager::Pulse()
 		case ID_DISCONNECTION_NOTIFICATION:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Connection closed!");
 			Listening = false;
@@ -108,6 +113,7 @@ void CNetworkManager::Pulse()
 		case ID_CONNECTION_LOST:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Connection Lost!");
 			Listening = false;
@@ -118,6 +124,7 @@ void CNetworkManager::Pulse()
 		case ID_CONNECTION_BANNED:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~You're banned from this server!");
 			Listening = false;
