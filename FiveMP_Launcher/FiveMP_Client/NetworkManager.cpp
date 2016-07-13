@@ -190,6 +190,7 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedType);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedModel);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedHealth);
+	PlayerBitStream_receive.Read(playerData[tempplyrid].pedArmour);
 
 	PlayerBitStream_receive.Read(playerData[tempplyrid].playerusername);
 

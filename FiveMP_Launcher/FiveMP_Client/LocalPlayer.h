@@ -20,6 +20,7 @@ public:
 	Vector4 GetQuaternion();
 	int		GetType() { return PED::GET_PED_TYPE(playerPed); };
 	int		GetHealth() { return ENTITY::GET_ENTITY_HEALTH(playerPed); };
+	int		GetArmour() { return PED::GET_PED_ARMOUR(playerPed); };
 	float	GetHeading() { return ENTITY::GET_ENTITY_HEADING(playerPed); };
 
 	void SetPos(float x, float y, float z) { PED::SET_PED_COORDS_KEEP_VEHICLE(playerPed, x, y, z); };

@@ -124,6 +124,7 @@ void SNetworkManager::Pulse()
 			PlayerBitStream_receive.Read(playerData[tempplyrid].pedType);
 			PlayerBitStream_receive.Read(playerData[tempplyrid].pedModel);
 			PlayerBitStream_receive.Read(playerData[tempplyrid].pedHealth);
+			PlayerBitStream_receive.Read(playerData[tempplyrid].pedArmour);
 
 			PlayerBitStream_receive.Read(playerData[tempplyrid].x);
 			PlayerBitStream_receive.Read(playerData[tempplyrid].y);
@@ -151,6 +152,7 @@ void SNetworkManager::Pulse()
 			PlayerBitStream_send.Write(playerData[tempplyrid].pedType);
 			PlayerBitStream_send.Write(playerData[tempplyrid].pedModel);
 			PlayerBitStream_send.Write(playerData[tempplyrid].pedHealth);
+			PlayerBitStream_send.Write(playerData[tempplyrid].pedArmour);
 
 			if (playerData[tempplyrid].playerusername.c_str() != NULL)
 				PlayerBitStream_send.Write(playerData[tempplyrid].playerusername.c_str());
