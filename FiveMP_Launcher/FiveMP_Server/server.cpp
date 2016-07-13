@@ -11,4 +11,3 @@ void sv_PlayerConnect(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 
 	OnPlayerConnect(sLUA, tempplayer);
 };
-

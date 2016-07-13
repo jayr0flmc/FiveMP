@@ -46,3 +46,14 @@ struct playerPool {
 	bool used = false;						// Whether the player slot is in use or not.
 };
 extern playerPool playerData[100];
+
+typedef DWORD Hash;
+
+struct spawnPool {
+	int spawnid;							// Point ID
+
+	float x;								// Position X coord
+	float y;								// Position Y coord
+	float z;								// Position Z coord
+};
+extern spawnPool spawnData[50];

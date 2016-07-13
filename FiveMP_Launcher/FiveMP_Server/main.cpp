@@ -8,6 +8,7 @@ int userAmount, vehicleAmount;
 char userGuid;
 
 playerPool playerData[100];
+spawnPool spawnData[50];
 
 int main(void)
 {
@@ -38,6 +39,7 @@ int main(void)
 
 	// Player
 	lua_register(sLUA, "SetPlayerUsername", SetPlayerUsername);
+	lua_register(sLUA, "GetPlayerUsername", GetPlayerUsername);
 	lua_register(sLUA, "SetPlayerMoney", SetPlayerMoney);
 	lua_register(sLUA, "GivePlayerMoney", GivePlayerMoney);
 	lua_register(sLUA, "GetPlayerMoney", GetPlayerMoney);
@@ -58,6 +60,9 @@ int main(void)
 	lua_register(sLUA, "RemovePlayerWeapon", RemovePlayerWeapon);
 	lua_register(sLUA, "GivePlayerAmmo", GivePlayerAmmo);
 	lua_register(sLUA, "RemovePlayerAmmo", RemovePlayerAmmo);
+
+	//World
+	lua_register(sLUA, "SetSpawnPoint", SetSpawnPoint);
 
 	OnGameModeInit(sLUA);
 

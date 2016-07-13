@@ -51,6 +51,7 @@ using namespace RakNet;
 
 // Functions
 #include "server.h"
+#include "player.h"
 
 // Scripting (LUA)
 #include <lua.hpp>

@@ -27,6 +27,10 @@ void CLocalPlayer::Initialize()
 		UI::DISPLAY_RADAR(true);
 		UI::DISPLAY_HUD(true);
 
+		for (int i = 0; i < 5; i++) {
+			GAMEPLAY::DISABLE_HOSPITAL_RESTART(i, true);
+		}
+
 		playerInitialized = true;
 	}
 }
