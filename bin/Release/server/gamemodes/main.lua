@@ -1,5 +1,7 @@
 function OnGameModeInit()
 	print("My server has started.");
+	SetSpawnPoint(-817.657, 178.111, 75.0);
+	SetSpawnPoint(-640.183, 297.111, 100.0);
 	return 1;
 end
 
@@ -25,3 +27,10 @@ function OnPlayerDisconnect(playerid)
     return 1;
 end
 
+function OnPlayerSpawn(playerid)
+	print(playerid .. " Spawned");
+end
+
+function OnPlayerDeath(playerid)
+	print(playerid .. " Died");
+end

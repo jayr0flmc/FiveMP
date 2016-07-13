@@ -56,8 +56,6 @@ struct playerPool {
 };
 extern playerPool playerData[100];
 
-typedef DWORD Hash;
-
 struct spawnPool {
 	int spawnid;							// Point ID
 

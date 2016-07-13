@@ -29,7 +29,7 @@ void SPlayer::PlayerPulse()
 				int spawnid = 0;
 
 				for (int s = 0; s < sizeof(spawnData) / sizeof(*spawnData); s++) {
-					if (spawnData[i].used == true)
+					if (spawnData[s].used == true)
 					{
 						float tempd = Distance(playerData[i].x, spawnData[s].x, playerData[i].y, spawnData[s].y, playerData[i].z, spawnData[s].z);
 
@@ -37,8 +37,6 @@ void SPlayer::PlayerPulse()
 							closest = tempd;
 							spawnid = s;
 						}
-
-						printf("Spawn: %i, %f, %f, %f\n", s, spawnData[s].x, spawnData[s].y, spawnData[s].z);
 					}
 				}
 
@@ -56,11 +54,8 @@ void SPlayer::SpawnPlayer(int playerid, int spawnid) {
 		sSetPlayerPos.Write(spawnData[spawnid].y);
 		sSetPlayerPos.Write(spawnData[spawnid].z);
 		NetworkManager->rpc.Signal("SetPlayerPos", &sSetPlayerPos, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
-		printf("Player %i Spawned\n", playerid);
 
-		printf("Spawn: %i, %f, %f, %f\n", spawnid, spawnData[spawnid].x, spawnData[spawnid].y, spawnData[spawnid].z);
-
-		//OnPlayerSpawn(sLUA, playerid);
+		OnPlayerSpawn(sLUA, playerid);
 }
 
 float SPlayer::Distance(float x1, float x2, float y1, float y2, float z1, float z2)
