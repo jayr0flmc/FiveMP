@@ -20,7 +20,10 @@ function OnPlayerConnect(playerid)
 	
 	SetPlayerMoney(playerid, 500);
 	
-	SetPlayerMaxNickDrawDistance(playerid, 100);
+	SetPlayerMaxTagDrawDistance(playerid, 100);
+	
+	SetPlayerHealth(playerid, 100);
+	SetPlayerArmour(playerid, 50);
 	return 1;
 end
 

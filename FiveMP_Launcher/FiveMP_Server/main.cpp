@@ -54,7 +54,7 @@ int main(void)
 	lua_register(sLUA, "GetPlayerHealth", GetPlayerHealth);
 	lua_register(sLUA, "SetPlayerArmour", SetPlayerArmour);
 	lua_register(sLUA, "GetPlayerArmour", GetPlayerArmour);
-	lua_register(sLUA, "SetPlayerMaxNickDrawDistance", SetPlayerMaxNickDrawDistance);
+	lua_register(sLUA, "SetPlayerMaxTagDrawDistance", SetPlayerMaxNickDrawDistance);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
