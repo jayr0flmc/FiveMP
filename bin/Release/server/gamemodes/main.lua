@@ -19,6 +19,8 @@ function OnPlayerConnect(playerid)
 	SetPlayerFacingAngle(playerid, 0.0);
 	
 	SetPlayerMoney(playerid, 500);
+	
+	SetPlayerMaxNickDrawDistance(playerid, 100);
 	return 1;
 end
 

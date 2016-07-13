@@ -6,6 +6,7 @@ public:
 	bool	playerInitialized = false;
 	time_t	timesincerequest = 0L;
 	int		playerMoney = 0;
+	float	maxNickDrawDistance = 50.0f;
 
 	CLocalPlayer();
 	~CLocalPlayer();

@@ -3,7 +3,7 @@
 SNetworkManager *NetworkManager;
 SRPCManager		*RPCManager;
 SConfig			*Config;
-SPlayer *PlayerManager;
+SPlayer			*PlayerManager;
 
 int userAmount, vehicleAmount;
 char userGuid;
@@ -54,6 +54,7 @@ int main(void)
 	lua_register(sLUA, "GetPlayerHealth", GetPlayerHealth);
 	lua_register(sLUA, "SetPlayerArmour", SetPlayerArmour);
 	lua_register(sLUA, "GetPlayerArmour", GetPlayerArmour);
+	lua_register(sLUA, "SetPlayerMaxNickDrawDistance", SetPlayerMaxNickDrawDistance);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);

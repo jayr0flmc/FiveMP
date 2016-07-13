@@ -357,3 +357,17 @@ int GetTime(lua_State* state) {
 
 	return 2;
 }
+
+int SetPlayerMaxNickDrawDistance(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetPlayerMaxNickDrawDistance() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	playerData[playerid].maxNickDistance = lua_tonumber(state, 2);
+
+	PlayerManager->UpdatePlayerNickMaxDistance(playerid);
+
+	return 1;
+}

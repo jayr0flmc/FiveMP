@@ -31,7 +31,7 @@ struct playerPool {
 	int pedType;							// Ped Type
 	Hash pedModel;							// PedModel in hash
 	int pedHealth = 100;					// Ped Health
-	int pedArmour;
+	int pedArmour;							// Ped Armour
 
 	float x;								// Position X coord
 	float y;								// Position Y coord
@@ -50,6 +50,8 @@ struct playerPool {
 
 	int money = 0;							// Money
 	int score = 0;							// Score
+
+	float maxNickDistance = 50.0f;			// Max nick draw distance
 
 	bool dead = false;						// Whether the player dead or not.
 	bool used = false;						// Whether the player slot is in use or not.

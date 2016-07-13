@@ -97,6 +97,8 @@ void SetPlayerHealth(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 
 	bitStream->Read(playerid);
 	bitStream->Read(health);
+
+	LocalPlayer->SetHealth(health);
 }
 
 void SetPlayerArmour(RakNet::BitStream * bitStream, RakNet::Packet * packet)
@@ -106,4 +108,16 @@ void SetPlayerArmour(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 
 	bitStream->Read(playerid);
 	bitStream->Read(armour);
+
+	LocalPlayer->SetArmour(armour);
+}
+
+void SetPlayerMaxNickDrawDistance(RakNet::BitStream * bitStream, RakNet::Packet * packet) {
+	int playerid;
+	float distance;
+
+	bitStream->Read(playerid);
+	bitStream->Read(distance);
+
+	LocalPlayer->maxNickDrawDistance = distance;
 }

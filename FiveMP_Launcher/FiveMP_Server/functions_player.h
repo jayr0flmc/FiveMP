@@ -21,3 +21,4 @@ int SetPlayerArmour(lua_State* state);
 int GetPlayerArmour(lua_State* state);
 int SetTime(lua_State* state);
 int GetTime(lua_State* state);
+int SetPlayerMaxNickDrawDistance(lua_State* state);

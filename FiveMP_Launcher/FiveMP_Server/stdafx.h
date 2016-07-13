@@ -75,3 +75,4 @@ extern lua_State* sLUA;
 extern SNetworkManager	*NetworkManager;
 extern SRPCManager		*RPCManager;
 extern SConfig			*Config;
+extern SPlayer			*PlayerManager;
