@@ -29,6 +29,7 @@
   <ItemGroup>
     <ClInclude Include="callbacks.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="functions_blips.h" />
     <ClInclude Include="functions_hud.h" />
     <ClInclude Include="functions_main.h" />
     <ClInclude Include="functions_player.h" />
@@ -51,6 +52,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="functions_blips.cpp" />
     <ClCompile Include="functions_hud.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Use</PrecompiledHeader>

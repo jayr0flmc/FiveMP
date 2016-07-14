@@ -57,6 +57,7 @@ int main(void)
 	lua_register(sLUA, "SetPlayerMaxTagDrawDistance", SetPlayerMaxNickDrawDistance);
 	lua_register(sLUA, "SetPlayerModel", SetPlayerModel);
 	lua_register(sLUA, "GetPlayerModel", GetPlayerModel);
+	lua_register(sLUA, "IsPlayerConnected", IsPlayerConnected);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);

@@ -76,6 +76,8 @@ void SNetworkManager::Pulse()
 			printf("ID_DISCONNECTION_NOTIFICATION from %s\n", packet->systemAddress.ToString(true));;
 			OnPlayerDisconnect(sLUA, netPool.GetPlayerID(packet->guid));
 
+			playerData[netPool.GetPlayerID(packet->guid)].isConnected = false;
+
 			tempusername = netPool.GetPlayerUsername(packet->guid);
 
 			pid_bitStream.Write((unsigned char)ID_PLAYER_LEFT);
@@ -195,6 +197,8 @@ void SNetworkManager::Pulse()
 		case ID_CONNECTION_LOST:
 			printf("ID_CONNECTION_LOST from %s\n", packet->systemAddress.ToString(true));;
 			OnPlayerDisconnect(sLUA, netPool.GetPlayerID(packet->guid));
+
+			playerData[netPool.GetPlayerID(packet->guid)].isConnected = false;
 
 			pid_bitStream.Write((unsigned char)ID_PLAYER_LEFT);
 			pid_bitStream.Write(netPool.GetPlayerID(packet->guid));
