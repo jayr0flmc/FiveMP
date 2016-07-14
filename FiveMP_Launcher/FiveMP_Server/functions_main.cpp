@@ -7,10 +7,11 @@ int SetPlayerName(lua_State* state)
 	printf("SetPlayerUsername() was called with %d arguments:\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	const char *string = lua_tostring(state, 2);
+	if (playerData[playerid].isConnected) {
+		const char *string = lua_tostring(state, 2);
 
-	playerData[playerid].playerusername = std::string(string);
-
+		playerData[playerid].playerusername = std::string(string);
+	}
 	return 0;
 }
 
@@ -21,8 +22,12 @@ int GetPlayerName(lua_State* state)
 	printf("GetPlayerUsername() was called with %d arguments:\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-
-	lua_pushstring(state, playerData[playerid].playerusername.c_str());
+	if (playerData[playerid].isConnected) {
+		lua_pushstring(state, playerData[playerid].playerusername.c_str());
+	}
+	else {
+		lua_pushstring(state, "");
+	}
 
 	return 1;
 }
@@ -55,4 +60,17 @@ int RemoveSpawnPoint(lua_State* state) {
 	spawnsPool.RemoveFromSpawnPool(spawnid);
 
 	return 0;
+}
+
+int IsPlayerConnected(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("IsPlayerConnected() was called with %d arguments\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+
+	lua_pushboolean(state, playerData[playerid].isConnected);
+
+	return 1;
 }

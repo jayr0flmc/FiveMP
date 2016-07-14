@@ -2,6 +2,7 @@ function OnGameModeInit()
 	print("My server has started.");
 	SetSpawnPoint(-817.657, 178.111, 75.0);
 	SetSpawnPoint(-640.183, 297.111, 91.0);
+	
 	return 1;
 end
 

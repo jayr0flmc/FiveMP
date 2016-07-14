@@ -40,6 +40,9 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files\Function</Filter>
     </ClInclude>
+    <ClInclude Include="functions_blips.h">
+      <Filter>Header Files\Function\LUA</Filter>
+    </ClInclude>
     <ClInclude Include="functions_vehicle.h">
       <Filter>Header Files\Function\LUA</Filter>
     </ClInclude>
@@ -80,9 +83,6 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Function</Filter>
-    </ClCompile>
-    <ClCompile Include="functions_vehicle.cpp">
-      <Filter>Source Files\Function\LUA</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
