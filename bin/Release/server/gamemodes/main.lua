@@ -11,12 +11,11 @@ function OnGameModeExit()
 end
 
 function OnPlayerConnect(playerid)
-	GivePlayerWeapon(playerid, "Pistol", 45);
 	ShowMessageToPlayer(playerid, "Welcome to this ~b~FiveMP ~w~server!");
 	ShowMessageToPlayer(playerid, "Your player ID is ~b~" .. playerid);
 	
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll("~b~" .. playername .. " ~w~has connected.");
+	ShowMessageToAll("~b~" .. playername .. "(".. playerid .. ") ~w~has connected.");
 	
 	SetPlayerPos(playerid, 0.0, 0.0, 70.5);
 	SetPlayerFacingAngle(playerid, 0.0);
@@ -29,12 +28,14 @@ function OnPlayerConnect(playerid)
 	SetPlayerArmour(playerid, 50);
 	
 	SetPlayerModel(playerid, 124);
+	
+	GivePlayerWeapon(playerid, "Pistol", 45);
 	return 1;
 end
 
 function OnPlayerDisconnect(playerid)
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll("~b~" .. playername .. " ~w~has disconnected.");
+	ShowMessageToAll("~b~" .. playername .. "(".. playerid .. ") ~w~has disconnected.");
 	print(playerid .. " has disconnected");
     return 1;
 end

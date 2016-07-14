@@ -322,8 +322,5 @@ void CNetworkManager::DropPlayer(Packet * p)
 
 		ENTITY::DELETE_ENTITY(&playerData[tempplyrid].pedPed);
 		UI::REMOVE_BLIP(&playerData[tempplyrid].pedBlip);
-
-		sprintf(sendmessage, "~b~%s(%d)~w~ has left the server.", tempplyrname, tempplyrid);
-		player.ShowMessageAboveMap(sendmessage);
 	}
 }
