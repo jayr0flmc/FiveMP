@@ -2,7 +2,7 @@
 
 int GivePlayerWeapon(lua_State* state);
 int RemovePlayerWeapon(lua_State* state);
-int RemoveAllPlayerWeapons(lua_State* state);
+int RemovePlayerWeapons(lua_State* state);
 int GivePlayerAmmo(lua_State* state);
 int RemovePlayerAmmo(lua_State* state);
 int SetPlayerMoney(lua_State* state);

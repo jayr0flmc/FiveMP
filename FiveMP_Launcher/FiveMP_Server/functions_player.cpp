@@ -1,9 +1,8 @@
 #include "stdafx.h"
 #include "server.h"
 
-/*
-Weapons Start
-*/
+#pragma region "Weapons"
+
 int GivePlayerWeapon(lua_State* state)
 {
 	int args = lua_gettop(state);
@@ -94,24 +93,25 @@ int RemovePlayerAmmo(lua_State* state)
 	return 0;
 }
 
-int RemoveAllPlayerWeapons(lua_State* state)
+int RemovePlayerWeapons(lua_State* state)
 {
 	int args = lua_gettop(state);
 
-	printf("RemoveAllPlayerWeapons() was called with %d arguments:\n", args);
+	printf("RemovePlayerWeapons() was called with %d arguments:\n", args);
 
 	int playerid = lua_tointeger(state, 1);
 	if (playerData[playerid].isConnected) {
 
-		RakNet::BitStream sRemoveAllPlayerWeapons;
-		sRemoveAllPlayerWeapons.Write(playerid);
-		NetworkManager->rpc.Signal("RemoveAllPlayerWeapons", &sRemoveAllPlayerWeapons, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+		RakNet::BitStream sRemovePlayerWeapons;
+		sRemovePlayerWeapons.Write(playerid);
+		NetworkManager->rpc.Signal("RemovePlayerWeapons", &sRemovePlayerWeapons, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 	}
 
 	return 0;
 }
 
-// Weapons End
+#pragma endregion 
+#pragma region "Money"
 
 int SetPlayerMoney(lua_State * state)
 {
@@ -165,6 +165,9 @@ int GetPlayerMoney(lua_State * state)
 	return 1;
 }
 
+#pragma endregion 
+#pragma region "Network"
+
 int KickPlayer(lua_State * state) {
 
 	int args = lua_gettop(state);
@@ -191,6 +194,9 @@ int KickPlayer(lua_State * state) {
 	}
 	return 0;
 }
+
+#pragma endregion 
+#pragma region "Player Position/Head/Angles"
 
 int SetPlayerPos(lua_State* state) {
 
@@ -278,6 +284,9 @@ int GetPlayerFacingAngle(lua_State * state)
 	return 1;
 }
 
+#pragma endregion 
+#pragma region "Player Score"
+
 int SetPlayerScore(lua_State* state) {
 	
 	int args = lua_gettop(state);
@@ -320,6 +329,9 @@ int GetPlayerScore(lua_State* state) {
 	
 	return 1;
 }
+
+#pragma endregion 
+#pragma region "Player Health and Armour"
 
 int SetPlayerHealth(lua_State* state) {
 	
@@ -392,6 +404,9 @@ int GetPlayerArmour(lua_State* state) {
 	return 1;
 }
 
+#pragma endregion 
+#pragma region "Time"
+
 int SetTime(lua_State* state) {
 
 	int args = lua_gettop(state);
@@ -416,6 +431,8 @@ int GetTime(lua_State* state) {
 	return 2;
 }
 
+#pragma endregion 
+
 int SetPlayerMaxNickDrawDistance(lua_State* state) {
 
 	int args = lua_gettop(state);
@@ -430,6 +447,8 @@ int SetPlayerMaxNickDrawDistance(lua_State* state) {
 	}
 	return 0;
 }
+
+#pragma region "Player Model"
 
 int SetPlayerModel(lua_State* state) {
 
@@ -467,3 +486,5 @@ int GetPlayerModel(lua_State * state)
 
 	return 1;
 }
+
+#pragma endregion 

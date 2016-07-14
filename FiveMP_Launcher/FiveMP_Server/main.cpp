@@ -67,7 +67,7 @@ int main(void)
 	// Weapon
 	lua_register(sLUA, "GivePlayerWeapon", GivePlayerWeapon);
 	lua_register(sLUA, "RemovePlayerWeapon", RemovePlayerWeapon);
-	lua_register(sLUA, "RemoveAllPlayerWeapons", RemoveAllPlayerWeapons);
+	lua_register(sLUA, "RemovePlayerWeapons", RemovePlayerWeapons);
 	lua_register(sLUA, "GivePlayerAmmo", GivePlayerAmmo);
 	lua_register(sLUA, "RemovePlayerAmmo", RemovePlayerAmmo);
 

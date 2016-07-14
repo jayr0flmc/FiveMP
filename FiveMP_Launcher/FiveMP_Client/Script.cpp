@@ -56,7 +56,7 @@ void RemovePlayerAmmo(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	weapon.RemoveAmmo(weaponid, ammo);
 }
 
-void RemoveAllPlayerWeapons(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
+void RemovePlayerWeapons(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	bitStream->Read(playerid);
 
