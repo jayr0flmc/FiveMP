@@ -97,3 +97,12 @@ struct vehiclePool {
 	bool used = false;						// Whether the vehicle slot is in use or not.
 };
 extern vehiclePool vehicleData[100];
+
+struct blipPool {
+	float x;
+	float y;
+	float z;
+
+	bool used = false;
+};
+extern blipPool blipData[100];

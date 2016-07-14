@@ -14,3 +14,4 @@ void SetPlayerArmour(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void SetPlayerMaxNickDrawDistance(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void SetPlayerModel(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void CreateVehicle(RakNet::BitStream *bitStream, RakNet::Packet *packet);
+void SetPedComponentVariation(RakNet::BitStream *bitStream, RakNet::Packet *packet);

@@ -25,3 +25,4 @@ int GetTime(lua_State* state);
 int SetPlayerMaxNickDrawDistance(lua_State* state);
 int SetPlayerModel(lua_State* state);
 int GetPlayerModel(lua_State* state);
+int SetPedComponentVariation(lua_State* state);
