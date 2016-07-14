@@ -10,3 +10,4 @@ void SetPlayerPos(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void SetPlayerFacingAngle(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void SetPlayerHealth(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void SetPlayerArmour(RakNet::BitStream *bitStream, RakNet::Packet *packet);
+void SetPlayerMaxNickDrawDistance(RakNet::BitStream *bitStream, RakNet::Packet *packet);

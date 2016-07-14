@@ -9,7 +9,7 @@ public:
 	void RemoveFromUserPool(RakNet::RakNetGUID guid);
 	
 	int GetPlayerID(RakNet::RakNetGUID guid);
-	char *GetPlayerUsername(RakNet::RakNetGUID guid);
+	const char *GetPlayerUsername(RakNet::RakNetGUID guid);
 	RakNet::RakNetGUID GetPlayerGUID(char *username);
 	RakNet::RakNetGUID GetPlayerGUIDfromId(int playerid);
 };
@@ -18,20 +18,20 @@ class SpawnPointPool
 {
 public:
 	int AddToSpawnPool(float x, float y, float z);
-	//void RemoveFromSpawnPool(int spawnid);
+	void RemoveFromSpawnPool(int spawnid);
 };
 
 typedef DWORD Hash;
 
 struct playerPool {
 	int playerid;							// Player/Client ID
-	char *playerusername;					// Player Username (set from client config)
+	std::string playerusername;				// Player Username (set from client config)
 	RakNet::RakNetGUID playerguid;			// Player GUID (client side)
 
 	int pedType;							// Ped Type
 	Hash pedModel;							// PedModel in hash
 	int pedHealth = 100;					// Ped Health
-	int pedArmour;
+	int pedArmour;							// Ped Armour
 
 	float x;								// Position X coord
 	float y;								// Position Y coord
@@ -50,6 +50,8 @@ struct playerPool {
 
 	int money = 0;							// Money
 	int score = 0;							// Score
+
+	float maxNickDistance = 50.0f;			// Max nick draw distance
 
 	bool dead = false;						// Whether the player dead or not.
 	bool used = false;						// Whether the player slot is in use or not.

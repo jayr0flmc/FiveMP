@@ -3,7 +3,7 @@
 SNetworkManager *NetworkManager;
 SRPCManager		*RPCManager;
 SConfig			*Config;
-SPlayer *PlayerManager;
+SPlayer			*PlayerManager;
 
 int userAmount, vehicleAmount;
 char userGuid;
@@ -37,8 +37,8 @@ int main(void)
 	luaL_dofile(sLUA, tempgamemode);
 
 	// Player
-	lua_register(sLUA, "SetPlayerUsername", SetPlayerUsername);
-	lua_register(sLUA, "GetPlayerUsername", GetPlayerUsername);
+	lua_register(sLUA, "SetPlayerName", SetPlayerName);
+	lua_register(sLUA, "GetPlayerName", GetPlayerName);
 	lua_register(sLUA, "SetPlayerMoney", SetPlayerMoney);
 	lua_register(sLUA, "GivePlayerMoney", GivePlayerMoney);
 	lua_register(sLUA, "GetPlayerMoney", GetPlayerMoney);
@@ -54,9 +54,11 @@ int main(void)
 	lua_register(sLUA, "GetPlayerHealth", GetPlayerHealth);
 	lua_register(sLUA, "SetPlayerArmour", SetPlayerArmour);
 	lua_register(sLUA, "GetPlayerArmour", GetPlayerArmour);
+	lua_register(sLUA, "SetPlayerMaxTagDrawDistance", SetPlayerMaxNickDrawDistance);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
+	lua_register(sLUA, "ShowMessageToAll", ShowMessageToAll);
 
 	// Weapon
 	lua_register(sLUA, "GivePlayerWeapon", GivePlayerWeapon);
@@ -67,9 +69,8 @@ int main(void)
 	// Server
 	lua_register(sLUA, "GetTime", GetTime);
 	lua_register(sLUA, "SetTime", SetTime);
-
-	//World
 	lua_register(sLUA, "SetSpawnPoint", SetSpawnPoint);
+	lua_register(sLUA, "RemoveSpawnPoint", RemoveSpawnPoint);
 
 	OnGameModeInit(sLUA);
 

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-int SetPlayerUsername(lua_State* state)
+int SetPlayerName(lua_State* state)
 {
 	int args = lua_gettop(state);
 
@@ -9,12 +9,12 @@ int SetPlayerUsername(lua_State* state)
 	int playerid = lua_tointeger(state, 1);
 	const char *string = lua_tostring(state, 2);
 
-	playerData[playerid].playerusername = (char*)string;
+	playerData[playerid].playerusername = std::string(string);
 
 	return 0;
 }
 
-int GetPlayerUsername(lua_State* state)
+int GetPlayerName(lua_State* state)
 {
 	int args = lua_gettop(state);
 
@@ -22,7 +22,7 @@ int GetPlayerUsername(lua_State* state)
 
 	int playerid = lua_tointeger(state, 1);
 
-	lua_pushstring(state, playerData[playerid].playerusername);
+	lua_pushstring(state, playerData[playerid].playerusername.c_str());
 
 	return 1;
 }
@@ -31,7 +31,7 @@ int SetSpawnPoint(lua_State* state) {
 
 	int args = lua_gettop(state);
 
-	printf("SetSpawn() was called with %d arguments.\n", args);
+	printf("SetSpawnPoint() was called with %d arguments.\n", args);
 
 	float x = lua_tonumber(state, 1);
 	float y = lua_tonumber(state, 2);
@@ -42,4 +42,17 @@ int SetSpawnPoint(lua_State* state) {
 	lua_pushinteger(state, spawnid);
 
 	return 1;
+}
+
+int RemoveSpawnPoint(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("RemoveSpawnPoint() was called with %d arguments.\n", args);
+
+	int spawnid = lua_tonumber(state, 1);
+
+	spawnsPool.RemoveFromSpawnPool(spawnid);
+
+	return 0;
 }

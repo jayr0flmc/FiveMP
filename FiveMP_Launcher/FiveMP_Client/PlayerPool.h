@@ -8,6 +8,7 @@ struct playerPool {
 	Blip pedBlip;
 	Hash pedModel;							// PedModel in hash
 	int pedHealth;							// Ped Health
+	int pedArmour;							// Ped Armour
 	int pedType;							// Ped Type
 
 	float x;								// Position X coord

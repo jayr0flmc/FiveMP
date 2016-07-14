@@ -66,3 +66,11 @@ float SPlayer::Distance(float x1, float x2, float y1, float y2, float z1, float 
 
 	return sqrt(dx * dx + dy * dy + dz * dz);;
 }
+
+void SPlayer::UpdatePlayerNickMaxDistance(int playerid)
+{
+	RakNet::BitStream sSetMaxNickDrawDistance;
+	sSetMaxNickDrawDistance.Write(playerid);
+	sSetMaxNickDrawDistance.Write(playerData[playerid].maxNickDistance);
+	NetworkManager->rpc.Signal("SetPlayerMaxNickDrawDistance", &sSetMaxNickDrawDistance, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+}

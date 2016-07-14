@@ -19,8 +19,7 @@ int GivePlayerWeapon(lua_State* state)
 	sGivePlayerWeapon.Write(ammo);
 	NetworkManager->rpc.Signal("GivePlayerWeapon", &sGivePlayerWeapon, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	lua_pushnumber(state, 124);
-	return 1;
+	return 0;
 }
 
 int RemovePlayerWeapon(lua_State* state)
@@ -39,8 +38,7 @@ int RemovePlayerWeapon(lua_State* state)
 	sRemovePlayerWeapon.Write(weaponid);
 	NetworkManager->rpc.Signal("RemovePlayerWeapon", &sRemovePlayerWeapon, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	//lua_pushnumber(state, 124); //IS THIS EVEN NEEDED?
-	return 1;
+	return 0;
 }
 
 int GivePlayerAmmo(lua_State* state)
@@ -61,7 +59,7 @@ int GivePlayerAmmo(lua_State* state)
 	sGivePlayerAmmo.Write(ammo);
 	NetworkManager->rpc.Signal("GivePlayerAmmo", &sGivePlayerAmmo, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	return 1;
+	return 0;
 }
 
 int RemovePlayerAmmo(lua_State* state)
@@ -82,7 +80,7 @@ int RemovePlayerAmmo(lua_State* state)
 	sRemovePlayerAmmo.Write(ammo);
 	NetworkManager->rpc.Signal("RemovePlayerAmmo", &sRemovePlayerAmmo, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	return 1;
+	return 0;
 }
 
 int SetPlayerMoney(lua_State * state)
@@ -99,7 +97,7 @@ int SetPlayerMoney(lua_State * state)
 	sSetPlayerMoney.Write(playerData[playerid].money);
 	NetworkManager->rpc.Signal("SetPlayerMoney", &sSetPlayerMoney, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	return 1;
+	return 0;
 }
 
 int GivePlayerMoney(lua_State * state)
@@ -117,7 +115,7 @@ int GivePlayerMoney(lua_State * state)
 	sSetPlayerMoney.Write(playerData[playerid].money);
 	NetworkManager->rpc.Signal("SetPlayerMoney", &sSetPlayerMoney, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	return 1;
+	return 0;
 }
 
 int GetPlayerMoney(lua_State * state)
@@ -158,7 +156,7 @@ int KickPlayer(lua_State * state) {
 	RakSleep(100); //Sleep a bit that message would get sent
 	sv_KickPlayer(playerid); //If you dont like it its in server.h
 
-	return 1;
+	return 0;
 }
 
 int SetPlayerPos(lua_State* state) {
@@ -186,7 +184,7 @@ int SetPlayerPos(lua_State* state) {
 	sSetPlayerPos.Write(posz);
 	NetworkManager->rpc.Signal("SetPlayerPos", &sSetPlayerPos, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	return 1;
+	return 0;
 }
 
 int GetPlayerPos(lua_State* state) {
@@ -220,7 +218,7 @@ int SetPlayerFacingAngle(lua_State* state) {
 	sSetPlayerFacingAngle.Write(rotation);
 	NetworkManager->rpc.Signal("SetPlayerFacingAngle", &sSetPlayerFacingAngle, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	return 1;
+	return 0;
 }
 
 int GetPlayerFacingAngle(lua_State * state)
@@ -245,7 +243,7 @@ int SetPlayerScore(lua_State* state) {
 	int playerid = lua_tointeger(state, 1);
 	playerData[playerid].score = lua_tointeger(state, 2);
 
-	return 1;
+	return 0;
 }
 
 int GivePlayerScore(lua_State* state) {
@@ -257,7 +255,7 @@ int GivePlayerScore(lua_State* state) {
 	int playerid = lua_tointeger(state, 1);
 	playerData[playerid].score += lua_tointeger(state, 2);
 
-	return 1;
+	return 0;
 }
 
 int GetPlayerScore(lua_State* state) {
@@ -288,7 +286,7 @@ int SetPlayerHealth(lua_State* state) {
 	sSetPlayerHealth.Write(playerData[playerid].pedHealth);
 	NetworkManager->rpc.Signal("SetPlayerHealth", &sSetPlayerHealth, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	return 1;
+	return 0;
 }
 
 int GetPlayerHealth(lua_State* state) {
@@ -318,7 +316,7 @@ int SetPlayerArmour(lua_State* state) {
 	sSetPlayerArmour.Write(playerData[playerid].pedArmour);
 	NetworkManager->rpc.Signal("SetPlayerArmour", &sSetPlayerArmour, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
-	return 1;
+	return 0;
 }
 
 int GetPlayerArmour(lua_State* state) {
@@ -343,7 +341,7 @@ int SetTime(lua_State* state) {
 	Config->ServerTimeHour = lua_tointeger(state, 1);
 	Config->ServerTimeMinute = lua_tointeger(state, 2);
 
-	return 1;
+	return 0;
 }
 
 int GetTime(lua_State* state) {
@@ -356,4 +354,18 @@ int GetTime(lua_State* state) {
 	lua_pushinteger(state, Config->ServerTimeMinute);
 
 	return 2;
+}
+
+int SetPlayerMaxNickDrawDistance(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetPlayerMaxNickDrawDistance() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	playerData[playerid].maxNickDistance = lua_tonumber(state, 2);
+
+	PlayerManager->UpdatePlayerNickMaxDistance(playerid);
+
+	return 0;
 }

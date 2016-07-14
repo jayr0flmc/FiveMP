@@ -24,6 +24,7 @@ void CRPCManager::RegisterRPCs()
 	NetworkManager->rpc.RegisterSlot("SetPlayerFacingAngle", SetPlayerFacingAngle, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerHealth", SetPlayerHealth, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerArmour", SetPlayerArmour, 0);
+	NetworkManager->rpc.RegisterSlot("SetPlayerMaxNickDrawDistance", SetPlayerMaxNickDrawDistance, 0);
 }
 
 void CRPCManager::UnRegisterRPCs()

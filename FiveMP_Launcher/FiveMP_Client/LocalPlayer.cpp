@@ -78,6 +78,7 @@ void CLocalPlayer::SendOnFootData()
 	PlayerBitStream_send.Write(GetType());
 	PlayerBitStream_send.Write(GetModel());
 	PlayerBitStream_send.Write(GetHealth());
+	PlayerBitStream_send.Write(GetArmour());
 
 	PlayerBitStream_send.Write(GetCoords().x);
 	PlayerBitStream_send.Write(GetCoords().y);

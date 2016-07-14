@@ -6,7 +6,7 @@ int UserPool::AddToUserPool(char *username, RakNet::RakNetGUID guid)
 	{
 		if (playerData[i].used == false) {
 			playerData[i].playerid				= i;
-			playerData[i].playerusername		= username;
+			playerData[i].playerusername		= std::string(username);
 			playerData[i].playerguid			= guid;
 			playerData[i].used					= true;
 
@@ -39,12 +39,12 @@ int UserPool::GetPlayerID(RakNet::RakNetGUID guid)
 	return -1;
 }
 
-char *UserPool::GetPlayerUsername(RakNet::RakNetGUID guid)
+const char *UserPool::GetPlayerUsername(RakNet::RakNetGUID guid)
 {
 	for (int i = 0; i < sizeof(playerData); i++)
 	{
 		if (playerData[i].playerguid == guid) {
-			return playerData[i].playerusername;
+			return playerData[i].playerusername.c_str();
 		}
 	}
 }
@@ -87,4 +87,15 @@ int SpawnPointPool::AddToSpawnPool(float x, float y, float z)
 		}
 	}
 	return -1;
+}
+
+void SpawnPointPool::RemoveFromSpawnPool(int spawnid)
+{
+	for (int i = 0; i < sizeof(spawnData); i++)
+	{
+		if (spawnData[i].spawnid == spawnid) {
+			spawnData[i].used = false;
+			return;
+		}
+	}
 }
