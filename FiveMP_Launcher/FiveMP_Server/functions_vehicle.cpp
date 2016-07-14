@@ -17,7 +17,9 @@ int CreateVehicle(lua_State* state)
 	bool respawn = lua_toboolean(state, 9);
 	int respawndelay = lua_tointeger(state, 10);
 
-	int vehicleid = vehiclesPool.AddToVehiclePool();
+	int vehicleid = vehiclesPool.AddToVehiclePool( x, y, z, heading, color1, color2, respawn, respawndelay);
+
+	/*
 	RakNet::RakString vehiclename = name;
 
 	RakNet::BitStream sCreateVehicle;
@@ -32,6 +34,9 @@ int CreateVehicle(lua_State* state)
 	sCreateVehicle.Write(respawn);
 	sCreateVehicle.Write(respawndelay);
 	NetworkManager->rpc.Signal("CreateVehicle", &sCreateVehicle, HIGH_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
-	
-	return 0;
+	*/
+
+	lua_pushinteger(state, vehicleid);
+
+	return 1;
 }

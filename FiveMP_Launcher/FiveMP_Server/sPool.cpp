@@ -100,12 +100,20 @@ void SpawnPointPool::RemoveFromSpawnPool(int spawnid)
 	}
 }
 
-int VehiclePool::AddToVehiclePool()
+int VehiclePool::AddToVehiclePool(float x, float y, float z, float heading, int color1, int color2, bool respawn, int respawndelay)
 {
 	for (int i = 0; i < sizeof(playerData); i++)
 	{
 		if (vehicleData[i].used == false) {
 			vehicleData[i].used = true;
+			vehicleData[i].vehicleid = i;
+			vehicleData[i].x = x;
+			vehicleData[i].y = y;
+			vehicleData[i].z = z;
+			vehicleData[i].r = heading;
+			vehicleData[i].vehicleColor1 = color1;
+			vehicleData[i].vehicleColor2 = color2;
+			vehicleData[i].respawn = respawn;
 			return i;
 		}
 	}

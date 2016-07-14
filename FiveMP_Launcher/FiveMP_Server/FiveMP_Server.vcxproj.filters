@@ -46,6 +46,9 @@
     <ClInclude Include="functions_vehicle.h">
       <Filter>Header Files\Function\LUA</Filter>
     </ClInclude>
+    <ClInclude Include="Vehicle.h">
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -82,6 +85,11 @@
       <Filter>Source Files\Net</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="functions_blips.cpp" />
+    <ClCompile Include="functions_vehicle.cpp" />
+    <ClCompile Include="Vehicle.cpp">
       <Filter>Source Files\Function</Filter>
     </ClCompile>
   </ItemGroup>

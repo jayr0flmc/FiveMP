@@ -34,6 +34,7 @@
     <ClInclude Include="functions_main.h" />
     <ClInclude Include="functions_player.h" />
     <ClInclude Include="functions_vehicle.h" />
+    <ClInclude Include="Vehicle.h" />
     <ClInclude Include="NetworkManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RPCManager.h" />
@@ -113,6 +114,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ico2n1.ico" />

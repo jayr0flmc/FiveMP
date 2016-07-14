@@ -4,6 +4,7 @@ SNetworkManager *NetworkManager;
 SRPCManager		*RPCManager;
 SConfig			*Config;
 SPlayer			*PlayerManager;
+SVehicle		*VehicleManager;
 
 int userAmount, vehicleAmount;
 char userGuid;
@@ -33,6 +34,7 @@ int main(void)
 	RPCManager = new SRPCManager;
 	RPCManager->RegisterRPCs();
 	PlayerManager = new SPlayer;
+	VehicleManager = new SVehicle;
 
 	sLUA = luaL_newstate();
 	luaL_openlibs(sLUA);
