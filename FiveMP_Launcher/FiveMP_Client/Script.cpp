@@ -163,7 +163,7 @@ void CreateVehicle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	bitStream->Read(vehicleData[vehicleid].respawn);
 	bitStream->Read(vehicleData[vehicleid].respawndelay);
 
-	Vector3 tempcoords = { vehicleData[vehicleid].x , vehicleData[vehicleid].x , vehicleData[vehicleid].x };
+	Vector3 tempcoords = { vehicleData[vehicleid].x , vehicleData[vehicleid].y , vehicleData[vehicleid].z };
 
 	vehicle.CreateVehicle(vehicleid, vehiclename, tempcoords, vehicleData[vehicleid].r, vehicleData[vehicleid].vehicleColor1, vehicleData[vehicleid].vehicleColor2, vehicleData[vehicleid].respawn, vehicleData[vehicleid].respawndelay);
 }

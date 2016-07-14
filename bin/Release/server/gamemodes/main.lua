@@ -32,8 +32,8 @@ function OnPlayerConnect(playerid)
 	GivePlayerWeapon(playerid, "Pistol", 45);
 	
 	CreateVehicle(playerid, "adder", 20.0, 5.0, 72.0, 90.0, 5, 10, true, 500);
-	CreateVehicle(playerid, "banshee", 23.0, 5.0, 80.0, 90.0, 5, 10, true, 500);
-	CreateVehicle(playerid, "infernus", 26.0, 5.0, 90.0, 90.0, 5, 10, true, 500);
+	CreateVehicle(playerid, "banshee", 29.0, 5.0, 80.0, 90.0, 5, 10, true, 500);
+	CreateVehicle(playerid, "infernus", 24.0, 5.0, 90.0, 90.0, 5, 10, true, 500);
 	return 1;
 end
 
