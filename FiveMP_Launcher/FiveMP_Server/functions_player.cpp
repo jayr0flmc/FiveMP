@@ -474,18 +474,20 @@ int SetPedComponentVariation(lua_State* state) {
 	printf("GetPedHeadBlendData() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
-	int componentid = lua_tointeger(state, 2);
-	int drawableid = lua_tointeger(state, 3);
-	int textureid = lua_tointeger(state, 4);
-	int paletteid = lua_tointeger(state, 5);
+	if (playerData[playerid].isConnected) {
+		int componentid = lua_tointeger(state, 2);
+		int drawableid = lua_tointeger(state, 3);
+		int textureid = lua_tointeger(state, 4);
+		int paletteid = lua_tointeger(state, 5);
 
-	RakNet::BitStream sSetPedComponentVariation;
-	sSetPedComponentVariation.Write(playerid);
-	sSetPedComponentVariation.Write(componentid);
-	sSetPedComponentVariation.Write(drawableid);
-	sSetPedComponentVariation.Write(textureid);
-	sSetPedComponentVariation.Write(paletteid);
-	NetworkManager->rpc.Signal("SetPedComponentVariation", &sSetPedComponentVariation, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+		RakNet::BitStream sSetPedComponentVariation;
+		sSetPedComponentVariation.Write(playerid);
+		sSetPedComponentVariation.Write(componentid);
+		sSetPedComponentVariation.Write(drawableid);
+		sSetPedComponentVariation.Write(textureid);
+		sSetPedComponentVariation.Write(paletteid);
+		NetworkManager->rpc.Signal("SetPedComponentVariation", &sSetPedComponentVariation, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	}
 
-	return 1;
+	return 0;
 }
