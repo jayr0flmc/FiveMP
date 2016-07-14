@@ -86,7 +86,7 @@ int main()
 	printf("Please enter a valid skin name\n>");
 	getline(cin, input);
 
-	for (int i = 0; i < 700; i++) {
+	for (int i = 0; i < 690; i++) {
 		if (pedModels[i] == input) {
 			printf("skin id is %d\n", i);
 			
