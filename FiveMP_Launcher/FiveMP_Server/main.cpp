@@ -10,7 +10,7 @@ char userGuid;
 
 playerPool playerData[100];
 spawnPool spawnData[50];
-vehiclePool vehicleData[100];
+vehiclePool vehicleData[150];
 blipPool blipData[100];
 
 int main(void)

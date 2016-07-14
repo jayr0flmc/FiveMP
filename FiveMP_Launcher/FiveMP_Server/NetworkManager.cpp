@@ -68,6 +68,9 @@ void SNetworkManager::Pulse()
 		RakNet::BitStream PlayerBitStream_send;
 		RakNet::BitStream PlayerBitStream_receive(packet->data + 1, 128, false);
 
+		RakNet::BitStream VehicleBitStream_send;
+		RakNet::BitStream VehicleBitStream_receive(packet->data + 1, 128, false);
+
 		RakNet::RakString tempusername;
 
 		switch (packetIdentifier)
@@ -183,6 +186,65 @@ void SNetworkManager::Pulse()
 			server->Send(&PlayerBitStream_send, MEDIUM_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, true);
 
 			//printf("%s | %d - %x | %f, %f, %f | %f, %f, %f, %f\n", playerData[tempplyrid].playerusername, playerData[tempplyrid].pedType, playerData[tempplyrid].pedModel, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, playerData[tempplyrid].rx, playerData[tempplyrid].ry, playerData[tempplyrid].rz, playerData[tempplyrid].rw);
+			break;
+
+		case ID_SEND_VEHICLE_DATA:
+			// Receive data
+			int tempvehicleid;
+			time_t temptimestamp2;
+
+			VehicleBitStream_receive.Read(tempvehicleid);
+
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vehicleModel);
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vehicleHealth);
+
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].x);
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].y);
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].z);
+
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].r);
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].rx);
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].ry);
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].rz);
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].rw);
+
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vx);
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vy);
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vz);
+
+			VehicleBitStream_receive.Read(temptimestamp2);
+
+			printf("%d | %x, %d | %f, %f, %f, | %f, %f, %f, %f, %f, | %f, %f, %f\n", tempvehicleid, vehicleData[tempvehicleid].vehicleModel, vehicleData[tempvehicleid].vehicleHealth, 
+				vehicleData[tempvehicleid].x, vehicleData[tempvehicleid].y, vehicleData[tempvehicleid].z, vehicleData[tempvehicleid].r, vehicleData[tempvehicleid].rx, vehicleData[tempvehicleid].ry, 
+							vehicleData[tempvehicleid].rz, vehicleData[tempvehicleid].rw, vehicleData[tempvehicleid].vx, vehicleData[tempvehicleid].vy, vehicleData[tempvehicleid].vz);
+
+			// Send to other users.
+
+			VehicleBitStream_send.Write((unsigned char)ID_SEND_VEHICLE_DATA);
+
+			VehicleBitStream_send.Write(tempvehicleid);
+
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].vehicleModel);
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].vehicleHealth);
+
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].x);
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].y);
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].z);
+
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].r);
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].rx);
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].ry);
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].rz);
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].rw);
+
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].vx);
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].vy);
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].vz);
+
+			VehicleBitStream_send.Write(temptimestamp2);
+
+			server->Send(&VehicleBitStream_send, MEDIUM_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, true);
+			
 			break;
 
 		case ID_INCOMPATIBLE_PROTOCOL_VERSION:

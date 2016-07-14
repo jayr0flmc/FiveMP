@@ -98,6 +98,7 @@ void UpdatePedModel(int playerid) {
 	PED::SET_PED_FLEE_ATTRIBUTES(playerData[playerid].pedPed, 0, 0);
 	PED::SET_PED_COMBAT_ATTRIBUTES(playerData[playerid].pedPed, 17, 1);
 	PED::SET_PED_CAN_RAGDOLL(playerData[playerid].pedPed, false);
+	PED::SET_PED_DEFAULT_COMPONENT_VARIATION(playerData[playerid].pedPed);
 
 	AI::TASK_SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(playerData[playerid].pedPed, true);
 

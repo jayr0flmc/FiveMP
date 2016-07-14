@@ -9,6 +9,7 @@ public:
 	bool Disconnect();
 	void Pulse();
 	void HandlePlayerSync(Packet *p);
+	void HandleVehicleSync(Packet *p);
 	void DropPlayer(Packet *p);
 
 	void SyncOnFoot();

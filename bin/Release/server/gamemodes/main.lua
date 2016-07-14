@@ -28,7 +28,10 @@ function OnPlayerConnect(playerid)
 	SetPlayerHealth(playerid, 100);
 	SetPlayerArmour(playerid, 50);
 	
-	SetPlayerModel(playerid, 511);
+	SetPlayerModel(playerid, 420);
+	
+	--SetPlayerComponentVariation(playerid, 3, 1, 1, 1);
+	--SetPlayerComponentVariation(playerid, 2, 10, 1, 1);
 	
 	GivePlayerWeapon(playerid, "Pistol", 45);
 	

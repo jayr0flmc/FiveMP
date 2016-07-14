@@ -93,10 +93,18 @@ struct vehiclePool {
 	float z;								// Position Z coord
 
 	float r;								// Rotation (0-360)
+	float rx;								// Rotation X coord
+	float ry;								// Rotation Y coord
+	float rz;								// Rotation Z coord
+	float rw;								// Rotation W coord
+
+	float vx;								// Velocity X coord
+	float vy;								// Velocity Y coord
+	float vz;								// Velocity Z coord
 
 	bool used = false;						// Whether the vehicle slot is in use or not.
 };
-extern vehiclePool vehicleData[100];
+extern vehiclePool vehicleData[150];
 
 struct blipPool {
 	float x;

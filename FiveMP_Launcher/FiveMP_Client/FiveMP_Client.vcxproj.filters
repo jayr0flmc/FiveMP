@@ -117,6 +117,9 @@
     <ClCompile Include="Model.cpp">
       <Filter>Source Files\Function</Filter>
     </ClCompile>
+    <ClCompile Include="LocalVehicle.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RAGEHelper.h">
@@ -187,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="Model.h">
       <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalVehicle.h">
+      <Filter>Header Files\Net</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
