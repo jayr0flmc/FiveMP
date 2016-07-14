@@ -18,6 +18,9 @@ function OnPlayerConnect(playerid)
 	playername = GetPlayerName(playerid);
 	ShowMessageToAll("~b~" .. playername .. " ~w~has connected.");
 	
+	SetPlayerPos(playerid, 0.0, 0.0, 70.5);
+	SetPlayerFacingAngle(playerid, 0.0);
+	
 	SetPlayerMoney(playerid, 500);
 	
 	SetPlayerMaxTagDrawDistance(playerid, 100);
