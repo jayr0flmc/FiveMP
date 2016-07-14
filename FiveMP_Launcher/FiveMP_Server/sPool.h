@@ -18,7 +18,7 @@ class SpawnPointPool
 {
 public:
 	int AddToSpawnPool(float x, float y, float z);
-	//void RemoveFromSpawnPool(int spawnid);
+	void RemoveFromSpawnPool(int spawnid);
 };
 
 typedef DWORD Hash;

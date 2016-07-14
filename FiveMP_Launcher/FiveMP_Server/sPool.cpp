@@ -88,3 +88,14 @@ int SpawnPointPool::AddToSpawnPool(float x, float y, float z)
 	}
 	return -1;
 }
+
+void SpawnPointPool::RemoveFromSpawnPool(int spawnid)
+{
+	for (int i = 0; i < sizeof(spawnData); i++)
+	{
+		if (spawnData[i].spawnid == spawnid) {
+			spawnData[i].used = false;
+			return;
+		}
+	}
+}

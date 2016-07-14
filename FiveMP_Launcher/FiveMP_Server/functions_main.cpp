@@ -31,7 +31,7 @@ int SetSpawnPoint(lua_State* state) {
 
 	int args = lua_gettop(state);
 
-	printf("SetSpawn() was called with %d arguments.\n", args);
+	printf("SetSpawnPoint() was called with %d arguments.\n", args);
 
 	float x = lua_tonumber(state, 1);
 	float y = lua_tonumber(state, 2);
@@ -42,4 +42,17 @@ int SetSpawnPoint(lua_State* state) {
 	lua_pushinteger(state, spawnid);
 
 	return 1;
+}
+
+int RemoveSpawnPoint(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("RemoveSpawnPoint() was called with %d arguments.\n", args);
+
+	int spawnid = lua_tonumber(state, 1);
+
+	spawnsPool.RemoveFromSpawnPool(spawnid);
+
+	return 0;
 }

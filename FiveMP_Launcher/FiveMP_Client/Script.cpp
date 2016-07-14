@@ -5,7 +5,6 @@ void ShowMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	char string[128];
 
-	bitStream->Read(playerid);
 	bitStream->Read(string);
 
 	player.ShowMessageAboveMap(string);
