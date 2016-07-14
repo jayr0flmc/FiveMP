@@ -13,7 +13,6 @@
 #include <Psapi.h>
 #include <iostream>
 #include <fstream>
-#include <timeapi.h>
 #include <time.h>
 #include <direct.h>
 
