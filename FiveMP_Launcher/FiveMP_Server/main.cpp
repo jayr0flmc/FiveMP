@@ -11,6 +11,7 @@ char userGuid;
 playerPool playerData[100];
 spawnPool spawnData[50];
 vehiclePool vehicleData[100];
+blipPool blipData[100];
 
 int main(void)
 {
@@ -59,6 +60,7 @@ int main(void)
 	lua_register(sLUA, "SetPlayerModel", SetPlayerModel);
 	lua_register(sLUA, "GetPlayerModel", GetPlayerModel);
 	lua_register(sLUA, "IsPlayerConnected", IsPlayerConnected);
+	lua_register(sLUA, "SetPlayerComponentVariation", SetPedComponentVariation);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
