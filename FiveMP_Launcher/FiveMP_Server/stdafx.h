@@ -59,6 +59,7 @@ using namespace RakNet;
 #include "functions_main.h"
 #include "functions_hud.h"
 #include "functions_player.h"
+#include "functions_vehicle.h"
 
 // Scripting (LUA-Callbacks)
 #include "callbacks.h"
@@ -67,6 +68,7 @@ namespace {
 	// Pools (net)
 	class UserPool netPool;
 	class SpawnPointPool spawnsPool;
+	class VehiclePool vehiclesPool;
 }
 
 extern lua_State* sLUA;

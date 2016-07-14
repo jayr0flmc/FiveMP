@@ -26,6 +26,7 @@ void CRPCManager::RegisterRPCs()
 	NetworkManager->rpc.RegisterSlot("SetPlayerArmour", SetPlayerArmour, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerMaxNickDrawDistance", SetPlayerMaxNickDrawDistance, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerModel", SetPlayerModel, 0);
+	NetworkManager->rpc.RegisterSlot("CreateVehicle", CreateVehicle, 0);
 }
 
 void CRPCManager::UnRegisterRPCs()
@@ -38,5 +39,8 @@ void CRPCManager::UnRegisterRPCs()
 	NetworkManager->rpc.UnregisterSlot("SetPlayerMoney");
 	NetworkManager->rpc.UnregisterSlot("SetPlayerPos");
 	NetworkManager->rpc.UnregisterSlot("SetPlayerFacingAngle");
+	NetworkManager->rpc.UnregisterSlot("SetPlayerHealth");
+	NetworkManager->rpc.UnregisterSlot("SetPlayerArmour");
+	NetworkManager->rpc.UnregisterSlot("SetPlayerMaxNickDrawDistance");
 	NetworkManager->rpc.UnregisterSlot("SetPlayerModel");
 }

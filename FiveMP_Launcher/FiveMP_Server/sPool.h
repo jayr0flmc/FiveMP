@@ -1,5 +1,7 @@
 #pragma once
 
+typedef DWORD Hash;
+
 class UserPool
 {
 public:
@@ -21,7 +23,14 @@ public:
 	void RemoveFromSpawnPool(int spawnid);
 };
 
-typedef DWORD Hash;
+class VehiclePool
+{
+public:
+	int VehicleAmount;
+
+	int AddToVehiclePool();
+	void RemoveFromVehiclePool(int id);
+};
 
 struct playerPool {
 	int playerid;							// Player/Client ID
@@ -68,3 +77,22 @@ struct spawnPool {
 	bool used = false;						// Whether the SpawnPoint slot is in use or not.
 };
 extern spawnPool spawnData[50];
+
+struct vehiclePool {
+	int vehicleid;							// Vehicle ID (server)
+
+	Hash vehicleModel;						// Vehicle Model in Hash
+	int vehicleHealth;						// Vehicle Health
+
+	int vehicleColor1;						// Vehicle Color 1
+	int vehicleColor2;						// Vehicle Color 2
+
+	float x;								// Position X coord
+	float y;								// Position Y coord
+	float z;								// Position Z coord
+
+	float r;								// Rotation (0-360)
+
+	bool used = false;						// Whether the vehicle slot is in use or not.
+};
+extern vehiclePool vehicleData[100];

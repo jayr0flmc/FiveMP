@@ -62,6 +62,9 @@ struct vehiclePool {
 	float rz;								// Rotation Z coord
 	float rw;								// Rotation W coord
 
+	bool respawn;							// Whether the vehicle should respawn
+	int respawndelay;						// Delay till vehicle respawns when unused (variable not used yet)
+
 	float screen_x;							// 2D X coord
 	float screen_y;							// 2D Y coord
 

@@ -99,3 +99,26 @@ void SpawnPointPool::RemoveFromSpawnPool(int spawnid)
 		}
 	}
 }
+
+int VehiclePool::AddToVehiclePool()
+{
+	for (int i = 0; i < sizeof(playerData); i++)
+	{
+		if (vehicleData[i].used == false) {
+			vehicleData[i].used = true;
+			return i;
+		}
+	}
+	return -1;
+}
+
+void VehiclePool::RemoveFromVehiclePool(int id)
+{
+	for (int i = 0; i < sizeof(vehicleData); i++)
+	{
+		if (vehicleData[i].vehicleid == id) {
+			vehicleData[i].used = false;
+			return;
+		}
+	}
+}
