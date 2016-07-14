@@ -16,7 +16,7 @@ function OnPlayerConnect(playerid)
 	ShowMessageToPlayer(playerid, "Your player ID is ~b~" .. playerid);
 	
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll( playername .. " has connected");
+	ShowMessageToAll("~b~" .. playername .. " ~w~has connected.");
 	
 	SetPlayerPos(playerid, 0.0, 0.0, 70.5);
 	SetPlayerFacingAngle(playerid, 0.0);
@@ -32,17 +32,17 @@ end
 
 function OnPlayerDisconnect(playerid)
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll( playername .. " has disconnected");
+	ShowMessageToAll("~b~" .. playername .. " ~w~has disconnected.");
 	print(playerid .. " has disconnected");
     return 1;
 end
 
 function OnPlayerSpawn(playerid)
-	print(playerid .. " Spawned");
+	print("~b~" .. playerid .. " has spawned");
 end
 
 function OnPlayerDeath(playerid)
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll( playername .. " Died");
+	ShowMessageToAll("~b~" .. playername .. "~w~ has died.");
 	print(playerid .. " Died");
 end

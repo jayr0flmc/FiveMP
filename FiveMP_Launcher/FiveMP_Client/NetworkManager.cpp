@@ -75,12 +75,6 @@ void CNetworkManager::Pulse()
 		case ID_CONNECTION_REQUEST_ACCEPTED:
 			Connected = true;
 
-			sprintf(testmessage, "Hi ~b~%s~w~, you have successfully connected to the server!", Config->client_username);
-			player.ShowMessageAboveMap(testmessage);
-
-			sprintf(testmessage, "GUID is: ~b~#%s", client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString());
-			player.ShowMessageAboveMap(testmessage);
-
 			ENTITY::FREEZE_ENTITY_POSITION(LocalPlayer->playerPed, 0);
 			ENTITY::SET_ENTITY_VISIBLE(LocalPlayer->playerPed, true, 0);
 			break;
