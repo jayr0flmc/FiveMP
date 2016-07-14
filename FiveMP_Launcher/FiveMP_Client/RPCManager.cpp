@@ -29,6 +29,8 @@ void CRPCManager::RegisterRPCs()
 	NetworkManager->rpc.RegisterSlot("CreateVehicle", CreateVehicle, 0);
 	NetworkManager->rpc.RegisterSlot("RemoveAllPlayerWeapons", RemoveAllPlayerWeapons, 0);
 	NetworkManager->rpc.RegisterSlot("SetPedComponentVariation", SetPedComponentVariation, 0);
+	NetworkManager->rpc.RegisterSlot("ShowBlipForPlayer", ShowBlipForPlayer, 0);
+	NetworkManager->rpc.RegisterSlot("HideBlipFromPlayer", HideBlipFromPlayer, 0);
 }
 
 void CRPCManager::UnRegisterRPCs()

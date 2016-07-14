@@ -71,3 +71,11 @@ struct vehiclePool {
 	bool used = false;						// Whether the vehicle slot is in use or not.
 };
 extern vehiclePool vehicleData[100];
+
+struct blipPool {
+	int serverID;
+	Blip blip;
+
+	bool used = false;
+};
+extern blipPool blipData[100];

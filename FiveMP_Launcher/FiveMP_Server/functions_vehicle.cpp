@@ -33,5 +33,6 @@ int CreateVehicle(lua_State* state)
 	sCreateVehicle.Write(respawndelay);
 	NetworkManager->rpc.Signal("CreateVehicle", &sCreateVehicle, HIGH_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 	
-	return 0;
+	lua_pushinteger(state, vehicleid);
+	return 1;
 }

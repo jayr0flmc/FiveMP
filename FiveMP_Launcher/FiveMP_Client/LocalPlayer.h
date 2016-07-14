@@ -7,6 +7,7 @@ public:
 	time_t	timesincerequest = 0L;
 	int		playerMoney = 0;
 	float	maxNickDrawDistance = 50.0f;
+	int		playerID;
 
 	CLocalPlayer();
 	~CLocalPlayer();

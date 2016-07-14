@@ -144,6 +144,7 @@ void CNetworkManager::Pulse()
 			rpc.Signal("PlayerConnect", &bsPlayerConnect, HIGH_PRIORITY, RELIABLE_ORDERED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, false);
 
 			NetworkManager->Synchronized = true;
+			LocalPlayer->playerID = playerid;
 			break;
 
 		case ID_SEND_PLAYER_DATA:

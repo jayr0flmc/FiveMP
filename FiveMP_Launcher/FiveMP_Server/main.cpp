@@ -82,6 +82,13 @@ int main(void)
 	// Vehicle
 	lua_register(sLUA, "CreateVehicle", CreateVehicle);
 
+	//Blips
+	lua_register(sLUA, "CreateBlip", CreateBlip);
+	lua_register(sLUA, "SetBlipLocationType", SetBlipLocationType);
+	lua_register(sLUA, "ShowBlipForPlayer", ShowBlipForPlayer);
+	lua_register(sLUA, "HideBlipForPlayer", HideBlipForPlayer);
+	lua_register(sLUA, "RemoveBlip", RemoveBlip);
+
 	OnGameModeInit(sLUA);
 
 	char message[256];

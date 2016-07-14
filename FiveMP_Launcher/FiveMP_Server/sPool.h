@@ -99,9 +99,11 @@ struct vehiclePool {
 extern vehiclePool vehicleData[100];
 
 struct blipPool {
+	int locationType = 0;
 	float x;
 	float y;
 	float z;
+	int attachID;
 
 	bool used = false;
 };

@@ -198,3 +198,81 @@ void SetPedComponentVariation(RakNet::BitStream * bitStream, RakNet::Packet * pa
 
 	PED::SET_PED_COMPONENT_VARIATION(LocalPlayer->playerPed, componentid, drawableid, textureid, paletteid);
 }
+
+void ShowBlipForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int blipid;
+	int locationtype;
+	float x;
+	float y;
+	float z;
+	int attachID;
+
+	bitStream->Read(blipid);
+	bitStream->Read(locationtype);
+	bitStream->Read(x);
+	bitStream->Read(y);
+	bitStream->Read(z);
+	bitStream->Read(attachID);
+
+	int clientblipid = -1;
+	for (int i = 0; i < 100; i++) {
+		if (!blipData[i].used) {
+			clientblipid = i;
+			break;
+		}
+	}
+
+	if (clientblipid == -1) { return; }
+
+	blipData[clientblipid].used = true;
+	blipData[clientblipid].serverID = blipid;
+	
+	if (locationtype == 0) {
+		blipData[clientblipid].blip = UI::ADD_BLIP_FOR_COORD(x, y, z);
+	}
+	else if (locationtype == 1) {
+		int vehicleid = -1;
+		for (int i = 0; i < 100; i++) {
+			if (attachID == vehicleData[i].vehicleid) {
+				vehicleid = vehicleData[i].vehicleVehicle;
+				break;
+			}
+		}
+		if (vehicleid == -1) { return; }
+
+		blipData[clientblipid].blip = UI::ADD_BLIP_FOR_ENTITY(vehicleid);
+	}
+	else if (locationtype == 2) {
+
+		if (attachID != LocalPlayer->playerID) {
+			blipData[clientblipid].blip = UI::ADD_BLIP_FOR_ENTITY(attachID);
+		}
+		else {
+			blipData[clientblipid].blip = UI::ADD_BLIP_FOR_ENTITY(LocalPlayer->playerPed);
+		}
+	}
+
+	UI::SET_BLIP_AS_FRIENDLY(blipData[clientblipid].blip, true);
+	UI::SET_BLIP_COLOUR(blipData[clientblipid].blip, 0);
+	UI::SET_BLIP_SCALE(blipData[clientblipid].blip, 1.0f);
+	UI::BEGIN_TEXT_COMMAND_SET_BLIP_NAME("STRING");
+	UI::_ADD_TEXT_COMPONENT_STRING3("Test");
+	UI::END_TEXT_COMMAND_SET_BLIP_NAME(blipData[clientblipid].blip);
+	
+}
+
+void HideBlipFromPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int blipid;
+
+	bitStream->Read(blipid);
+
+	for (int i = 0; i < 100; i++) {
+		if (blipData[i].serverID == blipid) {
+			UI::REMOVE_BLIP(&blipData[i].blip);
+			blipData[i].used = false;
+			break;
+		}
+	}
+}

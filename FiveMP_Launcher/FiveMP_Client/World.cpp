@@ -24,4 +24,11 @@ void GameWorld::CleanUp() {
 			printf("Failed Removing: %i\n", i);
 		}
 	}
+
+	for (int i = 0; i < sizeof(blipData) / sizeof(*blipData); i++) {
+		if (UI::DOES_BLIP_EXIST(blipData[i].blip)) {
+			UI::REMOVE_BLIP(&blipData[i].blip);
+			blipData[i].used = false;
+		}
+	}
 }

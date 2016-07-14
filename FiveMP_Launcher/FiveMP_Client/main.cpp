@@ -2,6 +2,7 @@
 
 playerPool playerData[128];
 vehiclePool vehicleData[100];
+blipPool blipData[100];
 
 CNetworkManager *NetworkManager;
 CRPCManager		*RPCManager;
