@@ -9,6 +9,7 @@ void ShowMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 
 	player.ShowMessageAboveMap(string);
 }
+
 void GivePlayerWeapon(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	char weaponid[20];
@@ -20,6 +21,7 @@ void GivePlayerWeapon(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 
 	weapon.GiveWeapon(weaponid, ammo);
 }
+
 void RemovePlayerWeapon(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	char weaponid[20];
@@ -29,6 +31,7 @@ void RemovePlayerWeapon(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 
 	weapon.RemoveWeapon(weaponid);
 }
+
 void GivePlayerAmmo(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	char weaponid[20];
@@ -40,6 +43,7 @@ void GivePlayerAmmo(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 
 	weapon.GiveAmmo(weaponid, ammo);
 }
+
 void RemovePlayerAmmo(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	char weaponid[20];
@@ -50,6 +54,13 @@ void RemovePlayerAmmo(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	bitStream->Read(ammo);
 
 	weapon.RemoveAmmo(weaponid, ammo);
+}
+
+void RemoveAllPlayerWeapons(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
+	int playerid;
+	bitStream->Read(playerid);
+
+	weapon.RemoveAllWeapons();
 }
 
 // -- MONEY --

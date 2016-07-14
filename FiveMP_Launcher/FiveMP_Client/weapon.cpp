@@ -89,6 +89,10 @@ void GameWeapon::RemoveWeapon(char * weaponid) {
 	WEAPON::REMOVE_WEAPON_FROM_PED(LocalPlayer->playerPed, weapon);
 }
 
+void GameWeapon::RemoveAllWeapons() {
+	WEAPON::REMOVE_ALL_PED_WEAPONS(LocalPlayer->playerPed, true);
+}
+
 void GameWeapon::GiveAmmo(char * weaponid, int ammo) {
 	EnumParser<eWeapon> parser;
 	eWeapon weapon = parser.ParseEnum(weaponid);

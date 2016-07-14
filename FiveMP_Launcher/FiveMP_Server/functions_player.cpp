@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "server.h"
 
+/*
+Weapons Start
+*/
 int GivePlayerWeapon(lua_State* state)
 {
 	int args = lua_gettop(state);
@@ -90,6 +93,25 @@ int RemovePlayerAmmo(lua_State* state)
 
 	return 0;
 }
+
+int RemoveAllPlayerWeapons(lua_State* state)
+{
+	int args = lua_gettop(state);
+
+	printf("RemoveAllPlayerWeapons() was called with %d arguments:\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected) {
+
+		RakNet::BitStream sRemoveAllPlayerWeapons;
+		sRemoveAllPlayerWeapons.Write(playerid);
+		NetworkManager->rpc.Signal("RemoveAllPlayerWeapons", &sRemoveAllPlayerWeapons, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	}
+
+	return 0;
+}
+
+// Weapons End
 
 int SetPlayerMoney(lua_State * state)
 {
