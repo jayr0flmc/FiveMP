@@ -180,7 +180,7 @@ void SNetworkManager::Pulse()
 
 			PlayerBitStream_send.Write(temptimestamp);
 
-			server->Send(&PlayerBitStream_send, HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, true);
+			server->Send(&PlayerBitStream_send, MEDIUM_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, true);
 
 			//printf("%s | %d - %x | %f, %f, %f | %f, %f, %f, %f\n", playerData[tempplyrid].playerusername, playerData[tempplyrid].pedType, playerData[tempplyrid].pedModel, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, playerData[tempplyrid].rx, playerData[tempplyrid].ry, playerData[tempplyrid].rz, playerData[tempplyrid].rw);
 			break;

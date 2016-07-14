@@ -10,6 +10,7 @@ char userGuid;
 
 playerPool playerData[100];
 spawnPool spawnData[50];
+vehiclePool vehicleData[100];
 
 int main(void)
 {
@@ -74,6 +75,9 @@ int main(void)
 	lua_register(sLUA, "SetTime", SetTime);
 	lua_register(sLUA, "SetSpawnPoint", SetSpawnPoint);
 	lua_register(sLUA, "RemoveSpawnPoint", RemoveSpawnPoint);
+
+	// Vehicle
+	lua_register(sLUA, "CreateVehicle", CreateVehicle);
 
 	OnGameModeInit(sLUA);
 

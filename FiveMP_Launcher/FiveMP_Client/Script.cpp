@@ -143,3 +143,27 @@ void SetPlayerModel(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 
 	LocalPlayer->SetModel(GetModelHashFromModelID(modelid));
 }
+
+void CreateVehicle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int vehicleid;
+	char vehiclename[32];
+
+	bitStream->Read(vehicleid);
+	
+	vehicleData[vehicleid].vehicleid = vehicleid;
+
+	bitStream->Read(vehiclename);
+	bitStream->Read(vehicleData[vehicleid].x);
+	bitStream->Read(vehicleData[vehicleid].y);
+	bitStream->Read(vehicleData[vehicleid].z);
+	bitStream->Read(vehicleData[vehicleid].r);
+	bitStream->Read(vehicleData[vehicleid].vehicleColor1);
+	bitStream->Read(vehicleData[vehicleid].vehicleColor2);
+	bitStream->Read(vehicleData[vehicleid].respawn);
+	bitStream->Read(vehicleData[vehicleid].respawndelay);
+
+	Vector3 tempcoords = { vehicleData[vehicleid].x , vehicleData[vehicleid].x , vehicleData[vehicleid].x };
+
+	vehicle.CreateVehicle(vehicleid, vehiclename, tempcoords, vehicleData[vehicleid].r, vehicleData[vehicleid].vehicleColor1, vehicleData[vehicleid].vehicleColor2, vehicleData[vehicleid].respawn, vehicleData[vehicleid].respawndelay);
+}
