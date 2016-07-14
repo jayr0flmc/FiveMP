@@ -42,7 +42,7 @@ extern playerPool playerData[128];
 
 struct vehiclePool {
 	int vehicleid;							// Vehicle ID (server)
-	int *localvehicleid;					// Vehicle ID (client)
+	Vehicle localvehicleid;					// Vehicle ID (client)
 
 	Vehicle vehicleVehicle;					// Used to spawn the vehicle and such.
 	Blip vehicleBlip;						// Vehicle Blip
@@ -61,6 +61,10 @@ struct vehiclePool {
 	float ry;								// Rotation Y coord
 	float rz;								// Rotation Z coord
 	float rw;								// Rotation W coord
+
+	float vx;								// Velocity X coord
+	float vy;								// Velocity Y coord
+	float vz;								// Velocity Z coord
 
 	bool respawn;							// Whether the vehicle should respawn
 	int respawndelay;						// Delay till vehicle respawns when unused (variable not used yet)

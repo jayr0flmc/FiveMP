@@ -66,10 +66,22 @@ Vector4 CLocalPlayer::GetQuaternion()
 	return rotation;
 }
 
+int CLocalPlayer::GetVehicle()
+{
+	if (PED::GET_VEHICLE_PED_IS_IN(playerPed, false) > 0) {
+		for (int i = 0; i < 100; i++) {
+			if (vehicleData[i].vehicleVehicle == PED::GET_VEHICLE_PED_IS_IN(playerPed, false)) {
+				return vehicleData[i].vehicleid;
+			}
+		}
+	}
+	return -1;
+}
+
 void CLocalPlayer::SetModel(Hash model)
 {
-	int health = LocalPlayer->GetHealth();
-	int armour = LocalPlayer->GetArmour();
+	int health = GetHealth();
+	int armour = GetArmour();
 
 	if (STREAMING::IS_MODEL_IN_CDIMAGE(model) && STREAMING::IS_MODEL_VALID(model))
 

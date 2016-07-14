@@ -79,6 +79,7 @@ using namespace RakNet;
 #include "NetworkManager.h"
 #include "PlayerPed.h"
 #include "LocalPlayer.h"
+#include "LocalVehicle.h"
 #include "RPCManager.h"
 #include "Script.h"
 #include "PlayerPool.h"
@@ -103,6 +104,7 @@ extern MODULEINFO	g_MainModuleInfo;
 extern CNetworkManager	*NetworkManager;
 extern CRPCManager		*RPCManager;
 extern CLocalPlayer		*LocalPlayer;
+extern CLocalVehicle	*LocalVehicle;
 extern CConfig			*Config;
 extern CRenderDebug		*RenderDebug;
 extern CRender			*Render;

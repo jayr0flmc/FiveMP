@@ -12,6 +12,7 @@ void sv_PlayerConnect(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	playerData[tempplayer].isConnected = true;
 
 	PlayerManager->UpdatePlayerNickMaxDistance(tempplayer); //Just makes sure that client variable is in sync with server.
+	VehicleManager->SpawnVehicles(tempplayer);
 
 	OnPlayerConnect(sLUA, tempplayer);
 

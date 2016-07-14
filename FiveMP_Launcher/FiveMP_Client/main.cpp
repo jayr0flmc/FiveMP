@@ -7,6 +7,7 @@ blipPool blipData[100];
 CNetworkManager *NetworkManager;
 CRPCManager		*RPCManager;
 CLocalPlayer	*LocalPlayer;
+CLocalVehicle	*LocalVehicle;
 CConfig			*Config;
 CRenderDebug	*RenderDebug;
 CRender			*Render;
@@ -51,6 +52,13 @@ void RunGameScript() {
 					LocalPlayer->SendSyncRequest();
 				} else {
 					LocalPlayer->SendOnFootData();
+					if (LocalPlayer->GetVehicle() >= 0) {
+						delete LocalVehicle;
+						LocalVehicle = new CLocalVehicle;
+
+						//printf("%d\n", LocalPlayer->GetVehicle());
+						LocalVehicle->SendVehicleData();
+					}
 					NetworkManager->SyncOnFoot();
 					Render->RenderNametags();
 				}

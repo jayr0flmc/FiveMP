@@ -4,13 +4,14 @@ SNetworkManager *NetworkManager;
 SRPCManager		*RPCManager;
 SConfig			*Config;
 SPlayer			*PlayerManager;
+SVehicle		*VehicleManager;
 
 int userAmount, vehicleAmount;
 char userGuid;
 
 playerPool playerData[100];
 spawnPool spawnData[50];
-vehiclePool vehicleData[100];
+vehiclePool vehicleData[150];
 blipPool blipData[100];
 
 int main(void)
@@ -33,6 +34,7 @@ int main(void)
 	RPCManager = new SRPCManager;
 	RPCManager->RegisterRPCs();
 	PlayerManager = new SPlayer;
+	VehicleManager = new SVehicle;
 
 	sLUA = luaL_newstate();
 	luaL_openlibs(sLUA);
@@ -69,7 +71,7 @@ int main(void)
 	// Weapon
 	lua_register(sLUA, "GivePlayerWeapon", GivePlayerWeapon);
 	lua_register(sLUA, "RemovePlayerWeapon", RemovePlayerWeapon);
-	lua_register(sLUA, "RemoveAllPlayerWeapons", RemoveAllPlayerWeapons);
+	lua_register(sLUA, "RemovePlayerWeapons", RemovePlayerWeapons);
 	lua_register(sLUA, "GivePlayerAmmo", GivePlayerAmmo);
 	lua_register(sLUA, "RemovePlayerAmmo", RemovePlayerAmmo);
 

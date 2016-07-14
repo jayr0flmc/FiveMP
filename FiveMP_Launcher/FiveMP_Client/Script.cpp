@@ -56,7 +56,7 @@ void RemovePlayerAmmo(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	weapon.RemoveAmmo(weaponid, ammo);
 }
 
-void RemoveAllPlayerWeapons(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
+void RemovePlayerWeapons(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	bitStream->Read(playerid);
 
@@ -164,7 +164,7 @@ void CreateVehicle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	
 	vehicleData[vehicleid].vehicleid = vehicleid;
 
-	bitStream->Read(vehiclename);
+	bitStream->Read(vehicleData[vehicleid].vehicleModel);
 	bitStream->Read(vehicleData[vehicleid].x);
 	bitStream->Read(vehicleData[vehicleid].y);
 	bitStream->Read(vehicleData[vehicleid].z);

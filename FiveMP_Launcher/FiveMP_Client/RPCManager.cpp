@@ -27,10 +27,11 @@ void CRPCManager::RegisterRPCs()
 	NetworkManager->rpc.RegisterSlot("SetPlayerMaxNickDrawDistance", SetPlayerMaxNickDrawDistance, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerModel", SetPlayerModel, 0);
 	NetworkManager->rpc.RegisterSlot("CreateVehicle", CreateVehicle, 0);
-	NetworkManager->rpc.RegisterSlot("RemoveAllPlayerWeapons", RemoveAllPlayerWeapons, 0);
+	NetworkManager->rpc.RegisterSlot("RemovePlayerWeapons", RemovePlayerWeapons, 0);
 	NetworkManager->rpc.RegisterSlot("SetPedComponentVariation", SetPedComponentVariation, 0);
 	NetworkManager->rpc.RegisterSlot("ShowBlipForPlayer", ShowBlipForPlayer, 0);
 	NetworkManager->rpc.RegisterSlot("HideBlipFromPlayer", HideBlipFromPlayer, 0);
+	NetworkManager->rpc.RegisterSlot("RemovePlayerWeapons", RemovePlayerWeapons, 0);
 }
 
 void CRPCManager::UnRegisterRPCs()
@@ -48,4 +49,6 @@ void CRPCManager::UnRegisterRPCs()
 	NetworkManager->rpc.UnregisterSlot("SetPlayerMaxNickDrawDistance");
 	NetworkManager->rpc.UnregisterSlot("SetPlayerModel");
 	NetworkManager->rpc.UnregisterSlot("SetPedComponentVariation");
+	NetworkManager->rpc.UnregisterSlot("ShowBlipForPlayer");
+	NetworkManager->rpc.UnregisterSlot("HideBlipFromPlayer");
 }
