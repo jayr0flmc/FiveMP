@@ -486,4 +486,6 @@ int SetPedComponentVariation(lua_State* state) {
 	sSetPedComponentVariation.Write(textureid);
 	sSetPedComponentVariation.Write(paletteid);
 	NetworkManager->rpc.Signal("SetPedComponentVariation", &sSetPedComponentVariation, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+
+	return 1;
 }
