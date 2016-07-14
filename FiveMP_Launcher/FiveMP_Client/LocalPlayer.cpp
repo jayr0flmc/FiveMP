@@ -68,6 +68,9 @@ Vector4 CLocalPlayer::GetQuaternion()
 
 void CLocalPlayer::SetModel(Hash model)
 {
+	int health = LocalPlayer->GetHealth();
+	int armour = LocalPlayer->GetArmour();
+
 	if (STREAMING::IS_MODEL_IN_CDIMAGE(model) && STREAMING::IS_MODEL_VALID(model))
 
 		STREAMING::REQUEST_MODEL(model);
@@ -76,6 +79,9 @@ void CLocalPlayer::SetModel(Hash model)
 	PLAYER::SET_PLAYER_MODEL(0, model);
 	STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(model);
 	playerPed = PLAYER::GET_PLAYER_PED(0);
+
+	SetHealth(health);
+	SetArmour(armour);
 }
 
 void CLocalPlayer::SendOnFootData()
