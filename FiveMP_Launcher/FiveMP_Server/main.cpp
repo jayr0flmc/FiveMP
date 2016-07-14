@@ -60,6 +60,7 @@ int main(void)
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
+	lua_register(sLUA, "ShowMessageToAll", ShowMessageToAll);
 
 	// Weapon
 	lua_register(sLUA, "GivePlayerWeapon", GivePlayerWeapon);
@@ -70,9 +71,8 @@ int main(void)
 	// Server
 	lua_register(sLUA, "GetTime", GetTime);
 	lua_register(sLUA, "SetTime", SetTime);
-
-	//World
 	lua_register(sLUA, "SetSpawnPoint", SetSpawnPoint);
+	lua_register(sLUA, "RemoveSpawnPoint", RemoveSpawnPoint);
 
 	OnGameModeInit(sLUA);
 

@@ -27,9 +27,3 @@ void CRenderDebug::RenderCoords()
 	sprintf(coorddata, "X = %f | Y = %f | Z = %f", LocalPlayer->GetCoords().x, LocalPlayer->GetCoords().y, LocalPlayer->GetCoords().z);
 	draw_text(0.750f, 0.975f, coorddata, { 255, 255, 255, 255 });
 }
-
-void CRenderDebug::RenderMoney() {
-	char corddata[64];
-	sprintf(corddata, "Money: ~g~$%i", LocalPlayer->playerMoney);
-	draw_text(0.850f, 0.002f, corddata, { 255, 255, 255, 255 });
-}
