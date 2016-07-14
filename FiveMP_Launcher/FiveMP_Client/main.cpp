@@ -31,17 +31,16 @@ void InitGameScript() {
 
 void RunGameScript() {
 	LocalPlayer = new CLocalPlayer;
+	LocalPlayer->Initialize();
 
 	while (true)
 	{
-		LocalPlayer->Initialize();
 		LocalPlayer->OnTick();
 
 		RenderDebug->RenderDate();
 		RenderDebug->RenderBlend();
 		RenderDebug->RenderVelocity();
 		RenderDebug->RenderCoords();
-		RenderDebug->RenderMoney();
 
 		if (NetworkManager->Listening) {
 			NetworkManager->Pulse();

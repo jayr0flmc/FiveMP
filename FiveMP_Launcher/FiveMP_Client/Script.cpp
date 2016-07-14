@@ -55,12 +55,24 @@ void RemovePlayerAmmo(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 // -- MONEY --
 void SetPlayerMoney(RakNet::BitStream* bitStream, RakNet::Packet *packet) {
 	int playerid;
-	int ammount;
+	int amount;
 
 	bitStream->Read(playerid);
-	bitStream->Read(ammount);
+	bitStream->Read(amount);
 
-	LocalPlayer->playerMoney = ammount;
+	LocalPlayer->playerMoney = amount;
+	UI::_SET_SINGLEPLAYER_HUD_CASH(amount, amount);
+
+	for (int i = 0; i < 3; i++)
+	{
+		char statNameFull[32];
+		sprintf_s(statNameFull, "SP%d_TOTAL_CASH", i);
+		Hash hash = GAMEPLAY::GET_HASH_KEY(statNameFull);
+		int val;
+		STATS::STAT_GET_INT(hash, &val, -1);
+		val = amount;
+		STATS::STAT_SET_INT(hash, val, 1);
+	}
 }
 
 // -- POSITION --
