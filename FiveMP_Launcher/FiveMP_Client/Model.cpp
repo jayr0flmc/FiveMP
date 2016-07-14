@@ -81,6 +81,7 @@ Hash GetModelHashFromModelID(int modelid) {
 }
 
 void UpdatePedModel(int playerid) {
+
 	PED::DELETE_PED(&playerData[playerid].pedPed);
 
 	if (STREAMING::IS_MODEL_IN_CDIMAGE(playerData[playerid].pedModel) && STREAMING::IS_MODEL_VALID(playerData[playerid].pedModel))
