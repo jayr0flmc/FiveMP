@@ -121,3 +121,14 @@ void SetPlayerMaxNickDrawDistance(RakNet::BitStream * bitStream, RakNet::Packet 
 
 	LocalPlayer->maxNickDrawDistance = distance;
 }
+
+void SetPlayerModel(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int playerid;
+	int modelid;
+
+	bitStream->Read(playerid);
+	bitStream->Read(modelid);
+
+	LocalPlayer->SetModel(GetModelHashFromModelID(modelid));
+}

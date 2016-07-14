@@ -369,3 +369,35 @@ int SetPlayerMaxNickDrawDistance(lua_State* state) {
 
 	return 0;
 }
+
+int SetPlayerModel(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetPlayerModel() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	int modelid = lua_tointeger(state, 2);
+
+	playerData[playerid].pedModel = modelid;
+
+	RakNet::BitStream sSetPlayerModel;
+	sSetPlayerModel.Write(playerid);
+	sSetPlayerModel.Write(modelid);
+	NetworkManager->rpc.Signal("SetPlayerModel", &sSetPlayerModel, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+
+	return 0;
+}
+
+int GetPlayerModel(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("GetPlayerModel() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+
+	lua_pushinteger(state, playerData[playerid].pedModel);
+
+	return 1;
+}

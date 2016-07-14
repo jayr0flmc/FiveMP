@@ -11,7 +11,6 @@ function OnGameModeExit()
 end
 
 function OnPlayerConnect(playerid)
-	GivePlayerWeapon(playerid, "Pistol", 45);
 	ShowMessageToPlayer(playerid, "Welcome to this ~b~FiveMP ~w~server!");
 	ShowMessageToPlayer(playerid, "Your player ID is ~b~" .. playerid);
 	
@@ -24,6 +23,9 @@ function OnPlayerConnect(playerid)
 	
 	SetPlayerHealth(playerid, 100);
 	SetPlayerArmour(playerid, 50);
+	
+	SetPlayerModel(playerid, 23);
+	GivePlayerWeapon(playerid, "Firework", 45);
 	return 1;
 end
 
@@ -34,6 +36,8 @@ end
 
 function OnPlayerSpawn(playerid)
 	print(playerid .. " Spawned");
+	
+	SetPlayerModel(playerid, 24);
 end
 
 function OnPlayerDeath(playerid)

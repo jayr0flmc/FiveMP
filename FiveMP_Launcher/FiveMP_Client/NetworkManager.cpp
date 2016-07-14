@@ -187,6 +187,8 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 	playerData[tempplyrid].oldy = playerData[tempplyrid].y;
 	playerData[tempplyrid].oldz = playerData[tempplyrid].z;
 
+	Hash oldModel = playerData[tempplyrid].pedModel;
+
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedType);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedModel);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedHealth);
@@ -218,6 +220,11 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 
 	//if (tempplyrid != playerid) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
+
+			if (oldModel != playerData[tempplyrid].pedModel) {
+				UpdatePedModel(tempplyrid);
+			}
+
 			/*float tempz;
 
 			GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, &tempz, 1);

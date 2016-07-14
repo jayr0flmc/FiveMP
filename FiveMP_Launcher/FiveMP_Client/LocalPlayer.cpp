@@ -67,6 +67,18 @@ Vector4 CLocalPlayer::GetQuaternion()
 	return rotation;
 }
 
+void CLocalPlayer::SetModel(Hash model)
+{
+	if (STREAMING::IS_MODEL_IN_CDIMAGE(model) && STREAMING::IS_MODEL_VALID(model))
+
+		STREAMING::REQUEST_MODEL(model);
+	while (!STREAMING::HAS_MODEL_LOADED(model))
+		WAIT(0);
+	PLAYER::SET_PLAYER_MODEL(0, model);
+	STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(model);
+	playerPed = PLAYER::GET_PLAYER_PED(0);
+}
+
 void CLocalPlayer::SendOnFootData()
 {
 	RakNet::BitStream PlayerBitStream_send;
