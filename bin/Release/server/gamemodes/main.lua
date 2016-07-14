@@ -28,7 +28,7 @@ function OnPlayerConnect(playerid)
 	SetPlayerHealth(playerid, 100);
 	SetPlayerArmour(playerid, 50);
 	
-	SetPlayerSkin(playerid, 0);
+	SetPlayerModel(playerid, 4);
 	return 1;
 end
 
