@@ -28,7 +28,7 @@ class VehiclePool
 public:
 	int VehicleAmount;
 
-	int AddToVehiclePool(float x, float y, float z, float heading, int color1, int color2, bool respawn, int respawndelay);
+	int AddToVehiclePool(const char *modelname, float x, float y, float z, float heading, int color1, int color2, bool respawn, int respawndelay);
 	void RemoveFromVehiclePool(int id);
 };
 
@@ -82,6 +82,7 @@ extern spawnPool spawnData[50];
 struct vehiclePool {
 	int vehicleid;							// Vehicle ID (server)
 
+	const char *spawnvehicleModel;			// Vehicle Model in const char
 	Hash vehicleModel;						// Vehicle Model in Hash
 	int vehicleHealth;						// Vehicle Health
 

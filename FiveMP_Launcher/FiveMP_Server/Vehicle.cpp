@@ -10,12 +10,14 @@ SVehicle::~SVehicle()
 
 void SVehicle::SpawnVehicles(int playerid)
 {
-	for (int i = 0; i < sizeof(vehicleData) / sizeof(*vehicleData); i++) {
+	for (int i = 0; i < 100; i++) {
 		if (vehicleData[i].used == true) {
+
+			RakNet::RakString vehiclename = vehicleData[i].spawnvehicleModel;
 
 			RakNet::BitStream sCreateVehicle;
 			sCreateVehicle.Write(vehicleData[i].vehicleid);
-			sCreateVehicle.Write(vehicleData[i].vehicleModel);
+			sCreateVehicle.Write(vehiclename);
 			sCreateVehicle.Write(vehicleData[i].x);
 			sCreateVehicle.Write(vehicleData[i].y);
 			sCreateVehicle.Write(vehicleData[i].z);

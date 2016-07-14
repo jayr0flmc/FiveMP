@@ -6,35 +6,17 @@ int CreateVehicle(lua_State* state)
 
 	printf("CreateVehicle() was called with %d arguments:\n", args);
 
-	int playerid = lua_tointeger(state, 1);
-	const char *name = lua_tostring(state, 2);
-	float x = lua_tonumber(state, 3);
-	float y = lua_tonumber(state, 4);
-	float z = lua_tonumber(state, 5);
-	float heading = lua_tonumber(state, 6);
-	int color1 = lua_tointeger(state, 7);
-	int color2 = lua_tointeger(state, 8);
-	bool respawn = lua_toboolean(state, 9);
-	int respawndelay = lua_tointeger(state, 10);
+	const char *name = lua_tostring(state, 1);
+	float x = lua_tonumber(state, 2);
+	float y = lua_tonumber(state, 3);
+	float z = lua_tonumber(state, 4);
+	float heading = lua_tonumber(state, 5);
+	int color1 = lua_tointeger(state, 6);
+	int color2 = lua_tointeger(state, 7);
+	bool respawn = lua_toboolean(state, 8);
+	int respawndelay = lua_tointeger(state, 9);
 
-	int vehicleid = vehiclesPool.AddToVehiclePool( x, y, z, heading, color1, color2, respawn, respawndelay);
-
-	/*
-	RakNet::RakString vehiclename = name;
-
-	RakNet::BitStream sCreateVehicle;
-	sCreateVehicle.Write(vehicleid);
-	sCreateVehicle.Write(vehiclename);
-	sCreateVehicle.Write(x);
-	sCreateVehicle.Write(y);
-	sCreateVehicle.Write(z);
-	sCreateVehicle.Write(heading);
-	sCreateVehicle.Write(color1);
-	sCreateVehicle.Write(color2);
-	sCreateVehicle.Write(respawn);
-	sCreateVehicle.Write(respawndelay);
-	NetworkManager->rpc.Signal("CreateVehicle", &sCreateVehicle, HIGH_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
-	*/
+	int vehicleid = vehiclesPool.AddToVehiclePool(name, x, y, z, heading, color1, color2, respawn, respawndelay);
 
 	lua_pushinteger(state, vehicleid);
 
