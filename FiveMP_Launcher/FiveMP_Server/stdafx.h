@@ -51,6 +51,7 @@ using namespace RakNet;
 // Functions
 #include "server.h"
 #include "player.h"
+#include "vehicle.h"
 
 // Scripting (LUA)
 #include <lua.hpp>
@@ -78,3 +79,4 @@ extern SNetworkManager	*NetworkManager;
 extern SRPCManager		*RPCManager;
 extern SConfig			*Config;
 extern SPlayer			*PlayerManager;
+extern SVehicle			*VehicleManager;

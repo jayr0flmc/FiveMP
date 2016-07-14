@@ -28,7 +28,7 @@ class VehiclePool
 public:
 	int VehicleAmount;
 
-	int AddToVehiclePool();
+	int AddToVehiclePool(float x, float y, float z, float heading, int color1, int color2, bool respawn, int respawndelay);
 	void RemoveFromVehiclePool(int id);
 };
 
@@ -101,6 +101,9 @@ struct vehiclePool {
 	float vx;								// Velocity X coord
 	float vy;								// Velocity Y coord
 	float vz;								// Velocity Z coord
+
+	bool respawn;							// Whether the vehicle should respawn
+	int respawndelay;						// Delay till vehicle respawns when unused (variable not used yet)
 
 	bool used = false;						// Whether the vehicle slot is in use or not.
 };
