@@ -182,6 +182,19 @@ void CreateVehicle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	vehicle.CreateVehicle(vehicleid, vehiclename, tempcoords, vehicleData[vehicleid].r, vehicleData[vehicleid].vehicleColor1, vehicleData[vehicleid].vehicleColor2, vehicleData[vehicleid].respawn, vehicleData[vehicleid].respawndelay);
 }
 
+void SetVehicleColor(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int vehicleid;
+	int color1;
+	int color2;
+
+	bitStream->Read(vehicleid);
+	bitStream->Read(color1);
+	bitStream->Read(color2);
+
+	vehicle.SetVehicleColor(vehicleid, color1, color2);
+}
+
 void SetPedComponentVariation(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 {
 	int playerid;

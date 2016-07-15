@@ -36,3 +36,25 @@ int RemoveVehicle(lua_State* state)
 	return 0;
 }
 
+int SetVehicleColor(lua_State* state)
+{
+	int args = lua_gettop(state);
+
+	printf("SetVehicleColor() was called with %d arguments:\n", args);
+
+	int vehicleid = lua_tonumber(state, 1);
+	int color1 = lua_tonumber(state, 2);
+	int color2 = lua_tonumber(state, 3);
+
+	vehicleData[vehicleid].vehicleColor1 = color1;
+	vehicleData[vehicleid].vehicleColor2 = color2;
+
+	RakNet::BitStream sVehicleColor;
+	sVehicleColor.Write(vehicleid);
+	sVehicleColor.Write(color1);
+	sVehicleColor.Write(color2);
+	NetworkManager->rpc.Signal("SetVehicleColor", &sVehicleColor, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, false, false);
+
+	return 0;
+}
+

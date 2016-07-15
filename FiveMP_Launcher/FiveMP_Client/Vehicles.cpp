@@ -19,3 +19,17 @@ bool GameVehicle::CreateVehicle(int vehicleid, char *modelname, Vector3 coords, 
 	}
 	return 0;
 }
+
+bool GameVehicle::SetVehicleColor(int vehicleid, int color1, int color2)
+{
+	if (ENTITY::DOES_ENTITY_EXIST(vehicleData[vehicleid].vehicleVehicle))
+	{
+		VEHICLE::SET_VEHICLE_COLOURS(vehicleData[vehicleid].vehicleVehicle, color1, color2);
+
+		vehicleData[vehicleid].vehicleColor1 = color1;
+		vehicleData[vehicleid].vehicleColor2 = color2;
+
+		return 1;
+	}
+	return 0;
+}
