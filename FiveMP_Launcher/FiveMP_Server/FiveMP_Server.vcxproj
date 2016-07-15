@@ -43,6 +43,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="sPool.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="callbacks.cpp">
@@ -115,6 +116,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Vehicle.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ico2n1.ico" />

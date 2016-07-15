@@ -267,3 +267,14 @@ void HideBlipFromPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 		}
 	}
 }
+
+void SetTime(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
+	int hour;
+	int minute;
+	int seconds;
+	bitStream->Read(hour);
+	bitStream->Read(minute);
+	bitStream->Read(seconds);
+
+	world.SetTime(hour, minute, seconds);
+}

@@ -5,6 +5,7 @@ SRPCManager		*RPCManager;
 SConfig			*Config;
 SPlayer			*PlayerManager;
 SVehicle		*VehicleManager;
+SWorld			*WorldManager;
 
 int userAmount, vehicleAmount;
 char userGuid;
@@ -35,6 +36,7 @@ int main(void)
 	RPCManager->RegisterRPCs();
 	PlayerManager = new SPlayer;
 	VehicleManager = new SVehicle;
+	WorldManager = new SWorld;
 
 	sLUA = luaL_newstate();
 	luaL_openlibs(sLUA);
@@ -103,6 +105,8 @@ int main(void)
 	{
 		NetworkManager->Pulse();
 		PlayerManager->Player();
+		if(!Config->ServerTimeFreeze)
+			WorldManager->UpdateTime();
 
 		if (_kbhit())
 		{

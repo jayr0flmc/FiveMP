@@ -28,3 +28,7 @@ void GameWorld::CleanUp() {
 		}
 	}
 }
+
+void GameWorld::SetTime(int hour, int minute, int seconds) {
+	TIME::SET_CLOCK_TIME(hour, minute, seconds);
+}
