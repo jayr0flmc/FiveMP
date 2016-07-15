@@ -4,7 +4,7 @@ void CRenderDebug::RenderDate()
 {
 	char alphadata[128];
 	sprintf(alphadata, "Five~r~MP~w~ Alpha | %s - %s", __DATE__, __TIME__);
-	draw_text(0.002f, 0.002f, alphadata, { 255, 255, 255, 255 });
+	draw_text(0.402f, 0.002f, alphadata, { 255, 255, 255, 255 });
 }
 
 void CRenderDebug::RenderBlend()
@@ -26,10 +26,4 @@ void CRenderDebug::RenderCoords()
 	char coorddata[64];
 	sprintf(coorddata, "X = %f | Y = %f | Z = %f", LocalPlayer->GetCoords().x, LocalPlayer->GetCoords().y, LocalPlayer->GetCoords().z);
 	draw_text(0.750f, 0.975f, coorddata, { 255, 255, 255, 255 });
-}
-
-void CRenderDebug::RenderMoney() {
-	char corddata[64];
-	sprintf(corddata, "Money: ~g~$%i", LocalPlayer->playerMoney);
-	draw_text(0.850f, 0.002f, corddata, { 255, 255, 255, 255 });
 }

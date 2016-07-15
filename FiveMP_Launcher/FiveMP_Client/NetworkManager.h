@@ -9,9 +9,11 @@ public:
 	bool Disconnect();
 	void Pulse();
 	void HandlePlayerSync(Packet *p);
+	void HandleVehicleSync(Packet *p);
 	void DropPlayer(Packet *p);
 
 	void SyncOnFoot();
+	void SyncVehicle();
 
 	RPC4 rpc;
 	RakNet::RakPeerInterface *client;
@@ -28,6 +30,6 @@ public:
 	int time_minute;
 	bool time_pause;
 
-	bool sync_test;
+	bool sync_test = true;
 };
 

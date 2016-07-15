@@ -65,6 +65,8 @@ using namespace RakNet;
 #include "Weapon.h"
 #include "Vehicles.h"
 #include "World.h"
+#include "Model.h"
+#include "Blips.h"
 
 // Math
 #include "CMath.h"
@@ -78,11 +80,13 @@ using namespace RakNet;
 #include "NetworkManager.h"
 #include "PlayerPed.h"
 #include "LocalPlayer.h"
+#include "LocalVehicle.h"
 #include "RPCManager.h"
 #include "Script.h"
 #include "PlayerPool.h"
 
 // Interface
+#include "Chat.h"
 #include "RenderDebug.h"
 #include "Render.h"
 
@@ -102,6 +106,8 @@ extern MODULEINFO	g_MainModuleInfo;
 extern CNetworkManager	*NetworkManager;
 extern CRPCManager		*RPCManager;
 extern CLocalPlayer		*LocalPlayer;
+extern CLocalVehicle	*LocalVehicle;
 extern CConfig			*Config;
+extern CChat			*Chat;
 extern CRenderDebug		*RenderDebug;
 extern CRender			*Render;

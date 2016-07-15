@@ -2,6 +2,7 @@
 
 int GivePlayerWeapon(lua_State* state);
 int RemovePlayerWeapon(lua_State* state);
+int RemovePlayerWeapons(lua_State* state);
 int GivePlayerAmmo(lua_State* state);
 int RemovePlayerAmmo(lua_State* state);
 int SetPlayerMoney(lua_State* state);
@@ -21,3 +22,7 @@ int SetPlayerArmour(lua_State* state);
 int GetPlayerArmour(lua_State* state);
 int SetTime(lua_State* state);
 int GetTime(lua_State* state);
+int SetPlayerMaxNickDrawDistance(lua_State* state);
+int SetPlayerModel(lua_State* state);
+int GetPlayerModel(lua_State* state);
+int SetPedComponentVariation(lua_State* state);

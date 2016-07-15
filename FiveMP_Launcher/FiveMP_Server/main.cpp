@@ -3,13 +3,17 @@
 SNetworkManager *NetworkManager;
 SRPCManager		*RPCManager;
 SConfig			*Config;
-SPlayer *PlayerManager;
+SPlayer			*PlayerManager;
+SVehicle		*VehicleManager;
+SWorld			*WorldManager;
 
 int userAmount, vehicleAmount;
 char userGuid;
 
 playerPool playerData[100];
 spawnPool spawnData[50];
+vehiclePool vehicleData[150];
+blipPool blipData[100];
 
 int main(void)
 {
@@ -31,14 +35,16 @@ int main(void)
 	RPCManager = new SRPCManager;
 	RPCManager->RegisterRPCs();
 	PlayerManager = new SPlayer;
+	VehicleManager = new SVehicle;
+	WorldManager = new SWorld;
 
 	sLUA = luaL_newstate();
 	luaL_openlibs(sLUA);
 	luaL_dofile(sLUA, tempgamemode);
 
 	// Player
-	lua_register(sLUA, "SetPlayerUsername", SetPlayerUsername);
-	lua_register(sLUA, "GetPlayerUsername", GetPlayerUsername);
+	lua_register(sLUA, "SetPlayerName", SetPlayerName);
+	lua_register(sLUA, "GetPlayerName", GetPlayerName);
 	lua_register(sLUA, "SetPlayerMoney", SetPlayerMoney);
 	lua_register(sLUA, "GivePlayerMoney", GivePlayerMoney);
 	lua_register(sLUA, "GetPlayerMoney", GetPlayerMoney);
@@ -54,22 +60,45 @@ int main(void)
 	lua_register(sLUA, "GetPlayerHealth", GetPlayerHealth);
 	lua_register(sLUA, "SetPlayerArmour", SetPlayerArmour);
 	lua_register(sLUA, "GetPlayerArmour", GetPlayerArmour);
+	lua_register(sLUA, "SetPlayerMaxTagDrawDistance", SetPlayerMaxNickDrawDistance);
+	lua_register(sLUA, "SetPlayerModel", SetPlayerModel);
+	lua_register(sLUA, "GetPlayerModel", GetPlayerModel);
+	lua_register(sLUA, "IsPlayerConnected", IsPlayerConnected);
+	lua_register(sLUA, "SetPlayerComponentVariation", SetPedComponentVariation);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
+	lua_register(sLUA, "ShowMessageToAll", ShowMessageToAll);
+	lua_register(sLUA, "SendMessageToPlayer", SendMessageToPlayer);
 
 	// Weapon
 	lua_register(sLUA, "GivePlayerWeapon", GivePlayerWeapon);
 	lua_register(sLUA, "RemovePlayerWeapon", RemovePlayerWeapon);
+	lua_register(sLUA, "RemovePlayerWeapons", RemovePlayerWeapons);
 	lua_register(sLUA, "GivePlayerAmmo", GivePlayerAmmo);
 	lua_register(sLUA, "RemovePlayerAmmo", RemovePlayerAmmo);
 
 	// Server
 	lua_register(sLUA, "GetTime", GetTime);
 	lua_register(sLUA, "SetTime", SetTime);
-
-	//World
 	lua_register(sLUA, "SetSpawnPoint", SetSpawnPoint);
+	lua_register(sLUA, "RemoveSpawnPoint", RemoveSpawnPoint);
+
+	// Vehicle
+	lua_register(sLUA, "CreateVehicle", CreateVehicle);
+	lua_register(sLUA, "RemoveVehicle", RemoveVehicle);
+	lua_register(sLUA, "SetVehicleColor", SetVehicleColor);
+
+	//Blips
+	lua_register(sLUA, "CreateBlip", CreateBlip);
+	lua_register(sLUA, "SetBlipLocationType", SetBlipLocationType);
+	lua_register(sLUA, "ShowBlipForPlayer", ShowBlipForPlayer);
+	lua_register(sLUA, "HideBlipForPlayer", HideBlipForPlayer);
+	lua_register(sLUA, "RemoveBlip", RemoveBlip);
+	lua_register(sLUA, "SetBlipColor", SetBlipColor);
+
+	lua_register(sLUA, "RemoveDefaultBlipFromPlayer", RemoveDefaultBlipFromPlayer);
+	lua_register(sLUA, "IsDefaultBlipRemovedFromPlayer", IsDefaultBlipRemovedFromPlayer);
 
 	OnGameModeInit(sLUA);
 
@@ -79,6 +108,8 @@ int main(void)
 	{
 		NetworkManager->Pulse();
 		PlayerManager->Player();
+		if(!Config->ServerTimeFreeze)
+			WorldManager->UpdateTime();
 
 		if (_kbhit())
 		{

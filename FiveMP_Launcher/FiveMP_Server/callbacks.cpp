@@ -40,7 +40,7 @@ int OnPlayerConnect(lua_State * state, int playerid)
 
 	lua_getglobal(state, "OnPlayerConnect");
 
-	lua_pushnumber(state, playerid);
+	lua_pushinteger(state, playerid);
 
 	lua_call(state, 1, 1);
 
@@ -58,7 +58,7 @@ int OnPlayerDisconnect(lua_State * state, int playerid)
 
 	lua_getglobal(state, "OnPlayerDisconnect"); // <---Change it on main.lua
 
-	lua_pushnumber(state, playerid);
+	lua_pushinteger(state, playerid);
 
 	lua_call(state, 1, 1);
 
@@ -76,7 +76,7 @@ int OnPlayerSpawn(lua_State * state, int playerid)
 
 	lua_getglobal(state, "OnPlayerSpawn");
 
-	lua_pushnumber(state, playerid);
+	lua_pushinteger(state, playerid);
 
 	lua_call(state, 1, 1);
 
@@ -94,7 +94,7 @@ int OnPlayerDeath(lua_State * state, int playerid)
 
 	lua_getglobal(state, "OnPlayerDeath");
 
-	lua_pushnumber(state, playerid);
+	lua_pushinteger(state, playerid);
 
 	lua_call(state, 1, 1);
 
