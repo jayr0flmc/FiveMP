@@ -1318,7 +1318,10 @@ enum eWeapon : DWORD
 	WeaponGarbageBag = 0xE232C28C,
 	WeaponHandcuffs = 0xD04C944D,
 	WeaponMarksmanPistol = 0xDC4DB296,
-	WeaponKnuckle = 0xD8DF3C3C
+	WeaponKnuckle = 0xD8DF3C3C,
+	WeaponFlashlight = 2343591895,
+	WeaponSwitchblade = 3756226112,
+	WeaponMachete = 3713923289,
 };
 
 enum eWeaponGroup : DWORD
