@@ -8,6 +8,6 @@ public:
 	~CChat();
 
 	void Render();
-	void Input(WCHAR key);
+	void Input();
 	void AddChatMessage(char string[128]);
 };

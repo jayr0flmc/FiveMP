@@ -24,7 +24,7 @@ void CChat::Render()
 	}
 }
 
-void CChat::Input(WCHAR key)
+void CChat::Input()
 {
 	if (open == true) {
 		if (IsKeyJustUp(VK_ESCAPE)) {

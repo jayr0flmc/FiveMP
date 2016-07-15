@@ -26,21 +26,6 @@ void CLocalPlayer::Initialize()
 		playerInitialized = true;
 
 		GAMEPLAY::SET_MISSION_FLAG(true);
-
-		const int ARR_SIZE = 1024;
-		Vehicle vehicles[ARR_SIZE];
-		Ped peds[ARR_SIZE];
-		Pickup pickups[ARR_SIZE];
-
-		for (int i; i < 1000; i++) {
-			if (VEHICLE::DOES_SCRIPT_VEHICLE_GENERATOR_EXIST(i)) {
-				VEHICLE::DELETE_SCRIPT_VEHICLE_GENERATOR(i);
-			}
-		}
-
-		worldGetAllVehicles(vehicles, ARR_SIZE);
-		worldGetAllPeds(peds, ARR_SIZE);
-		worldGetAllPickups(pickups, ARR_SIZE);
 	}
 }
 
@@ -56,7 +41,7 @@ void CLocalPlayer::OnTick()
 	VEHICLE::SET_NUMBER_OF_PARKED_VEHICLES(-1);
 	VEHICLE::SET_ALL_LOW_PRIORITY_VEHICLE_GENERATORS_ACTIVE(false);
 	VEHICLE::SET_VEHICLE_DENSITY_MULTIPLIER_THIS_FRAME(0.0);
-	VEHICLE::REMOVE_VEHICLES_FROM_GENERATORS_IN_AREA(-9999.0f, -9999.0f, -9999.0f, 9999.0f, 9999.0f, 9999.0f, true);
+	VEHICLE::REMOVE_VEHICLES_FROM_GENERATORS_IN_AREA(-9999.0f, -9999.0f, -9999.0f, 9999.0f, 9999.0f, 9999.0f, false);
 
 	PED::SET_CREATE_RANDOM_COPS_NOT_ON_SCENARIOS(false);
 	PED::SET_CREATE_RANDOM_COPS(false);

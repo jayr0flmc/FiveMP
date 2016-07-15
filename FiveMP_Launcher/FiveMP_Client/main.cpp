@@ -16,13 +16,6 @@ CRender			*Render;
 
 HMODULE		FiveMP_Module;
 
-void inputloop() {
-	/*while (true) {
-		Chat->Input();
-		WAIT(0);
-	}*/
-}
-
 void InitGameScript() {
 	Config = new CConfig;
 
