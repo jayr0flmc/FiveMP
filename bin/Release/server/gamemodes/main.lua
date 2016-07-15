@@ -3,9 +3,10 @@ function OnGameModeInit()
 	SetSpawnPoint(-817.657, 178.111, 75.0);
 	SetSpawnPoint(-640.183, 297.111, 91.0);
 	
-	CreateVehicle("adder", -3.0, 6.0, 72.0, 360.0, 5, 10, true, 500);
-	CreateVehicle("banshee", -6.0, 8.0, 72.0, 360.0, 5, 10, true, 500);
-	vehicle = CreateVehicle("infernus", -9.0, 10.0, 72.0, 360.0, 5, 10, true, 500);
+	CreateVehicle("Adder", -3.0, 6.0, 73.0, 360.0, 5, 10, true, 500);
+	CreateVehicle("Police", -6.0, 8.0, 73.0, 360.0, 5, 10, true, 500);
+	CreateVehicle("Voltic", -9.0, 10.0, 73.0, 360.0, 5, 10, true, 500);
+	vehicle = CreateVehicle("Gargoyle", -12.0, 12.0, 73.0, 360.0, 5, 10, true, 500);
 	
 	blip = CreateBlip();
 	SetBlipLocationType(blip, 1, vehicle);

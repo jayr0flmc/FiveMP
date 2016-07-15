@@ -31,7 +31,7 @@ public:
 	void	SetHealth(int health) { ENTITY::SET_ENTITY_HEALTH(playerPed, health + 100); };
 	void	SetArmour(int armour) { PED::SET_PED_ARMOUR(playerPed, armour); };
 
-	void SetModel(Hash model);
+	void	SetModel(Hash model);
 
 	void	SendOnFootData();
 	void	SendSyncRequest();

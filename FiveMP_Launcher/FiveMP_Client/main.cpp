@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 playerPool playerData[128];
-vehiclePool vehicleData[100];
+vehiclePool vehicleData[125];
 blipPool blipData[100];
 
 CNetworkManager *NetworkManager;
@@ -55,11 +55,10 @@ void RunGameScript() {
 					if (LocalPlayer->GetVehicle() >= 0) {
 						delete LocalVehicle;
 						LocalVehicle = new CLocalVehicle;
-
-						//printf("%d\n", LocalPlayer->GetVehicle());
 						LocalVehicle->SendVehicleData();
 					}
 					NetworkManager->SyncOnFoot();
+					NetworkManager->SyncVehicle();
 					Render->RenderNametags();
 				}
 			}

@@ -52,6 +52,10 @@ struct vehiclePool {
 	int vehicleColor1;						// Vehicle Color 1
 	int vehicleColor2;						// Vehicle Color 2
 
+	float oldx;
+	float oldy;
+	float oldz;
+
 	float x;								// Position X coord
 	float y;								// Position Y coord
 	float z;								// Position Z coord
@@ -72,9 +76,11 @@ struct vehiclePool {
 	float screen_x;							// 2D X coord
 	float screen_y;							// 2D Y coord
 
+	clock_t tickssince;
+
 	bool used = false;						// Whether the vehicle slot is in use or not.
 };
-extern vehiclePool vehicleData[100];
+extern vehiclePool vehicleData[125];
 
 struct blipPool {
 	int serverID;

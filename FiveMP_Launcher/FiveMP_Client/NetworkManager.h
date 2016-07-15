@@ -13,6 +13,7 @@ public:
 	void DropPlayer(Packet *p);
 
 	void SyncOnFoot();
+	void SyncVehicle();
 
 	RPC4 rpc;
 	RakNet::RakPeerInterface *client;

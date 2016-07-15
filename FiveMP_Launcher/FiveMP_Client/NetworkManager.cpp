@@ -293,12 +293,14 @@ void CNetworkManager::HandleVehicleSync(Packet * p)
 
 	VehicleBitStream_receive.Read(temptimestamp);
 
+	vehicleData[tempvehicleid].tickssince = clock();
+
 	/*printf("%d | %x, %d | %f, %f, %f, | %f, %f, %f, %f, %f, | %f, %f, %f\n", tempvehicleid, vehicleData[tempvehicleid].vehicleModel, vehicleData[tempvehicleid].vehicleHealth,
 		vehicleData[tempvehicleid].x, vehicleData[tempvehicleid].y, vehicleData[tempvehicleid].z, vehicleData[tempvehicleid].r, vehicleData[tempvehicleid].rx, vehicleData[tempvehicleid].ry,
 		vehicleData[tempvehicleid].rz, vehicleData[tempvehicleid].rw, vehicleData[tempvehicleid].vx, vehicleData[tempvehicleid].vy, vehicleData[tempvehicleid].vz);*/
 
-	ENTITY::SET_ENTITY_COORDS(vehicleData[tempvehicleid].vehicleVehicle, vehicleData[tempvehicleid].x, vehicleData[tempvehicleid].y, vehicleData[tempvehicleid].z, 0, 0, 0, 0);
-	ENTITY::SET_ENTITY_QUATERNION(vehicleData[tempvehicleid].vehicleVehicle, vehicleData[tempvehicleid].rx, vehicleData[tempvehicleid].ry, vehicleData[tempvehicleid].rz, vehicleData[tempvehicleid].rw);
+	//ENTITY::SET_ENTITY_COORDS(vehicleData[tempvehicleid].vehicleVehicle, vehicleData[tempvehicleid].x, vehicleData[tempvehicleid].y, vehicleData[tempvehicleid].z, 0, 0, 0, 0);
+	//ENTITY::SET_ENTITY_QUATERNION(vehicleData[tempvehicleid].vehicleVehicle, vehicleData[tempvehicleid].rx, vehicleData[tempvehicleid].ry, vehicleData[tempvehicleid].rz, vehicleData[tempvehicleid].rw);
 }
 
 float ttlerp(float v0, float v1, float t) {
@@ -307,7 +309,7 @@ float ttlerp(float v0, float v1, float t) {
 
 void CNetworkManager::SyncOnFoot()
 {
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 25; i++) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[i].pedPed)) {
 			if (sync_test == true) {
 				CVector3 curpos1;
@@ -335,13 +337,51 @@ void CNetworkManager::SyncOnFoot()
 					ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, updpos.fX, updpos.fY, updpos.fZ, 0, 0, 0, 0);
 					ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
 				}
-				else {
-					printf("packet updated too quickly!\n");
-				}
 			}
 			else {
 				ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, playerData[i].x, playerData[i].y, playerData[i].z, 0, 0, 0, 0);
 				ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
+			}
+		}
+	}
+}
+
+void CNetworkManager::SyncVehicle()
+{
+	for (int i = 0; i < 25; i++) {
+		if (ENTITY::DOES_ENTITY_EXIST(vehicleData[i].vehicleVehicle)) {
+			if (vehicleData[i].vehicleVehicle != PED::GET_VEHICLE_PED_IS_IN(LocalPlayer->playerPed, false)) {
+				if (sync_test == true) {
+					CVector3 curpos1;
+					curpos1.fX = vehicleData[i].oldx;
+					curpos1.fY = vehicleData[i].oldy;
+					curpos1.fZ = vehicleData[i].oldz;
+
+					CVector3 newpos;
+					newpos.fX = vehicleData[i].x;
+					newpos.fY = vehicleData[i].y;
+					newpos.fZ = vehicleData[i].z;
+
+					clock_t now = clock();
+					float elapsedTime = now - vehicleData[i].tickssince;
+					float progress = elapsedTime / 15.6f;
+
+					if (progress <= 1.0) {
+						CVector3 updpos;
+						updpos.fX = ttlerp(curpos1.fX, newpos.fX, progress);
+						updpos.fY = ttlerp(curpos1.fY, newpos.fY, progress);
+						updpos.fZ = ttlerp(curpos1.fZ, newpos.fZ, progress);
+
+						printf("%f | %f | %f/%f/%f\n", elapsedTime, progress, updpos.fX, updpos.fY, updpos.fZ);
+
+						ENTITY::SET_ENTITY_COORDS(vehicleData[i].vehicleVehicle, updpos.fX, updpos.fY, updpos.fZ, 0, 0, 0, 0);
+						ENTITY::SET_ENTITY_QUATERNION(vehicleData[i].vehicleVehicle, vehicleData[i].rx, vehicleData[i].ry, vehicleData[i].rz, vehicleData[i].rw);
+					}
+				}
+				else {
+					ENTITY::SET_ENTITY_COORDS(vehicleData[i].vehicleVehicle, vehicleData[i].x, vehicleData[i].y, vehicleData[i].z, 0, 0, 0, 0);
+					ENTITY::SET_ENTITY_QUATERNION(vehicleData[i].vehicleVehicle, vehicleData[i].rx, vehicleData[i].ry, vehicleData[i].rz, vehicleData[i].rw);
+				}
 			}
 		}
 	}
