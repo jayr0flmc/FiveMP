@@ -134,3 +134,39 @@ int SetBlipColor(lua_State * state)
 
 	return 0;
 }
+
+int RemoveDefaultBlipFromPlayer(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("RemoveDefaultBlipFromPlayer() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected) {
+		//We will send this with packets.
+		playerData[playerid].isDefaultBlipRemoved = true;
+
+		RakNet::BitStream sRemoveDefaultBlipForPlayer;
+		sRemoveDefaultBlipForPlayer.Write(playerid);
+		NetworkManager->rpc.Signal("RemoveDefaultBlipForPlayer", &sRemoveDefaultBlipForPlayer, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+	}
+
+	return 1;
+}
+
+int IsDefaultBlipRemovedFromPlayer(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("IsDefaultBlipRemovedFromPlayer() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected) {
+		lua_pushboolean(state, playerData[playerid].isDefaultBlipRemoved);
+	}
+	else {
+		lua_pushinteger(state, -1);
+	}
+
+	return 0;
+}

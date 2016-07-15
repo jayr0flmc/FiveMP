@@ -16,4 +16,13 @@ void sv_PlayerConnect(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 
 	OnPlayerConnect(sLUA, tempplayer);
 
+	for (int i = 0; i < 100; i++) {
+		if (playerData[i].isDefaultBlipRemoved) {
+
+			RakNet::BitStream sRemoveDefaultBlipForPlayer;
+			sRemoveDefaultBlipForPlayer.Write(i);
+			NetworkManager->rpc.Signal("RemoveDefaultBlipForPlayer", &sRemoveDefaultBlipForPlayer, HIGH_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(tempplayer), false, false);
+
+		}
+	}
 };

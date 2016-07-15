@@ -97,6 +97,9 @@ int main(void)
 	lua_register(sLUA, "RemoveBlip", RemoveBlip);
 	lua_register(sLUA, "SetBlipColor", SetBlipColor);
 
+	lua_register(sLUA, "RemoveDefaultBlipFromPlayer", RemoveDefaultBlipFromPlayer);
+	lua_register(sLUA, "IsDefaultBlipRemovedFromPlayer", IsDefaultBlipRemovedFromPlayer);
+
 	OnGameModeInit(sLUA);
 
 	char message[256];
