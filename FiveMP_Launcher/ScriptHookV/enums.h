@@ -1403,6 +1403,9 @@ enum ePickupType : DWORD
 	PickupTypeWeaponCrowbar = 0x872DC888,
 	PickupTypeWeaponGolfclub = 0x88EAACA7,
 	PickupTypeWeaponBottle = 0xFA51ABF5,
+	PickupTypeWeaponFlaregun = 0xBD4DE242,
+	PickupTypeWeaponVintagePistol = 0xEBF89D5F,
+	PickupTypeWeaponHandcuffKey = 0x094AA1CF,
 
 	PickupTypeVehicleWeaponPistol = 0xA54AE7B7,
 	PickupTypeVehicleWeaponCombatPistol = 0xD0AACEF7,
