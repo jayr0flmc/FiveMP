@@ -27,6 +27,7 @@ void CRPCManager::RegisterRPCs()
 	NetworkManager->rpc.RegisterSlot("SetPlayerMaxNickDrawDistance", SetPlayerMaxNickDrawDistance, 0);
 	NetworkManager->rpc.RegisterSlot("SetPlayerModel", SetPlayerModel, 0);
 	NetworkManager->rpc.RegisterSlot("CreateVehicle", CreateVehicle, 0);
+	NetworkManager->rpc.RegisterSlot("SetVehicleColor", SetVehicleColor, 0);
 	NetworkManager->rpc.RegisterSlot("RemovePlayerWeapons", RemovePlayerWeapons, 0);
 	NetworkManager->rpc.RegisterSlot("SetPedComponentVariation", SetPedComponentVariation, 0);
 	NetworkManager->rpc.RegisterSlot("ShowBlipForPlayer", ShowBlipForPlayer, 0);
