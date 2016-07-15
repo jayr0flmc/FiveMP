@@ -182,6 +182,15 @@ void CreateVehicle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	vehicle.CreateVehicle(vehicleid, vehiclename, tempcoords, vehicleData[vehicleid].r, vehicleData[vehicleid].vehicleColor1, vehicleData[vehicleid].vehicleColor2, vehicleData[vehicleid].respawn, vehicleData[vehicleid].respawndelay);
 }
 
+void RemoveVehicle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int vehicleid;
+
+	bitStream->Read(vehicleid);
+
+	vehicle.RemoveVehicle(vehicleid);
+}
+
 void SetVehicleColor(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 {
 	int vehicleid;

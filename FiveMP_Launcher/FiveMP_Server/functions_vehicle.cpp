@@ -20,6 +20,22 @@ int CreateVehicle(lua_State* state)
 
 	lua_pushinteger(state, vehicleid);
 
+
+	RakNet::RakString vehiclename = vehicleData[vehicleid].spawnvehicleModel;
+
+	RakNet::BitStream sCreateVehicle;
+	sCreateVehicle.Write(vehicleData[vehicleid].vehicleid);
+	sCreateVehicle.Write(vehiclename);
+	sCreateVehicle.Write(vehicleData[vehicleid].x);
+	sCreateVehicle.Write(vehicleData[vehicleid].y);
+	sCreateVehicle.Write(vehicleData[vehicleid].z);
+	sCreateVehicle.Write(vehicleData[vehicleid].r);
+	sCreateVehicle.Write(vehicleData[vehicleid].vehicleColor1);
+	sCreateVehicle.Write(vehicleData[vehicleid].vehicleColor2);
+	sCreateVehicle.Write(vehicleData[vehicleid].respawn);
+	sCreateVehicle.Write(vehicleData[vehicleid].respawndelay);
+	NetworkManager->rpc.Signal("CreateVehicle", &sCreateVehicle, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+
 	return 1;
 }
 
@@ -32,6 +48,10 @@ int RemoveVehicle(lua_State* state)
 	int vehicleid = lua_tonumber(state, 1);
 
 	vehiclesPool.RemoveFromVehiclePool(vehicleid);
+
+	RakNet::BitStream sRemoveVehicle;
+	sRemoveVehicle.Write(vehicleid);
+	NetworkManager->rpc.Signal("RemoveVehicle", &sRemoveVehicle, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
 
 	return 0;
 }
@@ -53,7 +73,7 @@ int SetVehicleColor(lua_State* state)
 	sVehicleColor.Write(vehicleid);
 	sVehicleColor.Write(color1);
 	sVehicleColor.Write(color2);
-	NetworkManager->rpc.Signal("SetVehicleColor", &sVehicleColor, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, false, false);
+	NetworkManager->rpc.Signal("SetVehicleColor", &sVehicleColor, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
 
 	return 0;
 }
