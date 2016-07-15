@@ -10,6 +10,7 @@ public:
 
 	int		ServerTimeHour;
 	int		ServerTimeMinute;
+	float	ServerTimeScale;
 	bool	ServerTimeFreeze;
 
 	void	Read();

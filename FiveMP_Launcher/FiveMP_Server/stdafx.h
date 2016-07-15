@@ -52,6 +52,7 @@ using namespace RakNet;
 #include "server.h"
 #include "player.h"
 #include "vehicle.h"
+#include "world.h"
 
 // Scripting (LUA)
 #include <lua.hpp>
@@ -80,3 +81,4 @@ extern SRPCManager		*RPCManager;
 extern SConfig			*Config;
 extern SPlayer			*PlayerManager;
 extern SVehicle			*VehicleManager;
+extern SWorld			*WorldManager;
