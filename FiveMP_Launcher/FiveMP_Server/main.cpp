@@ -90,6 +90,7 @@ int main(void)
 	lua_register(sLUA, "ShowBlipForPlayer", ShowBlipForPlayer);
 	lua_register(sLUA, "HideBlipForPlayer", HideBlipForPlayer);
 	lua_register(sLUA, "RemoveBlip", RemoveBlip);
+	lua_register(sLUA, "SetBlipColor", SetBlipColor);
 
 	OnGameModeInit(sLUA);
 

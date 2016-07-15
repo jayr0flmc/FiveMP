@@ -5,7 +5,11 @@ function OnGameModeInit()
 	
 	CreateVehicle("adder", -3.0, 6.0, 72.0, 360.0, 5, 10, true, 500);
 	CreateVehicle("banshee", -6.0, 8.0, 72.0, 360.0, 5, 10, true, 500);
-	CreateVehicle("infernus", -9.0, 10.0, 72.0, 360.0, 5, 10, true, 500);
+	vehicle = CreateVehicle("infernus", -9.0, 10.0, 72.0, 360.0, 5, 10, true, 500);
+	
+	blip = CreateBlip();
+	SetBlipLocationType(blip, 1, vehicle);
+	SetBlipColor(blip, 1);
 	
 	return 1;
 end
@@ -17,10 +21,10 @@ end
 
 function OnPlayerConnect(playerid)
 	ShowMessageToPlayer(playerid, "Welcome to this ~b~FiveMP ~w~server!");
-	ShowMessageToPlayer(playerid, "Your player ID is ~b~" .. math.floor(playerid));
+	ShowMessageToPlayer(playerid, "Your player ID is ~b~" .. playerid);
 	
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll("~b~" .. playername .. "(".. math.floor(playerid) .. ") ~w~has connected to the server.");
+	ShowMessageToAll("~b~" .. playername .. "(".. playerid .. ") ~w~has connected to the server.");
 	
 	SetPlayerPos(playerid, 0.0, 10.0, 70.5);
 	SetPlayerFacingAngle(playerid, 0.0);
@@ -39,22 +43,24 @@ function OnPlayerConnect(playerid)
 	
 	GivePlayerWeapon(playerid, "Pistol", 45);
 	
+	ShowBlipForPlayer(blip, playerid);
+	
 	return 1;
 end
 
 function OnPlayerDisconnect(playerid)
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll("~b~" .. playername .. "(".. math.floor(playerid) .. ") ~w~has left the server.");
+	ShowMessageToAll("~b~" .. playername .. "(".. playerid .. ") ~w~has left the server.");
 	print(playerid .. " has disconnected");
     return 1;
 end
 
 function OnPlayerSpawn(playerid)
-	print("~b~" .. math.floor(playerid) .. " has spawned");
+	print("~b~" .. playerid .. " has spawned");
 end
 
 function OnPlayerDeath(playerid)
 	playername = GetPlayerName(playerid);
 	ShowMessageToAll("~b~" .. playername .. "~w~ has died.");
-	print(math.floor(playerid) .. " has dide.");
+	print(playerid .. " has died.");
 end

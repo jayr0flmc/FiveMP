@@ -5,3 +5,4 @@ int SetBlipLocationType(lua_State* state);
 int ShowBlipForPlayer(lua_State* state);
 int HideBlipForPlayer(lua_State* state);
 int RemoveBlip(lua_State* state);
+int SetBlipColor(lua_State* state);

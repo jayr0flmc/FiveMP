@@ -66,6 +66,7 @@ using namespace RakNet;
 #include "Vehicles.h"
 #include "World.h"
 #include "Model.h"
+#include "Blips.h"
 
 // Math
 #include "CMath.h"

@@ -71,6 +71,7 @@ int ShowBlipForPlayer(lua_State * state)
 		sShowBlipForPlayer.Write(blipData[blipid].y);
 		sShowBlipForPlayer.Write(blipData[blipid].z);
 		sShowBlipForPlayer.Write(blipData[blipid].attachID);
+		sShowBlipForPlayer.Write(blipData[blipid].color);
 		NetworkManager->rpc.Signal("ShowBlipForPlayer", &sShowBlipForPlayer, HIGH_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 	}
 	return 0;
@@ -105,7 +106,31 @@ int RemoveBlip(lua_State * state)
 	blipData[blipid].y = 0.0f;
 	blipData[blipid].z = 0.0f;
 	blipData[blipid].attachID = 0;
+	blipData[blipid].color = 0;
 	blipData[blipid].used = false;
+
+	return 0;
+}
+
+/*
+Blip Colors:
+0 - White
+1 - Red
+2 -
+
+*/
+
+int SetBlipColor(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("SetBlipColor() was called with %d arguments.\n", args);
+
+	int blipid = lua_tointeger(state, 1);
+	if (blipData[blipid].used) {
+		int color = lua_tointeger(state, 2);
+		blipData[blipid].color = color;
+	}
 
 	return 0;
 }

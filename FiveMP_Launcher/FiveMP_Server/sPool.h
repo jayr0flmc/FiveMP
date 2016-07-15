@@ -117,6 +117,8 @@ struct blipPool {
 	float z;
 	int attachID;
 
+	int color;
+
 	bool used = false;
 };
 extern blipPool blipData[100];
