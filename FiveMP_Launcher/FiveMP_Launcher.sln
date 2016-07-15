@@ -27,9 +27,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{0054C461-99F8-420B-8CAE-23E71D5587D2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{A71FC343-6712-4154-BB6A-668D7B083F92}"
-	ProjectSection(SolutionItems) = preProject
-		FiveMP_Client\Model.cpp = FiveMP_Client\Model.cpp
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RakNet", "RakNet\RakNet.vcxproj", "{D578244B-91CE-414F-8279-6E39212FF632}"
 EndProject
