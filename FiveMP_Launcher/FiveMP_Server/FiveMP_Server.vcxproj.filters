@@ -46,6 +46,9 @@
     <ClInclude Include="functions_vehicle.h">
       <Filter>Header Files\Function\LUA</Filter>
     </ClInclude>
+    <ClInclude Include="Vehicle.h">
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -95,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="functions_blips.cpp">
       <Filter>Source Files\Function\LUA</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicle.cpp">
+      <Filter>Source Files\Function</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

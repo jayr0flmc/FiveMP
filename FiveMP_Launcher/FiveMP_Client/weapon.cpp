@@ -73,6 +73,13 @@ EnumParser<eWeapon>::EnumParser()
 	enumMap["Hatchet"] = WeaponHatchet;
 	enumMap["Railgun"] = WeaponRailgun;
 	enumMap["Unarmed"] = WeaponUnarmed;
+	enumMap["Bottle"] = WeaponBottle;
+	enumMap["VintagePistol"] = WeaponVintagePistol;
+	enumMap["Flaregun"] = WeaponFlaregun;
+	enumMap["GarbageBag"] = WeaponGarbageBag;
+	enumMap["Handcuffs"] = WeaponHandcuffs;
+	enumMap["MarksmanPistol"] = WeaponMarksmanPistol;
+	enumMap["Knuckle"] = WeaponKnuckle;
 };
 
 void GameWeapon::GiveWeapon(char * weaponid, int ammo) {

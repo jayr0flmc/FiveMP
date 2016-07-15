@@ -1311,7 +1311,15 @@ enum eWeapon : DWORD
 	WeaponGusenberg = 0x61012683,
 	WeaponHatchet = 0xF9DCBF2D,
 	WeaponRailgun = 0x6D544C99,
-	WeaponUnarmed = 0xA2719263
+	WeaponUnarmed = 0xA2719263,
+	//Missing Weapons
+	WeaponBottle = 0xF9E6AA4B,
+	WeaponVintagePistol = 0x083839C4,
+	WeaponFlaregun = 0x47757124,
+	WeaponGarbageBag = 0xE232C28C,
+	WeaponHandcuffs = 0xD04C944D,
+	WeaponMarksmanPistol = 0xDC4DB296,
+	WeaponKnuckle = 0xD8DF3C3C
 };
 
 enum eWeaponGroup : DWORD
