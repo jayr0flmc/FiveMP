@@ -254,13 +254,15 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 
 			AI::TASK_SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(playerData[tempplyrid].pedPed, true);
 
-			playerData[tempplyrid].pedBlip = UI::ADD_BLIP_FOR_ENTITY(playerData[tempplyrid].pedPed);
-			UI::SET_BLIP_AS_FRIENDLY(playerData[tempplyrid].pedBlip, true);
-			UI::SET_BLIP_COLOUR(playerData[tempplyrid].pedBlip, 0);
-			UI::SET_BLIP_SCALE(playerData[tempplyrid].pedBlip, 1.0f);
-			UI::BEGIN_TEXT_COMMAND_SET_BLIP_NAME("STRING");
-			UI::_ADD_TEXT_COMPONENT_STRING3(playerData[tempplyrid].playerusername);
-			UI::END_TEXT_COMMAND_SET_BLIP_NAME(playerData[tempplyrid].pedBlip);
+			if(!playerData[playerid].isDefaultBlipRemoved) {
+				playerData[tempplyrid].pedBlip = UI::ADD_BLIP_FOR_ENTITY(playerData[tempplyrid].pedPed);
+				UI::SET_BLIP_AS_FRIENDLY(playerData[tempplyrid].pedBlip, true);
+				UI::SET_BLIP_COLOUR(playerData[tempplyrid].pedBlip, 0);
+				UI::SET_BLIP_SCALE(playerData[tempplyrid].pedBlip, 1.0f);
+				UI::BEGIN_TEXT_COMMAND_SET_BLIP_NAME("STRING");
+				UI::_ADD_TEXT_COMPONENT_STRING3(playerData[tempplyrid].playerusername);
+				UI::END_TEXT_COMMAND_SET_BLIP_NAME(playerData[tempplyrid].pedBlip);
+			}
 		}
 	//}
 }

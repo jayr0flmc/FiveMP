@@ -65,6 +65,8 @@ struct playerPool {
 
 	bool dead = false;						// Whether the player dead or not.
 	bool used = false;						// Whether the player slot is in use or not.
+
+	bool isDefaultBlipRemoved = false;		// Checks if default blip is removed.
 };
 extern playerPool playerData[100];
 

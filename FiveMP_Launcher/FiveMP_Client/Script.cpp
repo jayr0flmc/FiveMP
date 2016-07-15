@@ -267,3 +267,16 @@ void HideBlipFromPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 		}
 	}
 }
+
+void RemoveDefaultBlipForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int playerid;
+
+	bitStream->Read(playerid);
+
+	playerData[playerid].isDefaultBlipRemoved = true;
+
+	if (UI::DOES_BLIP_EXIST(playerData[playerid].pedBlip)) {
+		UI::REMOVE_BLIP(&playerData[playerid].pedBlip);
+	}
+}

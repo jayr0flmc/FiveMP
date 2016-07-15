@@ -102,13 +102,19 @@ void UpdatePedModel(int playerid) {
 
 	AI::TASK_SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(playerData[playerid].pedPed, true);
 
-	playerData[playerid].pedBlip = UI::ADD_BLIP_FOR_ENTITY(playerData[playerid].pedPed);
-	UI::SET_BLIP_AS_FRIENDLY(playerData[playerid].pedBlip, true);
-	UI::SET_BLIP_COLOUR(playerData[playerid].pedBlip, 0);
-	UI::SET_BLIP_SCALE(playerData[playerid].pedBlip, 1.0f);
-	UI::BEGIN_TEXT_COMMAND_SET_BLIP_NAME("STRING");
-	UI::_ADD_TEXT_COMPONENT_STRING3(playerData[playerid].playerusername);
-	UI::END_TEXT_COMMAND_SET_BLIP_NAME(playerData[playerid].pedBlip);
+	if (UI::DOES_BLIP_EXIST(playerData[playerid].pedBlip)) {
+		UI::REMOVE_BLIP(&playerData[playerid].pedPed);
+	}
+
+	if (!playerData[playerid].isDefaultBlipRemoved) {
+		playerData[playerid].pedBlip = UI::ADD_BLIP_FOR_ENTITY(playerData[playerid].pedPed);
+		UI::SET_BLIP_AS_FRIENDLY(playerData[playerid].pedBlip, true);
+		UI::SET_BLIP_COLOUR(playerData[playerid].pedBlip, 0);
+		UI::SET_BLIP_SCALE(playerData[playerid].pedBlip, 1.0f);
+		UI::BEGIN_TEXT_COMMAND_SET_BLIP_NAME("STRING");
+		UI::_ADD_TEXT_COMPONENT_STRING3(playerData[playerid].playerusername);
+		UI::END_TEXT_COMMAND_SET_BLIP_NAME(playerData[playerid].pedBlip);
+	}
 }
 
 
