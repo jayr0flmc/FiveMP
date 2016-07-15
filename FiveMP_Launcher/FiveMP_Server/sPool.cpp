@@ -102,7 +102,7 @@ void SpawnPointPool::RemoveFromSpawnPool(int spawnid)
 
 int VehiclePool::AddToVehiclePool(const char *modelname, float x, float y, float z, float heading, int color1, int color2, bool respawn, int respawndelay)
 {
-	for (int i = 0; i < sizeof(playerData); i++)
+	for (int i = 0; i < sizeof(vehicleData); i++)
 	{
 		if (vehicleData[i].used == false) {
 			vehicleData[i].used = true;

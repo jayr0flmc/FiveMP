@@ -22,3 +22,17 @@ int CreateVehicle(lua_State* state)
 
 	return 1;
 }
+
+int RemoveVehicle(lua_State* state)
+{
+	int args = lua_gettop(state);
+
+	printf("RemoveVehicle() was called with %d arguments:\n", args);
+
+	int vehicleid = lua_tonumber(state, 1);
+
+	vehiclesPool.RemoveFromVehiclePool(vehicleid);
+
+	return 0;
+}
+

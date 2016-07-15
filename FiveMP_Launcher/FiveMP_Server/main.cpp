@@ -83,6 +83,7 @@ int main(void)
 
 	// Vehicle
 	lua_register(sLUA, "CreateVehicle", CreateVehicle);
+	lua_register(sLUA, "RemoveVehicle", CreateVehicle);
 
 	//Blips
 	lua_register(sLUA, "CreateBlip", CreateBlip);
