@@ -32,6 +32,7 @@ void CRPCManager::RegisterRPCs()
 	NetworkManager->rpc.RegisterSlot("SetPedComponentVariation", SetPedComponentVariation, 0);
 	NetworkManager->rpc.RegisterSlot("ShowBlipForPlayer", ShowBlipForPlayer, 0);
 	NetworkManager->rpc.RegisterSlot("HideBlipFromPlayer", HideBlipFromPlayer, 0);
+	NetworkManager->rpc.RegisterSlot("SendMessageToPlayer", SendMessageToPlayer, 0);
 }
 
 void CRPCManager::UnRegisterRPCs()
@@ -53,4 +54,5 @@ void CRPCManager::UnRegisterRPCs()
 	NetworkManager->rpc.UnregisterSlot("HideBlipFromPlayer");
 	NetworkManager->rpc.UnregisterSlot("CreateVehicle");
 	NetworkManager->rpc.UnregisterSlot("RemovePlayerWeapons");
+	NetworkManager->rpc.UnregisterSlot("SendMessageToPlayer");
 }

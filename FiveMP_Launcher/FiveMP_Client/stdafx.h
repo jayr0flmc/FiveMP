@@ -86,6 +86,7 @@ using namespace RakNet;
 #include "PlayerPool.h"
 
 // Interface
+#include "Chat.h"
 #include "RenderDebug.h"
 #include "Render.h"
 
@@ -107,5 +108,6 @@ extern CRPCManager		*RPCManager;
 extern CLocalPlayer		*LocalPlayer;
 extern CLocalVehicle	*LocalVehicle;
 extern CConfig			*Config;
+extern CChat			*Chat;
 extern CRenderDebug		*RenderDebug;
 extern CRender			*Render;

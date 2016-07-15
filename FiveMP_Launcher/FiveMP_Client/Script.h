@@ -1,6 +1,7 @@
 #pragma once
 
 void ShowMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet);
+void SendMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void GivePlayerWeapon(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void RemovePlayerWeapon(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void RemovePlayerWeapons(RakNet::BitStream *bitStream, RakNet::Packet *packet);

@@ -3,6 +3,7 @@
 void ScriptHook::Initialize(HMODULE hModule)
 {
 	scriptRegister(hModule, InitGameScript);
+	scriptRegisterAdditionalThread(hModule, inputloop);
 	keyboardHandlerRegister(OnKeyboardMessage);
 }
 

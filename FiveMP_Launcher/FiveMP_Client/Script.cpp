@@ -10,6 +10,17 @@ void ShowMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	player.ShowMessageAboveMap(string);
 }
 
+void SendMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
+	int playerid;
+	char string[128];
+
+	bitStream->Read(string);
+
+	Chat->AddChatMessage(string);
+
+	printf("%s\n", string);
+}
+
 void GivePlayerWeapon(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	char weaponid[20];
