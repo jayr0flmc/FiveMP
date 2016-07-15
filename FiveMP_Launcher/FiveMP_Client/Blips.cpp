@@ -36,7 +36,7 @@ void CreateBlip(int blipID, int locationType, float x, float y, float z, int att
 		}
 		case 2: {
 			if (attachID != LocalPlayer->playerID) {
-				blipData[clientblipid].blip = UI::ADD_BLIP_FOR_ENTITY(attachID);
+				blipData[clientblipid].blip = UI::ADD_BLIP_FOR_ENTITY(playerData[attachID].pedPed);
 			}
 			else {
 				blipData[clientblipid].blip = UI::ADD_BLIP_FOR_ENTITY(LocalPlayer->playerPed);
