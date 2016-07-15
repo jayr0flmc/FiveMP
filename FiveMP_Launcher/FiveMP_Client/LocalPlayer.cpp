@@ -26,6 +26,7 @@ void CLocalPlayer::Initialize()
 		playerInitialized = true;
 
 		GAMEPLAY::SET_MISSION_FLAG(true);
+		TIME::PAUSE_CLOCK(true);
 	}
 }
 
