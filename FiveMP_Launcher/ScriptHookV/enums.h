@@ -1314,7 +1314,6 @@ enum eWeapon : DWORD
 	WeaponUnarmed = 0xA2719263,
 	//Missing Weapons
 	WeaponBottle = 0xF9E6AA4B,
-	WeaponVintagePistol = 0x083839C4,
 	WeaponFlaregun = 0x47757124,
 	WeaponGarbageBag = 0xE232C28C,
 	WeaponHandcuffs = 0xD04C944D,
