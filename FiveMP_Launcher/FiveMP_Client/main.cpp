@@ -104,9 +104,11 @@ void RunGameScript() {
 				NetworkManager->sync_test = true;
 			}
 		}
+		/*
 		if (IsKeyJustUp(VK_F12)) {
 			vehicle.CreateVehicle(0, "adder", LocalPlayer->GetCoords(), 90.0f, 5, 10, true, 25);
 		}
+		*/
 		WAIT(0);
 	}
 }
