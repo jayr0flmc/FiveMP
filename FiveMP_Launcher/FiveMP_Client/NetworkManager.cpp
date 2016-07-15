@@ -293,9 +293,9 @@ void CNetworkManager::HandleVehicleSync(Packet * p)
 
 	VehicleBitStream_receive.Read(temptimestamp);
 
-	printf("%d | %x, %d | %f, %f, %f, | %f, %f, %f, %f, %f, | %f, %f, %f\n", tempvehicleid, vehicleData[tempvehicleid].vehicleModel, vehicleData[tempvehicleid].vehicleHealth,
+	/*printf("%d | %x, %d | %f, %f, %f, | %f, %f, %f, %f, %f, | %f, %f, %f\n", tempvehicleid, vehicleData[tempvehicleid].vehicleModel, vehicleData[tempvehicleid].vehicleHealth,
 		vehicleData[tempvehicleid].x, vehicleData[tempvehicleid].y, vehicleData[tempvehicleid].z, vehicleData[tempvehicleid].r, vehicleData[tempvehicleid].rx, vehicleData[tempvehicleid].ry,
-		vehicleData[tempvehicleid].rz, vehicleData[tempvehicleid].rw, vehicleData[tempvehicleid].vx, vehicleData[tempvehicleid].vy, vehicleData[tempvehicleid].vz);
+		vehicleData[tempvehicleid].rz, vehicleData[tempvehicleid].rw, vehicleData[tempvehicleid].vx, vehicleData[tempvehicleid].vy, vehicleData[tempvehicleid].vz);*/
 
 	ENTITY::SET_ENTITY_COORDS(vehicleData[tempvehicleid].vehicleVehicle, vehicleData[tempvehicleid].x, vehicleData[tempvehicleid].y, vehicleData[tempvehicleid].z, 0, 0, 0, 0);
 	ENTITY::SET_ENTITY_QUATERNION(vehicleData[tempvehicleid].vehicleVehicle, vehicleData[tempvehicleid].rx, vehicleData[tempvehicleid].ry, vehicleData[tempvehicleid].rz, vehicleData[tempvehicleid].rw);
