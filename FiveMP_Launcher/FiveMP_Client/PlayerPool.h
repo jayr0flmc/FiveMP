@@ -91,3 +91,8 @@ struct blipPool {
 	bool used = false;
 };
 extern blipPool blipData[100];
+
+struct chatMessages {
+	char message[128] = "";
+};
+extern chatMessages chatData[100];

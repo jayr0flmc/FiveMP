@@ -3,16 +3,25 @@
 playerPool playerData[128];
 vehiclePool vehicleData[125];
 blipPool blipData[100];
+chatMessages chatData[100];
 
 CNetworkManager *NetworkManager;
 CRPCManager		*RPCManager;
 CLocalPlayer	*LocalPlayer;
 CLocalVehicle	*LocalVehicle;
 CConfig			*Config;
+CChat			*Chat;
 CRenderDebug	*RenderDebug;
 CRender			*Render;
 
 HMODULE		FiveMP_Module;
+
+void inputloop() {
+	/*while (true) {
+		Chat->Input();
+		WAIT(0);
+	}*/
+}
 
 void InitGameScript() {
 	Config = new CConfig;
@@ -24,6 +33,7 @@ void InitGameScript() {
 
 	NetworkManager	= new CNetworkManager;
 	RPCManager		= new CRPCManager;
+	Chat			= new CChat;
 
 	RPCManager->RegisterRPCs();
 
@@ -43,6 +53,9 @@ void RunGameScript() {
 		RenderDebug->RenderBlend();
 		RenderDebug->RenderVelocity();
 		RenderDebug->RenderCoords();
+
+		Chat->Render();
+		//Chat->Input();
 
 		if (NetworkManager->Listening) {
 			NetworkManager->Pulse();
@@ -102,6 +115,11 @@ void RunGameScript() {
 			else {
 				NetworkManager->sync_test = true;
 			}
+		}
+		if (IsKeyJustUp(0x54)) {
+			Chat->open = true;
+
+			printf("%d\n", Chat->open);
 		}
 		/*
 		if (IsKeyJustUp(VK_F12)) {

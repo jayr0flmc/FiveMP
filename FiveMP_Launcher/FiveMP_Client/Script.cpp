@@ -10,6 +10,17 @@ void ShowMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	player.ShowMessageAboveMap(string);
 }
 
+void SendMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
+	int playerid;
+	char string[128];
+
+	bitStream->Read(string);
+
+	Chat->AddChatMessage(string);
+
+	printf("%s\n", string);
+}
+
 void GivePlayerWeapon(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	char weaponid[20];
@@ -180,6 +191,15 @@ void CreateVehicle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	tempcoords.z = vehicleData[vehicleid].z;
 
 	vehicle.CreateVehicle(vehicleid, vehiclename, tempcoords, vehicleData[vehicleid].r, vehicleData[vehicleid].vehicleColor1, vehicleData[vehicleid].vehicleColor2, vehicleData[vehicleid].respawn, vehicleData[vehicleid].respawndelay);
+}
+
+void RemoveVehicle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int vehicleid;
+
+	bitStream->Read(vehicleid);
+
+	vehicle.RemoveVehicle(vehicleid);
 }
 
 void SetVehicleColor(RakNet::BitStream * bitStream, RakNet::Packet * packet)

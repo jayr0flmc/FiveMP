@@ -81,8 +81,6 @@ int SpawnPointPool::AddToSpawnPool(float x, float y, float z)
 			spawnData[i].y = y;
 			spawnData[i].z = z;
 			spawnData[i].used = true;
-
-			printf("Added Spawn Point %i at (%f, %f, %f) \n", i, x, y, z);
 			return i;
 		}
 	}

@@ -46,6 +46,17 @@ function OnPlayerConnect(playerid)
 	
 	ShowBlipForPlayer(blip, playerid);
 	
+	SendMessageToPlayer(playerid, "this is a test1");
+	SendMessageToPlayer(playerid, "this is a test2");
+	SendMessageToPlayer(playerid, "this is a test3");
+	SendMessageToPlayer(playerid, "this is a test4");
+	SendMessageToPlayer(playerid, "this is a test5");
+	SendMessageToPlayer(playerid, "this is a test6");
+	SendMessageToPlayer(playerid, "this is a test7");
+	SendMessageToPlayer(playerid, "this is a test8");
+	SendMessageToPlayer(playerid, "this is a test9");
+	SendMessageToPlayer(playerid, "this is a test10");
+	SendMessageToPlayer(playerid, "this is a test11");
 	return 1;
 end
 

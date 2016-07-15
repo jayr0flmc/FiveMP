@@ -67,6 +67,7 @@ int main(void)
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
 	lua_register(sLUA, "ShowMessageToAll", ShowMessageToAll);
+	lua_register(sLUA, "SendMessageToPlayer", SendMessageToPlayer);
 
 	// Weapon
 	lua_register(sLUA, "GivePlayerWeapon", GivePlayerWeapon);

@@ -20,7 +20,17 @@ bool GameVehicle::CreateVehicle(int vehicleid, char *modelname, Vector3 coords, 
 	return 0;
 }
 
-bool GameVehicle::SetVehicleColor(int vehicleid, int color1, int color2)
+void GameVehicle::RemoveVehicle(int vehicleid)
+{
+	if (ENTITY::DOES_ENTITY_EXIST(vehicleData[vehicleid].vehicleVehicle)) {
+
+		ENTITY::DELETE_ENTITY(&vehicleData[vehicleid].vehicleVehicle);
+		UI::REMOVE_BLIP(&vehicleData[vehicleid].vehicleBlip);
+	}
+	vehicleData[vehicleid].used = false;
+}
+
+void GameVehicle::SetVehicleColor(int vehicleid, int color1, int color2)
 {
 	if (ENTITY::DOES_ENTITY_EXIST(vehicleData[vehicleid].vehicleVehicle))
 	{
@@ -28,8 +38,5 @@ bool GameVehicle::SetVehicleColor(int vehicleid, int color1, int color2)
 
 		vehicleData[vehicleid].vehicleColor1 = color1;
 		vehicleData[vehicleid].vehicleColor2 = color2;
-
-		return 1;
 	}
-	return 0;
 }

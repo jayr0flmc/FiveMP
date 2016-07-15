@@ -1,5 +1,6 @@
 #pragma once
 
+void inputloop();
 void InitGameScript();
 void RunGameScript();
 
