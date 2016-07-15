@@ -103,6 +103,8 @@ struct vehiclePool {
 	float vy;								// Velocity Y coord
 	float vz;								// Velocity Z coord
 
+	int playerid = -1;							// Player ID of who is inside.
+
 	bool respawn;							// Whether the vehicle should respawn
 	int respawndelay;						// Delay till vehicle respawns when unused (variable not used yet)
 

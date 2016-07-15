@@ -212,6 +212,8 @@ void SNetworkManager::Pulse()
 			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vy);
 			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vz);
 
+			VehicleBitStream_receive.Read(vehicleData[tempvehicleid].playerid);
+
 			VehicleBitStream_receive.Read(temptimestamp2);
 
 			/*printf("%d | %x, %d | %f, %f, %f, | %f, %f, %f, %f, %f, | %f, %f, %f\n", tempvehicleid, vehicleData[tempvehicleid].vehicleModel, vehicleData[tempvehicleid].vehicleHealth, 
@@ -240,6 +242,8 @@ void SNetworkManager::Pulse()
 			VehicleBitStream_send.Write(vehicleData[tempvehicleid].vx);
 			VehicleBitStream_send.Write(vehicleData[tempvehicleid].vy);
 			VehicleBitStream_send.Write(vehicleData[tempvehicleid].vz);
+
+			VehicleBitStream_send.Write(vehicleData[tempvehicleid].playerid);
 
 			VehicleBitStream_send.Write(temptimestamp2);
 

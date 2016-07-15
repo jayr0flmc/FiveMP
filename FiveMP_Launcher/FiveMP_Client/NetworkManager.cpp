@@ -274,6 +274,10 @@ void CNetworkManager::HandleVehicleSync(Packet * p)
 
 	VehicleBitStream_receive.Read(tempvehicleid);
 
+	vehicleData[tempvehicleid].oldx = vehicleData[tempvehicleid].x;
+	vehicleData[tempvehicleid].oldy = vehicleData[tempvehicleid].y;
+	vehicleData[tempvehicleid].oldz = vehicleData[tempvehicleid].z;
+
 	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vehicleModel);
 	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vehicleHealth);
 
@@ -290,6 +294,8 @@ void CNetworkManager::HandleVehicleSync(Packet * p)
 	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vx);
 	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vy);
 	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vz);
+
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].playerid);
 
 	VehicleBitStream_receive.Read(temptimestamp);
 
@@ -350,8 +356,11 @@ void CNetworkManager::SyncVehicle()
 {
 	for (int i = 0; i < 25; i++) {
 		if (ENTITY::DOES_ENTITY_EXIST(vehicleData[i].vehicleVehicle)) {
-			if (vehicleData[i].vehicleVehicle != PED::GET_VEHICLE_PED_IS_IN(LocalPlayer->playerPed, false)) {
+			if (vehicleData[i].vehicleid != LocalPlayer->GetVehicle()) {
 				if (sync_test == true) {
+					if (!PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false) && vehicleData[i].playerid >= 0)
+						PED::SET_PED_INTO_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, -1);
+
 					CVector3 curpos1;
 					curpos1.fX = vehicleData[i].oldx;
 					curpos1.fY = vehicleData[i].oldy;
@@ -379,6 +388,9 @@ void CNetworkManager::SyncVehicle()
 					}
 				}
 				else {
+					if (!PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false) && vehicleData[i].playerid >= 0)
+						PED::SET_PED_INTO_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, -1);
+
 					ENTITY::SET_ENTITY_COORDS(vehicleData[i].vehicleVehicle, vehicleData[i].x, vehicleData[i].y, vehicleData[i].z, 0, 0, 0, 0);
 					ENTITY::SET_ENTITY_QUATERNION(vehicleData[i].vehicleVehicle, vehicleData[i].rx, vehicleData[i].ry, vehicleData[i].rz, vehicleData[i].rw);
 				}

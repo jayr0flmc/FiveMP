@@ -27,12 +27,12 @@ function OnPlayerConnect(playerid)
 	playername = GetPlayerName(playerid);
 	ShowMessageToAll("~b~" .. playername .. "(".. playerid .. ") ~w~has connected to the server.");
 	
-	SetPlayerPos(playerid, 0.0, 10.0, 70.5);
-	SetPlayerFacingAngle(playerid, 0.0);
+	SetPlayerPos(playerid, 0.0, 0.0, 73.5);
+	SetPlayerFacingAngle(playerid, 45.0);
 	
 	SetPlayerMoney(playerid, 500);
 	
-	SetPlayerMaxTagDrawDistance(playerid, 100);
+	SetPlayerMaxTagDrawDistance(playerid, 50);
 	
 	SetPlayerHealth(playerid, 100);
 	SetPlayerArmour(playerid, 50);
@@ -62,6 +62,6 @@ end
 
 function OnPlayerDeath(playerid)
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll("~b~" .. playername .. "~w~ has died.");
+	ShowMessageToAll("~b~" .. playername .. "(".. playerid .. ")~w~ has died.");
 	print(playerid .. " has died.");
 end

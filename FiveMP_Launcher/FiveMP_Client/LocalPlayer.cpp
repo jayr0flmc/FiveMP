@@ -124,6 +124,8 @@ void CLocalPlayer::SendOnFootData()
 	PlayerBitStream_send.Write(GetVelocity().y);
 	PlayerBitStream_send.Write(GetVelocity().z);
 
+	PlayerBitStream_send.Write(LocalPlayer->GetVehicle());
+
 	PlayerBitStream_send.Write(time(0));
 
 	NetworkManager->client->Send(&PlayerBitStream_send, MEDIUM_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);

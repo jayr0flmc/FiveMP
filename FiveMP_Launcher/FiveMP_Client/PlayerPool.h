@@ -76,6 +76,8 @@ struct vehiclePool {
 	float screen_x;							// 2D X coord
 	float screen_y;							// 2D Y coord
 
+	int playerid = -1;						// Player ID of who is inside
+
 	clock_t tickssince;
 
 	bool used = false;						// Whether the vehicle slot is in use or not.
