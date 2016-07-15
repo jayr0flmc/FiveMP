@@ -21,11 +21,11 @@ function OnGameModeExit()
 end
 
 function OnPlayerConnect(playerid)
-	ShowMessageToPlayer(playerid, "Welcome to this ~b~FiveMP ~w~server!");
-	ShowMessageToPlayer(playerid, "Your player ID is ~b~" .. playerid);
+	SendMessageToPlayer(playerid, "Welcome to this ~b~FiveMP ~w~server!");
+	SendMessageToPlayer(playerid, "Your player ID is ~b~" .. playerid);
 	
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll("~b~" .. playername .. "(".. playerid .. ") ~w~has connected to the server.");
+	SendMessageToPlayer(playerid, "~b~" .. playername .. "(".. playerid .. ") ~w~has connected to the server.");
 	
 	SetPlayerPos(playerid, 0.0, 0.0, 73.5);
 	SetPlayerFacingAngle(playerid, 45.0);
@@ -45,24 +45,12 @@ function OnPlayerConnect(playerid)
 	GivePlayerWeapon(playerid, "Pistol", 45);
 	
 	ShowBlipForPlayer(blip, playerid);
-	
-	SendMessageToPlayer(playerid, "this is a test1");
-	SendMessageToPlayer(playerid, "this is a test2");
-	SendMessageToPlayer(playerid, "this is a test3");
-	SendMessageToPlayer(playerid, "this is a test4");
-	SendMessageToPlayer(playerid, "this is a test5");
-	SendMessageToPlayer(playerid, "this is a test6");
-	SendMessageToPlayer(playerid, "this is a test7");
-	SendMessageToPlayer(playerid, "this is a test8");
-	SendMessageToPlayer(playerid, "this is a test9");
-	SendMessageToPlayer(playerid, "this is a test10");
-	SendMessageToPlayer(playerid, "this is a test11");
 	return 1;
 end
 
 function OnPlayerDisconnect(playerid)
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll("~b~" .. playername .. "(".. playerid .. ") ~w~has left the server.");
+	SendMessageToPlayer(playerid, "~b~" .. playername .. "(".. playerid .. ") ~w~has left the server.");
 	print(playerid .. " has disconnected");
     return 1;
 end
@@ -73,6 +61,6 @@ end
 
 function OnPlayerDeath(playerid)
 	playername = GetPlayerName(playerid);
-	ShowMessageToAll("~b~" .. playername .. "(".. playerid .. ")~w~ has died.");
+	SendMessageToPlayer(playerid, "~b~" .. playername .. "(".. playerid .. ")~w~ has died.");
 	print(playerid .. " has died.");
 end

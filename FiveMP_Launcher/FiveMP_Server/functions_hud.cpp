@@ -31,7 +31,8 @@ int SendMessageToPlayer(lua_State* state)
 		const char *newstring;
 
 		newstring = lua_tostring(state, 2);
-		sprintf(string, "~b~%s(%d):~w~ %s", playerData[playerid].playerusername, playerid, newstring);
+		//sprintf(string, "~b~%s(%d):~w~ %s", playerData[playerid].playerusername, playerid, newstring);
+		sprintf(string, "%s", newstring);
 
 		RakNet::RakString textstring = string;
 

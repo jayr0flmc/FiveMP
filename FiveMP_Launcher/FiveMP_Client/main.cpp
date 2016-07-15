@@ -103,7 +103,7 @@ void RunGameScript() {
 		}
 		if (IsKeyJustUp(VK_F11)) {
 			if (NetworkManager->sync_test == true) {
-				NetworkManager->sync_test = false;
+				//NetworkManager->sync_test = false;
 			}
 			else {
 				NetworkManager->sync_test = true;

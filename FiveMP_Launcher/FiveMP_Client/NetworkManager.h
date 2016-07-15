@@ -30,6 +30,6 @@ public:
 	int time_minute;
 	bool time_pause;
 
-	bool sync_test;
+	bool sync_test = true;
 };
 
