@@ -240,7 +240,7 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 
 		AI::TASK_SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(playerData[tempplyrid].pedPed, true);
 
-		if (!playerData[playerid].isDefaultBlipRemoved) {
+		if (!playerData[tempplyrid].isDefaultBlipRemoved) {
 			playerData[tempplyrid].pedBlip = UI::ADD_BLIP_FOR_ENTITY(playerData[tempplyrid].pedPed);
 			UI::SET_BLIP_AS_FRIENDLY(playerData[tempplyrid].pedBlip, true);
 			UI::SET_BLIP_COLOUR(playerData[tempplyrid].pedBlip, 0);
@@ -249,6 +249,9 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 			UI::_ADD_TEXT_COMPONENT_STRING3(playerData[tempplyrid].playerusername);
 			UI::END_TEXT_COMMAND_SET_BLIP_NAME(playerData[tempplyrid].pedBlip);
 		}
+	}
+	else if (oldModel != playerData[tempplyrid].pedModel) {
+		UpdatePedModel(tempplyrid);
 	}
 }
 
