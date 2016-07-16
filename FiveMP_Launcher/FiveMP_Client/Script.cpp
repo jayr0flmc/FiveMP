@@ -241,6 +241,8 @@ void ShowBlipForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	float z;
 	int attachID;
 	int color;
+	int spriteid;
+	char* name;
 
 	bitStream->Read(blipid);
 	bitStream->Read(locationtype);
@@ -249,8 +251,10 @@ void ShowBlipForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	bitStream->Read(z);
 	bitStream->Read(attachID);
 	bitStream->Read(color);
+	bitStream->Read(spriteid);
+	bitStream->Read(name);
 
-	CreateBlip(blipid, locationtype, x, y, z, attachID, color);
+	CreateBlip(blipid, locationtype, x, y, z, attachID, color, spriteid, name);
 }
 
 void HideBlipFromPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)

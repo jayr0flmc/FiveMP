@@ -10,7 +10,9 @@ function OnGameModeInit()
 	
 	blip = CreateBlip();
 	SetBlipLocationType(blip, 1, vehicle);
-	SetBlipColor(blip, 1);
+	SetBlipColor(blip, 23);
+	SetBlipImage(blip, 56);
+	SetBlipName(blip, "Voltic car");
 	
 	return 1;
 end
