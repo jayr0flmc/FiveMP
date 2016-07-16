@@ -66,3 +66,9 @@ function OnPlayerDeath(playerid)
 	SendMessageToAll("~b~" .. playername .. "(".. playerid .. ")~w~ has died.");
 	print(playerid .. " has died.");
 end
+
+
+function OnPlayerUpdate(playerid)
+	--SetPlayerArmour(playerid, 100);
+	--Disabling it because it really spams the console :D
+end

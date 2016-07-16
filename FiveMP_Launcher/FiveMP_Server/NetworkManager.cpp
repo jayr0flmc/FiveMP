@@ -148,6 +148,9 @@ void SNetworkManager::Pulse()
 
 			PlayerBitStream_receive.Read(temptimestamp);
 
+			//OnPlayerUpdate
+			OnPlayerUpdate(sLUA, tempplyrid);
+
 			// Send to other users.
 
 			PlayerBitStream_send.Write((unsigned char)ID_SEND_PLAYER_DATA);
@@ -220,7 +223,11 @@ void SNetworkManager::Pulse()
 				vehicleData[tempvehicleid].x, vehicleData[tempvehicleid].y, vehicleData[tempvehicleid].z, vehicleData[tempvehicleid].r, vehicleData[tempvehicleid].rx, vehicleData[tempvehicleid].ry, 
 							vehicleData[tempvehicleid].rz, vehicleData[tempvehicleid].rw, vehicleData[tempvehicleid].vx, vehicleData[tempvehicleid].vy, vehicleData[tempvehicleid].vz);*/
 
+			//OnPlayerUpdate
+			OnPlayerUpdate(sLUA, tempplyrid);
+
 			// Send to other users.
+
 
 			VehicleBitStream_send.Write((unsigned char)ID_SEND_VEHICLE_DATA);
 
