@@ -46,3 +46,10 @@ void CChat::AddChatMessage(char string[128])
 	}
 	strcpy(chatData[9].message, string);
 }
+
+void CChat::Clear()
+{
+	for (int i = 0; i < 10; i++) {
+		strcpy(chatData[i].message, "");
+	}
+}

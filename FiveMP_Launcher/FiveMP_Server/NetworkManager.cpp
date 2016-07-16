@@ -146,6 +146,9 @@ void SNetworkManager::Pulse()
 			PlayerBitStream_receive.Read(playerData[tempplyrid].vy);
 			PlayerBitStream_receive.Read(playerData[tempplyrid].vz);
 
+			PlayerBitStream_receive.Read(playerData[tempplyrid].vehicleid);
+			PlayerBitStream_receive.Read(playerData[tempplyrid].vehicleseat);
+
 			PlayerBitStream_receive.Read(temptimestamp);
 
 			// Send to other users.
@@ -180,6 +183,9 @@ void SNetworkManager::Pulse()
 			PlayerBitStream_send.Write(playerData[tempplyrid].vx);
 			PlayerBitStream_send.Write(playerData[tempplyrid].vy);
 			PlayerBitStream_send.Write(playerData[tempplyrid].vz);
+
+			PlayerBitStream_send.Write(playerData[tempplyrid].vehicleid);
+			PlayerBitStream_send.Write(playerData[tempplyrid].vehicleseat);
 
 			PlayerBitStream_send.Write(temptimestamp);
 
@@ -266,13 +272,16 @@ void SNetworkManager::Pulse()
 
 			playerData[netPool.GetPlayerID(packet->guid)].isConnected = false;
 
+			tempusername = netPool.GetPlayerUsername(packet->guid);
+
 			pid_bitStream.Write((unsigned char)ID_PLAYER_LEFT);
 			pid_bitStream.Write(netPool.GetPlayerID(packet->guid));
+			pid_bitStream.Write(tempusername);
 
 			server->Send(&pid_bitStream, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 
-			netPool.UserAmount--;
 			netPool.RemoveFromUserPool(packet->guid);
+			netPool.UserAmount--;
 			break;
 
 		default:

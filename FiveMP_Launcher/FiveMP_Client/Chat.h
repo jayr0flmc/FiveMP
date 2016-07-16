@@ -10,4 +10,5 @@ public:
 	void Render();
 	void Input();
 	void AddChatMessage(char string[128]);
+	void Clear();
 };

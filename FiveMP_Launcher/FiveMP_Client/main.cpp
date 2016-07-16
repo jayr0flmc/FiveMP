@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-playerPool playerData[128];
+playerPool playerData[150];
 vehiclePool vehicleData[125];
 blipPool blipData[100];
 chatMessages chatData[100];
@@ -58,13 +58,16 @@ void RunGameScript() {
 					LocalPlayer->SendSyncRequest();
 				} else {
 					LocalPlayer->SendOnFootData();
+
 					if (LocalPlayer->GetVehicle() >= 0) {
 						delete LocalVehicle;
 						LocalVehicle = new CLocalVehicle;
 						LocalVehicle->SendVehicleData();
 					}
+
 					NetworkManager->SyncOnFoot();
 					NetworkManager->SyncVehicle();
+
 					Render->RenderNametags();
 				}
 			}
@@ -74,7 +77,7 @@ void RunGameScript() {
 			Config->Read();
 
 			if (!NetworkManager->Connect(Config->server_ipaddress, Config->server_port, Config->client_port)) {
-				player.ShowMessageAboveMap("An error occured while calling the ~~connect ~w~function");
+				player.ShowMessageAboveMap("An error occured while calling the ~r~connect ~w~function");
 			}
 		}
 		if (IsKeyJustUp(VK_F9)) {

@@ -33,6 +33,9 @@ struct playerPool {
 	float screen_x;							// 2D X coord
 	float screen_y;							// 2D Y coord
 
+	int vehicleid = -1;						// Current vehicle the player is in.
+	int vehicleseat = 0;					// Current seat the player is in. (vehicle)
+
 	float lastone;
 	clock_t tickssince;
 
@@ -40,7 +43,7 @@ struct playerPool {
 
 	bool used = false;						// Whether the player slot is in use or not.
 };
-extern playerPool playerData[128];
+extern playerPool playerData[150];
 
 struct vehiclePool {
 	int vehicleid;							// Vehicle ID (server)

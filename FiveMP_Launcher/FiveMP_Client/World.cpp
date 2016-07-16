@@ -6,6 +6,10 @@ void GameWorld::CleanUp() {
 
 	for (int i = 0; i < sizeof(playerData) / sizeof(*playerData); i++) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[i].pedPed)) {
+			AI::TASK_LEAVE_VEHICLE(playerData[i].pedPed, vehicleData[playerData[i].vehicleid].vehicleVehicle, 16);
+			playerData[i].vehicleid = -1;
+
+			PED::DELETE_PED(&playerData[i].pedPed);
 			ENTITY::DELETE_ENTITY(&playerData[i].pedPed);
 			UI::REMOVE_BLIP(&playerData[i].pedBlip);
 		}
@@ -13,10 +17,11 @@ void GameWorld::CleanUp() {
 
 	for (int i = 0; i < sizeof(vehicleData) / sizeof(*vehicleData); i++ ) {
 		if (ENTITY::DOES_ENTITY_EXIST(vehicleData[i].vehicleVehicle)) {
-
+			VEHICLE::DELETE_VEHICLE(&vehicleData[i].vehicleVehicle);
 			ENTITY::DELETE_ENTITY(&vehicleData[i].vehicleVehicle);
 			UI::REMOVE_BLIP(&vehicleData[i].vehicleBlip);
 
+			vehicleData[i].playerid = -1;
 			vehicleData[i].used = false;
 		}
 	}
@@ -24,6 +29,7 @@ void GameWorld::CleanUp() {
 	for (int i = 0; i < sizeof(blipData) / sizeof(*blipData); i++) {
 		if (UI::DOES_BLIP_EXIST(blipData[i].blip)) {
 			UI::REMOVE_BLIP(&blipData[i].blip);
+
 			blipData[i].used = false;
 		}
 	}

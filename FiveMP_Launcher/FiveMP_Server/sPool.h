@@ -58,6 +58,9 @@ struct playerPool {
 	float vy;								// Velocity Y coord
 	float vz;								// Velocity Z coord
 
+	int vehicleid;							// Current vehicle the player is in.
+	int vehicleseat;						// Current seat the player is in. (vehicle)
+
 	int money = 0;							// Money
 	int score = 0;							// Score
 
@@ -105,7 +108,7 @@ struct vehiclePool {
 	float vy;								// Velocity Y coord
 	float vz;								// Velocity Z coord
 
-	int playerid = -1;							// Player ID of who is inside.
+	int playerid = -1;						// Player ID of who is inside.
 
 	bool respawn;							// Whether the vehicle should respawn
 	int respawndelay;						// Delay till vehicle respawns when unused (variable not used yet)

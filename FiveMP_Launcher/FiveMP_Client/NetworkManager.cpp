@@ -51,6 +51,7 @@ bool CNetworkManager::Disconnect()
 		LocalPlayer->timesincerequest = 0;
 		LocalPlayer->playerMoney = 0;
 
+		Chat->Clear();
 		world.CleanUp();
 
 		player.ShowMessageAboveMap("Successfully disconnected!");
@@ -145,6 +146,8 @@ void CNetworkManager::Pulse()
 
 			NetworkManager->Synchronized = true;
 			LocalPlayer->playerID = playerid;
+
+			playerData[playerid].used = true;
 			break;
 
 		case ID_SEND_PLAYER_DATA:
@@ -210,61 +213,43 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 	PlayerBitStream_receive.Read(playerData[tempplyrid].vy);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].vz);
 
+	PlayerBitStream_receive.Read(playerData[tempplyrid].vehicleid);
+	PlayerBitStream_receive.Read(playerData[tempplyrid].vehicleseat);
+
 	PlayerBitStream_receive.Read(temptimestamp);
 
 	playerData[tempplyrid].tickssince = clock();
 
-	//NO MORE OF SPAMMING THE CONSOLE :D
-	//printf("received packet\n");
+	if (!ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
+		if (STREAMING::IS_MODEL_IN_CDIMAGE(playerData[tempplyrid].pedModel) && STREAMING::IS_MODEL_VALID(playerData[tempplyrid].pedModel))
+			STREAMING::REQUEST_MODEL(playerData[tempplyrid].pedModel);
 
-	//if (tempplyrid != playerid) {
-		if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
+		while (!STREAMING::HAS_MODEL_LOADED(playerData[tempplyrid].pedModel))
+			WAIT(0);
 
-			if (oldModel != playerData[tempplyrid].pedModel) {
-				UpdatePedModel(tempplyrid);
-			}
+		playerData[tempplyrid].pedPed = PED::CREATE_PED(playerData[tempplyrid].pedType, playerData[tempplyrid].pedModel, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, 0.0f, false, true);
 
-			/*float tempz;
+		STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(playerData[tempplyrid].pedModel);
 
-			GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, &tempz, 1);
+		ENTITY::SET_ENTITY_NO_COLLISION_ENTITY(LocalPlayer->playerPed, playerData[tempplyrid].pedPed, false);
+		ENTITY::SET_ENTITY_NO_COLLISION_ENTITY(playerData[tempplyrid].pedPed, LocalPlayer->playerPed, false);
 
-			if (SYSTEM::VDIST(playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, playerData[tempplyrid].x, playerData[tempplyrid].y, tempz) > 5.0f) {
-				ENTITY::SET_ENTITY_COORDS(playerData[tempplyrid].pedPed, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, 0, 0, 0, 0);
-			}
-			else {
-				ENTITY::SET_ENTITY_COORDS(playerData[tempplyrid].pedPed, playerData[tempplyrid].x, playerData[tempplyrid].y, tempz, 0, 0, 0, 0);
-				//AI::TASK_GO_STRAIGHT_TO_COORD(playerData[tempplyrid].pedPed, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, playerData[tempplyrid].v, 1, playerData[tempplyrid].r, 0.0f);
-			}
-			ENTITY::SET_ENTITY_QUATERNION(playerData[tempplyrid].pedPed, playerData[tempplyrid].rx, playerData[tempplyrid].ry, playerData[tempplyrid].rz, playerData[tempplyrid].rw);*/
-		} else {
-			if (STREAMING::IS_MODEL_IN_CDIMAGE(playerData[tempplyrid].pedModel) && STREAMING::IS_MODEL_VALID(playerData[tempplyrid].pedModel))
+		PED::SET_PED_FLEE_ATTRIBUTES(playerData[tempplyrid].pedPed, 0, 0);
+		PED::SET_PED_COMBAT_ATTRIBUTES(playerData[tempplyrid].pedPed, 17, 1);
+		PED::SET_PED_CAN_RAGDOLL(playerData[tempplyrid].pedPed, false);
 
-				STREAMING::REQUEST_MODEL(playerData[tempplyrid].pedModel);
-			while (!STREAMING::HAS_MODEL_LOADED(playerData[tempplyrid].pedModel))
-				WAIT(0);
-			playerData[tempplyrid].pedPed = PED::CREATE_PED(playerData[tempplyrid].pedType, playerData[tempplyrid].pedModel, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, 0.0f, false, true);
-			STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(playerData[tempplyrid].pedModel);
+		AI::TASK_SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(playerData[tempplyrid].pedPed, true);
 
-			ENTITY::SET_ENTITY_NO_COLLISION_ENTITY(LocalPlayer->playerPed, playerData[tempplyrid].pedPed, false);
-			ENTITY::SET_ENTITY_NO_COLLISION_ENTITY(playerData[tempplyrid].pedPed, LocalPlayer->playerPed, false);
-
-			PED::SET_PED_FLEE_ATTRIBUTES(playerData[tempplyrid].pedPed, 0, 0);
-			PED::SET_PED_COMBAT_ATTRIBUTES(playerData[tempplyrid].pedPed, 17, 1);
-			PED::SET_PED_CAN_RAGDOLL(playerData[tempplyrid].pedPed, false);
-
-			AI::TASK_SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(playerData[tempplyrid].pedPed, true);
-
-			if(!playerData[playerid].isDefaultBlipRemoved) {
-				playerData[tempplyrid].pedBlip = UI::ADD_BLIP_FOR_ENTITY(playerData[tempplyrid].pedPed);
-				UI::SET_BLIP_AS_FRIENDLY(playerData[tempplyrid].pedBlip, true);
-				UI::SET_BLIP_COLOUR(playerData[tempplyrid].pedBlip, 0);
-				UI::SET_BLIP_SCALE(playerData[tempplyrid].pedBlip, 1.0f);
-				UI::BEGIN_TEXT_COMMAND_SET_BLIP_NAME("STRING");
-				UI::_ADD_TEXT_COMPONENT_STRING3(playerData[tempplyrid].playerusername);
-				UI::END_TEXT_COMMAND_SET_BLIP_NAME(playerData[tempplyrid].pedBlip);
-			}
+		if (!playerData[playerid].isDefaultBlipRemoved) {
+			playerData[tempplyrid].pedBlip = UI::ADD_BLIP_FOR_ENTITY(playerData[tempplyrid].pedPed);
+			UI::SET_BLIP_AS_FRIENDLY(playerData[tempplyrid].pedBlip, true);
+			UI::SET_BLIP_COLOUR(playerData[tempplyrid].pedBlip, 0);
+			UI::SET_BLIP_SCALE(playerData[tempplyrid].pedBlip, 1.0f);
+			UI::BEGIN_TEXT_COMMAND_SET_BLIP_NAME("STRING");
+			UI::_ADD_TEXT_COMPONENT_STRING3(playerData[tempplyrid].playerusername);
+			UI::END_TEXT_COMMAND_SET_BLIP_NAME(playerData[tempplyrid].pedBlip);
 		}
-	//}
+	}
 }
 
 void CNetworkManager::HandleVehicleSync(Packet * p)
@@ -302,13 +287,6 @@ void CNetworkManager::HandleVehicleSync(Packet * p)
 	VehicleBitStream_receive.Read(temptimestamp);
 
 	vehicleData[tempvehicleid].tickssince = clock();
-
-	/*printf("%d | %x, %d | %f, %f, %f, | %f, %f, %f, %f, %f, | %f, %f, %f\n", tempvehicleid, vehicleData[tempvehicleid].vehicleModel, vehicleData[tempvehicleid].vehicleHealth,
-		vehicleData[tempvehicleid].x, vehicleData[tempvehicleid].y, vehicleData[tempvehicleid].z, vehicleData[tempvehicleid].r, vehicleData[tempvehicleid].rx, vehicleData[tempvehicleid].ry,
-		vehicleData[tempvehicleid].rz, vehicleData[tempvehicleid].rw, vehicleData[tempvehicleid].vx, vehicleData[tempvehicleid].vy, vehicleData[tempvehicleid].vz);*/
-
-	//ENTITY::SET_ENTITY_COORDS(vehicleData[tempvehicleid].vehicleVehicle, vehicleData[tempvehicleid].x, vehicleData[tempvehicleid].y, vehicleData[tempvehicleid].z, 0, 0, 0, 0);
-	//ENTITY::SET_ENTITY_QUATERNION(vehicleData[tempvehicleid].vehicleVehicle, vehicleData[tempvehicleid].rx, vehicleData[tempvehicleid].ry, vehicleData[tempvehicleid].rz, vehicleData[tempvehicleid].rw);
 }
 
 float ttlerp(float v0, float v1, float t) {
@@ -319,7 +297,7 @@ void CNetworkManager::SyncOnFoot()
 {
 	for (int i = 0; i < 25; i++) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[i].pedPed)) {
-			if (sync_test == true) {
+			if (sync_test == true && playerData[i].vehicleid < 0) {
 				CVector3 curpos1;
 				curpos1.fX = playerData[i].oldx;
 				curpos1.fY = playerData[i].oldy;
@@ -340,15 +318,14 @@ void CNetworkManager::SyncOnFoot()
 					updpos.fY = ttlerp(curpos1.fY, newpos.fY, progress);
 					updpos.fZ = ttlerp(curpos1.fZ, newpos.fZ, progress);
 
-					printf("%f | %f | %f/%f/%f\n", elapsedTime, progress, updpos.fX, updpos.fY, updpos.fZ);
+					//printf("%f | %f | %f/%f/%f\n", elapsedTime, progress, updpos.fX, updpos.fY, updpos.fZ);
 
 					ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, updpos.fX, updpos.fY, updpos.fZ, 0, 0, 0, 0);
 					ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
 				}
-			}
-			else {
-				ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, playerData[i].x, playerData[i].y, playerData[i].z, 0, 0, 0, 0);
-				ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
+			} else {
+				//ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, playerData[i].x, playerData[i].y, playerData[i].z, 0, 0, 0, 0);
+				//ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
 			}
 		}
 	}
@@ -358,10 +335,15 @@ void CNetworkManager::SyncVehicle()
 {
 	for (int i = 0; i < 25; i++) {
 		if (ENTITY::DOES_ENTITY_EXIST(vehicleData[i].vehicleVehicle)) {
-			if (vehicleData[i].vehicleid != LocalPlayer->GetVehicle()) {
+			if (vehicleData[i].vehicleid != playerData[LocalPlayer->playerID].vehicleid) {
 				if (sync_test == true) {
-					if (!PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false) && vehicleData[i].playerid >= 0)
-						PED::SET_PED_INTO_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, -1);
+					if (!PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false)) {
+						if (vehicleData[i].playerid >= 0) {
+							PED::SET_PED_INTO_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, -1);
+						}
+					} else {
+						AI::TASK_LEAVE_VEHICLE(playerData[i].pedPed, vehicleData[playerData[i].vehicleid].vehicleVehicle, 16);
+					}
 
 					CVector3 curpos1;
 					curpos1.fX = vehicleData[i].oldx;
@@ -383,13 +365,14 @@ void CNetworkManager::SyncVehicle()
 						updpos.fY = ttlerp(curpos1.fY, newpos.fY, progress);
 						updpos.fZ = ttlerp(curpos1.fZ, newpos.fZ, progress);
 
-						printf("%f | %f | %f/%f/%f\n", elapsedTime, progress, updpos.fX, updpos.fY, updpos.fZ);
+						//printf("%f | %f | %f/%f/%f\n", elapsedTime, progress, updpos.fX, updpos.fY, updpos.fZ);
 
 						ENTITY::SET_ENTITY_COORDS(vehicleData[i].vehicleVehicle, updpos.fX, updpos.fY, updpos.fZ, 0, 0, 0, 0);
 						ENTITY::SET_ENTITY_QUATERNION(vehicleData[i].vehicleVehicle, vehicleData[i].rx, vehicleData[i].ry, vehicleData[i].rz, vehicleData[i].rw);
 					}
-				}
-				else {
+				} else {
+					printf("WARNING: interpolation disabled!\n");
+
 					if (!PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false) && vehicleData[i].playerid >= 0)
 						PED::SET_PED_INTO_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, -1);
 
@@ -411,11 +394,17 @@ void CNetworkManager::DropPlayer(Packet * p)
 	PlayerBitStream_receive.Read(tempplyrid);
 	PlayerBitStream_receive.Read(tempplyrname);
 
-	if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed))
-	{
+	if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
 		char sendmessage[128];
 
+		AI::TASK_LEAVE_VEHICLE(playerData[tempplyrid].pedPed, vehicleData[playerData[tempplyrid].vehicleid].vehicleVehicle, 16);
+
+		playerData[tempplyrid].vehicleid = -1;
+
+		PED::DELETE_PED(&playerData[tempplyrid].pedPed);
 		ENTITY::DELETE_ENTITY(&playerData[tempplyrid].pedPed);
 		UI::REMOVE_BLIP(&playerData[tempplyrid].pedBlip);
+
+		playerData[tempplyrid].used = false;
 	}
 }

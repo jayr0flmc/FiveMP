@@ -18,13 +18,13 @@ void CreateBlip(int blipID, int locationType, float x, float y, float z, int att
 	blipData[clientblipid].used = true;
 	blipData[clientblipid].serverID = blipID;
 
+	int vehicleid = -1;
+
 	switch (locationType) {
-		case 0: {
+		case 0:
 			blipData[clientblipid].blip = UI::ADD_BLIP_FOR_COORD(x, y, z);
 			break;
-		}
-		case 1: {
-			int vehicleid = -1;
+		case 1:
 			for (int i = 0; i < 100; i++) {
 				if (attachID == vehicleData[i].vehicleid) {
 					vehicleid = vehicleData[i].vehicleVehicle;
@@ -35,16 +35,14 @@ void CreateBlip(int blipID, int locationType, float x, float y, float z, int att
 
 			blipData[clientblipid].blip = UI::ADD_BLIP_FOR_ENTITY(vehicleid);
 			break;
-		}
-		case 2: {
+		case 2:
 			if (attachID != LocalPlayer->playerID) {
 				blipData[clientblipid].blip = UI::ADD_BLIP_FOR_ENTITY(playerData[attachID].pedPed);
 			}
 			else {
 				blipData[clientblipid].blip = UI::ADD_BLIP_FOR_ENTITY(LocalPlayer->playerPed);
 			}
-			break;
-		}
+		break;
 	}
 
 	UI::SET_BLIP_AS_FRIENDLY(blipData[clientblipid].blip, true);

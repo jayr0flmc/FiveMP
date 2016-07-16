@@ -86,6 +86,14 @@ int CLocalPlayer::GetVehicle()
 	return -1;
 }
 
+int CLocalPlayer::GetVehicleSeat()
+{
+	if (PED::GET_VEHICLE_PED_IS_IN(playerPed, false) > 0) {
+		return -1;
+	}
+	return 0;
+}
+
 void CLocalPlayer::SetModel(Hash model)
 {
 	int health = GetHealth();
@@ -133,6 +141,7 @@ void CLocalPlayer::SendOnFootData()
 	PlayerBitStream_send.Write(GetVelocity().z);
 
 	PlayerBitStream_send.Write(LocalPlayer->GetVehicle());
+	PlayerBitStream_send.Write(LocalPlayer->GetVehicleSeat());
 
 	PlayerBitStream_send.Write(time(0));
 

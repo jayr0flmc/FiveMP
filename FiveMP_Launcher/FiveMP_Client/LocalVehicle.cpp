@@ -45,6 +45,8 @@ void CLocalVehicle::SendVehicleData()
 	VehicleBitStream_send.Write(GetVelocity().y);
 	VehicleBitStream_send.Write(GetVelocity().z);
 
+	VehicleBitStream_send.Write(LocalPlayer->playerID);
+
 	VehicleBitStream_send.Write(time(0));
 
 	NetworkManager->client->Send(&VehicleBitStream_send, MEDIUM_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
