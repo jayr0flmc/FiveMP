@@ -301,6 +301,10 @@ void CNetworkManager::SyncOnFoot()
 	for (int i = 0; i < 25; i++) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[i].pedPed)) {
 			if (sync_test == true && playerData[i].vehicleid < 0) {
+				if (PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false)) {
+					AI::TASK_LEAVE_VEHICLE(playerData[i].pedPed, vehicleData[playerData[i].vehicleid].vehicleVehicle, 16);
+				}
+
 				CVector3 curpos1;
 				curpos1.fX = playerData[i].oldx;
 				curpos1.fY = playerData[i].oldy;
@@ -340,12 +344,8 @@ void CNetworkManager::SyncVehicle()
 		if (ENTITY::DOES_ENTITY_EXIST(vehicleData[i].vehicleVehicle)) {
 			if (vehicleData[i].vehicleid != playerData[LocalPlayer->playerID].vehicleid) {
 				if (sync_test == true) {
-					if (!PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false)) {
-						if (vehicleData[i].playerid >= 0) {
-							PED::SET_PED_INTO_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, -1);
-						}
-					} else {
-						AI::TASK_LEAVE_VEHICLE(playerData[i].pedPed, vehicleData[playerData[i].vehicleid].vehicleVehicle, 16);
+					if (!PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false) && vehicleData[i].playerid >= 0) {
+						PED::SET_PED_INTO_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, -1);
 					}
 
 					CVector3 curpos1;
