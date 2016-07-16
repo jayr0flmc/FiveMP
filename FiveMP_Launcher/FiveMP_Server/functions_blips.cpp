@@ -167,6 +167,72 @@ int SetBlipName(lua_State * state)
 	return 0;
 }
 
+int GetBlipLocationType(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("GetBlipLocationType() was called with %d arguments.\n", args);
+
+	int blipid = lua_tointeger(state, 1);
+	if (blipData[blipid].used) {
+		lua_pushinteger(state, blipData[blipid].locationType);
+	}
+	else {
+		lua_pushinteger(state, -1);
+	}
+
+	return 0;
+}
+
+int GetBlipColor(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("GetBlipColor() was called with %d arguments.\n", args);
+
+	int blipid = lua_tointeger(state, 1);
+	if (blipData[blipid].used) {
+		lua_pushinteger(state, blipData[blipid].color);
+	}
+	else {
+		lua_pushinteger(state, -1);
+	}
+
+	return 0;
+}
+
+int GetBlipImage(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("GetBlipImage() was called with %d arguments.\n", args);
+
+	int blipid = lua_tointeger(state, 1);
+	if (blipData[blipid].used) {
+		lua_pushinteger(state, blipData[blipid].spriteid);
+	}
+	else {
+		lua_pushinteger(state, -1);
+	}
+	return 0;
+}
+
+int GetBlipName(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("GetBlipName() was called with %d arguments.\n", args);
+
+	int blipid = lua_tointeger(state, 1);
+	if (blipData[blipid].used) {
+		lua_pushstring(state, blipData[blipid].name.c_str());
+	}
+	else {
+		lua_pushstring(state, "");
+	}
+	return 0;
+}
+
 int RemoveDefaultBlipFromPlayer(lua_State * state)
 {
 	int args = lua_gettop(state);

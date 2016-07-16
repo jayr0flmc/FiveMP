@@ -8,6 +8,10 @@ int RemoveBlip(lua_State* state);
 int SetBlipColor(lua_State* state);
 int SetBlipImage(lua_State* state);
 int SetBlipName(lua_State* state);
+int GetBlipLocationType(lua_State* state);
+int GetBlipColor(lua_State* state);
+int GetBlipImage(lua_State* state);
+int GetBlipName(lua_State* state);
 
 //Default blips that are created on player
 int RemoveDefaultBlipFromPlayer(lua_State* state);
