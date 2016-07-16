@@ -8,3 +8,5 @@ int OnPlayerDisconnect(lua_State * state, int playerid);
 
 int OnPlayerSpawn(lua_State * state, int playerid);
 int OnPlayerDeath(lua_State * state, int playerid);
+
+int OnPlayerUpdate(lua_State* state, int playerid);

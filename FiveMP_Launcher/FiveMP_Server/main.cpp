@@ -99,6 +99,10 @@ int main(void)
 	lua_register(sLUA, "SetBlipColor", SetBlipColor);
 	lua_register(sLUA, "SetBlipName", SetBlipName);
 	lua_register(sLUA, "SetBlipImage", SetBlipImage);
+	lua_register(sLUA, "GetBlipLocationType", GetBlipLocationType);
+	lua_register(sLUA, "GetBlipColor", GetBlipColor);
+	lua_register(sLUA, "GetBlipImage", GetBlipImage);
+	lua_register(sLUA, "GetBlipName", GetBlipName);
 
 	lua_register(sLUA, "RemoveDefaultBlipFromPlayer", RemoveDefaultBlipFromPlayer);
 	lua_register(sLUA, "IsDefaultBlipRemovedFromPlayer", IsDefaultBlipRemovedFromPlayer);

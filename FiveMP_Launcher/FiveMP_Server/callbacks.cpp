@@ -103,3 +103,21 @@ int OnPlayerDeath(lua_State * state, int playerid)
 
 	return result;
 }
+
+int OnPlayerUpdate(lua_State * state, int playerid)
+{
+	int result;
+
+	//printf("OnPlayerUpdate() was called with %d\n", playerid); <--- Really spams
+
+	lua_getglobal(state, "OnPlayerUpdate");
+
+	lua_pushinteger(state, playerid);
+
+	lua_call(state, 1, 1);
+
+	result = (int)lua_tointeger(state, -1);
+	lua_pop(state, 1);
+
+	return result;
+}
