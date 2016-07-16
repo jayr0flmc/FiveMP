@@ -10,7 +10,9 @@ function OnGameModeInit()
 	
 	blip = CreateBlip();
 	SetBlipLocationType(blip, 1, vehicle);
-	SetBlipColor(blip, 4);
+	SetBlipColor(blip, 23);
+	SetBlipImage(blip, 56);
+	SetBlipName(blip, "Voltic car");
 	
 	return 1;
 end
@@ -25,7 +27,7 @@ function OnPlayerConnect(playerid)
 	SendMessageToPlayer(playerid, "Your player ID is ~b~" .. playerid);
 	
 	playername = GetPlayerName(playerid);
-	SendMessageToAll("~b~" .. playername .. "(".. playerid .. ") ~w~has connected to the server.");
+	SendMessageToPlayer(playerid, "~b~" .. playername .. "(".. playerid .. ") ~w~has connected to the server.");
 	
 	SetPlayerPos(playerid, 0.0, 0.0, 73.5);
 	SetPlayerFacingAngle(playerid, 45.0);
@@ -50,7 +52,7 @@ end
 
 function OnPlayerDisconnect(playerid)
 	playername = GetPlayerName(playerid);
-	SendMessageToAll("~b~" .. playername .. "(".. playerid .. ") ~w~has left the server.");
+	SendMessageToPlayer(playerid, "~b~" .. playername .. "(".. playerid .. ") ~w~has left the server.");
 	print(playerid .. " has disconnected");
     return 1;
 end
@@ -61,6 +63,6 @@ end
 
 function OnPlayerDeath(playerid)
 	playername = GetPlayerName(playerid);
-	SendMessageToAll("~b~" .. playername .. "(".. playerid .. ")~w~ has died.");
+	SendMessageToPlayer(playerid, "~b~" .. playername .. "(".. playerid .. ")~w~ has died.");
 	print(playerid .. " has died.");
 end

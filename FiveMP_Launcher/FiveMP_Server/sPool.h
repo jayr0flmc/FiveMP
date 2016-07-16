@@ -122,6 +122,8 @@ struct blipPool {
 	int attachID;
 
 	int color;
+	int spriteid = 1;
+	std::string name = std::string("No name");
 
 	bool used = false;
 };
