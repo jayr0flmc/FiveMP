@@ -373,6 +373,7 @@ void CNetworkManager::SyncVehicle()
 						ENTITY::SET_ENTITY_COORDS(vehicleData[i].vehicleVehicle, updpos.fX, updpos.fY, updpos.fZ, 0, 0, 0, 0);
 						ENTITY::SET_ENTITY_QUATERNION(vehicleData[i].vehicleVehicle, vehicleData[i].rx, vehicleData[i].ry, vehicleData[i].rz, vehicleData[i].rw);
 					}
+					vehicleData[i].playerid = -1;
 				} else {
 					printf("WARNING: interpolation disabled!\n");
 
