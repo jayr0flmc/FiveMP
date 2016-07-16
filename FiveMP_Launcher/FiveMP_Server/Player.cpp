@@ -15,7 +15,7 @@ void SPlayer::Player()
 
 void SPlayer::PlayerPulse()
 {
-		for (int i = 0; i < sizeof(playerData) / sizeof(*playerData); i++) {
+		for (int i = 0; i < 100; i++) {
 			if (playerData[i].used == true) {
 				if (playerData[i].pedHealth <= 0 && playerData[i].dead == false)
 				{
@@ -28,7 +28,7 @@ void SPlayer::PlayerPulse()
 					float closest = 0;
 					int spawnid = 0;
 
-					for (int s = 0; s < sizeof(spawnData) / sizeof(*spawnData); s++) {
+					for (int s = 0; s < 50; s++) {
 						if (spawnData[s].used == true)
 						{
 							float tempd = Distance(playerData[i].x, spawnData[s].x, playerData[i].y, spawnData[s].y, playerData[i].z, spawnData[s].z);
@@ -40,23 +40,26 @@ void SPlayer::PlayerPulse()
 						}
 					}
 
+					SpawnPlayer(i, spawnid, spawnData[spawnid].x, spawnData[spawnid].y, spawnData[spawnid].z);
 					playerData[i].dead = false;
-					SpawnPlayer(i, spawnid);
 				}
 			}
 		}
 }
 
-void SPlayer::SpawnPlayer(int playerid, int spawnid) {
+void SPlayer::SpawnPlayer(int playerid, int spawnid, float x, float y, float z ) {
 
+	if (spawnData[spawnid].used)
+	{
 		RakNet::BitStream sSetPlayerPos;
 		sSetPlayerPos.Write(playerid);
-		sSetPlayerPos.Write(spawnData[spawnid].x);
-		sSetPlayerPos.Write(spawnData[spawnid].y);
-		sSetPlayerPos.Write(spawnData[spawnid].z);
+		sSetPlayerPos.Write(x);
+		sSetPlayerPos.Write(y);
+		sSetPlayerPos.Write(z);
 		NetworkManager->rpc.Signal("SetPlayerPos", &sSetPlayerPos, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	}
 
-		OnPlayerSpawn(sLUA, playerid);
+	OnPlayerSpawn(sLUA, playerid);
 }
 
 float SPlayer::Distance(float x1, float x2, float y1, float y2, float z1, float z2)
