@@ -1322,7 +1322,8 @@ enum eWeapon : DWORD
 	WeaponFlashlight = 2343591895,
 	WeaponSwitchblade = 3756226112,
 	WeaponMachete = 3713923289,
-	WeaponHeavyRevolver = 1571951461
+	WeaponHeavyRevolver = 1571951461,
+	WeaponBall = 0x23C9F95C
 };
 
 enum eWeaponGroup : DWORD

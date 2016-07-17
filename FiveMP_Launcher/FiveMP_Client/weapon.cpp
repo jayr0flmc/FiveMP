@@ -83,6 +83,7 @@ EnumParser<eWeapon>::EnumParser()
 	enumMap["Switchblade"] = WeaponSwitchblade;
 	enumMap["Machete"] = WeaponMachete;
 	enumMap["HeavyRevolver"] = WeaponHeavyRevolver;
+	enumMap["Ball"] = WeaponBall;
 };
 
 void GameWeapon::GiveWeapon(char * weaponid, int ammo) {
