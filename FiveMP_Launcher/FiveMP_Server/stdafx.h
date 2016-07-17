@@ -54,6 +54,9 @@ using namespace RakNet;
 #include "vehicle.h"
 #include "world.h"
 
+// ScriptHook
+#include <Types.h>
+
 // Scripting (LUA)
 #include <lua.hpp>
 

@@ -86,13 +86,23 @@ extern spawnPool spawnData[50];
 
 struct vehiclePool {
 	int vehicleid;							// Vehicle ID (server)
-
+	
 	const char *spawnvehicleModel;			// Vehicle Model in const char
 	Hash vehicleModel;						// Vehicle Model in Hash
 	int vehicleHealth;						// Vehicle Health
+	std::string vehiclePlate = std::string("FiveMP");				// Vehicle Lisence Plate (MAX 8 Chars)
 
 	int vehicleColor1;						// Vehicle Color 1
 	int vehicleColor2;						// Vehicle Color 2
+	
+	bool customcolor1Used = false;			// Wether or not this vehicle has a custom primary color (Mostly for OnPlayerConnect)
+	bool customcolor2Used = false;			// Wether or not this vehicle has a custom secondary color (Mostly for OnPlayerConnect)
+	int primarycr;							// Vehicle RColor 1
+	int primarycg;							// Vehicle GColor 1
+	int primarycb;							// Vehicle BColor 1
+	int secondarycr;						// Vehicle RColor 2
+	int secondarycg;						// Vehicle GColor 2
+	int secondarycb;						// Vehicle BColor 2
 
 	float x;								// Position X coord
 	float y;								// Position Y coord

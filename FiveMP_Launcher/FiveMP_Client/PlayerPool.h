@@ -40,7 +40,6 @@ struct playerPool {
 	clock_t tickssince;
 
 	bool isDefaultBlipRemoved = false;
-
 	bool used = false;						// Whether the player slot is in use or not.
 };
 extern playerPool playerData[150];

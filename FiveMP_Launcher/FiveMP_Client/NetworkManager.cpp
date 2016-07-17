@@ -359,8 +359,8 @@ void CNetworkManager::SyncVehicle()
 					newpos.fZ = vehicleData[i].z;
 
 					clock_t now = clock();
-					float elapsedTime = now - vehicleData[i].tickssince;
-					float progress = elapsedTime / 15.6f;
+					clock_t elapsedTime = now - vehicleData[i].tickssince;
+					double progress = elapsedTime / 15.6f;
 
 					if (progress <= 1.0) {
 						CVector3 updpos;
