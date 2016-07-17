@@ -90,7 +90,7 @@ struct vehiclePool {
 	const char *spawnvehicleModel;			// Vehicle Model in const char
 	Hash vehicleModel;						// Vehicle Model in Hash
 	int vehicleHealth;						// Vehicle Health
-	std::string vehiclePlate;				// Vehicle Lisence Plate (MAX 8 Chars)
+	std::string vehiclePlate = std::string("FiveMP");				// Vehicle Lisence Plate (MAX 8 Chars)
 
 	int vehicleColor1;						// Vehicle Color 1
 	int vehicleColor2;						// Vehicle Color 2

@@ -47,21 +47,14 @@ void SVehicle::SpawnVehicles(int playerid)
 				sVehicleColor.Write(vehicleData[i].secondarycb);
 				NetworkManager->rpc.Signal("SetVehicleCustomColor", &sVehicleColor, HIGH_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 			}
-			/*
-			RakNet::RakString string;
-
-			if (vehicleData[i].vehiclePlate.length == 0) {
-				string = RakNet::RakString("FiveMP");
-			}
-			else {
-				string = RakNet::RakString(vehicleData[i].vehiclePlate.c_str());
-			}
+			
+			RakNet::RakString string = RakNet::RakString(vehicleData[i].vehiclePlate.c_str());
 
 			RakNet::BitStream sVehiclePlate;
 			sVehiclePlate.Write(vehicleData[i].vehicleid);
 			sVehiclePlate.Write(string);
-			NetworkManager->rpc.Signal("SetVehicleNumberPlate", &sVehiclePlate, LOW_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
-			*/
+			NetworkManager->rpc.Signal("SetVehicleNumberPlate", &sVehiclePlate, HIGH_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+			
 		}
 	}
 }

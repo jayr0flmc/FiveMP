@@ -117,7 +117,7 @@ int SetVehicleCustomColor(lua_State* state)
 
 	return 0;
 }
-/*
+
 int SetVehicleNumberPlate(lua_State* state)
 {
 	int args = lua_gettop(state);
@@ -127,8 +127,8 @@ int SetVehicleNumberPlate(lua_State* state)
 	int vehicleid = lua_tonumber(state, 1);
 	std::string plate = lua_tostring(state, 2);
 
-	if (plate.length > 8) {
-		plate = plate.erase(plate.length - 8);
+	if (plate.length() > 8) {
+		plate = plate.erase(plate.length() - 8);
 	}
 
 	vehicleData[vehicleid].vehiclePlate = plate;
@@ -141,4 +141,4 @@ int SetVehicleNumberPlate(lua_State* state)
 	NetworkManager->rpc.Signal("SetVehicleNumberPlate", &sVehiclePlate, LOW_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
 
 	return 0;
-}*/
+}
