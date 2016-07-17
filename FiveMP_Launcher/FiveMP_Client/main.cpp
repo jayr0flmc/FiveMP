@@ -11,7 +11,6 @@ CRPCManager		*RPCManager;
 CLocalPlayer	*LocalPlayer;
 CLocalVehicle	*LocalVehicle;
 CConfig			*Config;
-CChat			*Chat;
 CRenderDebug	*RenderDebug;
 CRender			*Render;
 
@@ -27,7 +26,6 @@ void InitGameScript() {
 
 	NetworkManager	= new CNetworkManager;
 	RPCManager		= new CRPCManager;
-	Chat			= new CChat;
 
 	RPCManager->RegisterRPCs();
 
@@ -39,6 +37,8 @@ void RunGameScript() {
 	LocalPlayer = new CLocalPlayer;
 	LocalPlayer->Initialize();
 
+	CChat::Get()->RegisterCommandProcessor(CommandProcessor);
+
 	while (true)
 	{
 		LocalPlayer->OnTick();
@@ -48,8 +48,8 @@ void RunGameScript() {
 		RenderDebug->RenderVelocity();
 		RenderDebug->RenderCoords();
 
-		Chat->Render();
-		//Chat->Input();
+		CChat::Get()->Render();
+		CChat::Get()->Input();
 
 		if (NetworkManager->Listening) {
 			NetworkManager->Pulse();
@@ -113,16 +113,10 @@ void RunGameScript() {
 				NetworkManager->sync_test = true;
 			}
 		}
-		if (IsKeyJustUp(0x54)) {
-			Chat->open = true;
-
-			printf("%d\n", Chat->open);
+		if (IsKeyJustUp(0x54) && IsKeyJustUp(VK_F6)) {
+			/*Chat->open = true;
+			printf("%d\n", Chat->open);*/
 		}
-		/*
-		if (IsKeyJustUp(VK_F12)) {
-			vehicle.CreateVehicle(0, "adder", LocalPlayer->GetCoords(), 90.0f, 5, 10, true, 25);
-		}
-		*/
 
 		WAIT(0);
 	}

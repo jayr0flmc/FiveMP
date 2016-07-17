@@ -129,6 +129,9 @@
     <ClCompile Include="Pickups.cpp">
       <Filter>Source Files\Function</Filter>
     </ClCompile>
+    <ClCompile Include="Commands.cpp">
+      <Filter>Source Files\Modification</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RAGEHelper.h">
@@ -211,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="Pickups.h">
       <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands.h">
+      <Filter>Header Files\Modification</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

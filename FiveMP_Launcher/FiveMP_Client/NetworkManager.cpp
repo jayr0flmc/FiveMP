@@ -51,7 +51,7 @@ bool CNetworkManager::Disconnect()
 		LocalPlayer->timesincerequest = 0;
 		LocalPlayer->playerMoney = 0;
 
-		Chat->Clear();
+		CChat::Get()->Clear();
 		world.CleanUp();
 
 		player.ShowMessageAboveMap("Successfully disconnected!");
