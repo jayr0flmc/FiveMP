@@ -131,3 +131,15 @@ struct blipPool {
 	bool used = false;
 };
 extern blipPool blipData[100];
+
+struct pickupPool {
+	float x;
+	float y;
+	float z;
+
+	int pickupid;
+
+	bool autoSync = false;
+	bool used = false;
+};
+extern pickupPool pickupData[100];

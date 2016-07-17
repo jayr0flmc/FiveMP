@@ -4,6 +4,7 @@ playerPool playerData[150];
 vehiclePool vehicleData[125];
 blipPool blipData[100];
 chatMessages chatData[100];
+pickupPool pickupData[100];
 
 CNetworkManager *NetworkManager;
 CRPCManager		*RPCManager;

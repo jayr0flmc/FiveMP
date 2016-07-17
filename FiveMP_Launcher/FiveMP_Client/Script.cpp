@@ -295,3 +295,44 @@ void RemoveDefaultBlipForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * 
 		UI::REMOVE_BLIP(&playerData[playerid].pedBlip);
 	}
 }
+
+void ShowPickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int pickupid;
+	int modelid;
+	float x;
+	float y;
+	float z;
+
+	bitStream->Read(pickupid);
+	bitStream->Read(modelid);
+	bitStream->Read(x);
+	bitStream->Read(y);
+	bitStream->Read(z);
+
+	CreatePickup(pickupid, modelid, x, y, z);
+}
+
+void HidePickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int pickupid;
+
+	bitStream->Read(pickupid);
+
+	for (int i = 0; i < 100; i++) {
+		if (pickupData[i].used && pickupData[i].serverID == pickupid) {
+			
+			OBJECT::REMOVE_PICKUP(pickupData[i].pickup);
+			pickupData[i].serverID = 0;
+			pickupData[i].pickup = 0;
+			pickupData[i].used = false;
+			break;
+
+		}
+	}
+
+}
+
+void UpdatePickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+}

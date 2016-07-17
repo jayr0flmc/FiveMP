@@ -32,6 +32,7 @@
     <ClInclude Include="functions_blips.h" />
     <ClInclude Include="functions_hud.h" />
     <ClInclude Include="functions_main.h" />
+    <ClInclude Include="functions_pickups.h" />
     <ClInclude Include="functions_player.h" />
     <ClInclude Include="functions_vehicle.h" />
     <ClInclude Include="Vehicle.h" />
@@ -72,6 +73,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="functions_pickups.cpp" />
     <ClCompile Include="functions_player.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Use</PrecompiledHeader>

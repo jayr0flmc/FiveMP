@@ -67,6 +67,7 @@ using namespace RakNet;
 #include "World.h"
 #include "Model.h"
 #include "Blips.h"
+#include "Pickups.h"
 
 // Math
 #include "CMath.h"

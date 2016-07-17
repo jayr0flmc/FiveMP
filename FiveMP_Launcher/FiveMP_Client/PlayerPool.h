@@ -101,3 +101,11 @@ struct chatMessages {
 	char message[128] = "";
 };
 extern chatMessages chatData[100];
+
+struct pickupPool {
+	int serverID;
+	Pickup pickup;
+
+	bool used = false;
+};
+extern pickupPool pickupData[100];
