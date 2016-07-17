@@ -14,11 +14,11 @@ CChat::~CChat()
 void CChat::Render()
 {
 	char chatlength[256];
-	float heightupdate = 0.002f;
+	float heightupdate = 0.004f;
 
 	for (int i = 0; i < 10; i++) {
 		sprintf(chatlength, "%s", chatData[i].message);
-		draw_text(0.002f, heightupdate, chatlength, { 255, 255, 255, 255 });
+		draw_text(0.004f, heightupdate, chatlength, { 255, 255, 255, 255 });
 
 		heightupdate += 0.025f;
 	}

@@ -144,7 +144,7 @@ void CLocalPlayer::SendOnFootData()
 
 	PlayerBitStream_send.Write(time(0));
 
-	NetworkManager->client->Send(&PlayerBitStream_send, MEDIUM_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+	NetworkManager->client->Send(&PlayerBitStream_send, MEDIUM_PRIORITY, UNRELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
 char* replaceCharacter(char* name, char char1, char char2) {
