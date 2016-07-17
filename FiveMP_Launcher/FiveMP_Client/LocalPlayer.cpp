@@ -23,6 +23,11 @@ void CLocalPlayer::Initialize()
 			GAMEPLAY::DISABLE_HOSPITAL_RESTART(i, true);
 		}
 
+		for (int i = 0; i < 50; i++) {
+			GAMEPLAY::DISABLE_STUNT_JUMP_SET(i);
+			GAMEPLAY::DELETE_STUNT_JUMP(i);
+		}
+
 		playerInitialized = true;
 
 		GAMEPLAY::SET_MISSION_FLAG(true);
