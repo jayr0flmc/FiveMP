@@ -49,5 +49,5 @@ void CLocalVehicle::SendVehicleData()
 
 	VehicleBitStream_send.Write(time(0));
 
-	NetworkManager->client->Send(&VehicleBitStream_send, MEDIUM_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+	NetworkManager->client->Send(&VehicleBitStream_send, MEDIUM_PRIORITY, UNRELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }

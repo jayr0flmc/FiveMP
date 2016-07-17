@@ -33,13 +33,13 @@ function OnPlayerConnect(playerid)
 	SetPlayerFacingAngle(playerid, 45.0);
 	
 	SetPlayerMoney(playerid, 500);
-	GivePlayerWeapon(playerid, "Pistol", 45);
 	SetPlayerMaxTagDrawDistance(playerid, 50);
 	
 	SetPlayerHealth(playerid, 100);
 	SetPlayerArmour(playerid, 50);
 	SetPlayerModel(playerid, 420);
 	
+	GivePlayerWeapon(playerid, "Pistol", 45);
 	ShowBlipForPlayer(blip, playerid);
 	return 1;
 end
