@@ -73,7 +73,7 @@ int SetVehicleColor(lua_State* state)
 	sVehicleColor.Write(vehicleid);
 	sVehicleColor.Write(color1);
 	sVehicleColor.Write(color2);
-	NetworkManager->rpc.Signal("SetVehicleColor", &sVehicleColor, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+	NetworkManager->rpc.Signal("SetVehicleColor", &sVehicleColor, LOW_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
 
 	return 0;
 }
@@ -91,13 +91,16 @@ int SetVehicleCustomColor(lua_State* state)
 	int b = lua_tonumber(state, 5);
 
 	if (layer == 1) {
-		vehicleData[vehicleid].primarycolor.set(r, g, b);
+		vehicleData[vehicleid].customcolor1Used = true;
+		vehicleData[vehicleid].primarycolor = { r, g, b, 255 };
 	}
 	else if (layer == 2) {
-		vehicleData[vehicleid].secondarycolor.set(r, g, b);
+		vehicleData[vehicleid].customcolor2Used = true;
+		vehicleData[vehicleid].secondarycolor = { r, g, b, 255 };
 	}
 	else {
 		printf("SetVehicleCustomColor() 'layer' argument incorectly used, must be 1 or 2");
+		return 0;
 	}
 
 	RakNet::BitStream sVehicleColor;
@@ -106,7 +109,32 @@ int SetVehicleCustomColor(lua_State* state)
 	sVehicleColor.Write(r);
 	sVehicleColor.Write(g);
 	sVehicleColor.Write(b);
-	NetworkManager->rpc.Signal("SetVehicleCustomColor", &sVehicleColor, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+	NetworkManager->rpc.Signal("SetVehicleCustomColor", &sVehicleColor, LOW_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+
+	return 0;
+}
+
+int SetVehicleNumberPlate(lua_State* state)
+{
+	int args = lua_gettop(state);
+
+	printf("SetVehicleNumberPlate() was called with %d arguments:\n", args);
+
+	int vehicleid = lua_tonumber(state, 1);
+	std::string plate = lua_tostring(state, 2);
+
+	if (plate.length > 8) {
+		plate = plate.erase(plate.length - 8);
+	}
+
+	vehicleData[vehicleid].vehiclePlate = plate;
+
+	RakNet::RakString string = RakNet::RakString(plate.c_str());
+
+	RakNet::BitStream sVehiclePlate;
+	sVehiclePlate.Write(vehicleid);
+	sVehiclePlate.Write(string);
+	NetworkManager->rpc.Signal("SetVehicleNumberPlate", &sVehiclePlate, LOW_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
 
 	return 0;
 }

@@ -18,6 +18,7 @@ void CreateVehicle(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void RemoveVehicle(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void SetVehicleColor(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void SetVehicleCustomColor(RakNet::BitStream *bitStream, RakNet::Packet *packet);
+void SetVehicleNumberPlate(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void SetPedComponentVariation(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void ShowBlipForPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void HideBlipFromPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet);

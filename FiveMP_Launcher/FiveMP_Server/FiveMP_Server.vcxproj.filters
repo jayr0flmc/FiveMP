@@ -52,9 +52,6 @@
     <ClInclude Include="World.h">
       <Filter>Header Files\Function</Filter>
     </ClInclude>
-    <ClInclude Include="color.h">
-      <Filter>Header Files\Common</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -110,9 +107,6 @@
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Source Files\Function</Filter>
-    </ClCompile>
-    <ClCompile Include="color.cpp">
-      <Filter>Source Files\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -230,6 +230,17 @@ void SetVehicleCustomColor(RakNet::BitStream * bitStream, RakNet::Packet * packe
 	vehicle.SetVehicleCustomColor(vehicleid, layer, r, g, b);
 }
 
+void SetVehicleNumberPlate(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int vehicleid;
+	RakNet::RakString plate;
+
+	bitStream->Read(vehicleid);
+	bitStream->Read(plate);
+
+	vehicle.SetVehicleNumberPlate(vehicleid, plate.C_String());
+}
+
 void SetPedComponentVariation(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 {
 	int playerid;

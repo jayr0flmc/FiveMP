@@ -54,3 +54,11 @@ void GameVehicle::SetVehicleCustomColor(int vehicleid, int layer, int r, int g, 
 		}
 	}
 }
+
+void GameVehicle::SetVehicleNumberPlate(int vehicleid, const char* plate)
+{
+	if (ENTITY::DOES_ENTITY_EXIST(vehicleData[vehicleid].vehicleVehicle))
+	{
+		VEHICLE::SET_VEHICLE_NUMBER_PLATE_TEXT(vehicleid, (char *) plate);
+	}
+}
