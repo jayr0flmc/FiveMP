@@ -57,9 +57,9 @@ void CChat::Render()
 		uiFirstLine = 0;
 	unsigned int uiLastLine = min(uiFirstLine + cuLinesOnScreen, vChatLines.size());
 
-	float heightupdate = 0.002f;
+	float heightupdate = 0.004f;
 	for (unsigned int i = uiFirstLine; i < uiLastLine; i++) {
-		draw_text(0.002f, heightupdate, vChatLines[i].sLineText.c_str(), vChatLines[i].structColor);
+		draw_text(0.004f, heightupdate, vChatLines[i].sLineText.c_str(), vChatLines[i].structColor);
 		heightupdate += 0.025f;
 	}
 	if (bOpened)
