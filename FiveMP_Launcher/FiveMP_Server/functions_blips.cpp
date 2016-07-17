@@ -65,6 +65,8 @@ int ShowBlipForPlayer(lua_State * state)
 	int playerid = lua_tointeger(state, 2);
 	if (blipData[blipid].used && playerData[playerid].isConnected) {
 		RakNet::BitStream sShowBlipForPlayer;
+		RakNet::RakString string = RakNet::RakString(blipData[blipid].name.c_str());
+
 		sShowBlipForPlayer.Write(blipid);
 		sShowBlipForPlayer.Write(blipData[blipid].locationType);
 		sShowBlipForPlayer.Write(blipData[blipid].x);
@@ -73,7 +75,7 @@ int ShowBlipForPlayer(lua_State * state)
 		sShowBlipForPlayer.Write(blipData[blipid].attachID);
 		sShowBlipForPlayer.Write(blipData[blipid].color);
 		sShowBlipForPlayer.Write(blipData[blipid].spriteid);
-		sShowBlipForPlayer.Write(blipData[blipid].name.c_str());
+		sShowBlipForPlayer.Write(string);
 		NetworkManager->rpc.Signal("ShowBlipForPlayer", &sShowBlipForPlayer, HIGH_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 	}
 	return 0;

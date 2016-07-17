@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-void CreateBlip(int blipID, int locationType, float x, float y, float z, int attachID, int color, int sprite, char* name)
+void CreateBlip(int blipID, int locationType, float x, float y, float z, int attachID, int color, int sprite, const char* name)
 {
 	//Searching for empty blip place
 	int clientblipid = -1;
@@ -50,6 +50,6 @@ void CreateBlip(int blipID, int locationType, float x, float y, float z, int att
 	UI::SET_BLIP_COLOUR(blipData[clientblipid].blip, color);
 	UI::SET_BLIP_SCALE(blipData[clientblipid].blip, 1.0f);
 	UI::BEGIN_TEXT_COMMAND_SET_BLIP_NAME("STRING");
-	UI::_ADD_TEXT_COMPONENT_STRING3(name);
+	UI::_ADD_TEXT_COMPONENT_STRING3((char *) name);
 	UI::END_TEXT_COMMAND_SET_BLIP_NAME(blipData[clientblipid].blip);
 }
