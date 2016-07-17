@@ -13,10 +13,12 @@ void ShowMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 void SendMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	char string[128];
+	color_t textColor;
 
 	bitStream->Read(string);
+	bitStream->Read(textColor);
 
-	Chat->AddChatMessage(string);
+	CChat::Get()->AddChatMessage(string, textColor);
 
 	printf("%s\n", string);
 }
@@ -241,6 +243,8 @@ void ShowBlipForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	float z;
 	int attachID;
 	int color;
+	int spriteid;
+	RakNet::RakString string;
 
 	bitStream->Read(blipid);
 	bitStream->Read(locationtype);
@@ -249,8 +253,10 @@ void ShowBlipForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	bitStream->Read(z);
 	bitStream->Read(attachID);
 	bitStream->Read(color);
+	bitStream->Read(spriteid);
+	bitStream->Read(string);
 
-	CreateBlip(blipid, locationtype, x, y, z, attachID, color);
+	CreateBlip(blipid, locationtype, x, y, z, attachID, color, spriteid, string.C_String());
 }
 
 void HideBlipFromPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)

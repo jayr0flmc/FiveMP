@@ -1,16 +1,14 @@
 #include "stdafx.h"
 
-playerPool playerData[128];
+playerPool playerData[150];
 vehiclePool vehicleData[125];
 blipPool blipData[100];
-chatMessages chatData[100];
 
 CNetworkManager *NetworkManager;
 CRPCManager		*RPCManager;
 CLocalPlayer	*LocalPlayer;
 CLocalVehicle	*LocalVehicle;
 CConfig			*Config;
-CChat			*Chat;
 CRenderDebug	*RenderDebug;
 CRender			*Render;
 
@@ -26,7 +24,6 @@ void InitGameScript() {
 
 	NetworkManager	= new CNetworkManager;
 	RPCManager		= new CRPCManager;
-	Chat			= new CChat;
 
 	RPCManager->RegisterRPCs();
 
@@ -37,7 +34,7 @@ void InitGameScript() {
 void RunGameScript() {
 	LocalPlayer = new CLocalPlayer;
 	LocalPlayer->Initialize();
-
+	CChat::Get()->RegisterCommandProcessor(CommandProcessor);
 	while (true)
 	{
 		LocalPlayer->OnTick();
@@ -47,8 +44,8 @@ void RunGameScript() {
 		RenderDebug->RenderVelocity();
 		RenderDebug->RenderCoords();
 
-		Chat->Render();
-		//Chat->Input();
+		CChat::Get()->Render();
+		CChat::Get()->Input();
 
 		if (NetworkManager->Listening) {
 			NetworkManager->Pulse();
@@ -58,13 +55,16 @@ void RunGameScript() {
 					LocalPlayer->SendSyncRequest();
 				} else {
 					LocalPlayer->SendOnFootData();
+
 					if (LocalPlayer->GetVehicle() >= 0) {
 						delete LocalVehicle;
 						LocalVehicle = new CLocalVehicle;
 						LocalVehicle->SendVehicleData();
 					}
+
 					NetworkManager->SyncOnFoot();
 					NetworkManager->SyncVehicle();
+
 					Render->RenderNametags();
 				}
 			}
@@ -74,7 +74,7 @@ void RunGameScript() {
 			Config->Read();
 
 			if (!NetworkManager->Connect(Config->server_ipaddress, Config->server_port, Config->client_port)) {
-				player.ShowMessageAboveMap("An error occured while calling the ~~connect ~w~function");
+				player.ShowMessageAboveMap("An error occured while calling the ~r~connect ~w~function");
 			}
 		}
 		if (IsKeyJustUp(VK_F9)) {
@@ -109,10 +109,10 @@ void RunGameScript() {
 				NetworkManager->sync_test = true;
 			}
 		}
-		if (IsKeyJustUp(0x54)) {
-			Chat->open = true;
+		if (IsKeyJustUp(0x54) && IsKeyJustUp(VK_F6)) {
+			/*Chat->open = true;
 
-			printf("%d\n", Chat->open);
+			printf("%d\n", Chat->open);*/
 		}
 		/*
 		if (IsKeyJustUp(VK_F12)) {

@@ -18,6 +18,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved )
 		hook.NoIntro();
 		
 		hook.Initialize(hModule);
+		keyboardHandlerRegister(CChat::Get()->ScriptKeyboardMessage);
 	}
 	if (reason == DLL_PROCESS_DETACH) {
 		printf("reach end");

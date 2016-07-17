@@ -126,6 +126,7 @@
     <ClCompile Include="Chat.cpp">
       <Filter>Source Files\Interface</Filter>
     </ClCompile>
+    <ClCompile Include="Commands.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RAGEHelper.h">
@@ -206,6 +207,7 @@
     <ClInclude Include="Chat.h">
       <Filter>Header Files\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Commands.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="citizenmp-LICENSE">

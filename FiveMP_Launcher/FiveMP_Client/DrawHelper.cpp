@@ -64,16 +64,17 @@ float draw_menu_line(std::string caption, float lineWidth, float lineHeight, flo
 	return lineTopScaled;
 }
 
-void draw_text(float x, float y, char* chSampleText, color_t color)
+void draw_text(float x, float y, const char* chSampleText, color_t color)
 {
 	UI::SET_TEXT_FONT(0);
 	UI::SET_TEXT_SCALE(0.35f, 0.35f);
 	UI::SET_TEXT_COLOUR(color.red, color.green, color.blue, color.alpha);
 	UI::SET_TEXT_CENTRE(0);
 	UI::SET_TEXT_DROPSHADOW(2, 0, 0, 0, 255);
-	UI::SET_TEXT_EDGE(0, 0, 0, 0, 0);
+	UI::SET_TEXT_EDGE(0, 0, 0, 0, 255);
+	UI::SET_TEXT_OUTLINE();
 	UI::_SET_TEXT_ENTRY("STRING");
-	UI::_ADD_TEXT_COMPONENT_STRING3(chSampleText);
+	UI::_ADD_TEXT_COMPONENT_STRING3((char*)chSampleText);
 	UI::_DRAW_TEXT(x, y);
 }
 
