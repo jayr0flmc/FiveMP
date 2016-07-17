@@ -9,11 +9,15 @@ function OnGameModeInit()
 	CreateVehicle("Gargoyle", -12.0, 12.0, 73.0, 360.0, 5, 10, true, 500);
 	
 	-- Blips are causing issues at the moment, not recommend to use.
-	--blip = CreateBlip();
-	--SetBlipLocationType(blip, 1, vehicle);
-	--SetBlipColor(blip, 23);
-	--SetBlipImage(blip, 56);
-	--SetBlipName(blip, "Voltic car");
+	blip = CreateBlip();
+	SetBlipLocationType(blip, 1, vehicle);
+	SetBlipColor(blip, 23);
+	SetBlipImage(blip, 56);
+	SetBlipName(blip, "Voltic car");
+	
+	pickup = CreatePickup();
+	SetPickupPos(pickup, -16, 16, 73);
+	
 	return 1;
 end
 
@@ -35,12 +39,14 @@ function OnPlayerConnect(playerid)
 	SetPlayerMoney(playerid, 500);
 	SetPlayerMaxTagDrawDistance(playerid, 50);
 	
-	SetPlayerHealth(playerid, 100);
+	SetPlayerHealth(playerid, 50);
 	SetPlayerArmour(playerid, 50);
 	SetPlayerModel(playerid, 420);
 	
 	GivePlayerWeapon(playerid, "Pistol", 45);
 	ShowBlipForPlayer(blip, playerid);
+	
+	ShowPickupForPlayer(pickup, playerid);
 	return 1;
 end
 

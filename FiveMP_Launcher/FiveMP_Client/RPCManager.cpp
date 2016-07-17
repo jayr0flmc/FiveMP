@@ -38,6 +38,9 @@ void CRPCManager::RegisterRPCs()
 	NetworkManager->rpc.RegisterSlot("SendMessageToPlayer", SendMessageToPlayer, 0);
 	NetworkManager->rpc.RegisterSlot("SetTime", SetTime, 0);
 	NetworkManager->rpc.RegisterSlot("RemoveDefaultBlipForPlayer", RemoveDefaultBlipForPlayer, 0);
+	NetworkManager->rpc.RegisterSlot("ShowPickupForPlayer", ShowPickupForPlayer, 0);
+	NetworkManager->rpc.RegisterSlot("HidePickupForPlayer", HidePickupForPlayer, 0);
+	NetworkManager->rpc.RegisterSlot("UpdatePickupForPlayer", UpdatePickupForPlayer, 0);
 }
 
 void CRPCManager::UnRegisterRPCs()
@@ -66,4 +69,7 @@ void CRPCManager::UnRegisterRPCs()
 	NetworkManager->rpc.UnregisterSlot("SendMessageToPlayer");
 	NetworkManager->rpc.UnregisterSlot("RemoveDefaultBlipForPlayer");
 	NetworkManager->rpc.UnregisterSlot("SetTime");
+	NetworkManager->rpc.UnregisterSlot("ShowPickupForPlayer");
+	NetworkManager->rpc.UnregisterSlot("HidePickupForPlayer");
+	NetworkManager->rpc.UnregisterSlot("UpdatePickupForPlayer");
 }

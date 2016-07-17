@@ -33,6 +33,14 @@ void GameWorld::CleanUp() {
 			blipData[i].used = false;
 		}
 	}
+
+	for (int i = 0; i < sizeof(pickupData) / sizeof(*pickupData); i++) {
+		if (OBJECT::DOES_PICKUP_EXIST(pickupData[i].pickup)) {
+			OBJECT::REMOVE_PICKUP(pickupData[i].pickup);
+
+			pickupData[i].used = false;
+		}
+	}
 }
 
 void GameWorld::SetTime(int hour, int minute, int seconds) {

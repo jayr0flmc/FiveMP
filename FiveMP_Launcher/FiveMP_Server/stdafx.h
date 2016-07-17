@@ -66,6 +66,7 @@ using namespace RakNet;
 #include "functions_player.h"
 #include "functions_blips.h"
 #include "functions_vehicle.h"
+#include "functions_pickups.h"
 
 // Scripting (LUA-Callbacks)
 #include "callbacks.h"

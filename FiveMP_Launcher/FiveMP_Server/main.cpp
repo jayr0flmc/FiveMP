@@ -14,6 +14,7 @@ playerPool playerData[100];
 spawnPool spawnData[50];
 vehiclePool vehicleData[150];
 blipPool blipData[100];
+pickupPool pickupData[100];
 
 int main(void)
 {
@@ -108,6 +109,14 @@ int main(void)
 
 	lua_register(sLUA, "RemoveDefaultBlipFromPlayer", RemoveDefaultBlipFromPlayer);
 	lua_register(sLUA, "IsDefaultBlipRemovedFromPlayer", IsDefaultBlipRemovedFromPlayer);
+
+	//Pickups
+	lua_register(sLUA, "CreatePickup", CreatePickup);
+	lua_register(sLUA, "RemovePickup", RemovePickup);
+	lua_register(sLUA, "SetPickupPos", SetPickupPos);
+	lua_register(sLUA, "SetPickupModelID", SetPickupModelID);
+	lua_register(sLUA, "ShowPickupForPlayer", ShowPickupForPlayer);
+	lua_register(sLUA, "HidePickupForPlayer", HidePickupForPlayer);
 
 	OnGameModeInit(sLUA);
 
