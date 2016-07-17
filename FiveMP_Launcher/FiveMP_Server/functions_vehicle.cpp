@@ -92,11 +92,15 @@ int SetVehicleCustomColor(lua_State* state)
 
 	if (layer == 1) {
 		vehicleData[vehicleid].customcolor1Used = true;
-		vehicleData[vehicleid].primarycolor = { r, g, b, 255 };
+		vehicleData[vehicleid].primarycr = r;
+		vehicleData[vehicleid].primarycg = g;
+		vehicleData[vehicleid].primarycb = b;
 	}
 	else if (layer == 2) {
 		vehicleData[vehicleid].customcolor2Used = true;
-		vehicleData[vehicleid].secondarycolor = { r, g, b, 255 };
+		vehicleData[vehicleid].secondarycr = r;
+		vehicleData[vehicleid].secondarycg = g;
+		vehicleData[vehicleid].secondarycb = b;
 	}
 	else {
 		printf("SetVehicleCustomColor() 'layer' argument incorectly used, must be 1 or 2");
@@ -113,7 +117,7 @@ int SetVehicleCustomColor(lua_State* state)
 
 	return 0;
 }
-
+/*
 int SetVehicleNumberPlate(lua_State* state)
 {
 	int args = lua_gettop(state);
@@ -137,4 +141,4 @@ int SetVehicleNumberPlate(lua_State* state)
 	NetworkManager->rpc.Signal("SetVehicleNumberPlate", &sVehiclePlate, LOW_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
 
 	return 0;
-}
+}*/
