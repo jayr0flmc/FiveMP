@@ -49,7 +49,7 @@ void SPlayer::PlayerPulse()
 
 void SPlayer::SpawnPlayer(int playerid, int spawnid, float x, float y, float z ) {
 
-	if (spawnData[spawnid].used)
+	if ((spawnData[spawnid].used) || (spawnid = -1))
 	{
 		RakNet::BitStream sSetPlayerPos;
 		sSetPlayerPos.Write(playerid);

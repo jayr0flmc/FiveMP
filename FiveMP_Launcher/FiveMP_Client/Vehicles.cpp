@@ -40,3 +40,17 @@ void GameVehicle::SetVehicleColor(int vehicleid, int color1, int color2)
 		vehicleData[vehicleid].vehicleColor2 = color2;
 	}
 }
+
+void GameVehicle::SetVehicleCustomColor(int vehicleid, int layer, int r, int g, int b)
+{
+	if (ENTITY::DOES_ENTITY_EXIST(vehicleData[vehicleid].vehicleVehicle))
+	{
+		if (layer == 1) {
+			VEHICLE::SET_VEHICLE_CUSTOM_PRIMARY_COLOUR(vehicleData[vehicleid].vehicleVehicle, r, g, b);
+		}
+
+		if (layer == 2) {
+			VEHICLE::SET_VEHICLE_CUSTOM_SECONDARY_COLOUR(vehicleData[vehicleid].vehicleVehicle, r, g, b);
+		}
+	}
+}

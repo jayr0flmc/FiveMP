@@ -93,6 +93,9 @@ struct vehiclePool {
 
 	int vehicleColor1;						// Vehicle Color 1
 	int vehicleColor2;						// Vehicle Color 2
+	
+	Color primarycolor;						// Vehicle RGBColor 1
+	Color secondarycolor;					// Vehicle RGBColor 2
 
 	float x;								// Position X coord
 	float y;								// Position Y coord

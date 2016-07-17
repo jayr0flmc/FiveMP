@@ -215,6 +215,21 @@ void SetVehicleColor(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	vehicle.SetVehicleColor(vehicleid, color1, color2);
 }
 
+void SetVehicleCustomColor(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int vehicleid;
+	int layer;
+	int r, g, b;
+
+	bitStream->Read(vehicleid);
+	bitStream->Read(layer);
+	bitStream->Read(r);
+	bitStream->Read(g);
+	bitStream->Read(b);
+
+	vehicle.SetVehicleCustomColor(vehicleid, layer, r, g, b);
+}
+
 void SetPedComponentVariation(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 {
 	int playerid;
