@@ -79,6 +79,7 @@ void SNetworkManager::Pulse()
 
 		std::string teststring;
 		char string[128];
+		std::stringstream ss; //Because god knows why it fails.
 
 		switch (packetIdentifier)
 		{
@@ -87,7 +88,6 @@ void SNetworkManager::Pulse()
 			OnPlayerDisconnect(sLUA, netPool.GetPlayerID(packet->guid));
 
 			playerData[netPool.GetPlayerID(packet->guid)].isConnected = false;
-
 			tempusername = netPool.GetPlayerUsername(packet->guid);
 
 			pid_bitStream.Write((unsigned char)ID_PLAYER_LEFT);
@@ -127,14 +127,11 @@ void SNetworkManager::Pulse()
 
 		case ID_CHAT_MESSAGE:
 			int playerid;
+			ChatBitStream_receive.Read(textstring);
 
-			ChatBitStream_receive.Read(playerid);
-			ChatBitStream_receive.Read(teststring);
+			ss << "~b~" << netPool.GetPlayerUsername(packet->guid) << ":~w~ " << textstring;
+			textstring = ss.str().c_str();
 
-			sprintf(string, "~b~%s(%d):~w~ %s", netPool.GetPlayerUsername(packet->guid), playerid, teststring);
-			
-			textstring = string;
-			
 			sSendMessageToAll.Write(textstring);
 			NetworkManager->rpc.Signal("SendMessageToPlayer", &sSendMessageToAll, LOW_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
 

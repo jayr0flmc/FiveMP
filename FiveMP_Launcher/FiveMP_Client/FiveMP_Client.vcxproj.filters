@@ -129,6 +129,9 @@
     <ClCompile Include="Pickups.cpp">
       <Filter>Source Files\Function</Filter>
     </ClCompile>
+    <ClCompile Include="Objects.cpp">
+      <Filter>Source Files\Function</Filter>
+    </ClCompile>
     <ClCompile Include="Commands.cpp">
       <Filter>Source Files\Modification</Filter>
     </ClCompile>
@@ -214,9 +217,6 @@
     </ClInclude>
     <ClInclude Include="Pickups.h">
       <Filter>Header Files\Function</Filter>
-    </ClInclude>
-    <ClInclude Include="Commands.h">
-      <Filter>Header Files\Modification</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

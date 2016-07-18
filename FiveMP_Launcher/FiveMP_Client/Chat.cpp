@@ -149,7 +149,7 @@ void CChat::ScriptKeyboardMessage(DWORD key, WORD repeats, BYTE scanCode, BOOL i
 {
 	CChat *Chat = CChat::Get();
 
-	if (Chat->bOpened && (isUpNow || wasDownBefore) && (key != VK_RETURN && key != VK_BACK && key != VK_DELETE))
+	if (Chat->bOpened && (!isUpNow || wasDownBefore) && (key != VK_RETURN && key != VK_BACK && key != VK_DELETE))
 	{
 		LPWSTR outChars = new WCHAR[4];
 		BYTE keyState[256] = { 0 };
@@ -164,7 +164,7 @@ void CChat::ScriptKeyboardMessage(DWORD key, WORD repeats, BYTE scanCode, BOOL i
 		}
 	}
 
-	if (isUpNow || wasDownBefore)
+	if (!isUpNow || wasDownBefore)
 	{
 		switch (key)
 		{
@@ -174,6 +174,10 @@ void CChat::ScriptKeyboardMessage(DWORD key, WORD repeats, BYTE scanCode, BOOL i
 			break;
 		case VK_F6:
 			Chat->Toggle();
+			break;
+		case 0x54:
+			if (!Chat->bOpened)
+				Chat->Open();
 			break;
 		case VK_F7:
 			Chat->bEnabled = !Chat->bEnabled;
@@ -208,10 +212,10 @@ void CChat::ScriptKeyboardMessage(DWORD key, WORD repeats, BYTE scanCode, BOOL i
 				//Chat->AddChatMessage(converted_str, { 0xFF, 0xFF, 0xFF, 0xFF });
 
 				RakNet::BitStream sendmessage;
+				RakNet::RakString msg(converted_str.c_str());
 
 				sendmessage.Write((MessageID)ID_CHAT_MESSAGE);
-				sendmessage.Write(NetworkManager->playerid);
-				sendmessage.Write(converted_str);
+				sendmessage.Write(msg);
 
 				NetworkManager->client->Send(&sendmessage, LOW_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 

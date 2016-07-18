@@ -147,7 +147,7 @@ struct pickupPool {
 	float y;
 	float z;
 
-	int pickupid;
+	std::string model;
 
 	bool autoSync = false;
 	bool used = false;

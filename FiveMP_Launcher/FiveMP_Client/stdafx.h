@@ -71,6 +71,7 @@ using namespace RakNet;
 #include "Model.h"
 #include "Blips.h"
 #include "Pickups.h"
+#include "Objects.h"
 
 // Math
 #include "CMath.h"

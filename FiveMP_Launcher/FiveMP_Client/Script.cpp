@@ -329,18 +329,18 @@ void RemoveDefaultBlipForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * 
 void ShowPickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 {
 	int pickupid;
-	int modelid;
 	float x;
 	float y;
 	float z;
+	RakNet::RakString model;
 
 	bitStream->Read(pickupid);
-	bitStream->Read(modelid);
+	bitStream->Read(model);
 	bitStream->Read(x);
 	bitStream->Read(y);
 	bitStream->Read(z);
 
-	CreatePickup(pickupid, modelid, x, y, z);
+	CreatePickup(pickupid, model.C_String(), x, y, z);
 }
 
 void HidePickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
