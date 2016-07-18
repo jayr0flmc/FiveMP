@@ -102,5 +102,6 @@ extern CNetworkManager	*NetworkManager;
 extern CRPCManager		*RPCManager;
 extern CLocalPlayer		*LocalPlayer;
 extern CConfig			*Config;
+extern CChat			*Chat;
 extern CRenderDebug		*RenderDebug;
 extern CRender			*Render;
