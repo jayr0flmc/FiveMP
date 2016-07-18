@@ -70,6 +70,7 @@ void RunGameScript() {
 
 					NetworkManager->SyncOnFoot();
 					NetworkManager->SyncVehicle();
+					PickupUpdate();
 
 					Render->RenderNametags();
 				}

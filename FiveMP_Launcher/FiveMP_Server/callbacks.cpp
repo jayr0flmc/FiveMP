@@ -155,7 +155,6 @@ int OnPlayerCommand(lua_State * state, int playerid, char * message)
 
 	return result;
 }
-}
 
 int OnPlayerPickUpPickup(lua_State * state, int pickupid, int playerid)
 {
@@ -170,6 +169,13 @@ int OnPlayerPickUpPickup(lua_State * state, int pickupid, int playerid)
 
 	result = (int)lua_tointeger(state, -1);
 	lua_pop(state, 1);
+
+	if (result == -1) {
+		
+	}
+	else {
+		
+	}
 
 	return result;
 }

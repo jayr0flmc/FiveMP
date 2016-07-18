@@ -149,6 +149,8 @@ struct pickupPool {
 
 	std::string model;
 
+	std::vector<playerPool*> players;
+
 	bool autoSync = false;
 	bool used = false;
 };

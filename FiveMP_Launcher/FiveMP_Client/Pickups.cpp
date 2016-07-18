@@ -39,6 +39,13 @@ void PickupUpdate()
 				sOnPlayerPickupPickup.Write(pickupData[i].serverID);
 				sOnPlayerPickupPickup.Write(LocalPlayer->playerID);
 				NetworkManager->rpc.Signal("OnPlayerPickUpPickup", &sOnPlayerPickupPickup, HIGH_PRIORITY, RELIABLE_ORDERED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, false);
+
+				/*NOTE: Possible bug that on loading this code could be triggered but meh... xd If nobody won't notice this i wont care about it :D*/
+
+				if (OBJECT::DOES_PICKUP_EXIST(pickupData[i].pickup)) {
+					OBJECT::REMOVE_PICKUP(pickupData[i].pickup);
+				}
+
 				pickupData[i].used = false;
 
 			}
