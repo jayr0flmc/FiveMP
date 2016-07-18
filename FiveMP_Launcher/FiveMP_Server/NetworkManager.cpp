@@ -137,7 +137,7 @@ void SNetworkManager::Pulse()
 			textstring = string;
 			
 			sSendMessageToAll.Write(textstring);
-			NetworkManager->rpc.Signal("SendMessageToPlayer", &sSendMessageToAll, LOW_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+			NetworkManager->rpc.Signal("SendMessageToPlayer", &sSendMessageToAll, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
 			break;
 
 		case ID_SEND_PLAYER_DATA:
