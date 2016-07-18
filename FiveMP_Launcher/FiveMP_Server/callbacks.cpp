@@ -140,3 +140,20 @@ int OnPlayerMessage(lua_State * state, int playerid, char* message)
 	
 	return result;
 }
+
+int OnPlayerCommand(lua_State * state, int playerid, char * message)
+{
+	int result;
+
+	lua_getglobal(state, "OnPlayerCommand");
+
+	lua_pushinteger(state, playerid);
+	lua_pushstring(state, message);
+
+	lua_pcall(state, 2, 0, 0);
+
+	result = (int)lua_tointeger(state, -1);
+	lua_pop(state, 1);
+
+	return result;
+}

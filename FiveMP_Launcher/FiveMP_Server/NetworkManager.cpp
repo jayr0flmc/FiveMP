@@ -130,14 +130,25 @@ void SNetworkManager::Pulse()
 		case ID_CHAT_MESSAGE:
 			int playerid;
 			ChatBitStream_receive.Read(textstring);
-
-			ss << "~b~" << netPool.GetPlayerUsername(packet->guid) << ":~w~ " << textstring;
-			textstring = ss.str().c_str();
-
-			sSendMessageToAll.Write(textstring);
-			NetworkManager->rpc.Signal("SendMessageToPlayer", &sSendMessageToAll, LOW_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
-
-			OnPlayerMessage(sLUA, playerid, (char *) teststring.c_str());
+			// Need to return 1 in lua script to stop message broadcasting
+			if (textstring[0] == '/')
+			{
+				if (!OnPlayerCommand(sLUA, playerid, (char *)textstring.C_String()))
+				{
+					//if (ServerCommandProcessor(playerid, textstring.C_String()))
+					{
+						sSendMessageToAll.Write(RakNet::RakString("Unknown command"));
+						NetworkManager->rpc.Signal("SendMessageToPlayer", &sSendMessageToAll, LOW_PRIORITY, RELIABLE_SEQUENCED, 0, packet->guid, false, false);
+					}
+				}
+			}
+			else if (!OnPlayerMessage(sLUA, playerid, (char *)textstring.C_String())) // If not handled send message to other players
+			{
+				ss << "~b~" << netPool.GetPlayerUsername(packet->guid) << ":~w~ " << textstring;
+				textstring = ss.str().c_str();
+				sSendMessageToAll.Write(textstring);
+				NetworkManager->rpc.Signal("SendMessageToPlayer", &sSendMessageToAll, LOW_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+			}
 			break;
 
 		case ID_SEND_PLAYER_DATA:
