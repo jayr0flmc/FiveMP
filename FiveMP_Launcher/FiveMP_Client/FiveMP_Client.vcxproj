@@ -39,6 +39,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="NetworkManager.h" />
+    <ClInclude Include="Objects.h" />
     <ClInclude Include="Pattern.h" />
     <ClInclude Include="Pickups.h" />
     <ClInclude Include="Player.h" />
@@ -107,6 +108,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Objects.cpp" />
     <ClCompile Include="Pickups.cpp" />
     <ClCompile Include="Player.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>

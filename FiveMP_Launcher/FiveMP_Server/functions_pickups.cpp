@@ -62,7 +62,7 @@ int SetPickupPos(lua_State * state)
 	return 0;
 }
 
-int SetPickupModelID(lua_State * state)
+int SetPickupModel(lua_State * state)
 {
 	int args = lua_gettop(state);
 
@@ -70,7 +70,7 @@ int SetPickupModelID(lua_State * state)
 
 	int pickupid = lua_tointeger(state, 1);
 	if (pickupData[pickupid].used) {
-		pickupData[pickupid].pickupid = lua_tointeger(state, 2);
+		pickupData[pickupid].model = std::string(lua_tostring(state, 2));
 	}
 	return 0;
 }
@@ -86,8 +86,10 @@ int ShowPickupForPlayer(lua_State * state)
 	if (pickupData[pickupid].used && playerData[playerid].isConnected) {
 
 		RakNet::BitStream sShowPickupForPlayer;
+		RakNet::RakString string = RakNet::RakString(pickupData[playerid].model.c_str());
+
 		sShowPickupForPlayer.Write(pickupid);
-		sShowPickupForPlayer.Write(pickupData[pickupid].pickupid);
+		sShowPickupForPlayer.Write(string);
 		sShowPickupForPlayer.Write(pickupData[pickupid].x);
 		sShowPickupForPlayer.Write(pickupData[pickupid].y);
 		sShowPickupForPlayer.Write(pickupData[pickupid].z);
