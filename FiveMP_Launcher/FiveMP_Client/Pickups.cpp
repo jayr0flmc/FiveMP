@@ -20,6 +20,8 @@ void CreatePickup(int pickupid, const char* modelid, float x, float y, float z)
 	while (!STREAMING::HAS_MODEL_LOADED(model))
 		WAIT(0);
 
+	std::cout << "I'm creating pickup" << std::endl;
+
 	//Creating pickup.
 	pickupData[clientpickupid].pickup = OBJECT::CREATE_PICKUP(PickupTypeCustomScript, x, y, z, 0, 0, 0, model);
 
