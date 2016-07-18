@@ -129,11 +129,14 @@
     <ClCompile Include="Pickups.cpp">
       <Filter>Source Files\Function</Filter>
     </ClCompile>
-    <ClCompile Include="Objects.cpp">
-      <Filter>Source Files\Function</Filter>
-    </ClCompile>
     <ClCompile Include="Commands.cpp">
       <Filter>Source Files\Modification</Filter>
+    </ClCompile>
+    <ClCompile Include="ASIManager.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects.cpp">
+      <Filter>Source Files\Function</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +219,15 @@
       <Filter>Header Files\Interface</Filter>
     </ClInclude>
     <ClInclude Include="Pickups.h">
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands.h">
+      <Filter>Header Files\Modification</Filter>
+    </ClInclude>
+    <ClInclude Include="ASIManager.h">
+      <Filter>Source Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects.h">
       <Filter>Header Files\Function</Filter>
     </ClInclude>
   </ItemGroup>
