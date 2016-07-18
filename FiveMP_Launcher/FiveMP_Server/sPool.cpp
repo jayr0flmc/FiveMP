@@ -39,12 +39,12 @@ int UserPool::GetPlayerID(RakNet::RakNetGUID guid)
 	return -1;
 }
 
-const char *UserPool::GetPlayerUsername(RakNet::RakNetGUID guid)
+std::string UserPool::GetPlayerUsername(RakNet::RakNetGUID guid)
 {
 	for (int i = 0; i < 100; i++)
 	{
 		if (playerData[i].playerguid == guid) {
-			return playerData[i].playerusername.c_str();
+			return playerData[i].playerusername;
 		}
 	}
 }

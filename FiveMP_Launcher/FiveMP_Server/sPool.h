@@ -11,7 +11,7 @@ public:
 	void RemoveFromUserPool(RakNet::RakNetGUID guid);
 	
 	int GetPlayerID(RakNet::RakNetGUID guid);
-	const char *GetPlayerUsername(RakNet::RakNetGUID guid);
+	std::string GetPlayerUsername(RakNet::RakNetGUID guid);
 	RakNet::RakNetGUID GetPlayerGUID(char *username);
 	RakNet::RakNetGUID GetPlayerGUIDfromId(int playerid);
 };

@@ -83,7 +83,7 @@ end
 
 function OnPlayerMessage(playerid, message)
 	playername = GetPlayerName(playerid);
-	print( "~b~" .. playername .. ": ~w~" .. message);
+	SendMessageToAll( "~r~" .. playername .. ": ~w~" .. message);
 	return 1;
 end
 

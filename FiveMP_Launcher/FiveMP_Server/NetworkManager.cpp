@@ -90,7 +90,7 @@ void SNetworkManager::Pulse()
 			OnPlayerDisconnect(sLUA, netPool.GetPlayerID(packet->guid));
 
 			playerData[netPool.GetPlayerID(packet->guid)].isConnected = false;
-			tempusername = netPool.GetPlayerUsername(packet->guid);
+			tempusername = netPool.GetPlayerUsername(packet->guid).c_str();
 
 			pid_bitStream.Write((unsigned char)ID_PLAYER_LEFT);
 			pid_bitStream.Write(netPool.GetPlayerID(packet->guid));
@@ -128,12 +128,14 @@ void SNetworkManager::Pulse()
 			break;
 
 		case ID_CHAT_MESSAGE:
-			int playerid;
+			int tempid1;
+			
+			tempid1 = netPool.GetPlayerID(packet->guid);
 			ChatBitStream_receive.Read(textstring);
 			// Need to return 1 in lua script to stop message broadcasting
 			if (textstring[0] == '/')
 			{
-				if (!OnPlayerCommand(sLUA, playerid, (char *)textstring.C_String()))
+				if (!OnPlayerCommand(sLUA, tempid1, (char *)textstring.C_String()))
 				{
 					//if (ServerCommandProcessor(playerid, textstring.C_String()))
 					{
@@ -142,7 +144,7 @@ void SNetworkManager::Pulse()
 					}
 				}
 			}
-			else if (!OnPlayerMessage(sLUA, playerid, (char *)textstring.C_String())) // If not handled send message to other players
+			else if (!OnPlayerMessage(sLUA, tempid1, (char *)textstring.C_String())) // If not handled send message to other players
 			{
 				ss << "~b~" << netPool.GetPlayerUsername(packet->guid) << ":~w~ " << textstring;
 				textstring = ss.str().c_str();
@@ -311,7 +313,7 @@ void SNetworkManager::Pulse()
 
 			playerData[netPool.GetPlayerID(packet->guid)].isConnected = false;
 
-			tempusername = netPool.GetPlayerUsername(packet->guid);
+			tempusername = netPool.GetPlayerUsername(packet->guid).c_str();
 
 			pid_bitStream.Write((unsigned char)ID_PLAYER_LEFT);
 			pid_bitStream.Write(netPool.GetPlayerID(packet->guid));
