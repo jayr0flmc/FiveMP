@@ -4,7 +4,7 @@ function OnGameModeInit()
 	SetSpawnPoint(-640.183, 297.111, 91.0);
 	
 	CreateVehicle("Adder", -3.0, 6.0, 73.0, 360.0, 5, 10, true, 500);
-	CreateVehicle("Police", -6.0, 8.0, 73.0, 360.0, 5, 10, true, 500);
+	vehicle = CreateVehicle("Police", -6.0, 8.0, 73.0, 360.0, 5, 10, true, 500);
 	CreateVehicle("Voltic", -9.0, 10.0, 73.0, 360.0, 5, 10, true, 500);
 	CreateVehicle("Gargoyle", -12.0, 12.0, 73.0, 360.0, 5, 10, true, 500);
 	
@@ -77,12 +77,11 @@ function OnPlayerUpdate(playerid)
 	return 1;
 end
 
-
 function OnPlayerMessage(playerid, message)
-	
-	return 0;
+	playername = GetPlayerName(playerid);
+	print( "~b~" .. playername .. ": ~w~" .. message);
+	return 1;
 end
-
 
 function OnPlayerCommand(playerid, message)
 	
