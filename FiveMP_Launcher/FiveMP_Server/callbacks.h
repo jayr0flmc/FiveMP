@@ -13,3 +13,5 @@ int OnPlayerUpdate(lua_State* state, int playerid);
 int OnPlayerMessage(lua_State * state, int playerid, char* message);
 
 int OnPlayerPickUpPickup(lua_State* state, int pickupid, int playerid);
+int OnPlayerMessage(lua_State * state, int playerid, char* message);
+int OnPlayerCommand(lua_State * state, int playerid, char* message);
