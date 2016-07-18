@@ -76,3 +76,15 @@ function OnPlayerUpdate(playerid)
 	--Disabling it because it really spams the console :D
 	return 1;
 end
+
+
+function OnPlayerMessage(playerid, message)
+	
+	return 0;
+end
+
+
+function OnPlayerCommand(playerid, message)
+	
+	return 0;
+end
