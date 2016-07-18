@@ -92,7 +92,6 @@ void SNetworkManager::Pulse()
 
 			pid_bitStream.Write((unsigned char)ID_PLAYER_LEFT);
 			pid_bitStream.Write(netPool.GetPlayerID(packet->guid));
-			pid_bitStream.Write(tempusername);
 
 			server->Send(&pid_bitStream, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 
@@ -138,6 +137,8 @@ void SNetworkManager::Pulse()
 			
 			sSendMessageToAll.Write(textstring);
 			NetworkManager->rpc.Signal("SendMessageToPlayer", &sSendMessageToAll, LOW_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+
+			OnPlayerMessage(sLUA, playerid, (char *) teststring.c_str());
 			break;
 
 		case ID_SEND_PLAYER_DATA:
