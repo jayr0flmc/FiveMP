@@ -59,6 +59,6 @@ void GameVehicle::SetVehicleNumberPlate(int vehicleid, const char* plate)
 {
 	if (ENTITY::DOES_ENTITY_EXIST(vehicleData[vehicleid].vehicleVehicle))
 	{
-		VEHICLE::SET_VEHICLE_NUMBER_PLATE_TEXT(vehicleid, (char *) plate);
+		VEHICLE::SET_VEHICLE_NUMBER_PLATE_TEXT(vehicleData[vehicleid].vehicleVehicle, (char *) plate);
 	}
 }

@@ -119,7 +119,7 @@ int main(void)
 	lua_register(sLUA, "CreatePickup", CreatePickup);
 	lua_register(sLUA, "RemovePickup", RemovePickup);
 	lua_register(sLUA, "SetPickupPos", SetPickupPos);
-	lua_register(sLUA, "SetPickupModelID", SetPickupModelID);
+	lua_register(sLUA, "SetPickupModel", SetPickupModelID);
 	lua_register(sLUA, "ShowPickupForPlayer", ShowPickupForPlayer);
 	lua_register(sLUA, "HidePickupForPlayer", HidePickupForPlayer);
 

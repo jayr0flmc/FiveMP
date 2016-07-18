@@ -8,7 +8,7 @@ int OnGameModeInit(lua_State* state)
 
 	lua_getglobal(state, "OnGameModeInit");
 
-	lua_call(state, 0, 1);
+	lua_pcall(state, 0, 0, 0);
 
 	result = (int)lua_tointeger(state, -1);
 	lua_pop(state, 1);
@@ -24,7 +24,7 @@ int OnGameModeExit(lua_State * state)
 
 	lua_getglobal(state, "OnGameModeExit");
 
-	lua_call(state, 0, 1);
+	lua_pcall(state, 0, 0, 0);
 
 	result = (int)lua_tointeger(state, -1);
 	lua_pop(state, 1);
@@ -43,6 +43,7 @@ int OnPlayerConnect(lua_State * state, int playerid)
 	lua_pushinteger(state, playerid);
 
 	lua_call(state, 1, 1);
+//	lua_pcall(state, 1, 0, 0);
 
 	result = lua_tointeger(state, -1);
 	lua_pop(state, 1);
@@ -60,7 +61,7 @@ int OnPlayerDisconnect(lua_State * state, int playerid)
 
 	lua_pushinteger(state, playerid);
 
-	lua_call(state, 1, 1);
+	lua_pcall(state, 1, 0, 0);
 
 	result = lua_tointeger(state, -1);
 	lua_pop(state, 1);
@@ -78,7 +79,7 @@ int OnPlayerSpawn(lua_State * state, int playerid)
 
 	lua_pushinteger(state, playerid);
 
-	lua_call(state, 1, 1);
+	lua_pcall(state, 1, 0, 0);
 
 	result = (int)lua_tointeger(state, -1);
 	lua_pop(state, 1);
@@ -96,7 +97,7 @@ int OnPlayerDeath(lua_State * state, int playerid)
 
 	lua_pushinteger(state, playerid);
 
-	lua_call(state, 1, 1);
+	lua_pcall(state, 1, 0, 0);
 
 	result = (int)lua_tointeger(state, -1);
 	lua_pop(state, 1);
@@ -115,9 +116,27 @@ int OnPlayerUpdate(lua_State * state, int playerid)
 	lua_pushinteger(state, playerid);
 
 	lua_call(state, 1, 1);
+//	lua_pcall(state, 1, 0, 0);
 
 	result = (int)lua_tointeger(state, -1);
 	lua_pop(state, 1);
 
+	return result;
+}
+
+int OnPlayerMessage(lua_State * state, int playerid, char* message)
+{
+	int result;
+	
+	lua_getglobal(state, "OnPlayerMessage");
+	
+	lua_pushinteger(state, playerid);
+	lua_pushstring(state, message);
+	
+	lua_pcall(state, 2, 0, 0);
+	
+	result = (int)lua_tointeger(state, -1);
+	lua_pop(state, 1);
+	
 	return result;
 }
