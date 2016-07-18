@@ -258,3 +258,5 @@ paket-files/
 /lib/INIReader.lib
 /lib/RakNet.lib
 /lib/ScriptHook.lib
+/lib/ScriptHookV.lib
+/lib/LUA.lib

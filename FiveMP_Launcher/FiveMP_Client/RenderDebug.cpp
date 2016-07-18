@@ -4,7 +4,7 @@ void CRenderDebug::RenderDate()
 {
 	char alphadata[128];
 	sprintf(alphadata, "Five~r~MP~w~ Alpha | %s - %s", __DATE__, __TIME__);
-	draw_text(0.002f, 0.002f, alphadata, { 255, 255, 255, 255 });
+	draw_text(0.402f, 0.002f, alphadata, { 255, 255, 255, 255 });
 }
 
 void CRenderDebug::RenderBlend()

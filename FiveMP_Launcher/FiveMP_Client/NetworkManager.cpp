@@ -11,6 +11,7 @@ CNetworkManager::~CNetworkManager()
 	Connected = false;
 	Listening = false;
 	Synchronized = false;
+	LocalPlayer->playerMoney = 0;
 
 	playerid = -1;
 	time_hour = NULL;
@@ -47,7 +48,10 @@ bool CNetworkManager::Disconnect()
 		Connected = false;
 		Synchronized = false;
 		Listening = false;
+		LocalPlayer->timesincerequest = 0;
+		LocalPlayer->playerMoney = 0;
 
+		CChat::Get()->Clear();
 		world.CleanUp();
 
 		player.ShowMessageAboveMap("Successfully disconnected!");
@@ -72,16 +76,14 @@ void CNetworkManager::Pulse()
 		case ID_CONNECTION_REQUEST_ACCEPTED:
 			Connected = true;
 
-			sprintf(testmessage, "Hi ~b~%s~w~, you have successfully connected to the server!", Config->client_username);
-			player.ShowMessageAboveMap(testmessage);
-
-			sprintf(testmessage, "GUID is: ~b~#%s", client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString());
-			player.ShowMessageAboveMap(testmessage);
+			ENTITY::FREEZE_ENTITY_POSITION(LocalPlayer->playerPed, 0);
+			ENTITY::SET_ENTITY_VISIBLE(LocalPlayer->playerPed, true, 0);
 			break;
 
 		case ID_CONNECTION_ATTEMPT_FAILED:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Could not connect to the server");
 			Listening = false;
@@ -90,6 +92,7 @@ void CNetworkManager::Pulse()
 		case ID_NO_FREE_INCOMING_CONNECTIONS:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Server is full!");
 			Listening = false;
@@ -98,6 +101,7 @@ void CNetworkManager::Pulse()
 		case ID_DISCONNECTION_NOTIFICATION:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Connection closed!");
 			Listening = false;
@@ -108,6 +112,7 @@ void CNetworkManager::Pulse()
 		case ID_CONNECTION_LOST:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~Connection Lost!");
 			Listening = false;
@@ -118,6 +123,7 @@ void CNetworkManager::Pulse()
 		case ID_CONNECTION_BANNED:
 			Connected = false;
 			Synchronized = false;
+			LocalPlayer->playerMoney = 0;
 
 			player.ShowMessageAboveMap("~r~You're banned from this server!");
 			Listening = false;
@@ -126,9 +132,6 @@ void CNetworkManager::Pulse()
 			break;
 
 		case ID_REQUEST_SERVER_SYNC:
-			TIME::SET_CLOCK_TIME(20, 00, 00);
-			TIME::PAUSE_CLOCK(false);
-
 			playerClientID.Read(playerid);
 
 			playerClientID.Read(time_hour);
@@ -140,10 +143,19 @@ void CNetworkManager::Pulse()
 
 			bsPlayerConnect.Write(playerid);
 			rpc.Signal("PlayerConnect", &bsPlayerConnect, HIGH_PRIORITY, RELIABLE_ORDERED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, false);
+
+			NetworkManager->Synchronized = true;
+			LocalPlayer->playerID = playerid;
+
+			playerData[playerid].used = true;
 			break;
 
 		case ID_SEND_PLAYER_DATA:
 			HandlePlayerSync(packet);
+			break;
+
+		case ID_SEND_VEHICLE_DATA:
+			HandleVehicleSync(packet);
 			break;
 
 		case ID_PLAYER_LEFT:
@@ -177,9 +189,12 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 	playerData[tempplyrid].oldy = playerData[tempplyrid].y;
 	playerData[tempplyrid].oldz = playerData[tempplyrid].z;
 
+	Hash oldModel = playerData[tempplyrid].pedModel;
+
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedType);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedModel);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].pedHealth);
+	PlayerBitStream_receive.Read(playerData[tempplyrid].pedArmour);
 
 	PlayerBitStream_receive.Read(playerData[tempplyrid].playerusername);
 
@@ -198,44 +213,34 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 	PlayerBitStream_receive.Read(playerData[tempplyrid].vy);
 	PlayerBitStream_receive.Read(playerData[tempplyrid].vz);
 
+	PlayerBitStream_receive.Read(playerData[tempplyrid].vehicleid);
+	PlayerBitStream_receive.Read(playerData[tempplyrid].vehicleseat);
+
 	PlayerBitStream_receive.Read(temptimestamp);
 
 	playerData[tempplyrid].tickssince = clock();
 
-	printf("received packet\n");
+	if (!ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
+		if (STREAMING::IS_MODEL_IN_CDIMAGE(playerData[tempplyrid].pedModel) && STREAMING::IS_MODEL_VALID(playerData[tempplyrid].pedModel))
+			STREAMING::REQUEST_MODEL(playerData[tempplyrid].pedModel);
 
-	//if (tempplyrid != playerid) {
-		if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
-			/*float tempz;
+		while (!STREAMING::HAS_MODEL_LOADED(playerData[tempplyrid].pedModel))
+			WAIT(0);
 
-			GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, &tempz, 1);
+		playerData[tempplyrid].pedPed = PED::CREATE_PED(playerData[tempplyrid].pedType, playerData[tempplyrid].pedModel, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, 0.0f, false, true);
 
-			if (SYSTEM::VDIST(playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, playerData[tempplyrid].x, playerData[tempplyrid].y, tempz) > 5.0f) {
-				ENTITY::SET_ENTITY_COORDS(playerData[tempplyrid].pedPed, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, 0, 0, 0, 0);
-			}
-			else {
-				ENTITY::SET_ENTITY_COORDS(playerData[tempplyrid].pedPed, playerData[tempplyrid].x, playerData[tempplyrid].y, tempz, 0, 0, 0, 0);
-				//AI::TASK_GO_STRAIGHT_TO_COORD(playerData[tempplyrid].pedPed, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, playerData[tempplyrid].v, 1, playerData[tempplyrid].r, 0.0f);
-			}
-			ENTITY::SET_ENTITY_QUATERNION(playerData[tempplyrid].pedPed, playerData[tempplyrid].rx, playerData[tempplyrid].ry, playerData[tempplyrid].rz, playerData[tempplyrid].rw);*/
-		} else {
-			if (STREAMING::IS_MODEL_IN_CDIMAGE(playerData[tempplyrid].pedModel) && STREAMING::IS_MODEL_VALID(playerData[tempplyrid].pedModel))
+		STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(playerData[tempplyrid].pedModel);
 
-				STREAMING::REQUEST_MODEL(playerData[tempplyrid].pedModel);
-			while (!STREAMING::HAS_MODEL_LOADED(playerData[tempplyrid].pedModel))
-				WAIT(0);
-			playerData[tempplyrid].pedPed = PED::CREATE_PED(playerData[tempplyrid].pedType, playerData[tempplyrid].pedModel, playerData[tempplyrid].x, playerData[tempplyrid].y, playerData[tempplyrid].z, 0.0f, false, true);
-			STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(playerData[tempplyrid].pedModel);
+		ENTITY::SET_ENTITY_NO_COLLISION_ENTITY(LocalPlayer->playerPed, playerData[tempplyrid].pedPed, false);
+		ENTITY::SET_ENTITY_NO_COLLISION_ENTITY(playerData[tempplyrid].pedPed, LocalPlayer->playerPed, false);
 
-			ENTITY::SET_ENTITY_NO_COLLISION_ENTITY(LocalPlayer->playerPed, playerData[tempplyrid].pedPed, false);
-			ENTITY::SET_ENTITY_NO_COLLISION_ENTITY(playerData[tempplyrid].pedPed, LocalPlayer->playerPed, false);
+		PED::SET_PED_FLEE_ATTRIBUTES(playerData[tempplyrid].pedPed, 0, 0);
+		PED::SET_PED_COMBAT_ATTRIBUTES(playerData[tempplyrid].pedPed, 17, 1);
+		PED::SET_PED_CAN_RAGDOLL(playerData[tempplyrid].pedPed, false);
 
-			PED::SET_PED_FLEE_ATTRIBUTES(playerData[tempplyrid].pedPed, 0, 0);
-			PED::SET_PED_COMBAT_ATTRIBUTES(playerData[tempplyrid].pedPed, 17, 1);
-			PED::SET_PED_CAN_RAGDOLL(playerData[tempplyrid].pedPed, false);
+		AI::TASK_SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(playerData[tempplyrid].pedPed, true);
 
-			AI::TASK_SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(playerData[tempplyrid].pedPed, true);
-
+		if (!playerData[tempplyrid].isDefaultBlipRemoved) {
 			playerData[tempplyrid].pedBlip = UI::ADD_BLIP_FOR_ENTITY(playerData[tempplyrid].pedPed);
 			UI::SET_BLIP_AS_FRIENDLY(playerData[tempplyrid].pedBlip, true);
 			UI::SET_BLIP_COLOUR(playerData[tempplyrid].pedBlip, 0);
@@ -244,7 +249,47 @@ void CNetworkManager::HandlePlayerSync(Packet * p)
 			UI::_ADD_TEXT_COMPONENT_STRING3(playerData[tempplyrid].playerusername);
 			UI::END_TEXT_COMMAND_SET_BLIP_NAME(playerData[tempplyrid].pedBlip);
 		}
-	//}
+	}
+	else if (oldModel != playerData[tempplyrid].pedModel) {
+		UpdatePedModel(tempplyrid);
+	}
+}
+
+void CNetworkManager::HandleVehicleSync(Packet * p)
+{
+	RakNet::BitStream VehicleBitStream_receive(p->data + 1, p->length + 1, false);
+
+	int tempvehicleid;
+	time_t temptimestamp;
+
+	VehicleBitStream_receive.Read(tempvehicleid);
+
+	vehicleData[tempvehicleid].oldx = vehicleData[tempvehicleid].x;
+	vehicleData[tempvehicleid].oldy = vehicleData[tempvehicleid].y;
+	vehicleData[tempvehicleid].oldz = vehicleData[tempvehicleid].z;
+
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vehicleModel);
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vehicleHealth);
+
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].x);
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].y);
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].z);
+
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].r);
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].rx);
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].ry);
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].rz);
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].rw);
+
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vx);
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vy);
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].vz);
+
+	VehicleBitStream_receive.Read(vehicleData[tempvehicleid].playerid);
+
+	VehicleBitStream_receive.Read(temptimestamp);
+
+	vehicleData[tempvehicleid].tickssince = clock();
 }
 
 float ttlerp(float v0, float v1, float t) {
@@ -253,9 +298,13 @@ float ttlerp(float v0, float v1, float t) {
 
 void CNetworkManager::SyncOnFoot()
 {
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 25; i++) {
 		if (ENTITY::DOES_ENTITY_EXIST(playerData[i].pedPed)) {
-			if (sync_test == true) {
+			if (sync_test == true && playerData[i].vehicleid < 0) {
+				if (PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false)) {
+					AI::TASK_LEAVE_VEHICLE(playerData[i].pedPed, vehicleData[playerData[i].vehicleid].vehicleVehicle, 16);
+				}
+
 				CVector3 curpos1;
 				curpos1.fX = playerData[i].oldx;
 				curpos1.fY = playerData[i].oldy;
@@ -267,7 +316,7 @@ void CNetworkManager::SyncOnFoot()
 				newpos.fZ = playerData[i].z;
 
 				clock_t now = clock();
-				float elapsedTime = now - playerData[i].tickssince;
+				float elapsedTime = (float)(now - playerData[i].tickssince);
 				float progress = elapsedTime / 15.6f;
 
 				if (progress <= 1.0) {
@@ -276,22 +325,64 @@ void CNetworkManager::SyncOnFoot()
 					updpos.fY = ttlerp(curpos1.fY, newpos.fY, progress);
 					updpos.fZ = ttlerp(curpos1.fZ, newpos.fZ, progress);
 
-					printf("%f | %f | %f/%f/%f\n", elapsedTime, progress, updpos.fX, updpos.fY, updpos.fZ);
+					//printf("%f | %f | %f/%f/%f\n", elapsedTime, progress, updpos.fX, updpos.fY, updpos.fZ);
 
 					ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, updpos.fX, updpos.fY, updpos.fZ, 0, 0, 0, 0);
 					ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
 				}
-				else {
-					printf("packet updated too quickly!\n");
-				}
+			} else {
+				//ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, playerData[i].x, playerData[i].y, playerData[i].z, 0, 0, 0, 0);
+				//ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
 			}
-			else {
-				//float tempz;
+		}
+	}
+}
 
-				//GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(playerData[i].x, playerData[i].y, playerData[i].z, &tempz, 1);
+void CNetworkManager::SyncVehicle()
+{
+	for (int i = 0; i < 25; i++) {
+		if (ENTITY::DOES_ENTITY_EXIST(vehicleData[i].vehicleVehicle)) {
+			if (vehicleData[i].vehicleid != playerData[LocalPlayer->playerID].vehicleid) {
+				if (sync_test == true) {
+					if (!PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false) && vehicleData[i].playerid >= 0) {
+						PED::SET_PED_INTO_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, -1);
+					}
 
-				ENTITY::SET_ENTITY_COORDS(playerData[i].pedPed, playerData[i].x, playerData[i].y, playerData[i].z, 0, 0, 0, 0);
-				ENTITY::SET_ENTITY_QUATERNION(playerData[i].pedPed, playerData[i].rx, playerData[i].ry, playerData[i].rz, playerData[i].rw);
+					CVector3 curpos1;
+					curpos1.fX = vehicleData[i].oldx;
+					curpos1.fY = vehicleData[i].oldy;
+					curpos1.fZ = vehicleData[i].oldz;
+
+					CVector3 newpos;
+					newpos.fX = vehicleData[i].x;
+					newpos.fY = vehicleData[i].y;
+					newpos.fZ = vehicleData[i].z;
+
+					clock_t now = clock();
+					float elapsedTime = (float)(now - vehicleData[i].tickssince);
+					float progress = elapsedTime / 15.6f;
+
+					if (progress <= 1.0) {
+						CVector3 updpos;
+						updpos.fX = ttlerp(curpos1.fX, newpos.fX, progress);
+						updpos.fY = ttlerp(curpos1.fY, newpos.fY, progress);
+						updpos.fZ = ttlerp(curpos1.fZ, newpos.fZ, progress);
+
+						//printf("%f | %f | %f/%f/%f\n", elapsedTime, progress, updpos.fX, updpos.fY, updpos.fZ);
+
+						ENTITY::SET_ENTITY_COORDS(vehicleData[i].vehicleVehicle, updpos.fX, updpos.fY, updpos.fZ, 0, 0, 0, 0);
+						ENTITY::SET_ENTITY_QUATERNION(vehicleData[i].vehicleVehicle, vehicleData[i].rx, vehicleData[i].ry, vehicleData[i].rz, vehicleData[i].rw);
+					}
+					vehicleData[i].playerid = -1;
+				} else {
+					printf("WARNING: interpolation disabled!\n");
+
+					if (!PED::IS_PED_IN_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, false) && vehicleData[i].playerid >= 0)
+						PED::SET_PED_INTO_VEHICLE(playerData[vehicleData[i].playerid].pedPed, vehicleData[i].vehicleVehicle, -1);
+
+					ENTITY::SET_ENTITY_COORDS(vehicleData[i].vehicleVehicle, vehicleData[i].x, vehicleData[i].y, vehicleData[i].z, 0, 0, 0, 0);
+					ENTITY::SET_ENTITY_QUATERNION(vehicleData[i].vehicleVehicle, vehicleData[i].rx, vehicleData[i].ry, vehicleData[i].rz, vehicleData[i].rw);
+				}
 			}
 		}
 	}
@@ -307,14 +398,15 @@ void CNetworkManager::DropPlayer(Packet * p)
 	PlayerBitStream_receive.Read(tempplyrid);
 	PlayerBitStream_receive.Read(tempplyrname);
 
-	if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed))
-	{
-		char sendmessage[128];
+	if (ENTITY::DOES_ENTITY_EXIST(playerData[tempplyrid].pedPed)) {
+		AI::TASK_LEAVE_VEHICLE(playerData[tempplyrid].pedPed, vehicleData[playerData[tempplyrid].vehicleid].vehicleVehicle, 16);
 
+		playerData[tempplyrid].vehicleid = -1;
+
+		PED::DELETE_PED(&playerData[tempplyrid].pedPed);
 		ENTITY::DELETE_ENTITY(&playerData[tempplyrid].pedPed);
 		UI::REMOVE_BLIP(&playerData[tempplyrid].pedBlip);
 
-		sprintf(sendmessage, "~b~%s(%d)~w~ has left the server.", tempplyrname, tempplyrid);
-		player.ShowMessageAboveMap(sendmessage);
+		playerData[tempplyrid].used = false;
 	}
 }

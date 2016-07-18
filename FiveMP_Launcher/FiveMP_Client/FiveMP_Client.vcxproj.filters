@@ -63,9 +63,6 @@
     <ClCompile Include="RAGEHelper.cpp">
       <Filter>Vendor\RAGE</Filter>
     </ClCompile>
-    <ClCompile Include="cPool.cpp">
-      <Filter>Source Files\Net</Filter>
-    </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files\Common</Filter>
     </ClCompile>
@@ -114,6 +111,22 @@
     <ClCompile Include="ScriptHook.cpp">
       <Filter>Source Files\Modification</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerPool.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalVehicle.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Blips.cpp">
+      <Filter>Source Files\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="Chat.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RAGEHelper.h">
@@ -161,9 +174,6 @@
     <ClInclude Include="Config.h">
       <Filter>Header Files\Modification</Filter>
     </ClInclude>
-    <ClInclude Include="cPool.h">
-      <Filter>Header Files\Net</Filter>
-    </ClInclude>
     <ClInclude Include="LocalPlayer.h">
       <Filter>Header Files\Net</Filter>
     </ClInclude>
@@ -182,6 +192,22 @@
     <ClInclude Include="ScriptHook.h">
       <Filter>Header Files\Modification</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerPool.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalVehicle.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Blips.h">
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Chat.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="citizenmp-LICENSE">

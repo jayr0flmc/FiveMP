@@ -21,6 +21,9 @@
 #include <math.h>
 #include <iostream>
 #include <future>
+#include <algorithm>
+#include <locale>
+#include <codecvt>
 using namespace std;
 
 #pragma comment(lib, "winmm.lib")
@@ -65,6 +68,8 @@ using namespace RakNet;
 #include "Weapon.h"
 #include "Vehicles.h"
 #include "World.h"
+#include "Model.h"
+#include "Blips.h"
 
 // Math
 #include "CMath.h"
@@ -73,16 +78,19 @@ using namespace RakNet;
 // Modification (FiveMP)
 #include "Config.h"
 #include "ScriptHook.h"
+#include "Commands.h"
 
 // Net
 #include "NetworkManager.h"
 #include "PlayerPed.h"
 #include "LocalPlayer.h"
+#include "LocalVehicle.h"
 #include "RPCManager.h"
 #include "Script.h"
-#include "cPool.h"
+#include "PlayerPool.h"
 
 // Interface
+#include "Chat.h"
 #include "RenderDebug.h"
 #include "Render.h"
 
@@ -94,6 +102,7 @@ namespace {
 	class GamePlayer player;
 	class GameWeapon weapon;
 	class GameWorld world;
+	class GameVehicle vehicle;
 }
 
 extern MODULEINFO	g_MainModuleInfo;
@@ -101,6 +110,7 @@ extern MODULEINFO	g_MainModuleInfo;
 extern CNetworkManager	*NetworkManager;
 extern CRPCManager		*RPCManager;
 extern CLocalPlayer		*LocalPlayer;
+extern CLocalVehicle	*LocalVehicle;
 extern CConfig			*Config;
 extern CChat			*Chat;
 extern CRenderDebug		*RenderDebug;

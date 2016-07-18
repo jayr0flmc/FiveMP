@@ -1,11 +1,13 @@
 #include "stdafx.h"
 
-playerPool playerData[128];
-vehiclePool vehicleData[100];
+playerPool playerData[150];
+vehiclePool vehicleData[125];
+blipPool blipData[100];
 
 CNetworkManager *NetworkManager;
 CRPCManager		*RPCManager;
 CLocalPlayer	*LocalPlayer;
+CLocalVehicle	*LocalVehicle;
 CConfig			*Config;
 CRenderDebug	*RenderDebug;
 CRender			*Render;
@@ -31,16 +33,19 @@ void InitGameScript() {
 
 void RunGameScript() {
 	LocalPlayer = new CLocalPlayer;
-
+	LocalPlayer->Initialize();
+	CChat::Get()->RegisterCommandProcessor(CommandProcessor);
 	while (true)
 	{
-		LocalPlayer->Initialize();
 		LocalPlayer->OnTick();
 
 		RenderDebug->RenderDate();
 		RenderDebug->RenderBlend();
 		RenderDebug->RenderVelocity();
 		RenderDebug->RenderCoords();
+
+		CChat::Get()->Render();
+		CChat::Get()->Input();
 
 		if (NetworkManager->Listening) {
 			NetworkManager->Pulse();
@@ -50,7 +55,16 @@ void RunGameScript() {
 					LocalPlayer->SendSyncRequest();
 				} else {
 					LocalPlayer->SendOnFootData();
+
+					if (LocalPlayer->GetVehicle() >= 0) {
+						delete LocalVehicle;
+						LocalVehicle = new CLocalVehicle;
+						LocalVehicle->SendVehicleData();
+					}
+
 					NetworkManager->SyncOnFoot();
+					NetworkManager->SyncVehicle();
+
 					Render->RenderNametags();
 				}
 			}
@@ -60,7 +74,7 @@ void RunGameScript() {
 			Config->Read();
 
 			if (!NetworkManager->Connect(Config->server_ipaddress, Config->server_port, Config->client_port)) {
-				player.ShowMessageAboveMap("An error occured while calling the ~~connect ~w~function");
+				player.ShowMessageAboveMap("An error occured while calling the ~r~connect ~w~function");
 			}
 		}
 		if (IsKeyJustUp(VK_F9)) {
@@ -89,12 +103,22 @@ void RunGameScript() {
 		}
 		if (IsKeyJustUp(VK_F11)) {
 			if (NetworkManager->sync_test == true) {
-				NetworkManager->sync_test = false;
+				//NetworkManager->sync_test = false;
 			}
 			else {
 				NetworkManager->sync_test = true;
 			}
 		}
+		if (IsKeyJustUp(0x54) && IsKeyJustUp(VK_F6)) {
+			/*Chat->open = true;
+
+			printf("%d\n", Chat->open);*/
+		}
+		/*
+		if (IsKeyJustUp(VK_F12)) {
+			vehicle.CreateVehicle(0, "adder", LocalPlayer->GetCoords(), 90.0f, 5, 10, true, 25);
+		}
+		*/
 		WAIT(0);
 	}
 }

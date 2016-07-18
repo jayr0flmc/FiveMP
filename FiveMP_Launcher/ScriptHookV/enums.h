@@ -1311,7 +1311,17 @@ enum eWeapon : DWORD
 	WeaponGusenberg = 0x61012683,
 	WeaponHatchet = 0xF9DCBF2D,
 	WeaponRailgun = 0x6D544C99,
-	WeaponUnarmed = 0xA2719263
+	WeaponUnarmed = 0xA2719263,
+	//Missing Weapons
+	WeaponBottle = 0xF9E6AA4B,
+	WeaponFlaregun = 0x47757124,
+	WeaponGarbageBag = 0xE232C28C,
+	WeaponHandcuffs = 0xD04C944D,
+	WeaponMarksmanPistol = 0xDC4DB296,
+	WeaponKnuckle = 0xD8DF3C3C,
+	WeaponFlashlight = 2343591895,
+	WeaponSwitchblade = 3756226112,
+	WeaponMachete = 3713923289
 };
 
 enum eWeaponGroup : DWORD
@@ -1395,6 +1405,9 @@ enum ePickupType : DWORD
 	PickupTypeWeaponCrowbar = 0x872DC888,
 	PickupTypeWeaponGolfclub = 0x88EAACA7,
 	PickupTypeWeaponBottle = 0xFA51ABF5,
+	PickupTypeWeaponFlaregun = 0xBD4DE242,
+	PickupTypeWeaponVintagePistol = 0xEBF89D5F,
+	PickupTypeWeaponHandcuffKey = 0x094AA1CF,
 
 	PickupTypeVehicleWeaponPistol = 0xA54AE7B7,
 	PickupTypeVehicleWeaponCombatPistol = 0xD0AACEF7,

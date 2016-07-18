@@ -1,15 +1,76 @@
 #include "stdafx.h"
 
-int SetPlayerUsername(lua_State* state) // function has no effect, placeholder for now.
+int SetPlayerName(lua_State* state)
 {
 	int args = lua_gettop(state);
 
 	printf("SetPlayerUsername() was called with %d arguments:\n", args);
 
-	for (int n = 1; n <= args; ++n) {
-		printf("  argument %d: '%s'\n", n, lua_tostring(state, n));
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected) {
+		const char *string = lua_tostring(state, 2);
+
+		playerData[playerid].playerusername = std::string(string);
+	}
+	return 0;
+}
+
+int GetPlayerName(lua_State* state)
+{
+	int args = lua_gettop(state);
+
+	printf("GetPlayerUsername() was called with %d arguments:\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected) {
+		lua_pushstring(state, playerData[playerid].playerusername.c_str());
+	}
+	else {
+		lua_pushstring(state, "");
 	}
 
-	lua_pushnumber(state, 123);
+	return 1;
+}
+
+int SetSpawnPoint(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetSpawnPoint() was called with %d arguments.\n", args);
+
+	float x = lua_tonumber(state, 1);
+	float y = lua_tonumber(state, 2);
+	float z = lua_tonumber(state, 3);
+
+	int spawnid = spawnsPool.AddToSpawnPool(x, y, z);
+
+	lua_pushinteger(state, spawnid);
+
+	return 1;
+}
+
+int RemoveSpawnPoint(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("RemoveSpawnPoint() was called with %d arguments.\n", args);
+
+	int spawnid = lua_tonumber(state, 1);
+
+	spawnsPool.RemoveFromSpawnPool(spawnid);
+
+	return 0;
+}
+
+int IsPlayerConnected(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("IsPlayerConnected() was called with %d arguments\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+
+	lua_pushboolean(state, playerData[playerid].isConnected);
+
 	return 1;
 }

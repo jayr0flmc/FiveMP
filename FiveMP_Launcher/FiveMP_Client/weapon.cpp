@@ -73,6 +73,16 @@ EnumParser<eWeapon>::EnumParser()
 	enumMap["Hatchet"] = WeaponHatchet;
 	enumMap["Railgun"] = WeaponRailgun;
 	enumMap["Unarmed"] = WeaponUnarmed;
+	enumMap["Bottle"] = WeaponBottle;
+	enumMap["VintagePistol"] = WeaponVintagePistol;
+	enumMap["Flaregun"] = WeaponFlaregun;
+	enumMap["GarbageBag"] = WeaponGarbageBag;
+	enumMap["Handcuffs"] = WeaponHandcuffs;
+	enumMap["MarksmanPistol"] = WeaponMarksmanPistol;
+	enumMap["Knuckle"] = WeaponKnuckle;
+	enumMap["Flashlight"] = WeaponFlashlight;
+	enumMap["Switchblade"] = WeaponSwitchblade;
+	enumMap["Machete"] = WeaponMachete;
 };
 
 void GameWeapon::GiveWeapon(char * weaponid, int ammo) {
@@ -87,6 +97,10 @@ void GameWeapon::RemoveWeapon(char * weaponid) {
 	eWeapon weapon = parser.ParseEnum(weaponid);
 
 	WEAPON::REMOVE_WEAPON_FROM_PED(LocalPlayer->playerPed, weapon);
+}
+
+void GameWeapon::RemoveAllWeapons() {
+	WEAPON::REMOVE_ALL_PED_WEAPONS(LocalPlayer->playerPed, true);
 }
 
 void GameWeapon::GiveAmmo(char * weaponid, int ammo) {
