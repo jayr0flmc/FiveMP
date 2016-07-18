@@ -140,3 +140,20 @@ int OnPlayerMessage(lua_State * state, int playerid, char* message)
 	
 	return result;
 }
+
+int OnPlayerPickUpPickup(lua_State * state, int pickupid, int playerid)
+{
+	int result;
+
+	lua_getglobal(state, "OnPlayerPickUpPickup");
+
+	lua_pushinteger(state, pickupid);
+	lua_pushinteger(state, playerid);
+
+	lua_pcall(state, 2, 0, 0);
+
+	result = (int)lua_tointeger(state, -1);
+	lua_pop(state, 1);
+
+	return result;
+}

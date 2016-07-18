@@ -25,4 +25,15 @@ void sv_PlayerConnect(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 
 		}
 	}
-};
+}
+
+void sv_OnPlayerPickUpPickup(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+{
+	int pickupid;
+	int playerid;
+
+	bitStream->Read(pickupid);
+	bitStream->Read(playerid);
+
+	OnPlayerPickUpPickup(sLUA, pickupid, playerid);
+}

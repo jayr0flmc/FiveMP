@@ -26,3 +26,24 @@ void CreatePickup(int pickupid, const char* modelid, float x, float y, float z)
 	pickupData[clientpickupid].pickup = OBJECT::CREATE_PICKUP(PickupTypeCustomScript, x, y, z, 0, 0, 0, model);
 
 }
+
+void PickupUpdate()
+{
+	for (int i = 0; i < 100; i++) {
+		if (pickupData[i].used) {
+
+			//Basicly means if player picked it.
+			if (!OBJECT::DOES_PICKUP_OBJECT_EXIST(pickupData[i].pickup)) {
+
+				RakNet::BitStream sOnPlayerPickupPickup;
+				sOnPlayerPickupPickup.Write(pickupData[i].serverID);
+				sOnPlayerPickupPickup.Write(LocalPlayer->playerID);
+				NetworkManager->rpc.Signal("OnPlayerPickUpPickup", &sOnPlayerPickupPickup, HIGH_PRIORITY, RELIABLE_ORDERED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, false);
+				pickupData[i].used = false;
+
+			}
+
+		}
+	}
+}
+

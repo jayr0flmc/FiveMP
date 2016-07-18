@@ -70,9 +70,17 @@ function OnPlayerDeath(playerid)
 	return 1;
 end
 
-
 function OnPlayerUpdate(playerid)
 	--SetPlayerArmour(playerid, 100);
 	--Disabling it because it really spams the console :D
 	return 1;
+end
+
+function OnPlayerMessage(playerid, message)
+
+end
+
+function OnPlayerPickUpPickup(pickup, player)
+	playername = GetPlayerName(player);
+	SendMessageToAll("~b~" .. playername .. "~w~ picked up ~b~Pickup");
 end

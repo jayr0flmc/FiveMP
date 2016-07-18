@@ -15,9 +15,11 @@ SRPCManager::~SRPCManager()
 void SRPCManager::RegisterRPCs()
 {
 	NetworkManager->rpc.RegisterSlot("PlayerConnect", sv_PlayerConnect, 0);
+	NetworkManager->rpc.RegisterSlot("OnPlayerPickUpPickup", sv_OnPlayerPickUpPickup, 0);
 }
 
 void SRPCManager::UnRegisterRPCs()
 {
 	NetworkManager->rpc.UnregisterSlot("PlayerConnect");
+	NetworkManager->rpc.UnregisterSlot("OnPlayerPickUpPickup");
 }
