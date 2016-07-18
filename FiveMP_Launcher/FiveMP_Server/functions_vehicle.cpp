@@ -133,8 +133,6 @@ int SetVehicleNumberPlate(lua_State* state)
 
 	vehicleData[vehicleid].vehiclePlate = plate;
 
-	printf("%s\n", plate.c_str());
-
 	RakNet::RakString string = RakNet::RakString(plate.c_str());
 
 	RakNet::BitStream sVehiclePlate;
