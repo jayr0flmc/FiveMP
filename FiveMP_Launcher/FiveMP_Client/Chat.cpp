@@ -64,8 +64,8 @@ void CChat::Render()
 	}
 	if (bOpened)
 	{
-		GRAPHICS::DRAW_RECT(0.002f, 0.023f + (0.025f * cuLinesOnScreen), 0.9f, 0.03f, 0, 0, 0, 150);
-		float chatInputHeight = 0.002f + (0.025f * cuLinesOnScreen) + 0.005f;
+		GRAPHICS::DRAW_RECT(0.004f, 0.025f + (0.025f * cuLinesOnScreen), 0.9f, 0.03f, 0, 0, 0, 150);
+		float chatInputHeight = 0.004f + (0.025f * cuLinesOnScreen) + 0.005f;
 		// Temporary here
 		using convert_type = std::codecvt_utf8<wchar_t>;
 		std::wstring_convert<convert_type, wchar_t> converter;
@@ -73,7 +73,7 @@ void CChat::Render()
 		msgCopy.insert(msgCopy.begin() + uiCarretPos, L'_');
 		std::string converted_str = std::string("> ") + converter.to_bytes(msgCopy);
 
-		draw_text(0.002f, chatInputHeight, converted_str.c_str(), { 0xFF, 0xFF, 0xFF, 0xFF });
+		draw_text(0.004f, chatInputHeight, converted_str.c_str(), { 0xFF, 0xFF, 0xFF, 0xFF });
 	}
 }
 
@@ -205,7 +205,16 @@ void CChat::ScriptKeyboardMessage(DWORD key, WORD repeats, BYTE scanCode, BOOL i
 				std::wstring_convert<convert_type, wchar_t> converter;
 
 				std::string converted_str = converter.to_bytes(Chat->wsCurrentMessage);
-				Chat->AddChatMessage(converted_str, { 0xFF, 0xFF, 0xFF, 0xFF });
+				//Chat->AddChatMessage(converted_str, { 0xFF, 0xFF, 0xFF, 0xFF });
+
+				RakNet::BitStream sendmessage;
+
+				sendmessage.Write((MessageID)ID_CHAT_MESSAGE);
+				sendmessage.Write(NetworkManager->playerid);
+				sendmessage.Write(converted_str);
+
+				NetworkManager->client->Send(&sendmessage, LOW_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+
 				Chat->wsCurrentMessage.clear();
 				Chat->Close();
 				Chat->uiCarretPos = 0;
