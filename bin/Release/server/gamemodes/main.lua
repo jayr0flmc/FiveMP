@@ -17,6 +17,7 @@ function OnGameModeInit()
 	
 	pickup = CreatePickup();
 	SetPickupPos(pickup, -16, 16, 73);
+	SetPickupModel(pickup, "prop_ld_health_pack");
 	
 	return 1;
 end

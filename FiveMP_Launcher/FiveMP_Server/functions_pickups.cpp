@@ -36,7 +36,7 @@ int RemovePickup(lua_State * state)
 
 	if (pickupData[pickupid].used) {
 		pickupData[pickupid].autoSync = false;
-		pickupData[pickupid].pickupid = 0;
+		pickupData[pickupid].model = "";
 		pickupData[pickupid].x = 0.0f;
 		pickupData[pickupid].y = 0.0f;
 		pickupData[pickupid].z = 0.0f;
@@ -62,11 +62,11 @@ int SetPickupPos(lua_State * state)
 	return 0;
 }
 
-int SetPickupModel(lua_State * state)
+int SetPickupModelID(lua_State * state)
 {
 	int args = lua_gettop(state);
 
-	printf("SetPickupPos() was called with %d arguments.\n", args);
+	printf("SetPickupModel() was called with %d arguments.\n", args);
 
 	int pickupid = lua_tointeger(state, 1);
 	if (pickupData[pickupid].used) {
@@ -83,10 +83,11 @@ int ShowPickupForPlayer(lua_State * state)
 
 	int pickupid = lua_tointeger(state, 1);
 	int playerid = lua_tointeger(state, 2);
+
 	if (pickupData[pickupid].used && playerData[playerid].isConnected) {
 
 		RakNet::BitStream sShowPickupForPlayer;
-		RakNet::RakString string = RakNet::RakString(pickupData[playerid].model.c_str());
+		RakNet::RakString string = RakNet::RakString(pickupData[pickupid].model.c_str());
 
 		sShowPickupForPlayer.Write(pickupid);
 		sShowPickupForPlayer.Write(string);
