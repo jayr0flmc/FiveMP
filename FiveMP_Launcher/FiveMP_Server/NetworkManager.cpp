@@ -20,6 +20,8 @@ SNetworkManager::~SNetworkManager()
 	time_pause = NULL;
 
 	RPCManager->UnRegisterRPCs();
+	delete RPCManager;
+	delete ASIManager;
 
 	server->Shutdown(300);
 	RakNet::RakPeerInterface::DestroyInstance(server);

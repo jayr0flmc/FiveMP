@@ -148,6 +148,8 @@ void CNetworkManager::Pulse()
 			LocalPlayer->playerID = playerid;
 
 			playerData[playerid].used = true;
+
+			//ASIManager->Request();
 			break;
 
 		case ID_SEND_PLAYER_DATA:

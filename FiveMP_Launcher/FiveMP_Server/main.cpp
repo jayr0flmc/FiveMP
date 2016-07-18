@@ -2,6 +2,7 @@
 
 SNetworkManager *NetworkManager;
 SRPCManager		*RPCManager;
+SASIManager		*ASIManager;
 SConfig			*Config;
 SPlayer			*PlayerManager;
 SVehicle		*VehicleManager;
@@ -33,8 +34,12 @@ int main(void)
 
 	NetworkManager = new SNetworkManager;
 	NetworkManager->Start();
+
 	RPCManager = new SRPCManager;
 	RPCManager->RegisterRPCs();
+
+	ASIManager = new SASIManager;
+
 	PlayerManager = new SPlayer;
 	VehicleManager = new SVehicle;
 	WorldManager = new SWorld;

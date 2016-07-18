@@ -10,6 +10,9 @@ public:
 	void HandlePlayerSync(Packet *p);
 
 	RPC4 rpc;
+	DirectoryDeltaTransfer directoryDeltaTransfer;
+	FileListTransfer fileListTransfer;
+
 	RakNet::RakPeerInterface *server;
 	RakNet::RakNetStatistics *rss;
 	RakNet::Packet* packet;

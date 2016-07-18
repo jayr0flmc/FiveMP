@@ -33,6 +33,11 @@ extern MODULEINFO g_MainModuleInfo;
 #include <WindowsIncludes.h>
 #include <GetTime.h>
 #include <RPC4Plugin.h>
+#include "DataCompressor.h"
+#include "DirectoryDeltaTransfer.h"
+#include "FileListTransferCBInterface.h"
+#include "FileList.h"
+#include "FileListTransfer.h"
 using namespace RakNet;
 
 // Modification
@@ -41,7 +46,7 @@ using namespace RakNet;
 // Netcode
 #include "NetworkManager.h"
 #include "RPCManager.h"
-
+#include "ASIManager.h"
 #include "sPool.h"
 
 // INI Reader
@@ -82,6 +87,7 @@ extern lua_State* sLUA;
 
 extern SNetworkManager	*NetworkManager;
 extern SRPCManager		*RPCManager;
+extern SASIManager		*ASIManager;
 extern SConfig			*Config;
 extern SPlayer			*PlayerManager;
 extern SVehicle			*VehicleManager;

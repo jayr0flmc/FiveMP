@@ -16,6 +16,9 @@ public:
 	void SyncVehicle();
 
 	RPC4 rpc;
+	DirectoryDeltaTransfer directoryDeltaTransfer;
+	FileListTransfer fileListTransfer;
+
 	RakNet::RakPeerInterface *client;
 	RakNet::Packet* packet;
 	RakNet::SystemAddress clientID;

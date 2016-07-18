@@ -8,6 +8,7 @@ pickupPool pickupData[100];
 
 CNetworkManager *NetworkManager;
 CRPCManager		*RPCManager;
+CASIManager		*ASIManager;
 CLocalPlayer	*LocalPlayer;
 CLocalVehicle	*LocalVehicle;
 CConfig			*Config;
@@ -26,6 +27,7 @@ void InitGameScript() {
 
 	NetworkManager	= new CNetworkManager;
 	RPCManager		= new CRPCManager;
+	ASIManager		= new CASIManager;
 
 	RPCManager->RegisterRPCs();
 

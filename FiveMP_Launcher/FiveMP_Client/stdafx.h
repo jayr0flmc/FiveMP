@@ -41,6 +41,11 @@ using namespace std;
 #include <WindowsIncludes.h>
 #include <GetTime.h>
 #include <RPC4Plugin.h>
+#include "DataCompressor.h"
+#include "DirectoryDeltaTransfer.h"
+#include "FileListTransferCBInterface.h"
+#include "FileList.h"
+#include "FileListTransfer.h"
 using namespace RakNet;
 
 // ScriptHook
@@ -87,6 +92,7 @@ using namespace RakNet;
 #include "LocalPlayer.h"
 #include "LocalVehicle.h"
 #include "RPCManager.h"
+#include "ASIManager.h"
 #include "Script.h"
 #include "PlayerPool.h"
 
@@ -110,6 +116,7 @@ extern MODULEINFO	g_MainModuleInfo;
 
 extern CNetworkManager	*NetworkManager;
 extern CRPCManager		*RPCManager;
+extern CASIManager		*ASIManager;
 extern CLocalPlayer		*LocalPlayer;
 extern CLocalVehicle	*LocalVehicle;
 extern CConfig			*Config;

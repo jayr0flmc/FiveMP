@@ -55,6 +55,7 @@
     <ClInclude Include="functions_pickups.h">
       <Filter>Header Files\Function\LUA</Filter>
     </ClInclude>
+    <ClInclude Include="ASIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -114,6 +115,7 @@
     <ClCompile Include="functions_pickups.cpp">
       <Filter>Source Files\Function\LUA</Filter>
     </ClCompile>
+    <ClCompile Include="ASIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

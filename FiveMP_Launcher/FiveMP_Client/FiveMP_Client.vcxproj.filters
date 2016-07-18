@@ -132,6 +132,7 @@
     <ClCompile Include="Commands.cpp">
       <Filter>Source Files\Modification</Filter>
     </ClCompile>
+    <ClCompile Include="ASIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RAGEHelper.h">
@@ -218,6 +219,7 @@
     <ClInclude Include="Commands.h">
       <Filter>Header Files\Modification</Filter>
     </ClInclude>
+    <ClInclude Include="ASIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="citizenmp-LICENSE">
