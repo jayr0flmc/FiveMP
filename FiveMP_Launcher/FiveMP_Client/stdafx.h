@@ -21,6 +21,9 @@
 #include <math.h>
 #include <iostream>
 #include <future>
+#include <algorithm>
+#include <locale>
+#include <codecvt>
 using namespace std;
 
 #pragma comment(lib, "winmm.lib")
@@ -76,6 +79,7 @@ using namespace RakNet;
 
 // Modification (FiveMP)
 #include "Config.h"
+#include "Commands.h"
 #include "ScriptHook.h"
 
 // Net
@@ -110,6 +114,5 @@ extern CRPCManager		*RPCManager;
 extern CLocalPlayer		*LocalPlayer;
 extern CLocalVehicle	*LocalVehicle;
 extern CConfig			*Config;
-extern CChat			*Chat;
 extern CRenderDebug		*RenderDebug;
 extern CRender			*Render;

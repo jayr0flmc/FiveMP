@@ -13,10 +13,14 @@ void ShowMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 void SendMessageToPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
 	int playerid;
 	char string[128];
+	color_t textColor;
 
 	bitStream->Read(string);
+	bitStream->Read(textColor);
 
-	Chat->AddChatMessage(string);
+	textColor = { 255, 255, 255, 255 };
+
+	CChat::Get()->AddChatMessage(string, textColor);
 
 	printf("%s\n", string);
 }

@@ -71,7 +71,14 @@ void SNetworkManager::Pulse()
 		RakNet::BitStream VehicleBitStream_send;
 		RakNet::BitStream VehicleBitStream_receive(packet->data + 1, 128, false);
 
+		RakNet::BitStream ChatBitStream_receive(packet->data + 1, 128, false);
+		RakNet::BitStream sSendMessageToAll;
+		RakNet::RakString textstring;
+
 		RakNet::RakString tempusername;
+
+		std::string teststring;
+		char string[128];
 
 		switch (packetIdentifier)
 		{
@@ -117,6 +124,20 @@ void SNetworkManager::Pulse()
 			pid_bitStream.Write(Config->ServerTimeFreeze);
 
 			server->Send(&pid_bitStream, HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
+			break;
+
+		case ID_CHAT_MESSAGE:
+			int playerid;
+
+			ChatBitStream_receive.Read(playerid);
+			ChatBitStream_receive.Read(teststring);
+
+			sprintf(string, "~b~%s(%d):~w~ %s", netPool.GetPlayerUsername(packet->guid), playerid, teststring);
+			
+			textstring = string;
+			
+			sSendMessageToAll.Write(textstring);
+			NetworkManager->rpc.Signal("SendMessageToPlayer", &sSendMessageToAll, LOW_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
 			break;
 
 		case ID_SEND_PLAYER_DATA:
