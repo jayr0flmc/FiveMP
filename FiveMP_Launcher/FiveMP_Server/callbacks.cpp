@@ -42,7 +42,8 @@ int OnPlayerConnect(lua_State * state, int playerid)
 
 	lua_pushinteger(state, playerid);
 
-	lua_pcall(state, 1, 0, 0);
+	lua_call(state, 1, 1);
+//	lua_pcall(state, 1, 0, 0);
 
 	result = lua_tointeger(state, -1);
 	lua_pop(state, 1);
@@ -114,7 +115,8 @@ int OnPlayerUpdate(lua_State * state, int playerid)
 
 	lua_pushinteger(state, playerid);
 
-	lua_pcall(state, 1, 0, 0);
+	lua_call(state, 1, 1);
+//	lua_pcall(state, 1, 0, 0);
 
 	result = (int)lua_tointeger(state, -1);
 	lua_pop(state, 1);
