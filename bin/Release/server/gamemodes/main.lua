@@ -83,6 +83,11 @@ end
 
 function OnPlayerMessage(playerid, message)
 	playername = GetPlayerName(playerid);
-	print( playername .. " : " .. message);
+	print( "~b~" .. playername .. ": ~w~" .. message);
 	return 1;
+end
+
+function OnPlayerCommand(playerid, message)
+	
+	return 0;
 end
