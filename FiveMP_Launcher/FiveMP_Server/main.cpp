@@ -122,6 +122,7 @@ int main(void)
 	lua_register(sLUA, "SetPickupModel", SetPickupModelID);
 	lua_register(sLUA, "ShowPickupForPlayer", ShowPickupForPlayer);
 	lua_register(sLUA, "HidePickupForPlayer", HidePickupForPlayer);
+	lua_register(sLUA, "SetPickupRespawnTime", SetPickupRespawnTime);
 
 	OnGameModeInit(sLUA);
 

@@ -8,7 +8,6 @@ function OnGameModeInit()
 	CreateVehicle("Voltic", -9.0, 10.0, 73.0, 360.0, 5, 10, true, 500);
 	CreateVehicle("Gargoyle", -12.0, 12.0, 73.0, 360.0, 5, 10, true, 500);
 	
-	-- Blips are causing issues at the moment, not recommend to use.
 	blip = CreateBlip();
 	SetBlipLocationType(blip, 1, vehicle);
 	SetBlipColor(blip, 23);
@@ -16,8 +15,9 @@ function OnGameModeInit()
 	SetBlipName(blip, "Voltic car");
 	
 	pickup = CreatePickup();
-	SetPickupPos(pickup, -16, 16, 73);
+	SetPickupPos(pickup, -16, 13, 71);
 	SetPickupModel(pickup, "prop_ld_health_pack");
+	SetPickupRespawnTime(pickup, 2000);
 	
 	return 1;
 end

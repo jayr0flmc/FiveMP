@@ -35,12 +35,7 @@ int RemovePickup(lua_State * state)
 	int pickupid = lua_tointeger(state, 1);
 
 	if (pickupData[pickupid].used) {
-		pickupData[pickupid].autoSync = false;
-		pickupData[pickupid].model = "";
-		pickupData[pickupid].x = 0.0f;
-		pickupData[pickupid].y = 0.0f;
-		pickupData[pickupid].z = 0.0f;
-		pickupData[pickupid].used = false;
+		RemovePickup(pickupid);
 	}
 
 	return 0;
@@ -94,6 +89,7 @@ int ShowPickupForPlayer(lua_State * state)
 		sShowPickupForPlayer.Write(pickupData[pickupid].x);
 		sShowPickupForPlayer.Write(pickupData[pickupid].y);
 		sShowPickupForPlayer.Write(pickupData[pickupid].z);
+		sShowPickupForPlayer.Write(pickupData[pickupid].interval);
 		NetworkManager->rpc.Signal("ShowPickupForPlayer", &sShowPickupForPlayer, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
 	}
@@ -104,7 +100,7 @@ int HidePickupForPlayer(lua_State * state)
 {
 	int args = lua_gettop(state);
 
-	printf("ShowPickupForPlayer() was called with %d arguments.\n", args);
+	printf("HidePickupForPlayer() was called with %d arguments.\n", args);
 
 	int pickupid = lua_tointeger(state, 1);
 	int playerid = lua_tointeger(state, 2);
@@ -114,6 +110,20 @@ int HidePickupForPlayer(lua_State * state)
 		sShowPickupForPlayer.Write(pickupid);
 		NetworkManager->rpc.Signal("HidePickupForPlayer", &sShowPickupForPlayer, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
+	}
+	return 0;
+}
+
+int SetPickupRespawnTime(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("SetPickupRespawnTime() was called with %d arguments.\n", args);
+
+	int pickupid = lua_tointeger(state, 1);
+	int interval = lua_tointeger(state, 2);
+	if (pickupData[pickupid].used) {
+		pickupData[pickupid].interval = interval;
 	}
 	return 0;
 }

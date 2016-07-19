@@ -58,6 +58,8 @@ using namespace RakNet;
 #include "player.h"
 #include "vehicle.h"
 #include "world.h"
+#include "Pickups.h"
+#include "Blips.h"
 
 // ScriptHook
 #include <Types.h>

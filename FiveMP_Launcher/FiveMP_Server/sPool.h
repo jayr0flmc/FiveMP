@@ -151,6 +151,8 @@ struct pickupPool {
 
 	std::vector<playerPool*> players;
 
+	int interval = 500;
+
 	bool autoSync = false;
 	bool used = false;
 };

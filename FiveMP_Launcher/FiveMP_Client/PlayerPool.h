@@ -105,6 +105,15 @@ struct pickupPool {
 	int serverID;
 	Pickup pickup;
 
+	Hash model;
+	float x;
+	float y;
+	float z;
+	int interval;
+	long intv_clock;
+
+
 	bool used = false;
+	bool triggered = false;
 };
 extern pickupPool pickupData[100];

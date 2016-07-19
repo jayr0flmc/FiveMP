@@ -35,6 +35,7 @@ void InitGameScript() {
 	RunGameScript();
 }
 
+int timer = 0;
 void RunGameScript() {
 	LocalPlayer = new CLocalPlayer;
 	LocalPlayer->Initialize();
@@ -70,7 +71,12 @@ void RunGameScript() {
 
 					NetworkManager->SyncOnFoot();
 					NetworkManager->SyncVehicle();
-					PickupUpdate();
+
+					timer++;
+					if (timer == 5) {
+						timer = 0;
+						PickupUpdate(); //othervise it wouldn't work :D sorry for messy setup.
+					}
 
 					Render->RenderNametags();
 				}

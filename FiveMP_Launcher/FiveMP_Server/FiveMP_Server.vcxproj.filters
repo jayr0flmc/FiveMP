@@ -56,6 +56,12 @@
       <Filter>Header Files\Function\LUA</Filter>
     </ClInclude>
     <ClInclude Include="ASIManager.h" />
+    <ClInclude Include="Blips.h">
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Pickups.h">
+      <Filter>Header Files\Function</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -116,6 +122,12 @@
       <Filter>Source Files\Function\LUA</Filter>
     </ClCompile>
     <ClCompile Include="ASIManager.cpp" />
+    <ClCompile Include="Blips.cpp">
+      <Filter>Source Files\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="Pickups.cpp">
+      <Filter>Source Files\Function</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

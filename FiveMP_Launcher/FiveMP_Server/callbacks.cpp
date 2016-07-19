@@ -165,7 +165,7 @@ int OnPlayerPickUpPickup(lua_State * state, int pickupid, int playerid)
 	lua_pushinteger(state, pickupid);
 	lua_pushinteger(state, playerid);
 
-	lua_pcall(state, 2, 0, 0);
+	lua_pcall(state, 2, 1, 0);
 
 	result = (int)lua_tointeger(state, -1);
 	lua_pop(state, 1);

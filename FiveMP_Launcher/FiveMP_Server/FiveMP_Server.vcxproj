@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASIManager.h" />
+    <ClInclude Include="Blips.h" />
     <ClInclude Include="callbacks.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="functions_blips.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="functions_pickups.h" />
     <ClInclude Include="functions_player.h" />
     <ClInclude Include="functions_vehicle.h" />
+    <ClInclude Include="Pickups.h" />
     <ClInclude Include="Vehicle.h" />
     <ClInclude Include="NetworkManager.h" />
     <ClInclude Include="Player.h" />
@@ -52,6 +54,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Blips.cpp" />
     <ClCompile Include="callbacks.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Use</PrecompiledHeader>
@@ -92,6 +95,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Pickups.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RPCManager.cpp" />
     <ClCompile Include="Server.cpp">

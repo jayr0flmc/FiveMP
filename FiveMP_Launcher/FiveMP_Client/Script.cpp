@@ -332,6 +332,7 @@ void ShowPickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	float x;
 	float y;
 	float z;
+	int interval;
 	RakNet::RakString model;
 
 	bitStream->Read(pickupid);
@@ -339,8 +340,9 @@ void ShowPickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 	bitStream->Read(x);
 	bitStream->Read(y);
 	bitStream->Read(z);
+	bitStream->Read(interval);
 
-	CreatePickup(pickupid, model.C_String(), x, y, z);
+	CreatePickup(pickupid, model.C_String(), x, y, z, interval);
 }
 
 void HidePickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
