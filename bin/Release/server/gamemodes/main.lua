@@ -107,11 +107,14 @@ end
 
 function OnPlayerMessage(playerid, message)
 	playername = GetPlayerName(playerid);
-	SendMessageToAll( "~r~" .. playername .. ": ~w~" .. message);
+	SendMessageToAll( "~r~" .. playername .. "(".. playerid .."): ~w~" .. message);
 	return 1;
 end
 
 function OnPlayerCommand(playerid, message)
-	
+	if message == "/test2" then
+		SendMessageToAll("i used the /test2 command which I scripted in my LUA file :D");
+		return 1;
+	end
 	return 0;
 end
