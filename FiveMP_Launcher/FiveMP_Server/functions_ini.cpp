@@ -59,8 +59,6 @@ int CloseINIFile(lua_State * state)
 	return 0;
 }
 
-#define DEFAULT_SECTION "DATA"
-
 int ReadInteger(lua_State * state)
 {
 	int args = lua_gettop(state);
@@ -68,9 +66,10 @@ int ReadInteger(lua_State * state)
 	printf("ReadInteger() was called with %d arguments:\n", args);
 
 	int file = lua_tointeger(state, 1);
-	const char* key = lua_tostring(state, 2);
+	const char* section = lua_tostring(state, 2);
+	const char* key = lua_tostring(state, 3);
 	if (iniData[file].used) {
-		lua_pushinteger(state, iniData[file].ini_Reader->ReadInteger(DEFAULT_SECTION, (char*) key, 0));
+		lua_pushinteger(state, iniData[file].ini_Reader->ReadInteger((char*)section, (char*) key, 0));
 	}
 	else {
 		lua_pushinteger(state, -1);
@@ -85,9 +84,10 @@ int ReadFloat(lua_State * state)
 	printf("ReadFloat() was called with %d arguments:\n", args);
 
 	int file = lua_tointeger(state, 1);
-	const char* key = lua_tostring(state, 2);
+	const char* section = lua_tostring(state, 2);
+	const char* key = lua_tostring(state, 3);
 	if (iniData[file].used) {
-		lua_pushnumber(state, iniData[file].ini_Reader->ReadFloat(DEFAULT_SECTION, (char*)key, 0.0f));
+		lua_pushnumber(state, iniData[file].ini_Reader->ReadFloat((char*)section, (char*)key, 0.0f));
 	}
 	else {
 		lua_pushnumber(state, -1.0f);
@@ -103,9 +103,10 @@ int ReadBoolean(lua_State * state)
 	printf("ReadBoolean() was called with %d arguments:\n", args);
 
 	int file = lua_tointeger(state, 1);
-	const char* key = lua_tostring(state, 2);
+	const char* section = lua_tostring(state, 2);
+	const char* key = lua_tostring(state, 3);
 	if (iniData[file].used) {
-		lua_pushboolean(state, iniData[file].ini_Reader->ReadBoolean(DEFAULT_SECTION, (char*)key, false));
+		lua_pushboolean(state, iniData[file].ini_Reader->ReadBoolean((char*)section, (char*)key, false));
 	}
 	else {
 		lua_pushboolean(state, false);
@@ -120,9 +121,10 @@ int ReadString(lua_State * state)
 	printf("ReadBoolean() was called with %d arguments:\n", args);
 
 	int file = lua_tointeger(state, 1);
-	const char* key = lua_tostring(state, 2);
+	const char* section = lua_tostring(state, 2);
+	const char* key = lua_tostring(state, 3);
 	if (iniData[file].used) {
-		lua_pushstring(state, iniData[file].ini_Reader->ReadString(DEFAULT_SECTION, (char*)key, ""));
+		lua_pushstring(state, iniData[file].ini_Reader->ReadString((char*)section, (char*)key, ""));
 	}
 	else {
 		lua_pushstring(state, "");
@@ -137,10 +139,11 @@ int WriteInteger(lua_State * state)
 	printf("WriteInteger() was called with %d arguments:\n", args);
 
 	int file = lua_tointeger(state, 1);
-	const char* key = lua_tostring(state, 2);
-	int value = lua_tointeger(state, 3);
+	const char* section = lua_tostring(state, 2);
+	const char* key = lua_tostring(state, 3);
+	int value = lua_tointeger(state, 4);
 	if (iniData[file].used) {
-		iniData[file].ini_Writer->WriteInteger(DEFAULT_SECTION, (char*)key, value);
+		iniData[file].ini_Writer->WriteInteger((char*)section, (char*)key, value);
 	}
 	return 0;
 }
@@ -152,10 +155,11 @@ int WriteFloat(lua_State * state)
 	printf("WriteFloat() was called with %d arguments:\n", args);
 
 	int file = lua_tointeger(state, 1);
-	const char* key = lua_tostring(state, 2);
-	float value = lua_tonumber(state, 3);
+	const char* section = lua_tostring(state, 2);
+	const char* key = lua_tostring(state, 3);
+	float value = lua_tonumber(state, 4);
 	if (iniData[file].used) {
-		iniData[file].ini_Writer->WriteFloat(DEFAULT_SECTION, (char*)key, value);
+		iniData[file].ini_Writer->WriteFloat((char*)section, (char*)key, value);
 	}
 	return 0;
 }
@@ -167,10 +171,11 @@ int WriteBoolean(lua_State * state)
 	printf("WriteBoolean() was called with %d arguments:\n", args);
 
 	int file = lua_tointeger(state, 1);
-	const char* key = lua_tostring(state, 2);
-	bool value = lua_toboolean(state, 3);
+	const char* section = lua_tostring(state, 2);
+	const char* key = lua_tostring(state, 3);
+	bool value = lua_toboolean(state, 4);
 	if (iniData[file].used) {
-		iniData[file].ini_Writer->WriteBoolean(DEFAULT_SECTION, (char*)key, value);
+		iniData[file].ini_Writer->WriteBoolean((char*)section, (char*)key, value);
 	}
 	return 0;
 }
@@ -182,10 +187,11 @@ int WriteString(lua_State * state)
 	printf("WriteString() was called with %d arguments:\n", args);
 
 	int file = lua_tointeger(state, 1);
-	const char* key = lua_tostring(state, 2);
-	const char* value = lua_tostring(state, 3);
+	const char* section = lua_tostring(state, 2);
+	const char* key = lua_tostring(state, 3);
+	const char* value = lua_tostring(state, 4);
 	if (iniData[file].used) {
-		iniData[file].ini_Writer->WriteString(DEFAULT_SECTION, (char*)key, (char*)value);
+		iniData[file].ini_Writer->WriteString((char*)section, (char*)key, (char*)value);
 	}
 	return 0;
 }

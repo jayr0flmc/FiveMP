@@ -26,15 +26,15 @@ function OnGameModeInit()
 	--Known bug, it doesn't create folders!!!!!!
 	--Make sure that folders are created.
 	inifile = LoadINIFile("test.ini");
-	WriteInteger(inifile, "int", 5);
-	WriteFloat(inifile, "float", 0.2);
-	WriteBoolean(inifile, "boolean", true);
-	WriteString(inifile, "string", "testing");
+	WriteInteger(inifile, "testsection", "int", 5);
+	WriteFloat(inifile, "testsection", "float", 0.2);
+	WriteBoolean(inifile, "testsection", "boolean", true);
+	WriteString(inifile, "testsection", "string", "testing");
 	
-	arg1 = ReadInteger(inifile, "int");
-	arg2 = ReadFloat(inifile, "float");
-	arg3 = ReadBoolean(inifile, "boolean");
-	arg4 = ReadString(inifile, "string");
+	arg1 = ReadInteger(inifile, "testsection", "int");
+	arg2 = ReadFloat(inifile, "testsection", "float");
+	arg3 = ReadBoolean(inifile, "testsection", "boolean");
+	arg4 = ReadString(inifile, "testsection", "string");
 	
 	print(arg1);
 	print(arg2);
