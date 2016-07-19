@@ -8,6 +8,10 @@ function OnGameModeInit()
 	CreateVehicle("Voltic", -9.0, 10.0, 73.0, 360.0, 5, 10, true, 500);
 	CreateVehicle("Gargoyle", -12.0, 12.0, 73.0, 360.0, 5, 10, true, 500);
 	
+	SetVehicleColor(0, 1, 2, 29);
+	SetVehicleCustomColor(2, 1, 255, 0, 239);
+	SetVehicleNumberPlate(2, "Voltic");
+	
 	blip = CreateBlip();
 	SetBlipLocationType(blip, 1, vehicle);
 	SetBlipColor(blip, 23);
