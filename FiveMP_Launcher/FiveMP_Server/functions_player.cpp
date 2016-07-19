@@ -490,7 +490,7 @@ int GetPlayerModel(lua_State * state)
 int SetPedComponentVariation(lua_State* state) {
 	int args = lua_gettop(state);
 
-	printf("GetPedHeadBlendData() was called with %d arguments.\n", args);
+	printf("SetPedComponentVariation() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
 	if (playerData[playerid].isConnected) {
@@ -508,6 +508,24 @@ int SetPedComponentVariation(lua_State* state) {
 		NetworkManager->rpc.Signal("SetPedComponentVariation", &sSetPedComponentVariation, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 	}
 
+	return 0;
+}
+
+int SetPlayerControlable(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("SetPlayerControlable() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected) {
+		bool value = lua_toboolean(state, 2);
+
+		RakNet::BitStream sSetPlayerC;
+		sSetPlayerC.Write(playerid);
+		sSetPlayerC.Write(value);
+		NetworkManager->rpc.Signal("SetPlayerControlable", &sSetPlayerC, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	}
 	return 0;
 }
 
