@@ -157,3 +157,16 @@ struct pickupPool {
 	bool used = false;
 };
 extern pickupPool pickupData[100];
+
+//We need to declare them, thats the fix after it'll fix because everywting will be inported into stdafx.h file.
+class CIniReader;
+class CIniWriter;
+
+struct iniPool {
+	std::string fileName;
+	CIniReader* ini_Reader;
+	CIniWriter* ini_Writer;
+
+	bool used = false;
+};
+extern iniPool iniData[100];

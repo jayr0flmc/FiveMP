@@ -16,6 +16,7 @@ spawnPool spawnData[50];
 vehiclePool vehicleData[150];
 blipPool blipData[100];
 pickupPool pickupData[100];
+iniPool iniData[100];
 
 int main(void)
 {
@@ -123,6 +124,20 @@ int main(void)
 	lua_register(sLUA, "ShowPickupForPlayer", ShowPickupForPlayer);
 	lua_register(sLUA, "HidePickupForPlayer", HidePickupForPlayer);
 	lua_register(sLUA, "SetPickupRespawnTime", SetPickupRespawnTime);
+
+	//INI
+	lua_register(sLUA, "LoadINIFile", LoadINIFile);
+	lua_register(sLUA, "CloseINIFile", CloseINIFile);
+
+	lua_register(sLUA, "ReadInteger", ReadInteger);
+	lua_register(sLUA, "ReadFloat", ReadFloat);
+	lua_register(sLUA, "ReadBoolean", ReadBoolean);
+	lua_register(sLUA, "ReadString", ReadString);
+
+	lua_register(sLUA, "WriteInteger", WriteInteger);
+	lua_register(sLUA, "WriteFloat", WriteFloat);
+	lua_register(sLUA, "WriteBoolean", WriteBoolean);
+	lua_register(sLUA, "WriteString", WriteString);
 
 	OnGameModeInit(sLUA);
 
