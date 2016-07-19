@@ -72,6 +72,7 @@ int main(void)
 	lua_register(sLUA, "GetPlayerModel", GetPlayerModel);
 	lua_register(sLUA, "IsPlayerConnected", IsPlayerConnected);
 	lua_register(sLUA, "SetPlayerComponentVariation", SetPedComponentVariation);
+	lua_register(sLUA, "SetPlayerControlable", SetPlayerControlable);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);

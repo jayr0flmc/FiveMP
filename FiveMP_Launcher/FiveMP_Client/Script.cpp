@@ -367,6 +367,13 @@ void HidePickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 
 }
 
-void UpdatePickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+void SetPlayerControlable(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 {
+	int playerid;
+	bool value;
+
+	bitStream->Read(playerid);
+	bitStream->Read(value);
+
+	ENTITY::FREEZE_ENTITY_POSITION(LocalPlayer->playerPed, !value);
 }
