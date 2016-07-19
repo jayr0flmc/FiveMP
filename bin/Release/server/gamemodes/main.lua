@@ -128,10 +128,15 @@ function OnPlayerCommand(playerid, message)
         if not isempty(args[1]) and not isempty(args[2]) then
 			playerid1 = GetPlayerId(args[1])
 			playerid2 = GetPlayerId(args[2])
+			playername1 = GetPlayerName(playerid1)
+			playername2 = GetPlayerName(playerid2)
 			
 			local x, y, z = GetPlayerPos(playerid2)
 			SetPlayerPos(playerid1, x, y, z)
 			
+			SendMessageToPlayer(playerid, "You Teleported ~b~" .. playername1 .. " ~w~to ~b~" .. playername2);
+			SendMessageToPlayer(playerid1, "You have been Teleported to ~b~" .. playername2);
+			SendMessageToPlayer(playerid2, "~b~" .. playername1 .. " ~w~has Teleported to you");
 		end
         return 1;
     end
@@ -139,10 +144,12 @@ function OnPlayerCommand(playerid, message)
 	if args[0] == "goto" then
         if not isempty(args[1]) then
 			playerid1 = GetPlayerId(args[1])
+			playername1 = GetPlayerName(playerid1)
 			
 			local x, y, z = GetPlayerPos(playerid1)
 			SetPlayerPos(playerid, x, y, z)
 			
+			SendMessageToPlayer(playerid, "You Teleported to ~b~" .. playername1);
 		end
         return 1;
     end
@@ -150,10 +157,12 @@ function OnPlayerCommand(playerid, message)
 	if args[0] == "bring" then
         if not isempty(args[1]) then
 			playerid1 = GetPlayerId(args[1])
+			playername = GetPlayerName(playerid)
 			
 			local x, y, z = GetPlayerPos(playerid)
 			SetPlayerPos(playerid1, x, y, z)
 			
+			SendMessageToPlayer(playerid1, "You have been Teleported to ~b~" .. playername);
 		end
         return 1;
     end
