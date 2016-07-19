@@ -133,7 +133,7 @@ void SNetworkManager::Pulse()
 			tempid1 = netPool.GetPlayerID(packet->guid);
 			ChatBitStream_receive.Read(textstring);
 			// Need to return 1 in lua script to stop message broadcasting
-			if (textstring.C_String[0] == '/')
+			if (textstring[0] == '/')
 			{
 				if (!OnPlayerCommand(sLUA, tempid1, (char *)textstring.C_String()))
 				{
