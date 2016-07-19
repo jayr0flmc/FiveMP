@@ -30,14 +30,18 @@ void GameVehicle::RemoveVehicle(int vehicleid)
 	vehicleData[vehicleid].used = false;
 }
 
-void GameVehicle::SetVehicleColor(int vehicleid, int color1, int color2)
+void GameVehicle::SetVehicleColor(int vehicleid, int layer, int color, int painttype)
 {
 	if (ENTITY::DOES_ENTITY_EXIST(vehicleData[vehicleid].vehicleVehicle))
 	{
-		VEHICLE::SET_VEHICLE_COLOURS(vehicleData[vehicleid].vehicleVehicle, color1, color2);
-
-		vehicleData[vehicleid].vehicleColor1 = color1;
-		vehicleData[vehicleid].vehicleColor2 = color2;
+		if (layer == 1) {
+			VEHICLE::SET_VEHICLE_MOD_COLOR_1(vehicleData[vehicleid].vehicleVehicle, painttype, color, 0);
+			vehicleData[vehicleid].vehicleColor1 = color;
+		}
+		else {
+			VEHICLE::SET_VEHICLE_MOD_COLOR_2(vehicleData[vehicleid].vehicleVehicle, painttype, color);
+			vehicleData[vehicleid].vehicleColor2 = color;
+		}
 	}
 }
 

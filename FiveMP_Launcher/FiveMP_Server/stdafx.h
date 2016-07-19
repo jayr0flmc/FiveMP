@@ -61,9 +61,6 @@ using namespace RakNet;
 #include "Pickups.h"
 #include "Blips.h"
 
-// ScriptHook
-#include <Types.h>
-
 // Scripting (LUA)
 #include <lua.hpp>
 

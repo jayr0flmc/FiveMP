@@ -63,16 +63,30 @@ int SetVehicleColor(lua_State* state)
 	printf("SetVehicleColor() was called with %d arguments:\n", args);
 
 	int vehicleid = lua_tonumber(state, 1);
-	int color1 = lua_tonumber(state, 2);
-	int color2 = lua_tonumber(state, 3);
+	int layer = lua_tonumber(state, 2);
+	int painttype = lua_tonumber(state, 3);
+	int color = lua_tonumber(state, 4);
 
-	vehicleData[vehicleid].vehicleColor1 = color1;
-	vehicleData[vehicleid].vehicleColor2 = color2;
+	if (layer == 1) {
+		vehicleData[vehicleid].vehiclePaintType1 = painttype;
+		vehicleData[vehicleid].vehicleColor1 = color;
+		vehicleData[vehicleid].customcolor1Used = false;
+	}
+	else if (layer == 2) {
+		vehicleData[vehicleid].vehiclePaintType2 = painttype;
+		vehicleData[vehicleid].vehicleColor2 = color;
+		vehicleData[vehicleid].customcolor2Used = false;
+	}
+	else {
+		printf("SetVehicleColor() 'layer' argument incorectly used, must be 1 or 2");
+		return 0;
+	}
 
 	RakNet::BitStream sVehicleColor;
 	sVehicleColor.Write(vehicleid);
-	sVehicleColor.Write(color1);
-	sVehicleColor.Write(color2);
+	sVehicleColor.Write(layer);
+	sVehicleColor.Write(painttype);
+	sVehicleColor.Write(color);
 	NetworkManager->rpc.Signal("SetVehicleColor", &sVehicleColor, LOW_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
 
 	return 0;

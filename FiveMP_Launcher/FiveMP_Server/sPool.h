@@ -94,6 +94,8 @@ struct vehiclePool {
 
 	int vehicleColor1;						// Vehicle Color 1
 	int vehicleColor2;						// Vehicle Color 2
+	int vehiclePaintType1;					// Vehicle Color 1
+	int vehiclePaintType2;					// Vehicle Color 2
 	
 	bool customcolor1Used = false;			// Wether or not this vehicle has a custom primary color (Mostly for OnPlayerConnect)
 	bool customcolor2Used = false;			// Wether or not this vehicle has a custom secondary color (Mostly for OnPlayerConnect)

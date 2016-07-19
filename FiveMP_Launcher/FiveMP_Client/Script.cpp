@@ -209,14 +209,16 @@ void RemoveVehicle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 void SetVehicleColor(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 {
 	int vehicleid;
-	int color1;
-	int color2;
+	int layer;
+	int color;
+	int painttype;
 
 	bitStream->Read(vehicleid);
-	bitStream->Read(color1);
-	bitStream->Read(color2);
+	bitStream->Read(layer);
+	bitStream->Read(color);
+	bitStream->Read(painttype);
 
-	vehicle.SetVehicleColor(vehicleid, color1, color2);
+	vehicle.SetVehicleColor(vehicleid, layer, color, painttype);
 }
 
 void SetVehicleCustomColor(RakNet::BitStream * bitStream, RakNet::Packet * packet)

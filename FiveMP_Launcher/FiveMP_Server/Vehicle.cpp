@@ -28,6 +28,24 @@ void SVehicle::SpawnVehicles(int playerid)
 			sCreateVehicle.Write(vehicleData[i].respawndelay);
 			NetworkManager->rpc.Signal("CreateVehicle", &sCreateVehicle, HIGH_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
+			if (vehicleData[i].vehiclePaintType1 != 0 && !vehicleData[i].customcolor1Used) {
+				RakNet::BitStream sVehicleColor;
+				sVehicleColor.Write(vehicleData[i].vehicleid);
+				sVehicleColor.Write(1);
+				sVehicleColor.Write(vehicleData[i].vehiclePaintType1);
+				sVehicleColor.Write(vehicleData[i].vehicleColor1);
+				NetworkManager->rpc.Signal("SetVehicleColor", &sVehicleColor, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+			}
+
+			if (vehicleData[i].vehiclePaintType2 != 0 && !vehicleData[i].customcolor2Used) {
+				RakNet::BitStream sVehicleColor;
+				sVehicleColor.Write(vehicleData[i].vehicleid);
+				sVehicleColor.Write(2);
+				sVehicleColor.Write(vehicleData[i].vehiclePaintType2);
+				sVehicleColor.Write(vehicleData[i].vehicleColor2);
+				NetworkManager->rpc.Signal("SetVehicleColor", &sVehicleColor, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+			}
+
 			if (vehicleData[i].customcolor1Used) {
 				RakNet::BitStream sVehicleColor;
 				sVehicleColor.Write(vehicleData[i].vehicleid);
@@ -49,7 +67,7 @@ void SVehicle::SpawnVehicles(int playerid)
 			}
 			
 			RakNet::RakString string = RakNet::RakString(vehicleData[i].vehiclePlate.c_str());
-
+			
 			RakNet::BitStream sVehiclePlate;
 			sVehiclePlate.Write(vehicleData[i].vehicleid);
 			sVehiclePlate.Write(string);

@@ -131,7 +131,7 @@ int OnPlayerMessage(lua_State * state, int playerid, char* message)
 	lua_pushinteger(state, playerid);
 	lua_pushstring(state, message);
 	
-	lua_pcall(state, 2, 1, 0);
+	lua_pcall(state, 2, 0, 0);
 	
 	result = (int)lua_tointeger(state, -1);
 	lua_pop(state, 1);
