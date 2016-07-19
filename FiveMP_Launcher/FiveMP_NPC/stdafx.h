@@ -38,6 +38,11 @@ using namespace std;
 #include <WindowsIncludes.h>
 #include <GetTime.h>
 #include <RPC4Plugin.h>
+#include "DataCompressor.h"
+#include "DirectoryDeltaTransfer.h"
+#include "FileListTransferCBInterface.h"
+#include "FileList.h"
+#include "FileListTransfer.h"
 using namespace RakNet;
 
 // INI Reader
@@ -54,9 +59,11 @@ using namespace RakNet;
 #include "NetworkManager.h"
 #include "RPCManager.h"
 #include "PlayerPool.h"
+#include "ASIManager.h"
 
 extern MODULEINFO	g_MainModuleInfo;
 
 extern CNetworkManager	*NetworkManager;
 extern CRPCManager		*RPCManager;
+extern CASIManager		*ASIManager;
 extern CConfig			*Config;
