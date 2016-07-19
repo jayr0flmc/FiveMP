@@ -215,8 +215,8 @@ void SetVehicleColor(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 
 	bitStream->Read(vehicleid);
 	bitStream->Read(layer);
-	bitStream->Read(color);
 	bitStream->Read(painttype);
+	bitStream->Read(color);
 
 	vehicle.SetVehicleColor(vehicleid, layer, color, painttype);
 }
