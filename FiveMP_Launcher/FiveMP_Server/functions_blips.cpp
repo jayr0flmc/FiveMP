@@ -51,6 +51,7 @@ int SetBlipLocationType(lua_State * state)
 			blipData[blipid].attachID = lua_tointeger(state, 3);
 		}
 		}
+		UpdateBlip(blipid);
 	}
 	return 0;
 }
@@ -64,6 +65,9 @@ int ShowBlipForPlayer(lua_State * state)
 	int blipid = lua_tointeger(state, 1);
 	int playerid = lua_tointeger(state, 2);
 	if (blipData[blipid].used && playerData[playerid].isConnected) {
+
+		blipData[blipid].players.push_back(&playerData[playerid]);
+
 		RakNet::BitStream sShowBlipForPlayer;
 		RakNet::RakString string = RakNet::RakString(blipData[blipid].name.c_str());
 
@@ -93,6 +97,15 @@ int HideBlipForPlayer(lua_State * state)
 		RakNet::BitStream sShowBlipForPlayer;
 		sShowBlipForPlayer.Write(blipid);
 		NetworkManager->rpc.Signal("HideBlipForPlayer", &sShowBlipForPlayer, HIGH_PRIORITY, RELIABLE_ORDERED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+
+		int i = 0;
+		for each(playerPool* player in blipData[blipid].players) {
+			i++;
+			if (player->playerid == playerid) {
+				blipData[blipid].players[i] = nullptr;
+				break;
+			}
+		}
 	}
 	return 0;
 }
@@ -136,6 +149,7 @@ int SetBlipColor(lua_State * state)
 	if (blipData[blipid].used) {
 		int color = lua_tointeger(state, 2);
 		blipData[blipid].color = color;
+		UpdateBlip(blipid);
 	}
 
 	return 0;
@@ -150,6 +164,7 @@ int SetBlipImage(lua_State * state)
 	int blipid = lua_tointeger(state, 1);
 	if (blipData[blipid].used) {
 		blipData[blipid].spriteid = lua_tointeger(state, 2);
+		UpdateBlip(blipid);
 	}
 
 	return 0;
@@ -164,6 +179,7 @@ int SetBlipName(lua_State * state)
 	int blipid = lua_tointeger(state, 1);
 	if (blipData[blipid].used) {
 		blipData[blipid].name = std::string(lua_tostring(state, 2));
+		UpdateBlip(blipid);
 	}
 
 	return 0;

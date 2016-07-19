@@ -10,7 +10,6 @@ void RemovePickup(int pickup)
 			NetworkManager->rpc.Signal("HidePickupForPlayer", &sShowPickupForPlayer, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUID((char*)player->playerusername.c_str()), false, false);
 		}
 
-		pickupData[pickup].autoSync = false;
 		pickupData[pickup].model = "";
 		pickupData[pickup].players.clear();
 		pickupData[pickup].used = false;

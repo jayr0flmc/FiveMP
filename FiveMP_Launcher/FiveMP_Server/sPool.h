@@ -140,6 +140,8 @@ struct blipPool {
 	int spriteid = 1;
 	std::string name = std::string("No name");
 
+	std::vector<playerPool*> players;
+
 	bool used = false;
 };
 extern blipPool blipData[100];
@@ -155,7 +157,6 @@ struct pickupPool {
 
 	int interval = 500;
 
-	bool autoSync = false;
 	bool used = false;
 };
 extern pickupPool pickupData[100];
