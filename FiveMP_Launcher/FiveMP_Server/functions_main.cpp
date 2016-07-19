@@ -74,3 +74,19 @@ int IsPlayerConnected(lua_State * state)
 
 	return 1;
 }
+
+int GetPlayerId(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("GetPlayerId() was called with %d arguments\n", args);
+
+	const char *playername = lua_tostring(state, 1);
+
+	RakNet::RakNetGUID tempgui = netPool.GetPlayerGUID((char *) playername);
+	int tempid = netPool.GetPlayerID(tempgui);
+
+	lua_pushinteger(state, tempid);
+
+	return 1;
+}
