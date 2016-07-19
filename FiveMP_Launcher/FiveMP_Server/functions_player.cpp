@@ -275,7 +275,7 @@ int GetPlayerFacingAngle(lua_State * state)
 
 	int playerid = lua_tointeger(state, 1);
 	if (playerData[playerid].isConnected) {
-		lua_pushnumber(state, playerData[playerid].r);
+		lua_pushnumber(state, 360 - playerData[playerid].r);
 	}
 	else {
 		lua_pushnumber(state, 0.0f);
