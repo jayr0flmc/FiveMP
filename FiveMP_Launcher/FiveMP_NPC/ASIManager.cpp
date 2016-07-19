@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+bool iscomplete = false;
+
 class TestCB : public RakNet::FileListTransferCBInterface
 {
 public:
@@ -29,6 +31,7 @@ public:
 	virtual bool OnDownloadComplete(DownloadCompleteStruct *dcs)
 	{
 		printf("Download complete.\n");
+		iscomplete = true;
 
 		// Returning false automatically deallocates the automatically allocated handler that was created by DirectoryDeltaTransfer
 		return false;
@@ -59,6 +62,7 @@ void CASIManager::Request()
 	char outputSubdir[256] = "";
 
 	unsigned short setId;
+
 	setId = NetworkManager->directoryDeltaTransfer.DownloadFromSubdirectory(subdir, outputSubdir, true, sysAddrZero, &transferCallback, HIGH_PRIORITY, 0, 0);
 	if (setId == (unsigned short)-1) {
 		printf("Download failed.  Host unreachable.\n");

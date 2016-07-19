@@ -224,11 +224,11 @@
     <ClInclude Include="Commands.h">
       <Filter>Header Files\Modification</Filter>
     </ClInclude>
-    <ClInclude Include="ASIManager.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
     <ClInclude Include="Objects.h">
       <Filter>Header Files\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="ASIManager.h">
+      <Filter>Header Files\Net</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

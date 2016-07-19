@@ -4,6 +4,7 @@ playerPool playerData[128];
 
 CNetworkManager *NetworkManager;
 CRPCManager		*RPCManager;
+CASIManager		*ASIManager;
 CConfig			*Config;
 
 HMODULE		FiveMP_Module;
@@ -14,6 +15,7 @@ void main() {
 	Config			= new CConfig;
 	NetworkManager	= new CNetworkManager;
 	RPCManager		= new CRPCManager;
+	ASIManager		= new CASIManager;
 
 	Config->Read();
 
@@ -43,6 +45,8 @@ void main() {
 						NetworkManager->client->Send(&requestid, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 
 						timesince = time(0);
+
+						ASIManager->Request();
 					}
 				}
 			}

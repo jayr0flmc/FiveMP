@@ -73,6 +73,8 @@ void CNetworkManager::Pulse()
 
 			sprintf(testmessage, "GUID is: ~b~#%s\n", client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString());
 			printf(testmessage);
+
+			ASIManager->sysAddrZero = packet->systemAddress;
 			break;
 
 		case ID_CONNECTION_ATTEMPT_FAILED:

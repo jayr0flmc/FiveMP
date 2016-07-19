@@ -33,6 +33,9 @@
     <ClInclude Include="RPCManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ASIManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RPCManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ASIManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

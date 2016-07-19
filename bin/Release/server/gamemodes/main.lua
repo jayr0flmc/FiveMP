@@ -19,6 +19,26 @@ function OnGameModeInit()
 	SetPickupModel(pickup, "prop_ld_health_pack");
 	SetPickupRespawnTime(pickup, 2000);
 	
+	--Known bug, it doesn't create folders!!!!!!
+	--Make sure that folders are created.
+	inifile = LoadINIFile("test.ini");
+	WriteInteger(inifile, "int", 5);
+	WriteFloat(inifile, "float", 0.2);
+	WriteBoolean(inifile, "boolean", true);
+	WriteString(inifile, "string", "testing");
+	
+	arg1 = ReadInteger(inifile, "int");
+	arg2 = ReadFloat(inifile, "float");
+	arg3 = ReadBoolean(inifile, "boolean");
+	arg4 = ReadString(inifile, "string");
+	
+	print(arg1);
+	print(arg2);
+	print(arg3);
+	print(arg4);
+	
+	CloseINIFile(inifile);
+	
 	return 1;
 end
 
