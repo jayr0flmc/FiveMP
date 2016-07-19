@@ -1,5 +1,10 @@
 #include "stdafx.h"
 
+bool doesFileExist(const char* name) {
+	struct stat buffer;
+	return (stat(name, &buffer) == 0);
+}
+
 int LoadINIFile(lua_State * state)
 {
 	int args = lua_gettop(state);
@@ -9,8 +14,10 @@ int LoadINIFile(lua_State * state)
 	std::string fileName = std::string(".//scriptfiles//") + std::string(lua_tostring(state, 1));
 
 	//Creates file if it doesnt exist.
-	std::ofstream file(fileName);
-	file.close();
+	if (!doesFileExist(fileName.c_str())) {
+		std::ofstream file(fileName);
+		file.close();
+	}
 
 	int j = -1;
 	for (int i = 0; i < 100; i++) {
