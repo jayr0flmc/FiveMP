@@ -112,9 +112,51 @@ function OnPlayerMessage(playerid, message)
 end
 
 function OnPlayerCommand(playerid, message)
-	if message == "/test2" then
-		SendMessageToAll("i used the /test2 command which I scripted in my LUA file :D");
-		return 1;
+		args = {}
+	index = 0
+	for value in string.gmatch(message,"%w+") do 
+		args [index] = value
+		index = index + 1
 	end
+
+    if message == "/test2" then
+        SendMessageToAll("i used the /test2 command which I scripted in my LUA file :D");
+        return 1;
+    end
+	
+	if args[0] == "tp" then
+        if not isempty(args[1]) and not isempty(args[2]) then
+			playerid1 = GetPlayerId(args[1])
+			playerid2 = GetPlayerId(args[2])
+			
+			local x, y, z = GetPlayerPos(playerid2)
+			SetPlayerPos(playerid1, x, y, z)
+			
+		end
+        return 1;
+    end
+	
+	if args[0] == "goto" then
+        if not isempty(args[1]) then
+			playerid1 = GetPlayerId(args[1])
+			
+			local x, y, z = GetPlayerPos(playerid1)
+			SetPlayerPos(playerid, x, y, z)
+			
+		end
+        return 1;
+    end
+	
+	if args[0] == "bring" then
+        if not isempty(args[1]) then
+			playerid1 = GetPlayerId(args[1])
+			
+			local x, y, z = GetPlayerPos(playerid)
+			SetPlayerPos(playerid1, x, y, z)
+			
+		end
+        return 1;
+    end
+	
 	return 0;
 end
