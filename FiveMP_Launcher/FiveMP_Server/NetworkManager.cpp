@@ -123,6 +123,7 @@ void SNetworkManager::Pulse()
 			pid_bitStream.Write(Config->ServerTimeHour);
 			pid_bitStream.Write(Config->ServerTimeMinute);
 			pid_bitStream.Write(Config->ServerTimeFreeze);
+			pid_bitStream.Write(Config->ServerWeather);
 
 			server->Send(&pid_bitStream, HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
 			break;

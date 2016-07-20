@@ -74,6 +74,7 @@ int main(void)
 	lua_register(sLUA, "IsPlayerConnected", IsPlayerConnected);
 	lua_register(sLUA, "SetPlayerComponentVariation", SetPedComponentVariation);
 	lua_register(sLUA, "SetPlayerControlable", SetPlayerControlable);
+	lua_register(sLUA, "SetWeather", SetWeather);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);

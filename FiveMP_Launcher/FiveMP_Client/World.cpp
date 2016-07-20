@@ -46,3 +46,7 @@ void GameWorld::CleanUp() {
 void GameWorld::SetTime(int hour, int minute, int seconds) {
 	TIME::SET_CLOCK_TIME(hour, minute, seconds);
 }
+
+void GameWorld::SetWeather(char * weather, int time) {
+	GAMEPLAY::_SET_WEATHER_TYPE_OVER_TIME(weather, time);
+}

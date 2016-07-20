@@ -405,7 +405,7 @@ int GetPlayerArmour(lua_State* state) {
 }
 
 #pragma endregion 
-#pragma region "Time"
+#pragma region "Time / Weather"
 
 int SetTime(lua_State* state) {
 
@@ -429,6 +429,23 @@ int GetTime(lua_State* state) {
 	lua_pushinteger(state, Config->ServerTimeMinute);
 
 	return 2;
+}
+
+int SetWeather(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetWeather() was called with %d arguments.\n", args);
+
+	Config->ServerWeather = (char *)lua_tostring(state, 1);
+	int time = lua_tointeger(state, 2);
+
+	RakNet::BitStream sSetWeather;
+	sSetWeather.Write(Config->ServerWeather);
+	sSetWeather.Write(time);
+	NetworkManager->rpc.Signal("SetWeather", &sSetWeather, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+
+	return 0;
 }
 
 #pragma endregion 

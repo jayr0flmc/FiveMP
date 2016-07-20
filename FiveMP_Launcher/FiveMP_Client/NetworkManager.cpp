@@ -137,9 +137,11 @@ void CNetworkManager::Pulse()
 			playerClientID.Read(time_hour);
 			playerClientID.Read(time_minute);
 			playerClientID.Read(time_pause);
+			playerClientID.Read(weather);
 
 			TIME::SET_CLOCK_TIME(time_hour, time_minute, 00);
 			TIME::PAUSE_CLOCK(time_pause);
+			GAMEPLAY::SET_WEATHER_TYPE_PERSIST(weather);
 
 			bsPlayerConnect.Write(playerid);
 			rpc.Signal("PlayerConnect", &bsPlayerConnect, HIGH_PRIORITY, RELIABLE_ORDERED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, false);

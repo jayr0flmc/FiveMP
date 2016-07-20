@@ -377,3 +377,13 @@ void SetPlayerControlable(RakNet::BitStream * bitStream, RakNet::Packet * packet
 
 	ENTITY::FREEZE_ENTITY_POSITION(LocalPlayer->playerPed, !value);
 }
+
+void SetWeather(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
+	char *string;
+	int time;
+
+	bitStream->Read(string);
+	bitStream->Read(time);
+
+	world.SetWeather(string, time);
+}
