@@ -460,7 +460,7 @@ int SetPlayerModel(lua_State* state) {
 	if (playerData[playerid].isConnected) {
 		int modelid = lua_tointeger(state, 2);
 
-		playerData[playerid].pedModel = modelid;
+		playerData[playerid].pedModelID = modelid;
 
 		RakNet::BitStream sSetPlayerModel;
 		sSetPlayerModel.Write(playerid);
@@ -478,7 +478,7 @@ int GetPlayerModel(lua_State * state)
 
 	int playerid = lua_tointeger(state, 1);
 	if (playerData[playerid].isConnected) {
-		lua_pushinteger(state, playerData[playerid].pedModel);
+		lua_pushinteger(state, playerData[playerid].pedModelID);
 	}
 	else {
 		lua_pushinteger(state, 0);

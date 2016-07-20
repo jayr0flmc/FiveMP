@@ -40,6 +40,7 @@ struct playerPool {
 
 	int pedType;							// Ped Type
 	Hash pedModel;							// PedModel in hash
+	int pedModelID;
 	int pedHealth = 100;					// Ped Health
 	int pedArmour;							// Ped Armour
 
