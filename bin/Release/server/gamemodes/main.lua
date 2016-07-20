@@ -8,6 +8,10 @@ function OnGameModeInit()
 	CreateVehicle("Voltic", -9.0, 10.0, 73.0, 360.0, 5, 10, true, 500);
 	CreateVehicle("Gargoyle", -12.0, 12.0, 73.0, 360.0, 5, 10, true, 500);
 	
+	SetVehicleColor(0, 1, 2, 29);
+	SetVehicleCustomColor(2, 1, 255, 0, 239);
+	SetVehicleNumberPlate(2, "Voltic");
+	
 	blip = CreateBlip();
 	SetBlipLocationType(blip, 1, vehicle);
 	SetBlipColor(blip, 23);
@@ -18,6 +22,26 @@ function OnGameModeInit()
 	SetPickupPos(pickup, -16, 13, 71);
 	SetPickupModel(pickup, "prop_ld_health_pack");
 	SetPickupRespawnTime(pickup, 2000);
+	
+	--Known bug, it doesn't create folders!!!!!!
+	--Make sure that folders are created.
+	inifile = LoadINIFile("test.ini");
+	WriteInteger(inifile, "testsection", "int", 5);
+	WriteFloat(inifile, "testsection", "float", 0.2);
+	WriteBoolean(inifile, "testsection", "boolean", true);
+	WriteString(inifile, "testsection", "string", "testing");
+	
+	arg1 = ReadInteger(inifile, "testsection", "int");
+	arg2 = ReadFloat(inifile, "testsection", "float");
+	arg3 = ReadBoolean(inifile, "testsection", "boolean");
+	arg4 = ReadString(inifile, "testsection", "string");
+	
+	print(arg1);
+	print(arg2);
+	print(arg3);
+	print(arg4);
+	
+	CloseINIFile(inifile);
 	
 	return 1;
 end
@@ -83,11 +107,65 @@ end
 
 function OnPlayerMessage(playerid, message)
 	playername = GetPlayerName(playerid);
-	SendMessageToAll( "~r~" .. playername .. ": ~w~" .. message);
+	SendMessageToAll( "~r~" .. playername .. "(".. playerid .."): ~w~" .. message);
 	return 1;
 end
 
 function OnPlayerCommand(playerid, message)
+		args = {}
+	index = 0
+	for value in string.gmatch(message,"%w+") do 
+		args [index] = value
+		index = index + 1
+	end
+
+    if message == "/test2" then
+        SendMessageToAll("i used the /test2 command which I scripted in my LUA file :D");
+        return 1;
+    end
+	
+	if args[0] == "tp" then
+        if not isempty(args[1]) and not isempty(args[2]) then
+			playerid1 = GetPlayerId(args[1])
+			playerid2 = GetPlayerId(args[2])
+			playername1 = GetPlayerName(playerid1)
+			playername2 = GetPlayerName(playerid2)
+			
+			local x, y, z = GetPlayerPos(playerid2)
+			SetPlayerPos(playerid1, x, y, z)
+			
+			SendMessageToPlayer(playerid, "You Teleported ~b~" .. playername1 .. " ~w~to ~b~" .. playername2);
+			SendMessageToPlayer(playerid1, "You have been Teleported to ~b~" .. playername2);
+			SendMessageToPlayer(playerid2, "~b~" .. playername1 .. " ~w~has Teleported to you");
+		end
+        return 1;
+    end
+	
+	if args[0] == "goto" then
+        if not isempty(args[1]) then
+			playerid1 = GetPlayerId(args[1])
+			playername1 = GetPlayerName(playerid1)
+			
+			local x, y, z = GetPlayerPos(playerid1)
+			SetPlayerPos(playerid, x, y, z)
+			
+			SendMessageToPlayer(playerid, "You Teleported to ~b~" .. playername1);
+		end
+        return 1;
+    end
+	
+	if args[0] == "bring" then
+        if not isempty(args[1]) then
+			playerid1 = GetPlayerId(args[1])
+			playername = GetPlayerName(playerid)
+			
+			local x, y, z = GetPlayerPos(playerid)
+			SetPlayerPos(playerid1, x, y, z)
+			
+			SendMessageToPlayer(playerid1, "You have been Teleported to ~b~" .. playername);
+		end
+        return 1;
+    end
 	
 	return 0;
 end

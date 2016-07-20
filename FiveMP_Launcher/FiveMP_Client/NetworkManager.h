@@ -32,6 +32,7 @@ public:
 	int time_hour;
 	int time_minute;
 	bool time_pause;
+	char *weather;
 
 	bool sync_test = true;
 };

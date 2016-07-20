@@ -149,7 +149,7 @@ void CChat::ScriptKeyboardMessage(DWORD key, WORD repeats, BYTE scanCode, BOOL i
 {
 	CChat *Chat = CChat::Get();
 
-	if (Chat->bOpened && (isUpNow || wasDownBefore) && (key != VK_RETURN && key != VK_BACK && key != VK_DELETE))
+	if (Chat->bOpened && (isUpNow || wasDownBefore) && (key != VK_RETURN && key != VK_BACK && key != VK_DELETE && key != VK_ESCAPE))
 	{
 		LPWSTR outChars = new WCHAR[4];
 		BYTE keyState[256] = { 0 };

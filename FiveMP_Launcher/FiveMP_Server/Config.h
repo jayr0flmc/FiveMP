@@ -12,6 +12,7 @@ public:
 	int		ServerTimeMinute;
 	float	ServerTimeScale;
 	bool	ServerTimeFreeze;
+	char	*ServerWeather;
 
 	void	Read();
 };

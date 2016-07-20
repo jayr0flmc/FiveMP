@@ -61,9 +61,6 @@ using namespace RakNet;
 #include "Pickups.h"
 #include "Blips.h"
 
-// ScriptHook
-#include <Types.h>
-
 // Scripting (LUA)
 #include <lua.hpp>
 
@@ -74,6 +71,7 @@ using namespace RakNet;
 #include "functions_blips.h"
 #include "functions_vehicle.h"
 #include "functions_pickups.h"
+#include "functions_ini.h"
 
 // Scripting (LUA-Callbacks)
 #include "callbacks.h"

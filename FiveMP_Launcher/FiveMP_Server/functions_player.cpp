@@ -275,7 +275,7 @@ int GetPlayerFacingAngle(lua_State * state)
 
 	int playerid = lua_tointeger(state, 1);
 	if (playerData[playerid].isConnected) {
-		lua_pushnumber(state, playerData[playerid].r);
+		lua_pushnumber(state, 360 - playerData[playerid].r);
 	}
 	else {
 		lua_pushnumber(state, 0.0f);
@@ -405,7 +405,7 @@ int GetPlayerArmour(lua_State* state) {
 }
 
 #pragma endregion 
-#pragma region "Time"
+#pragma region "Time / Weather"
 
 int SetTime(lua_State* state) {
 
@@ -429,6 +429,23 @@ int GetTime(lua_State* state) {
 	lua_pushinteger(state, Config->ServerTimeMinute);
 
 	return 2;
+}
+
+int SetWeather(lua_State* state) {
+
+	int args = lua_gettop(state);
+
+	printf("SetWeather() was called with %d arguments.\n", args);
+
+	Config->ServerWeather = (char *)lua_tostring(state, 1);
+	int time = lua_tointeger(state, 2);
+
+	RakNet::BitStream sSetWeather;
+	sSetWeather.Write(Config->ServerWeather);
+	sSetWeather.Write(time);
+	NetworkManager->rpc.Signal("SetWeather", &sSetWeather, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, false);
+
+	return 0;
 }
 
 #pragma endregion 
@@ -460,7 +477,7 @@ int SetPlayerModel(lua_State* state) {
 	if (playerData[playerid].isConnected) {
 		int modelid = lua_tointeger(state, 2);
 
-		playerData[playerid].pedModel = modelid;
+		playerData[playerid].pedModelID = modelid;
 
 		RakNet::BitStream sSetPlayerModel;
 		sSetPlayerModel.Write(playerid);
@@ -478,7 +495,7 @@ int GetPlayerModel(lua_State * state)
 
 	int playerid = lua_tointeger(state, 1);
 	if (playerData[playerid].isConnected) {
-		lua_pushinteger(state, playerData[playerid].pedModel);
+		lua_pushinteger(state, playerData[playerid].pedModelID);
 	}
 	else {
 		lua_pushinteger(state, 0);
@@ -490,7 +507,7 @@ int GetPlayerModel(lua_State * state)
 int SetPedComponentVariation(lua_State* state) {
 	int args = lua_gettop(state);
 
-	printf("GetPedHeadBlendData() was called with %d arguments.\n", args);
+	printf("SetPedComponentVariation() was called with %d arguments.\n", args);
 
 	int playerid = lua_tointeger(state, 1);
 	if (playerData[playerid].isConnected) {
@@ -509,6 +526,58 @@ int SetPedComponentVariation(lua_State* state) {
 	}
 
 	return 0;
+}
+
+int SetPlayerControlable(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("SetPlayerControlable() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected) {
+		bool value = lua_toboolean(state, 2);
+
+		RakNet::BitStream sSetPlayerC;
+		sSetPlayerC.Write(playerid);
+		sSetPlayerC.Write(value);
+		NetworkManager->rpc.Signal("SetPlayerControlable", &sSetPlayerC, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
+	}
+	return 0;
+}
+
+int IsPlayerInAnyVehicle(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("IsPlayerInAnyVehicle() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected && playerData[playerid].vehicleid != -1) {
+		lua_pushboolean(state, true);
+	}
+	else {
+		lua_pushboolean(state, false);
+	}
+
+	return 1;
+}
+
+int IsPlayerInVehicle(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("IsPlayerInAnyVehicle() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected) {
+		int vehicleid = lua_tointeger(state, 2);
+		lua_pushboolean(state, playerData[playerid].vehicleid == vehicleid);
+	}
+	else {
+		lua_pushboolean(state, false);
+	}
+	return 1;
 }
 
 #pragma endregion 

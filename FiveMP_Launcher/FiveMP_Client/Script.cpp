@@ -209,14 +209,16 @@ void RemoveVehicle(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 void SetVehicleColor(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 {
 	int vehicleid;
-	int color1;
-	int color2;
+	int layer;
+	int color;
+	int painttype;
 
 	bitStream->Read(vehicleid);
-	bitStream->Read(color1);
-	bitStream->Read(color2);
+	bitStream->Read(layer);
+	bitStream->Read(painttype);
+	bitStream->Read(color);
 
-	vehicle.SetVehicleColor(vehicleid, color1, color2);
+	vehicle.SetVehicleColor(vehicleid, layer, color, painttype);
 }
 
 void SetVehicleCustomColor(RakNet::BitStream * bitStream, RakNet::Packet * packet)
@@ -365,6 +367,23 @@ void HidePickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 
 }
 
-void UpdatePickupForPlayer(RakNet::BitStream * bitStream, RakNet::Packet * packet)
+void SetPlayerControlable(RakNet::BitStream * bitStream, RakNet::Packet * packet)
 {
+	int playerid;
+	bool value;
+
+	bitStream->Read(playerid);
+	bitStream->Read(value);
+
+	ENTITY::FREEZE_ENTITY_POSITION(LocalPlayer->playerPed, !value);
+}
+
+void SetWeather(RakNet::BitStream *bitStream, RakNet::Packet *packet) {
+	char *string;
+	int time;
+
+	bitStream->Read(string);
+	bitStream->Read(time);
+
+	world.SetWeather(string, time);
 }

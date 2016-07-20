@@ -16,6 +16,7 @@ spawnPool spawnData[50];
 vehiclePool vehicleData[150];
 blipPool blipData[100];
 pickupPool pickupData[100];
+iniPool iniData[100];
 
 int main(void)
 {
@@ -51,6 +52,7 @@ int main(void)
 	// Player
 	lua_register(sLUA, "SetPlayerName", SetPlayerName);
 	lua_register(sLUA, "GetPlayerName", GetPlayerName);
+	lua_register(sLUA, "GetPlayerId", GetPlayerId);
 	lua_register(sLUA, "SetPlayerMoney", SetPlayerMoney);
 	lua_register(sLUA, "GivePlayerMoney", GivePlayerMoney);
 	lua_register(sLUA, "GetPlayerMoney", GetPlayerMoney);
@@ -71,6 +73,11 @@ int main(void)
 	lua_register(sLUA, "GetPlayerModel", GetPlayerModel);
 	lua_register(sLUA, "IsPlayerConnected", IsPlayerConnected);
 	lua_register(sLUA, "SetPlayerComponentVariation", SetPedComponentVariation);
+	lua_register(sLUA, "SetPlayerControlable", SetPlayerControlable);
+	lua_register(sLUA, "SetWeather", SetWeather);
+
+	lua_register(sLUA, "IsPlayerInAnyVehicle", IsPlayerInAnyVehicle);
+	lua_register(sLUA, "IsPlayerInVehicle", IsPlayerInVehicle);
 
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
@@ -123,6 +130,20 @@ int main(void)
 	lua_register(sLUA, "ShowPickupForPlayer", ShowPickupForPlayer);
 	lua_register(sLUA, "HidePickupForPlayer", HidePickupForPlayer);
 	lua_register(sLUA, "SetPickupRespawnTime", SetPickupRespawnTime);
+
+	//INI
+	lua_register(sLUA, "LoadINIFile", LoadINIFile);
+	lua_register(sLUA, "CloseINIFile", CloseINIFile);
+
+	lua_register(sLUA, "ReadInteger", ReadInteger);
+	lua_register(sLUA, "ReadFloat", ReadFloat);
+	lua_register(sLUA, "ReadBoolean", ReadBoolean);
+	lua_register(sLUA, "ReadString", ReadString);
+
+	lua_register(sLUA, "WriteInteger", WriteInteger);
+	lua_register(sLUA, "WriteFloat", WriteFloat);
+	lua_register(sLUA, "WriteBoolean", WriteBoolean);
+	lua_register(sLUA, "WriteString", WriteString);
 
 	OnGameModeInit(sLUA);
 

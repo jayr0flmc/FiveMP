@@ -27,4 +27,5 @@ void HideBlipFromPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void RemoveDefaultBlipForPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void ShowPickupForPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet);
 void HidePickupForPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet);
-void UpdatePickupForPlayer(RakNet::BitStream *bitStream, RakNet::Packet *packet);
+void SetPlayerControlable(RakNet::BitStream *bitStream, RakNet::Packet *packet);
+void SetWeather(RakNet::BitStream *bitStream, RakNet::Packet *packet);

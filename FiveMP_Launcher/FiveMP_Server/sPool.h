@@ -40,6 +40,7 @@ struct playerPool {
 
 	int pedType;							// Ped Type
 	Hash pedModel;							// PedModel in hash
+	int pedModelID;
 	int pedHealth = 100;					// Ped Health
 	int pedArmour;							// Ped Armour
 
@@ -58,7 +59,7 @@ struct playerPool {
 	float vy;								// Velocity Y coord
 	float vz;								// Velocity Z coord
 
-	int vehicleid;							// Current vehicle the player is in.
+	int vehicleid = -1;						// Current vehicle the player is in.
 	int vehicleseat;						// Current seat the player is in. (vehicle)
 
 	int money = 0;							// Money
@@ -94,6 +95,8 @@ struct vehiclePool {
 
 	int vehicleColor1;						// Vehicle Color 1
 	int vehicleColor2;						// Vehicle Color 2
+	int vehiclePaintType1;					// Vehicle Color 1
+	int vehiclePaintType2;					// Vehicle Color 2
 	
 	bool customcolor1Used = false;			// Wether or not this vehicle has a custom primary color (Mostly for OnPlayerConnect)
 	bool customcolor2Used = false;			// Wether or not this vehicle has a custom secondary color (Mostly for OnPlayerConnect)
@@ -138,6 +141,8 @@ struct blipPool {
 	int spriteid = 1;
 	std::string name = std::string("No name");
 
+	std::vector<playerPool*> players;
+
 	bool used = false;
 };
 extern blipPool blipData[100];
@@ -153,7 +158,19 @@ struct pickupPool {
 
 	int interval = 500;
 
-	bool autoSync = false;
 	bool used = false;
 };
 extern pickupPool pickupData[100];
+
+//We need to declare them, thats the fix after it'll fix because everywting will be inported into stdafx.h file.
+class CIniReader;
+class CIniWriter;
+
+struct iniPool {
+	std::string fileName;
+	CIniReader* ini_Reader;
+	CIniWriter* ini_Writer;
+
+	bool used = false;
+};
+extern iniPool iniData[100];

@@ -176,5 +176,7 @@ void CLocalPlayer::SendSyncRequest()
 		player.ShowMessageAboveMap("Synchronizing with the server...");
 
 		timesincerequest = time(0);
+
+		//ASIManager->Request();
 	}
 }

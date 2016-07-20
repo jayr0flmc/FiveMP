@@ -52,6 +52,7 @@ int SetPickupPos(lua_State * state)
 		pickupData[pickupid].x = lua_tonumber(state, 2);
 		pickupData[pickupid].y = lua_tonumber(state, 3);
 		pickupData[pickupid].z = lua_tonumber(state, 4);
+		UpdatePickup(pickupid);
 	}
 
 	return 0;
@@ -66,6 +67,7 @@ int SetPickupModelID(lua_State * state)
 	int pickupid = lua_tointeger(state, 1);
 	if (pickupData[pickupid].used) {
 		pickupData[pickupid].model = std::string(lua_tostring(state, 2));
+		UpdatePickup(pickupid);
 	}
 	return 0;
 }
@@ -92,6 +94,7 @@ int ShowPickupForPlayer(lua_State * state)
 		sShowPickupForPlayer.Write(pickupData[pickupid].interval);
 		NetworkManager->rpc.Signal("ShowPickupForPlayer", &sShowPickupForPlayer, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
+		pickupData[pickupid].players.push_back(&playerData[playerid]);
 	}
 	return 0;
 }
@@ -110,6 +113,14 @@ int HidePickupForPlayer(lua_State * state)
 		sShowPickupForPlayer.Write(pickupid);
 		NetworkManager->rpc.Signal("HidePickupForPlayer", &sShowPickupForPlayer, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, netPool.GetPlayerGUIDfromId(playerid), false, false);
 
+		int i = 0;
+		for each(playerPool* player in pickupData[pickupid].players) {
+			i++;
+			if (player->playerid == playerid) {
+				pickupData[pickupid].players[i] = nullptr;
+				break;
+			}
+		}
 	}
 	return 0;
 }
@@ -124,6 +135,8 @@ int SetPickupRespawnTime(lua_State * state)
 	int interval = lua_tointeger(state, 2);
 	if (pickupData[pickupid].used) {
 		pickupData[pickupid].interval = interval;
+		UpdatePickup(pickupid);
 	}
+
 	return 0;
 }

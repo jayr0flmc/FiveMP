@@ -14,4 +14,5 @@ void SConfig::Read() {
 	ServerTimeMinute	= iniReader.ReadInteger("Details", "min", 00);
 	ServerTimeScale		= iniReader.ReadFloat("Details", "timescale", 2.0);
 	ServerTimeFreeze	= iniReader.ReadBoolean("Details", "freeze", false);
+	ServerWeather		= iniReader.ReadString("Details", "weather", "");
 }
