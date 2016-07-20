@@ -76,6 +76,9 @@ int main(void)
 	lua_register(sLUA, "SetPlayerControlable", SetPlayerControlable);
 	lua_register(sLUA, "SetWeather", SetWeather);
 
+	lua_register(sLUA, "IsPlayerInAnyVehicle", IsPlayerInAnyVehicle);
+	lua_register(sLUA, "IsPlayerInVehicle", IsPlayerInVehicle);
+
 	// Player (UI)
 	lua_register(sLUA, "ShowMessageToPlayer", ShowMessageToPlayer);
 	lua_register(sLUA, "ShowMessageToAll", ShowMessageToAll);

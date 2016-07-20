@@ -546,4 +546,38 @@ int SetPlayerControlable(lua_State * state)
 	return 0;
 }
 
+int IsPlayerInAnyVehicle(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("IsPlayerInAnyVehicle() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected && playerData[playerid].vehicleid != -1) {
+		lua_pushboolean(state, true);
+	}
+	else {
+		lua_pushboolean(state, false);
+	}
+
+	return 1;
+}
+
+int IsPlayerInVehicle(lua_State * state)
+{
+	int args = lua_gettop(state);
+
+	printf("IsPlayerInAnyVehicle() was called with %d arguments.\n", args);
+
+	int playerid = lua_tointeger(state, 1);
+	if (playerData[playerid].isConnected) {
+		int vehicleid = lua_tointeger(state, 2);
+		lua_pushboolean(state, playerData[playerid].vehicleid == vehicleid);
+	}
+	else {
+		lua_pushboolean(state, false);
+	}
+	return 1;
+}
+
 #pragma endregion 

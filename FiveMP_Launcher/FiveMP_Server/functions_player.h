@@ -28,3 +28,5 @@ int SetPlayerModel(lua_State* state);
 int GetPlayerModel(lua_State* state);
 int SetPedComponentVariation(lua_State* state);
 int SetPlayerControlable(lua_State* state);
+int IsPlayerInAnyVehicle(lua_State* state);
+int IsPlayerInVehicle(lua_State* state);
