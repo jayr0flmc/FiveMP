@@ -59,7 +59,7 @@ struct playerPool {
 	float vy;								// Velocity Y coord
 	float vz;								// Velocity Z coord
 
-	int vehicleid;							// Current vehicle the player is in.
+	int vehicleid = -1;						// Current vehicle the player is in.
 	int vehicleseat;						// Current seat the player is in. (vehicle)
 
 	int money = 0;							// Money
